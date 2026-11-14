@@ -41,6 +41,7 @@ Audience: professors, students, aerospace researchers and engineers.
 - `uv sync` set up the Python environment
 - `uv run pytest` run the tests
 - `uv run ruff check .` lint (ruff default rules)
+- `uv run python scripts/validate_data.py` check the experiment records (exit 1 on any error)
 
 ## Rules and context
 @docs/working-rules.md
