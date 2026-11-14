@@ -26,10 +26,10 @@ Source: https://psi.nasa.gov/physci/repo/search?q=combustion lists 26 results. W
   - Inverse-flame tables give oxygen from the burner, not ambient, so they must not share a map with ambient oxygen.
 - The oxygen and pressure ranges in the JSON records are not safe to plot. PSI-10 and PSI-159 include burner oxygen up to 85%, and PSI-68 gives a planned range, not tests run.
 
-## Reference atmospheres (from the challenge text)
-- Lunar base or rover: 30% oxygen or more at 10.2 psi or less.
-- ISS cabin: about 21% oxygen at 14.7 psi.
-- Spacesuit: 100% oxygen at 4.3 psi.
+## Reference atmospheres
+- Lunar base or rover: 30% oxygen or more at 10.2 psi or less (challenge text).
+- ISS cabin: about 21% oxygen at 14.7 psi (Researcher's Guide, page 19: "nominally 21 percent oxygen by volume and one atmospheric pressure").
+- Spacesuit: 100% oxygen at 4.3 psi (challenge text).
 - PSI has no partial-gravity data.
 
 ## Screens

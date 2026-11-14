@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict
 
@@ -61,3 +61,73 @@ class Experiment(BaseModel):
     pressure_max_psi: float | None
     test_summary: dict[str, Any]
     particle_size_table: dict[str, Any] | None = None
+
+
+class ReferenceModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
+class Habitat(ReferenceModel):
+    id: str
+    label: str
+    kind: Literal["zone", "point", "note"]
+    source: str
+    o2_pct_min: float | None = None
+    pressure_psi_max: float | None = None
+    o2_pct: float | None = None
+    pressure_psi: float | None = None
+
+
+class Report(ReferenceModel):
+    file: str
+    status: Literal["verified", "unverified"]
+    note: str | None = None
+
+
+class RegistryExperiment(ReferenceModel):
+    psi_id: str
+    kind: Literal["flight", "ground"]
+    test_table: Literal["expected", "none"]
+    reports: list[Report]
+
+
+class GeneralDocument(ReferenceModel):
+    file: str
+    title: str
+    status: Literal["verified", "unverified"]
+
+
+class OutsideExperiment(ReferenceModel):
+    label: str
+    status: Literal["outside_psi"]
+
+
+class OpenQuestion(ReferenceModel):
+    experiment: str
+    question: str
+
+
+class Registry(ReferenceModel):
+    experiments: list[RegistryExperiment]
+    general_documents: list[GeneralDocument]
+    outside_psi: list[OutsideExperiment]
+    open_questions: list[OpenQuestion]
+
+
+class Source(ReferenceModel):
+    file: str
+    page: int
+    figure: str
+
+
+class ReportCondition(ReferenceModel):
+    experiment_id: str
+    test_id: str
+    o2_pct_min: float
+    o2_pct_max: float
+    pressure_psi_min: float
+    pressure_psi_max: float
+    fuel: str
+    outcome: str
+    source: Source
+    note: str | None = None

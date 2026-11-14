@@ -1,0 +1,26 @@
+[
+  {
+    "id": "lunar",
+    "label": "Lunar base or rover",
+    "kind": "zone",
+    "o2_pct_min": 30,
+    "pressure_psi_max": 10.2,
+    "source": "Challenge text: 30% oxygen or more at 10.2 psi or less. Bounds are inclusive."
+  },
+  {
+    "id": "iss",
+    "label": "ISS cabin",
+    "kind": "point",
+    "o2_pct": 21,
+    "pressure_psi": 14.7,
+    "source": "Researcher's Guide, page 19: \"nominally 21 percent oxygen by volume and one atmospheric pressure\""
+  },
+  {
+    "id": "spacesuit",
+    "label": "Spacesuit",
+    "kind": "note",
+    "o2_pct": 100,
+    "pressure_psi": 4.3,
+    "source": "Challenge text"
+  }
+]

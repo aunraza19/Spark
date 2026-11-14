@@ -1,0 +1,958 @@
+{
+  "summary": {
+    "experiments_loaded": 24,
+    "ambient_points": 878,
+    "burner_points": 263
+  },
+  "experiments": [
+    {
+      "psi_id": "PSI-10",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 207,
+      "burner_points": 109
+    },
+    {
+      "psi_id": "PSI-20",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-21",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-22",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-23",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-25",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 129,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-26",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-39",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 79,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-47",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-60",
+      "kind": "ground",
+      "status": "loaded",
+      "test_table": "none_expected",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-62",
+      "kind": "ground",
+      "status": "loaded",
+      "test_table": "none_expected",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-68",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-69",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 273,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-98",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 2,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-99",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 9,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-100",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-101",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-102",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-106",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-107",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-115",
+      "kind": "ground",
+      "status": "loaded",
+      "test_table": "none_expected",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-117",
+      "kind": "ground",
+      "status": "loaded",
+      "test_table": "none_expected",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-142",
+      "kind": "ground",
+      "status": "loaded",
+      "test_table": "none_expected",
+      "ambient_points": 0,
+      "burner_points": 0
+    },
+    {
+      "psi_id": "PSI-159",
+      "kind": "flight",
+      "status": "loaded",
+      "test_table": "loaded",
+      "ambient_points": 179,
+      "burner_points": 154
+    }
+  ],
+  "tables": [
+    {
+      "file": "PSI-10_Experimental table_Flame Design_Inverse Flame.csv",
+      "experiment": "PSI-10",
+      "basis": "burner",
+      "rows_read": 120,
+      "blank_rows": 0,
+      "points": 109,
+      "excluded": 11,
+      "excluded_reasons": {
+        "oxygen: not a number: 'RAMP'": 9,
+        "oxygen: not a number: 'LOW O2'": 2
+      },
+      "excluded_rows": [
+        {
+          "row": 31,
+          "test_id": "21349M4",
+          "reason": "oxygen: not a number: 'RAMP'"
+        },
+        {
+          "row": 32,
+          "test_id": "21349M5",
+          "reason": "oxygen: not a number: 'RAMP'"
+        },
+        {
+          "row": 33,
+          "test_id": "21349M6",
+          "reason": "oxygen: not a number: 'RAMP'"
+        },
+        {
+          "row": 77,
+          "test_id": "22024B2",
+          "reason": "oxygen: not a number: 'RAMP'"
+        },
+        {
+          "row": 78,
+          "test_id": "22024B3",
+          "reason": "oxygen: not a number: 'RAMP'"
+        },
+        {
+          "row": 87,
+          "test_id": "22042M1",
+          "reason": "oxygen: not a number: 'RAMP'"
+        },
+        {
+          "row": 88,
+          "test_id": "22024M2",
+          "reason": "oxygen: not a number: 'RAMP'"
+        },
+        {
+          "row": 89,
+          "test_id": "22024K2",
+          "reason": "oxygen: not a number: 'LOW O2'"
+        },
+        {
+          "row": 90,
+          "test_id": "22024K3",
+          "reason": "oxygen: not a number: 'LOW O2'"
+        },
+        {
+          "row": 94,
+          "test_id": "22027B4",
+          "reason": "oxygen: not a number: 'RAMP'"
+        },
+        {
+          "row": 104,
+          "test_id": "22027B8",
+          "reason": "oxygen: not a number: 'RAMP'"
+        }
+      ],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-10_Experimental table_Flame Design_Normal Flame.csv",
+      "experiment": "PSI-10",
+      "basis": "ambient",
+      "rows_read": 207,
+      "blank_rows": 0,
+      "points": 207,
+      "excluded": 0,
+      "excluded_reasons": {},
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": [
+        {
+          "field": "fuel_flow_mg_s",
+          "reason": "not a number: 'RAMPED'",
+          "count": 3
+        },
+        {
+          "field": "fuel_flow_mg_s",
+          "reason": "not a number: 'RAMP'",
+          "count": 57
+        }
+      ]
+    },
+    {
+      "file": "PSI-20_Experimental table_ACME BRE.csv",
+      "experiment": "PSI-20",
+      "basis": "ambient",
+      "rows_read": 18,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 18,
+      "excluded_reasons": {
+        "daily summary: oxygen is a list of levels per day and there is no pressure column": 18
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-21_Experimental table_CLD Flame.csv",
+      "experiment": "PSI-21",
+      "basis": "ambient",
+      "rows_read": 32,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 32,
+      "excluded_reasons": {
+        "daily summary: no oxygen or pressure columns": 32
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-22_Experimental table_ACME E-FIELD Flames.csv",
+      "experiment": "PSI-22",
+      "basis": "ambient",
+      "rows_read": 32,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 24,
+      "excluded_reasons": {
+        "daily summary: no oxygen or pressure columns": 24
+      },
+      "excluded_rows": [],
+      "duplicates": [
+        {
+          "row": 15,
+          "test_id": null,
+          "first_row": 7
+        },
+        {
+          "row": 19,
+          "test_id": null,
+          "first_row": 7
+        },
+        {
+          "row": 25,
+          "test_id": null,
+          "first_row": 7
+        },
+        {
+          "row": 29,
+          "test_id": null,
+          "first_row": 7
+        },
+        {
+          "row": 30,
+          "test_id": null,
+          "first_row": 26
+        },
+        {
+          "row": 31,
+          "test_id": null,
+          "first_row": 27
+        },
+        {
+          "row": 32,
+          "test_id": null,
+          "first_row": 28
+        },
+        {
+          "row": 33,
+          "test_id": null,
+          "first_row": 7
+        }
+      ],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-23_Experimental table_ACME s-Flame.csv",
+      "experiment": "PSI-23",
+      "basis": "ambient",
+      "rows_read": 18,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 18,
+      "excluded_reasons": {
+        "daily summary: atmosphere is text per day and there is no pressure column": 18
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-25_Experimental table_BASS-II.csv",
+      "experiment": "PSI-25",
+      "basis": "ambient",
+      "rows_read": 129,
+      "blank_rows": 0,
+      "points": 129,
+      "excluded": 0,
+      "excluded_reasons": {},
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-26_Experimental table_BASS.csv",
+      "experiment": "PSI-26",
+      "basis": "ambient",
+      "rows_read": 122,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 122,
+      "excluded_reasons": {
+        "sample list: no oxygen or pressure columns": 122
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-39_Experimental table_CFI.csv",
+      "experiment": "PSI-39",
+      "basis": "ambient",
+      "rows_read": 87,
+      "blank_rows": 0,
+      "points": 79,
+      "excluded": 0,
+      "excluded_reasons": {},
+      "excluded_rows": [],
+      "duplicates": [
+        {
+          "row": 81,
+          "test_id": "1285",
+          "first_row": 24
+        },
+        {
+          "row": 82,
+          "test_id": "1286",
+          "first_row": 25
+        },
+        {
+          "row": 83,
+          "test_id": "1287",
+          "first_row": 26
+        },
+        {
+          "row": 84,
+          "test_id": "1288",
+          "first_row": 27
+        },
+        {
+          "row": 85,
+          "test_id": "1289",
+          "first_row": 28
+        },
+        {
+          "row": 86,
+          "test_id": "1295",
+          "first_row": 29
+        },
+        {
+          "row": 87,
+          "test_id": "1296",
+          "first_row": 30
+        },
+        {
+          "row": 88,
+          "test_id": "1297",
+          "first_row": 31
+        }
+      ],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-47_Experimental table_DAFT.csv",
+      "experiment": "PSI-47",
+      "basis": "ambient",
+      "rows_read": 2,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 2,
+      "excluded_reasons": {
+        "session list: no oxygen or pressure columns": 2
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-68_Experimental table_Flex2.csv",
+      "experiment": "PSI-68",
+      "basis": "ambient",
+      "rows_read": 8,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 8,
+      "excluded_reasons": {
+        "planned test matrix: ranges, not per-test values": 8
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-69_Experimental table_FLEX.csv",
+      "experiment": "PSI-69",
+      "basis": "ambient",
+      "rows_read": 274,
+      "blank_rows": 0,
+      "points": 273,
+      "excluded": 1,
+      "excluded_reasons": {
+        "pressure: pressure 0 mmHg is zero or below": 1
+      },
+      "excluded_rows": [
+        {
+          "row": 115,
+          "test_id": "114",
+          "reason": "pressure: pressure 0 mmHg is zero or below"
+        }
+      ],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-98_Experimental table_SAFFIRE-1.csv",
+      "experiment": "PSI-98",
+      "basis": "ambient",
+      "rows_read": 4,
+      "blank_rows": 0,
+      "points": 2,
+      "excluded": 2,
+      "excluded_reasons": {
+        "oxygen: not an oxygen value: ''": 2
+      },
+      "excluded_rows": [
+        {
+          "row": 4,
+          "test_id": "F1C1/F1C2",
+          "reason": "oxygen: not an oxygen value: ''"
+        },
+        {
+          "row": 5,
+          "test_id": "F2C1/F2C2",
+          "reason": "oxygen: not an oxygen value: ''"
+        }
+      ],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-99_Experimental table_SAFFIRE-2.csv",
+      "experiment": "PSI-99",
+      "basis": "ambient",
+      "rows_read": 15,
+      "blank_rows": 0,
+      "points": 9,
+      "excluded": 6,
+      "excluded_reasons": {
+        "oxygen: not an oxygen value: ''": 6
+      },
+      "excluded_rows": [
+        {
+          "row": 11,
+          "test_id": "F1C1/F1C2",
+          "reason": "oxygen: not an oxygen value: ''"
+        },
+        {
+          "row": 12,
+          "test_id": "F2C1/F2C2",
+          "reason": "oxygen: not an oxygen value: ''"
+        },
+        {
+          "row": 13,
+          "test_id": "Note 1 Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.",
+          "reason": "oxygen: not an oxygen value: ''"
+        },
+        {
+          "row": 14,
+          "test_id": "Note 2 The PMMA portion was completely consumed but the Nomex was not ignited.",
+          "reason": "oxygen: not an oxygen value: ''"
+        },
+        {
+          "row": 15,
+          "test_id": "Note 3 This is the length of fuel with significant visible damage.",
+          "reason": "oxygen: not an oxygen value: ''"
+        },
+        {
+          "row": 16,
+          "test_id": "Note 4 The flames remain anchored at the base of the sample which has a very slow regression rate (0.01 to 0.04 mm/s)",
+          "reason": "oxygen: not an oxygen value: ''"
+        }
+      ],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-100_Experimental table_SAFFIRE-3.csv",
+      "experiment": "PSI-100",
+      "basis": "ambient",
+      "rows_read": 2,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 2,
+      "excluded_reasons": {
+        "sample list: no oxygen or pressure columns": 2
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-101_Experimental table_SAME-R.csv",
+      "experiment": "PSI-101",
+      "basis": "ambient",
+      "rows_read": 109,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 109,
+      "excluded_reasons": {
+        "sample list: no oxygen or pressure columns": 109
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-102_Experimental table_SAME.csv",
+      "experiment": "PSI-102",
+      "basis": "ambient",
+      "rows_read": 8,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 8,
+      "excluded_reasons": {
+        "sample list: no oxygen or pressure columns": 8
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-106_Experimental table_Slice.csv",
+      "experiment": "PSI-106",
+      "basis": "ambient",
+      "rows_read": 12,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 12,
+      "excluded_reasons": {
+        "test day list: no oxygen or pressure columns": 12
+      },
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-107_Experimental table_Spice.csv",
+      "experiment": "PSI-107",
+      "basis": "ambient",
+      "rows_read": 469,
+      "blank_rows": 0,
+      "points": 0,
+      "excluded": 435,
+      "excluded_reasons": {
+        "flame log: no oxygen or pressure columns": 435
+      },
+      "excluded_rows": [],
+      "duplicates": [
+        {
+          "row": 3,
+          "test_id": null,
+          "first_row": 2
+        },
+        {
+          "row": 7,
+          "test_id": null,
+          "first_row": 6
+        },
+        {
+          "row": 10,
+          "test_id": null,
+          "first_row": 9
+        },
+        {
+          "row": 12,
+          "test_id": null,
+          "first_row": 11
+        },
+        {
+          "row": 14,
+          "test_id": null,
+          "first_row": 13
+        },
+        {
+          "row": 103,
+          "test_id": null,
+          "first_row": 102
+        },
+        {
+          "row": 125,
+          "test_id": null,
+          "first_row": 123
+        },
+        {
+          "row": 131,
+          "test_id": null,
+          "first_row": 129
+        },
+        {
+          "row": 132,
+          "test_id": null,
+          "first_row": 129
+        },
+        {
+          "row": 146,
+          "test_id": null,
+          "first_row": 142
+        },
+        {
+          "row": 148,
+          "test_id": null,
+          "first_row": 144
+        },
+        {
+          "row": 153,
+          "test_id": null,
+          "first_row": 150
+        },
+        {
+          "row": 155,
+          "test_id": null,
+          "first_row": 151
+        },
+        {
+          "row": 159,
+          "test_id": null,
+          "first_row": 156
+        },
+        {
+          "row": 160,
+          "test_id": null,
+          "first_row": 157
+        },
+        {
+          "row": 165,
+          "test_id": null,
+          "first_row": 162
+        },
+        {
+          "row": 167,
+          "test_id": null,
+          "first_row": 164
+        },
+        {
+          "row": 172,
+          "test_id": null,
+          "first_row": 169
+        },
+        {
+          "row": 173,
+          "test_id": null,
+          "first_row": 170
+        },
+        {
+          "row": 174,
+          "test_id": null,
+          "first_row": 171
+        },
+        {
+          "row": 184,
+          "test_id": null,
+          "first_row": 182
+        },
+        {
+          "row": 185,
+          "test_id": null,
+          "first_row": 183
+        },
+        {
+          "row": 192,
+          "test_id": null,
+          "first_row": 191
+        },
+        {
+          "row": 216,
+          "test_id": null,
+          "first_row": 215
+        },
+        {
+          "row": 222,
+          "test_id": null,
+          "first_row": 220
+        },
+        {
+          "row": 231,
+          "test_id": null,
+          "first_row": 229
+        },
+        {
+          "row": 232,
+          "test_id": null,
+          "first_row": 230
+        },
+        {
+          "row": 235,
+          "test_id": null,
+          "first_row": 234
+        },
+        {
+          "row": 236,
+          "test_id": null,
+          "first_row": 234
+        },
+        {
+          "row": 241,
+          "test_id": null,
+          "first_row": 240
+        },
+        {
+          "row": 242,
+          "test_id": null,
+          "first_row": 240
+        },
+        {
+          "row": 253,
+          "test_id": null,
+          "first_row": 251
+        },
+        {
+          "row": 267,
+          "test_id": null,
+          "first_row": 266
+        },
+        {
+          "row": 336,
+          "test_id": null,
+          "first_row": 330
+        }
+      ],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-159_Experimental table_CFI-G_Inverse Flames.csv",
+      "experiment": "PSI-159",
+      "basis": "burner",
+      "rows_read": 154,
+      "blank_rows": 861,
+      "points": 154,
+      "excluded": 0,
+      "excluded_reasons": {},
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    },
+    {
+      "file": "PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+      "experiment": "PSI-159",
+      "basis": "ambient",
+      "rows_read": 179,
+      "blank_rows": 0,
+      "points": 179,
+      "excluded": 0,
+      "excluded_reasons": {},
+      "excluded_rows": [],
+      "duplicates": [],
+      "null_fields": []
+    }
+  ],
+  "skipped_tables": {},
+  "tables_without_adapter": [],
+  "validation_issues": [
+    {
+      "severity": "warning",
+      "file": "psi-142.json",
+      "record": "PSI-142",
+      "rule": "one_sided_range",
+      "message": "pressure: only one of min and max is set"
+    },
+    {
+      "severity": "warning",
+      "file": "psi-39.json",
+      "record": "PSI-39",
+      "rule": "one_sided_range",
+      "message": "o2: only one of min and max is set"
+    },
+    {
+      "severity": "warning",
+      "file": "psi-39.json",
+      "record": "PSI-39",
+      "rule": "total_tests_not_a_number",
+      "message": "total_tests is '>200', not a whole number"
+    }
+  ],
+  "lunar_zone": {
+    "definition": {
+      "o2_pct_min": 30.0,
+      "pressure_psi_max": 10.2
+    },
+    "test_points": 20,
+    "by_experiment": {
+      "PSI-159": 20
+    },
+    "report_conditions": [
+      {
+        "experiment_id": "PSI-20",
+        "test_id": "19070D1"
+      }
+    ]
+  },
+  "outside_psi": [
+    {
+      "label": "SoFIE",
+      "status": "outside_psi"
+    },
+    {
+      "label": "FM2",
+      "status": "outside_psi"
+    },
+    {
+      "label": "Saffire-IV",
+      "status": "outside_psi"
+    },
+    {
+      "label": "Saffire-V",
+      "status": "outside_psi"
+    },
+    {
+      "label": "Saffire-VI",
+      "status": "outside_psi"
+    }
+  ],
+  "open_questions": [
+    {
+      "experiment": "PSI-21",
+      "question": "Flames ignited add up to 344 in the CSV, but the record says 35."
+    },
+    {
+      "experiment": "PSI-22",
+      "question": "Flames ignited add up to 230 in the CSV, but the record says 219."
+    },
+    {
+      "experiment": "PSI-20",
+      "question": "The CSV dates 'Oct 17' and 'Dec 5' look like typos. The record's day codes say 17 Sep and 5 Oct."
+    },
+    {
+      "experiment": "PSI-26",
+      "question": "The CSV has 122 rows, but the record says 121 matrix rows."
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "experiment_id": "PSI-20",
+    "test_id": "19070K1",
+    "o2_pct_min": 26.5,
+    "o2_pct_max": 26.5,
+    "pressure_psi_min": 10.2,
+    "pressure_psi_max": 10.2,
+    "fuel": "ethylene/N2 on a porous burner",
+    "outcome": "steady",
+    "source": {
+      "file": "BRE_final_report_20220201.pdf",
+      "page": 25,
+      "figure": "Figure 7"
+    }
+  },
+  {
+    "experiment_id": "PSI-20",
+    "test_id": "19070D1",
+    "o2_pct_min": 34,
+    "o2_pct_max": 34,
+    "pressure_psi_min": 8.2,
+    "pressure_psi_max": 8.2,
+    "fuel": "ethylene/N2 on a porous burner",
+    "outcome": "steady",
+    "source": {
+      "file": "BRE_final_report_20220201.pdf",
+      "page": 26,
+      "figure": "Figure 9"
+    }
+  },
+  {
+    "experiment_id": "PSI-20",
+    "test_id": "19056F1",
+    "o2_pct_min": 27,
+    "o2_pct_max": 27,
+    "pressure_psi_min": 10.2,
+    "pressure_psi_max": 10.2,
+    "fuel": "ethylene/N2 on a porous burner",
+    "outcome": "self-extinguished at 45 s",
+    "source": {
+      "file": "BRE_final_report_20220201.pdf",
+      "page": 25,
+      "figure": "Figure 6"
+    },
+    "note": "The report also calls this condition 26.5%."
+  }
+]

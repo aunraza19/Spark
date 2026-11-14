@@ -1,0 +1,262 @@
+{
+  "experiments": [
+    {
+      "psi_id": "PSI-10",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-20",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "BRE_final_report_20220201.pdf",
+          "status": "verified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-21",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-22",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "E-FIELD Flames Final Report.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-23",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "s_Flame_final_report_20210729.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-25",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "BASS-II Summary Report.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-26",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-39",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "CFI Science Final Report.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-47",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "DAFT final report 6 24 08 d.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-60",
+      "kind": "ground",
+      "test_table": "none",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-62",
+      "kind": "ground",
+      "test_table": "none",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-68",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-69",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-98",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-99",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-100",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-101",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "SAMER_Final 0602 2014.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-102",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "SAME Final Science report  03 18 10 with papers attached.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-106",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-107",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "SPICE Final Report 12_2_2012.pdf",
+          "status": "unverified"
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-115",
+      "kind": "ground",
+      "test_table": "none",
+      "reports": [
+        {
+          "file": "NNX17AF08A_FinalReport.pdf",
+          "status": "verified",
+          "note": "Title page is about SAME data modelling."
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-117",
+      "kind": "ground",
+      "test_table": "none",
+      "reports": [
+        {
+          "file": "PSI-117_Reports_Dissertation_Combustion Behavior Of Sub-Millimeter Sized Oxygenated An.pdf",
+          "status": "unverified",
+          "note": "The title does not match the PSI-117 record title. Check before use."
+        }
+      ]
+    },
+    {
+      "psi_id": "PSI-142",
+      "kind": "ground",
+      "test_table": "none",
+      "reports": []
+    },
+    {
+      "psi_id": "PSI-159",
+      "kind": "flight",
+      "test_table": "expected",
+      "reports": [
+        {
+          "file": "PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf",
+          "status": "unverified"
+        }
+      ]
+    }
+  ],
+  "general_documents": [
+    {
+      "file": "np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+      "title": "Researcher's Guide",
+      "status": "verified"
+    }
+  ],
+  "outside_psi": [
+    {
+      "label": "SoFIE",
+      "status": "outside_psi"
+    },
+    {
+      "label": "FM2",
+      "status": "outside_psi"
+    },
+    {
+      "label": "Saffire-IV",
+      "status": "outside_psi"
+    },
+    {
+      "label": "Saffire-V",
+      "status": "outside_psi"
+    },
+    {
+      "label": "Saffire-VI",
+      "status": "outside_psi"
+    }
+  ],
+  "open_questions": [
+    {
+      "experiment": "PSI-21",
+      "question": "Flames ignited add up to 344 in the CSV, but the record says 35."
+    },
+    {
+      "experiment": "PSI-22",
+      "question": "Flames ignited add up to 230 in the CSV, but the record says 219."
+    },
+    {
+      "experiment": "PSI-20",
+      "question": "The CSV dates 'Oct 17' and 'Dec 5' look like typos. The record's day codes say 17 Sep and 5 Oct."
+    },
+    {
+      "experiment": "PSI-26",
+      "question": "The CSV has 122 rows, but the record says 121 matrix rows."
+    }
+  ]
+}
