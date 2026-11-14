@@ -12,6 +12,7 @@ Audience: professors, students, aerospace researchers and engineers.
 - `data/reference/` hand-written reference data with sources (habitats, registry, report conditions)
 - `data/clean/` cleaned files written by scripts
 - `scripts/` Python data scripts
+- `tests/` pytest tests for the Python code
 - `backend/` FastAPI app
 - `web/` React app
 
@@ -37,7 +38,9 @@ Audience: professors, students, aerospace researchers and engineers.
 - Where the assistant's documents live. PDFs are git-ignored, so probably short text extracts in `data/clean`.
 
 ## Commands
-none yet
+- `uv sync` set up the Python environment
+- `uv run pytest` run the tests
+- `uv run ruff check .` lint (ruff default rules)
 
 ## Rules and context
 @docs/working-rules.md
