@@ -9,6 +9,7 @@ Audience: professors, students, aerospace researchers and engineers.
 - `data/incoming/experiments/` teammates' experiment JSON (read-only)
 - `data/incoming/test-tables/` teammates' test-table CSVs (read-only)
 - `data/incoming/documents/` PDF reports (git-ignored, read-only)
+- `data/reference/` hand-written reference data with sources (habitats, registry, report conditions)
 - `data/clean/` cleaned files written by scripts
 - `scripts/` Python data scripts
 - `backend/` FastAPI app
@@ -20,9 +21,18 @@ Audience: professors, students, aerospace researchers and engineers.
 - Package managers: uv for Python, npm for the web.
 - Git: existing repo and origin. Setup is the root commit on main. Later work goes on feature branches. Commit messages are short and imperative, no trailer. First push only when the user asks.
 - Scripts: write them in Python, never in bash or PowerShell only. The main machine is Windows, teammates may use other systems.
+- Python setup: one pyproject.toml at the repo root with a uv build section. No .python-version. requires-python = ">=3.12,<3.13".
+- Format definition: Pydantic models in backend/spark_data. Clean files are JSON and are committed.
+- Lunar zone: oxygen >= 30% and pressure <= 10.2 psi, bounds inclusive, no tolerance band. ISS is one reference point (21% at 14.7 psi), not a zone. Spacesuit (100% at 4.3 psi) is a note only. Values live only in data/reference/habitats.json.
+- Test points: store o2_pct_min and o2_pct_max with an approximate flag, never a midpoint. Keep raw fuel and outcome text.
+- Inverse-flame (burner oxygen) points go in their own file, never with ambient points.
+- PSI-39 exact duplicate rows are dropped from clean output and listed in the build report.
+- ambient_temperature_K is left out of clean output.
+- A record that fails validation is left out of clean output and listed. The validator exits 1.
+- Conditions known only from reports: data/reference/report_conditions.json, a few entries with source file, page, figure and test id.
+- Data in git: data/incoming JSON and CSV are committed. PDFs are not.
 
 ## Open decisions
-- Where the lunar zone values file lives (one place only).
 - Chat library: assistant-ui or CopilotKit. Confirm it works with Vite during the chat library test.
 - Where the assistant's documents live. PDFs are git-ignored, so probably short text extracts in `data/clean`.
 
