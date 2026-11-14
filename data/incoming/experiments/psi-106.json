@@ -1,0 +1,197 @@
+{
+  "psi_id": "PSI-106",
+  "name": "Structure and Liftoff In Combustion Experiment",
+  "acronym": "SLICE",
+  "doi": "10.60555/pm12-rg61",
+  "research_area": "Combustion Science",
+  "sub_research_area": null,
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with normal-gravity tests on the ground unit and numerical simulations (MC-Smooth vorticity-velocity model with sectional soot model)",
+  "keywords": [
+    "coflow laminar diffusion flame",
+    "flame liftoff",
+    "lifted flames",
+    "flame stabilization",
+    "soot",
+    "fuel dilution",
+    "inlet velocity",
+    "color-ratio pyrometry",
+    "CH* chemiluminescence",
+    "methane",
+    "ethylene"
+  ],
+  "principal_investigator": "Marshall B. Long (Yale University)",
+  "project_scientist": "Dennis P. Stocker (NASA GRC)",
+  "investigators_note": "PSI roles: Principal Investigator Marshall B. Long (Yale University); Co-Investigators Mitchell D. Smooke (Yale University) and Fumiaki Takahashi (Case Western Reserve University; NCSER at NASA GRC at the time); Project Scientist Dennis P. Stocker (NASA GRC), who was also a Co-Investigator and directed the crew. The final report also lists Robert W. Hawersaat (NASA GRC, Project Manager), Jay C. Owens (imaging), Tibor Lorik and Charles T. Bunnell (ZIN Technologies, development, training and operations), Carol L. Reynolds (NASA MSFC, Payload Operations Lead) and Bin Ma (Yale, data analysis and 1g tests, Ph.D.). The experiment was run on orbit by astronaut Don Pettit. Computational modeling by Su (Andy) Cao and Beth Anne V. Bennett (Yale). In 2017 NASA selected Takahashi to continue the analysis under a 2-year project, 'Structure and Stabilization of Laminar Jet Diffusion Flames'.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": null,
+  "start_date": "2009-07",
+  "end_date": null,
+  "public_release_date": "2024-09-18",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Improve understanding of the physical and chemical processes that control the structure and lifting (stabilization) of non-premixed coflow flames, and provide rigorous tests of numerical models including thermal radiation, soot formation and detailed chemical kinetics. Specific objectives, for flames of methane, ethylene and selected nitrogen dilutions burning in a coflow of air: (1) characterize the flame structure, especially its base (stabilizing region), from attached through lifted conditions as a function of fuel, burner diameter and flow conditions; (2) identify the liftoff velocity limits as a function of fuel and burner diameter. A third objective (hysteresis of lifting and reattachment) was dropped a year before flight because the fuel supply was insufficient. SLICE was a precursor to the ACME Coflow Laminar Diffusion Flame (CLD Flame) experiment in the CIR.",
+  "hypothesis": "The structure and stability of laminar diffusion flames in microgravity are strongly influenced by burner diameter, coflow velocity and fuel composition and are fundamentally different from flames on Earth. The 30-day report states that the computational flame model of Smooke et al. effectively served as the hypothesis, and that higher forced velocities were expected to be needed to lift microgravity flames because there is no buoyant convection.",
+  "approach": "Crew-operated glovebox experiment using the SPICE hardware already on the ISS. For each test the crewmember installed a burner tube and a fuel bottle, set the fuel flow and fan (coflow) voltage, ignited the flame with a hot-wire igniter, then varied the fuel flow or the air coflow as directed live from the ground (Telescience Support Center at NASA GRC) and took bracketed high-resolution still photographs at each condition. Typically the fuel flow was fixed and the coflow raised slowly towards liftoff, after which the flame lifted and stabilized downstream or blew out; some tests held the coflow fixed and increased the fuel flow. Burns lasted about 1 minute and the glovebox was flushed with cabin air after every two burns. Fan calibrations (coflow velocity versus fan voltage) were run every test day, and pyrometry calibrations with flame-heated ceramic fibers were run on three days to allow absolute soot volume fraction measurements. Liftoff and blowout limits come from the video; flame structure, soot temperature and soot volume fraction come from the still photographs. About a quarter of the 2012 tests were for SPICE.",
+  "fuel_state": "gas",
+  "fuel": [
+    "methane (CH4)",
+    "70 % methane / 30 % nitrogen",
+    "40 % methane / 60 % nitrogen",
+    "ethylene (C2H4)",
+    "20 % ethylene / 80 % nitrogen",
+    "ethane (C2H6), limited SLICE tests",
+    "propane (C3H8), SPICE tests only"
+  ],
+  "geometry": "Round laminar gas-jet (coflow) diffusion flame issuing from an interchangeable straight stainless-steel burner tube on the axis of a fan-driven flow duct with a 76.2 mm square cross-section (rounded corners), with top and front windows. Burner tubes: nominal inner diameters 0.4, 0.8, 1.6, 2.1 and 3.2 mm (measured 0.4064–0.4191, 0.7620–0.7747, 1.5875–1.6002, 2.1336–2.1463 and 3.2258–3.2385 mm); the 2.1 and 3.2 mm tubes were added for SLICE. Flames attached to the tube or lifted and stabilized downstream.",
+  "o2_min_pct": 21,
+  "o2_max_pct": 21,
+  "pressure_min_psi": 14.5,
+  "pressure_max_psi": 14.5,
+  "conditions_note": "Nominal values, not measured per test. The final report states that the SLICE atmosphere was about 21 % O2 (by volume) with a balance of nitrogen and about 100 kPa (14.5 psi), i.e., MSG working volume filled with ISS cabin air. The SRD asked for the cabin O2 concentration and MSG pressure to be known when possible (MCA / Columbus sensors, CSA-CP, MSG differential pressure transducers), but there was no SLICE instrumentation for them. Testing was not allowed during thruster firings or dockings. ambient_temperature_K = 298 is a nominal value (cabin room temperature, about 25 °C), assumed by the team; it was not measured or reported for these tests.",
+  "ambient_temperature_K": 298,
+  "diluents": [
+    "nitrogen (in the fuel, 30–80 % by volume)"
+  ],
+  "additives": null,
+  "flow": "Forced coflow of air: ambient air from the MSG working volume is drawn by a fan, passes a flow straightener, the duct, an air velocity probe and a screen, flows past the burner tube, through a heat sink and out through a filtered soot trap. The coflow was set by the fan voltage (the probe response was too slow during tests) and calibrated each day. The published microgravity methane flames have average (fuel) inlet velocities of 23–90 cm/s. A reference coflow velocity of about 43 cm/s at full fan voltage is reported for March 2012. Fuel flow set by a mass flow controller (500 sccm full scale, N2 basis).",
+  "gravity": "microgravity",
+  "gravity_note": "ISS (MSG, Expedition 30), compared with normal-gravity tests on the ground unit (ELF/SPICE ground hardware) at Yale University and NASA GRC",
+  "hardware": "MSG",
+  "hardware_note": "SPICE experiment module (based on the ELF hardware) in the Microgravity Science Glovebox: fan-driven flow duct, exchangeable burner tubes and hot-wire igniters, 12 fuel bottles (210 psia, 110 psia for propane), mass flow controller, Nikon D300s digital SLR (blackbody-characterized, optional BG-7 filter), analog video camera with data overlay, radiometer, thin-filament pyrometry fiber arrays on an alternate top window (BASS sample fixture), power/video box and external control box. New for SLICE: 2.1 and 3.2 mm burner tubes, D300s camera, new top window and fiber arrays.",
+  "hardware_link": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Columbus/Microgravity_Science_Glovebox",
+  "related_investigations": [
+    "PSI-107 (SPICE, same hardware; conducted together in 2012 as 'SPLICE')",
+    "PSI-26 (BASS, used the same hardware afterwards)",
+    "ACME Coflow Laminar Diffusion Flame (CLD Flame), the successor in the CIR",
+    "Enclosed Laminar Flames (ELF), STS-87"
+  ],
+  "sensors": [
+    "Nikon D300s digital SLR camera, blackbody-characterized, with optional BG-7 filter (flame shape and size, liftoff height, soot temperature by color-ratio pyrometry, soot volume fraction, CH* chemiluminescence)",
+    "analog color video camera with electronic data overlay (flame behavior, liftoff and blowout limits; overlay of date/time, fuel flow, fan voltage, air speed, radiometer output)",
+    "mass flow controller (fuel flow)",
+    "TSI 8475-3 air velocity probe in the flow duct (coflow velocity; used mainly for daily fan calibration)",
+    "radiometer (flame radiation)",
+    "thin-filament pyrometry SiC fiber arrays (absolute light calibration for soot volume fraction)"
+  ],
+  "measured_or_computed_quantities": [
+    "flame shape and size",
+    "flame length",
+    "liftoff height",
+    "liftoff and blowout limits",
+    "soot temperature",
+    "soot volume fraction",
+    "CH* concentration",
+    "fuel flow rate",
+    "coflow air velocity",
+    "heat release rate (computed)",
+    "velocity field, mixture fraction and species consumption rates (computed)"
+  ],
+  "variables_between_tests": [
+    "fuel",
+    "nitrogen dilution of the fuel",
+    "burner tube diameter",
+    "fuel flow rate",
+    "coflow air velocity"
+  ],
+  "test_summary": {
+    "total_tests": 120,
+    "test_dates": "9 February to 23 March 2012",
+    "test_days": 13,
+    "sessions_by_experiment": {
+      "SLICE only": 8,
+      "SPICE only": 1,
+      "both": 4
+    },
+    "flame_conditions": 700,
+    "photographs": 4000,
+    "fuel_bottles": {
+      "100% CH4": 3,
+      "70% CH4": 2,
+      "40% CH4": 2,
+      "100% C2H4": 1,
+      "20% C2H4": 2,
+      "100% C2H6": 1,
+      "100% C3H8": 1
+    },
+    "burner_inner_diameter_mm": [
+      0.4,
+      3.2
+    ],
+    "pyrometry_calibrations": 4,
+    "planned_tests_srd": 175,
+    "note": "total_tests is the approximate number of ignitions from the final report (the 30-day report says over 100), and includes the SPICE tests (about a quarter of the total). flame_conditions is the number of bracketed photo sets, each almost always at a different flow condition. The SRD test matrix of 175 points (7 fuels x 5 burners x 5 fuel flows) was only a planning estimate. All 12 fuel bottles were used up."
+  },
+  "safety_theme": [
+    "soot and smoke",
+    "flame stability"
+  ],
+  "key_results": [
+    "The 12 fuel bottles were fully consumed in 13 test days: about 120 ignitions and over 4,000 photographs at roughly 700 flame conditions.",
+    "Without buoyancy, microgravity flames are wider and less likely to lift off than in normal gravity, and more highly diluted flames can be stabilized.",
+    "Microgravity flames have lower soot temperatures (about 200 K lower) and soot volume fractions about an order of magnitude higher than their 1g counterparts, because of longer soot residence time. Soot shifts from the centerline to the flame wings.",
+    "Luminous flame length is proportional to the fuel mixture mass flow rate in both gravities; nonbuoyant flames are longer. Flame structure is mainly controlled by the fuel mass flow rate, with dilution and inlet velocity secondary (methane flames, CH4 mole fraction 0.4–1.0, inlet velocity 23–90 cm/s).",
+    "Microgravity flames were more resistant to lifting than expected, so later tests used smaller burner tubes to reach higher jet velocities.",
+    "The CH* concentration integrated over a cross-section scales with the computed heat release rate, and peak CH* differs little between 0g and 1g.",
+    "Numerical results (MC-Smooth model) agree well with the measurements of flame shape and soot temperature."
+  ],
+  "space_benefits": "The research was aimed at Earth combustion, but the final report notes that SLICE results could plausibly help space technologies such as spacecraft fire safety or waste processing. It is also a precursor that reduced risk and improved the test matrix of the ACME CLD Flame experiment on the ISS.",
+  "earth_benefits": "Data to validate coflow diffusion flame models over a wider range of conditions than possible in normal gravity, leading to better design tools for more efficient, lower-emission combustion devices (engines, industrial burners), and better understanding of soot formation and flame stability.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: Gas jet flames in cabin air near 1 atm only; no variation of oxygen or pressure. It informs flame stability, liftoff and soot behavior rather than material flammability.",
+  "publications": [
+    {
+      "title": "A computational and experimental study of coflow laminar methane/air diffusion flames: Effects of fuel dilution, inlet velocity, and gravity",
+      "authors": "Cao S., Ma B., Bennett B.A.V., Giassi D., Stocker D.P., Takahashi F., Long M.B., Smooke M.D.",
+      "doi": "10.1016/j.proci.2014.05.138"
+    },
+    {
+      "title": "A Combined Experimental and Computational Study of Soot Formation in Normal and Microgravity Conditions",
+      "authors": "Dobbins R.R., Tinjero J., Squeo J., Zhao X., Hall R.J., Colket M.B., Long M.B., Smooke M.D.",
+      "doi": "10.1080/00102202.2022.2041621"
+    },
+    {
+      "title": "Effects of Fuel Dilution and Gravity on Laminar Coflow Methane-Air Diffusion Flames: A Computational and Experimental Investigation",
+      "authors": "Cao S., Bennett B.A.V., Ma B., Giassi D., Stocker D.P., Takahashi F., Long M.B., Smooke M.D.",
+      "doi": null
+    },
+    {
+      "title": "An experimental and computational study of soot formation in a coflow jet flame under microgravity and normal gravity",
+      "authors": "Ma B., Cao S., Giassi D., Stocker D.P., Takahashi F., Bennett B.A.V., Smooke M.D., Long M.B.",
+      "doi": "10.1016/j.proci.2014.05.064"
+    },
+    {
+      "title": "Analysis of CH* concentration and flame heat release rate in laminar coflow diffusion flames under microgravity and normal gravity",
+      "authors": "Giassi D., Cao S., Bennett B.A.V., Stocker D.P., Takahashi F., Smooke M.D., Long M.B.",
+      "doi": "10.1016/j.combustflame.2016.02.012"
+    },
+    {
+      "title": "Use of High Dynamic Range (HDR) Imaging for Quantitative Combustion Diagnostics",
+      "authors": "Giassi D., Liu B., Long M.B.",
+      "doi": null
+    }
+  ],
+  "data_quality_notes": [
+    "O2 and pressure were not measured: 21 % O2 and about 100 kPa (14.5 psi) are the nominal values stated in the final report.",
+    "Coflow velocity has significant uncertainty: fan calibrations varied from day to day (on 9 Feb 2012 up to 10 cm/s higher), the flow decreased as soot built up, and on the last day the reference velocity fell from about 43 to 9 cm/s after tests beyond the smoke point.",
+    "Lifted flames were always tilted, indicating an asymmetric coflow, probably from a duct screen found dislodged at set-up or air leakage at the duct door. Tilt is acceptable only near the burner (within about 1 cm).",
+    "Video data overlay anomaly at set-up (discharged titler battery); recovered on 6 Feb 2012 with a crew procedure before testing started.",
+    "start_date is the month NASA selected SLICE for flight development (July 2009); the PSI page has no start or end date. Operations ended 23 March 2012, but the final report (2017) says data analysis was still under way.",
+    "total_tests (about 120 ignitions) includes the SPICE tests run in 2012.",
+    "The HDR imaging paper (Applied Optics 54(14), 2015) is listed in the final report, not on the PSI page; its DOI was not checked.",
+    "ambient_temperature_K = 298 is nominal (assumed), not a measurement."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-106",
+    "https://doi.org/10.60555/pm12-rg61",
+    "PSI-106_Experimental table_Slice.csv (PSI repository)",
+    "SLICE SRD 20100402.pdf (PSI repository)",
+    "SLICE final report 20171226.pdf (PSI repository), including the 30-day operational accomplishments report (Appendix A)",
+    "SLICE DoD.docx (PSI repository)"
+  ],
+  "missing": [
+    "sub-research area and funding (empty on the PSI page)",
+    "project end date",
+    "per-test burner, fuel flow and coflow velocity (in the raw data pic_info files, not read)",
+    "measured liftoff velocity limits per fuel and burner (in the publications, not read)",
+    "measured ambient temperature (298 K used as a nominal value)"
+  ]
+}

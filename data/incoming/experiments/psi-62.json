@@ -1,0 +1,146 @@
+{
+  "psi_id": "PSI-62",
+  "name": "Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography",
+  "acronym": null,
+  "doi": "10.60555/e9xp-ex83",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Spacecraft Fire Safety",
+  "project_type": "Ground Investigation",
+  "study_type": "computational (coupled fluid-solid simulations with an unsteady flamelet generated manifold model), validated against BASS and BASS-II flight imagery from PSI post-processed by two-color tomography; no new experiments",
+  "keywords": [
+    "concurrent flame spread",
+    "flamelet generated manifold",
+    "solid fuel combustion",
+    "PMMA",
+    "two-color tomography",
+    "soot",
+    "flammability limits",
+    "large-eddy simulation",
+    "BASS"
+  ],
+  "principal_investigator": "Paul E. DesJardin (University at Buffalo)",
+  "project_scientist": "David L. Urban (NASA GRC)",
+  "investigators_note": "Citation on the PSI record: DesJardin P, Urban D. Proposal title is the same as the investigation title. Co-authors on the listed publications: Kenneth Budzinski and Siddhant S. Aphale. Comparisons were also made with a parallel NSF-supported normal-gravity flame spread project.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA, PSI grant",
+  "start_date": "2019-05-01",
+  "end_date": "2021-04-30",
+  "public_release_date": "2025-11-14",
+  "flight_platform": null,
+  "objective": "Develop and validate unsteady flamelet generated manifold (UFGM) modeling for concurrent flame spread in microgravity, where heat transfer, mass transport and chemistry are tightly coupled near the solid surface and traditional hybrid turbulence-chemistry models are not fully consistent and miss intermediate reaction pathways. The UFGM approach maps the reacting system onto lower-dimensional manifolds to simulate solid fuel combustion with high fidelity, using the NASA BASS and BASS-II experiments as benchmarks. The long-term goal is to predict flammability limits of spacecraft materials and to provide a sub-grid model for large-eddy simulations of fires.",
+  "hypothesis": "The UFGM approach can accurately reproduce concurrent flame spread in microgravity, including the 'Goldilocks' flammability zone, by coupling near-wall thermal, mass transport and chemical processes with far-field flow dynamics.",
+  "approach": "A previously developed framework for fully coupled fluid-solid simulations of charring and ablating materials was extended with the unsteady FGM method and tested on BASS geometries: flat sheets, spheres and rods of PMMA, and wax cylinders. BASS and BASS-II images in PSI were post-processed with newly developed two-color tomography methods for DSLR cameras, giving 3-D reconstructions of soot and temperature fields to compare with the model. Evaluation metrics were flame geometry, temperature distribution, soot volume fraction and flame spread rate, with special emphasis on reproducing the 'Goldilocks' flammability zone reported by Olson and Ferkul. Results were also compared with a parallel NSF-supported normal-gravity flame spread project.",
+  "fuel_state": "solid (simulated, and imaged in BASS/BASS-II)",
+  "fuel": [
+    "PMMA (flat sheets, spheres, rods)",
+    "wax (cylinders)"
+  ],
+  "geometry": "BASS sample geometries: flat sheets, spheres and rods of PMMA, and wax cylinders, in a concurrent flow",
+  "o2_min_pct": null,
+  "o2_max_pct": null,
+  "pressure_min_psi": null,
+  "pressure_max_psi": null,
+  "conditions_note": "Simulated and BASS test conditions are not given on the record.",
+  "ambient_temperature_K": null,
+  "diluents": null,
+  "additives": null,
+  "flow": "concurrent forced flow (flame spreading in the direction of the flow); velocities not given on the record",
+  "gravity": "microgravity",
+  "gravity_note": "simulated microgravity, validated against BASS/BASS-II ISS imagery; normal-gravity comparison through a parallel NSF project",
+  "hardware": null,
+  "hardware_note": "No hardware: computational and image-analysis study (PSI record lists no associated hardware). The analysed imagery came from DSLR cameras used in BASS and BASS-II.",
+  "hardware_link": null,
+  "related_investigations": [
+    "PSI-25 (listed as related on the record; title not given)",
+    "PSI-26 (listed as related on the record; title not given)",
+    "BASS and BASS-II (benchmark experiments; their PSI IDs are not stated on the record)"
+  ],
+  "sensors": [],
+  "measured_or_computed_quantities": [
+    "flame geometry (computed and reconstructed from BASS imagery)",
+    "temperature field (computed; 3-D two-color tomography reconstruction)",
+    "soot volume fraction (computed; 3-D two-color tomography reconstruction)",
+    "flame spread rate (computed)",
+    "flammability limits, including the 'Goldilocks' zone (computed)"
+  ],
+  "variables_between_tests": [
+    "sample geometry (flat sheet, sphere, rod, cylinder)",
+    "fuel (PMMA or wax)",
+    "gravity (microgravity, compared with normal-gravity work)"
+  ],
+  "test_summary": {
+    "total_tests": null,
+    "note": "No experiments; the record has no experimental or modeling table, so the number of simulation cases and BASS runs analysed is not given.",
+    "geometries": [
+      "PMMA flat sheets",
+      "PMMA spheres",
+      "PMMA rods",
+      "wax cylinders"
+    ],
+    "psi_record": {
+      "version": 1,
+      "version_date": "2025-11-14",
+      "version_change": "New data release",
+      "submitted_date": "2021-04-30",
+      "size_kb": 9.47,
+      "files": [
+        "PSI-62_metadata_NEWID-7_Concurrent Flame Spr.zip (9.47 KB)"
+      ],
+      "experimental_table": null,
+      "modeling_table": null,
+      "read_me": null,
+      "representative_images": null
+    }
+  },
+  "safety_theme": [
+    "flame spread",
+    "flammability"
+  ],
+  "key_results": [],
+  "space_benefits": "Predictive tools for screening the flammability limits of new materials, leading to safer spacecraft designs. Large-eddy simulation sub-grid models are expected to improve fire hazard assessment for long-duration missions and confined habitats.",
+  "earth_benefits": "Better combustion modeling through a deeper understanding of coupled thermal, chemical and flow processes, supporting improved fire safety standards, fire prevention and mitigation, and new diagnostics and simulation methods.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: computational study of solid fuel (PMMA, wax) flame spread benchmarked on BASS; the record gives no oxygen or pressure values, so it cannot be placed against lunar base conditions here. Relevant to predicting flammability limits of cabin materials.",
+  "publications": [
+    {
+      "title": "Radiative flamelet generated manifolds for solid fuel flame spread in microgravity (2023)",
+      "authors": "Budzinski Kenneth, DesJardin Paul E.",
+      "doi": "10.1016/j.combustflame.2023.112939"
+    },
+    {
+      "title": "Theoretical estimates of flammability bounds for thin condensed fuel diffusion flames in microgravity using detailed models of chemistry and radiation (2023)",
+      "authors": "Budzinski Kenneth, DesJardin Paul E.",
+      "doi": "10.1016/j.combustflame.2023.112910"
+    },
+    {
+      "title": "Two-color pyrometry based flame to fuel surface radiative heat flux diagnostic using flamelets",
+      "authors": "Aphale Siddhant S., DesJardin Paul E.",
+      "doi": "10.1016/j.combustflame.2021.111395"
+    },
+    {
+      "title": "Microgravity flammability boundary for PMMA rods in axial stagnation flow: Experimental results and energy balance analyses (2017; BASS benchmark data, not an output of this grant)",
+      "authors": "Olson Sandra L., Ferkul Paul V.",
+      "doi": "10.1016/j.combustflame.2017.03.001"
+    }
+  ],
+  "data_quality_notes": [
+    "Ground (computational) investigation: no flight or laboratory tests, and no experimental or modeling table on the record.",
+    "The only file in PSI is a 9.47 KB metadata archive; no model output, reconstructions or reports are available, so the record contains no results.",
+    "The record gives the PI's affiliation as 'New York University, Buffalo', but the email address is at buffalo.edu, i.e. the University at Buffalo (State University of New York).",
+    "The record names BASS and BASS-II as benchmarks but does not say which PSI investigations they are; the related investigations are listed only as PSI-25 and PSI-26.",
+    "The Olson and Ferkul (2017) paper is the source of the 'Goldilocks' flammability zone used as a benchmark, not a result of this grant.",
+    "The Aphale and DesJardin publication has no year on the record (its DOI points to 2021).",
+    "The investigation ended on 30 April 2021, the data were submitted the same day, and the first release was on 14 November 2025."
+  ],
+  "sources": [
+    "PSI-62 record, saved page (Version 1): description, contacts, files, publications, version history; https://psi.nasa.gov/physci/repo/data/investigations/PSI-62",
+    "PSI-62 citation file (BibTeX, Version 1)"
+  ],
+  "missing": [
+    "all results (flame shape, temperature and soot fields, spread rates, flammability limits): not in the PSI files; they would be in the listed publications",
+    "oxygen, pressure and flow velocity of the simulated and BASS cases",
+    "which BASS and BASS-II runs were analysed",
+    "number of simulation cases",
+    "chemical mechanism and radiation model details",
+    "titles of related investigations PSI-25 and PSI-26"
+  ]
+}

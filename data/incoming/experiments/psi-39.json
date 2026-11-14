@@ -1,0 +1,191 @@
+{
+  "psi_id": "PSI-39",
+  "name": "Cool Flames Investigation",
+  "acronym": "CFI",
+  "doi": null,
+  "research_area": "Combustion Science",
+  "sub_research_area": null,
+  "project_type": null,
+  "study_type": "experimental (flight experiment on the ISS), with detailed numerical modeling of droplet combustion",
+  "keywords": [
+    "cool flames",
+    "warm flames",
+    "droplet combustion",
+    "negative temperature coefficient",
+    "radiative extinction",
+    "re-ignition",
+    "n-dodecane",
+    "farnesane",
+    "helium dilution"
+  ],
+  "principal_investigator": null,
+  "project_scientist": "Daniel L. Dietrich (NASA GRC)",
+  "investigators_note": "No principal investigator is named; the experiment was defined by a Science Definition Team: Forman A. Williams (UC San Diego), Frederick L. Dryer (Princeton), Tanvir I. Farouk (University of South Carolina), Vedha Nayagam (Case Western Reserve University) and Daniel L. Dietrich (NASA GRC). Russian collaborators: Sergey M. Frolov, Valentin Ya. Basevich, Sergey N. Medvedev, Andrey A. Belyaev. GRC project staff: Andrew Suttles (project manager), Daniel L. Dietrich (project scientist), Vedha Nayagam (staff scientist). Engineering by ZIN Technologies (Marty O'Toole, engineering manager). Final report by Nayagam and Dietrich, 23 July 2020.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "Initiated by NASA through the Science Definition Team; peer reviewed and approved by NASA HQ as a follow-up to FLEX and FLEX-2. Related modeling supported by NASA grants NNX14AG461A and NNX09AW19A (Farouk et al.).",
+  "start_date": null,
+  "end_date": null,
+  "public_release_date": null,
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Further explore the quasi-steady cool flames discovered in FLEX: examine how fuel molecular structure, fuel mixtures and ambient conditions (pressure, helium dilution) affect cool-flame burning of n-dodecane, n-dodecane/iso-dodecane mixtures and farnesane. The stated final objective covered 0.25 to 5 atm; tests were run from 0.5 to 5 atm.",
+  "hypothesis": null,
+  "approach": "Same procedure and hardware as FLEX, with minor data acquisition changes. The crew installs the fuel syringe and gas bottles; everything else is run from the ground. The chamber is filled with the chosen gas at the chosen pressure, a droplet of about 4 mm is dispensed between two needles and freely deployed, then ignited by hot wires that retract once ignition is detected. When needed, a 40-micrometer silicon carbide fiber tethers the droplet to stop it drifting out of view. Large droplets first burn with a visible hot flame that goes out by radiative heat loss; burning can then continue as an invisible cool flame. Tests ran from January to September 2017.",
+  "fuel_state": "liquid",
+  "fuel": [
+    "n-dodecane",
+    "n-dodecane / iso-dodecane, 75/25 % by mass",
+    "n-dodecane / iso-dodecane, 60/40 % by mass",
+    "farnesane (renewable jet fuel)"
+  ],
+  "geometry": "spherically symmetric isolated droplet, initial diameter about 4 mm (e.g. 4.35 mm in FLEX-1268); free-floating, or tethered on a 40-micrometer silicon carbide fiber",
+  "o2_min_pct": null,
+  "o2_max_pct": 21,
+  "pressure_min_psi": 7.3,
+  "pressure_max_psi": 73.5,
+  "conditions_note": "Pure n-dodecane at 0.5, 0.75, 1, 1.25, 2, 3 and 5 atm; n-dodecane/iso-dodecane mixtures from 0.5 to 5 atm; farnesane from 0.75 to 3 atm. Mostly in air (O2 mole fraction 0.21). Helium dilution of 29 % and 59 % with O2 at 0.21, helium replacing part of the nitrogen. A few tests at reduced oxygen (values not given in the report).",
+  "ambient_temperature_K": null,
+  "diluents": [
+    "nitrogen",
+    "helium"
+  ],
+  "additives": null,
+  "flow": "no forced flow; quiescent chamber",
+  "gravity": "microgravity",
+  "gravity_note": "ISS. Cool flames need much longer residence times than buoyant flames allow and cannot be observed with droplets in normal gravity.",
+  "hardware": "CIR-MDCA",
+  "hardware_note": "Multi-user Droplet Combustion Apparatus in the Combustion Integrated Rack, same as FLEX with minor data acquisition modifications. Backlit black-and-white camera (5 x 5 cm field of view) for droplet size; UV-sensitive camera imaging OH* emission for flame size; color camera with live downlink; narrow-band and wide-band radiometers. Farouk et al. also describe an intensified camera with a rotating filter wheel (430 nm for CH* during the hot flame, 390 to 490 nm for formaldehyde during the cool flame) used on CFI tests such as FLEX-1268.",
+  "hardware_link": "https://www1.grc.nasa.gov/space/iss-research/iss-fcf/cir/mdca/experiments-using-the-mdca/cfi/",
+  "related_investigations": [
+    "FLEX (PSI-69; first observation of cool flames, 2012)",
+    "FLEX-2 (PSI-68)",
+    "ACME CFI-G (cool flames with gaseous fuels)"
+  ],
+  "sensors": [
+    "backlit black-and-white droplet camera",
+    "UV-sensitive OH* camera",
+    "intensified camera with filter wheel (CH*, formaldehyde)",
+    "color video camera",
+    "narrow-band and wide-band radiometers"
+  ],
+  "measured_or_computed_quantities": [
+    "droplet diameter over time and burning (regression) rate",
+    "hot-flame and cool-flame diameters",
+    "droplet diameter at cool-flame extinction",
+    "broad-band and narrow-band radiant emission",
+    "occurrence of warm flames and re-ignition cycles",
+    "soot shell behaviour",
+    "flame temperatures (hot flame inferred from fiber emission; warm and cool flames from models)"
+  ],
+  "variables_between_tests": [
+    "fuel and fuel blend",
+    "pressure",
+    "helium dilution",
+    "oxygen concentration (a few tests)",
+    "free-floating or fiber-tethered droplet",
+    "initial droplet diameter"
+  ],
+  "test_summary": {
+    "total_tests": ">200",
+    "test_dates": "January to September 2017",
+    "run_ranges_in_psi": {
+      "n-dodecane": "FLEX-1206 to FLEX-1284",
+      "n-dodecane/iso-dodecane mixtures": "FLEX-1285 to FLEX-1387",
+      "farnesane": "FLEX-1388 to FLEX-1431"
+    },
+    "pressure_atm_n_dodecane": [0.5, 0.75, 1, 1.25, 2, 3, 5],
+    "pressure_atm_mixtures": [0.5, 5.0],
+    "pressure_atm_farnesane": [0.75, 3.0],
+    "o2_mole_fraction": 0.21,
+    "helium_pct": [29, 59],
+    "initial_droplet_diameter_mm": "about 4",
+    "example_tests": [
+      {
+        "id": "FLEX-1223",
+        "fuel": "n-dodecane",
+        "pressure_atm": 1.25,
+        "atmosphere": "air",
+        "observed": "typical cool-flame behaviour"
+      },
+      {
+        "id": "FLEX-1268",
+        "fuel": "n-dodecane",
+        "observed": "hot, warm and cool flame stages with hot-flame re-ignition",
+        "conditions_final_report": "3 atm, 12 % O2 - 50 % N2 - 29 % He",
+        "conditions_farouk_et_al": "2.75 atm, 21 % O2, 29 % He, balance N2, droplet 4.35 mm"
+      }
+    ]
+  },
+  "safety_theme": [
+    "extinguishment",
+    "detection"
+  ],
+  "key_results": [
+    "Cool flames were observed for n-dodecane and for n-dodecane/iso-dodecane mixtures; adding iso-dodecane reduced the tendency to form cool flames.",
+    "Warm flames appeared typically at higher pressures after radiative extinction, invisible on the color camera, followed by re-ignition of a hot flame that quickly goes out to form a cool flame. Helium appears to help the heat release and heat loss balance within the NTC region.",
+    "Above approximately 2 atm, multiple re-ignition cycles (hot flame, cool flame, hot flame again) were commonly observed until the droplet was fully consumed, which was unexpected from FLEX. A later peer-reviewed analysis places the onset of warm flames and re-ignitions above 1.25 atm.",
+    "Cool-flame extinction is controlled mainly by chemical kinetics: as the droplet shrinks, residence time falls until the cool flame becomes unstable. The 40-micrometer fiber had relatively little effect on the cool-flame extinction diameter of n-dodecane in air.",
+    "More helium led to earlier cool-flame extinction and a larger extinction diameter.",
+    "At low pressure a stable spherical soot shell formed during the hot flame and no soot formed during the cool flame; at higher pressure the soot shell became diffuse and unstable, and residual soot remained around the droplet after hot-flame extinction. The mechanisms are not understood.",
+    "At 1 atm and below, the cool-flame extinction diameter increases and the cool-flame burning rate decreases as pressure falls; at 5 atm the hot flame does not go out abruptly but dims gradually (Dietrich et al. 2024).",
+    "Modeling of these conditions gives about 1500 K for the hot flame, about 970 K for the warm flame and about 765 K for the cool flame (Farouk et al.); FLEX placed cool flames at 700 to 900 K against more than 1200 K for hot flames.",
+    "In FLEX, a vapor cloud formed around the droplet as partly oxidized fuel condensed right after cool-flame extinction."
+  ],
+  "space_benefits": "A fire that looks extinguished may keep burning as an invisible cool or warm flame, which matters for fire detection and for deciding when a fire is out; unburned fuel vapor can also collect around the fuel in still air.",
+  "earth_benefits": "Low-temperature chemistry controls autoignition and is central to engines such as HCCI that run cooler to cut pollution and raise efficiency; the CFI data help validate the chemical kinetic mechanisms being developed. Cool-flame combustion may also be useful in fuel reforming to produce hydrogen for fuel cells.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: oxygen was about 21 % in most tests, below the level expected for a lunar base, and re-ignition appears mainly above about 1.25 to 2 atm, above cabin pressure. The fuel is an isolated liquid hydrocarbon droplet, not a cabin material, so it informs models more than material selection.",
+  "publications": [
+    {
+      "title": "Low Temperature n-Dodecane Droplet Combustion Experiments Aboard the International Space Station (Microgravity Science and Technology, 2024)",
+      "authors": "Dietrich Daniel, Krause Timmothy, Nayagam Vedha, Farouk Tanvir, Williams Forman",
+      "doi": "10.1007/s12217-024-10115-x"
+    },
+    {
+      "title": "Three stage cool flame droplet burning behavior of n-alkane droplets at elevated pressure conditions: Hot, warm and cool flame (Proceedings of the Combustion Institute 37(3), 2019, 3353-3361)",
+      "authors": "Farouk T.I., Dietrich D., Dryer F.L.",
+      "doi": null
+    },
+    {
+      "title": "Cool-flame dodecane-droplet extinction diameters (Combustion and Flame 212, 2020, 242-244; includes CFI extinction diameters)",
+      "authors": "Williams F.A., Nayagam V.",
+      "doi": null
+    },
+    {
+      "title": "Effects of properties of atmosphere diluents on cool-flame combustion of normal-alkane droplets (Combustion and Flame 229, 2021, 111408; uses ISS droplet data, may include FLEX)",
+      "authors": "Nayagam Vedha, Williams Forman A., Dietrich Daniel L.",
+      "doi": "10.1016/j.combustflame.2021.111408"
+    },
+    {
+      "title": "Hot and Cool-Flame Combustion of N-dodecane Droplets at Moderately High Pressures in Microgravity (presentation, ASGSR 2018)",
+      "authors": "Dietrich D.L., Nayagam V., Williams F.A.",
+      "doi": null
+    }
+  ],
+  "data_quality_notes": [
+    "The conditions of FLEX-1268 differ between sources: the final report caption gives 3 atm and 12 % O2 - 50 % N2 - 29 % He (which sums to 91 %); Farouk et al. give 2.75 atm, 21 % O2, 29 % He, balance N2.",
+    "The pressure above which re-ignition cycles appear differs: about 2 atm in the final report, 1.25 atm in the 2024 paper. Pressures were tested at discrete levels, so neither is a resolved boundary.",
+    "The final report says all CFI data are yet to be fully analysed and gives preliminary, mostly qualitative observations (findings shown as figures, without tabulated values).",
+    "The final report writes 'n-dodecanol' and 'iso-dodecanol' in section 5.1; from the rest of the report these are typos for n-dodecane and iso-dodecane.",
+    "No diagnostic measures gas temperature directly; the 700 to 900 K range comes from FLEX, and warm and cool flame temperatures come from models.",
+    "Heat conducted through the tether fiber can promote re-ignition (Farouk et al.); the report's finding of little fiber effect applies to the cool-flame extinction diameter.",
+    "Models with current n-dodecane chemistry did not reproduce re-ignition and predicted a warm-flame stage about twice as long as measured.",
+    "In a 2 atm (1520 mmHg) cool-flame image the droplet was close to the edge of the field of view.",
+    "The report states that no new anomalies occurred; its 30-day operational report is marked 'not available'.",
+    "A third-party repository lists the DOI as 10.60555/m6pj-a914 (not verified)."
+  ],
+  "sources": [
+    "CFI Science Final Report, Nayagam and Dietrich, 23 July 2020: sections 1-6",
+    "Farouk, Dietrich and Dryer, Proc. Combust. Inst. 37 (2019), preprint NTRS 20190002838",
+    "Dietrich et al., Microgravity Science and Technology, 2024 (abstract)",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-39 (page could not be read)"
+  ],
+  "missing": [
+    "PSI record metadata: DOI, project type, start, end and release dates",
+    "burning rate constants, extinction diameters and re-ignition counts per test (only shown in figures)",
+    "number of replicates per condition",
+    "oxygen levels of the reduced-oxygen tests",
+    "igniter energy and timing; droplet deployment velocity",
+    "camera frame rates and radiometer sampling rates",
+    "30-day operational accomplishments report",
+    "list of data files available in PSI"
+  ]
+}

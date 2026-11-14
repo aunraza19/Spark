@@ -1,0 +1,439 @@
+{
+  "psi_id": "PSI-107",
+  "name": "Smoke Point In Co-flow Experiment",
+  "acronym": "SPICE",
+  "doi": "10.60555/9kbh-e962",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Fire Safety",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with normal-gravity tests and an analytical residence-time model",
+  "keywords": [
+    "laminar smoke point",
+    "soot",
+    "jet diffusion flame",
+    "coflow",
+    "ethylene",
+    "propane",
+    "propylene",
+    "residence time"
+  ],
+  "principal_investigator": "David L. Urban (NASA GRC)",
+  "project_scientist": "Zeng-Guang Yuan (National Center for Space Exploration Research)",
+  "investigators_note": "Science Requirements Document approvals (23 August 2007): David L. Urban (NASA GRC, Glovebox Investigator), Peter B. Sunderland (University of Maryland, Co-Investigator), Zeng-Guang Yuan (National Center for Space Exploration Research, Project Scientist), Robert Hawersaat (NASA GRC, Glovebox Program Manager). Original principal investigator: Gerard M. Faeth (University of Michigan), until his death. Keenan T. Dotson (University of Maryland) analyzed the flight data for his M.S. thesis. ISS crew operators: Michael Barratt, E. Michael Fincke, Sandra H. Magnus, Koichi Wakata.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA: NNX07AO91A (cooperative agreement with the University of Maryland, per the 30-day report and the Dotson thesis)",
+  "start_date": null,
+  "end_date": null,
+  "public_release_date": "2024-09-18",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Identify the laminar smoke-point properties of non-buoyant jet diffusion flames under various co-flow conditions in microgravity; determine the effects of burner diameter and co-flow velocity on luminous flame lengths and smoke points; quantify the sooting propensity of different fuels (ethylene, propane, propylene and propylene/nitrogen mixtures); validate the correlation between luminous flame shape and residence time; and investigate the effect of air and fuel flow rate variations on smoke-point phenomena.",
+  "hypothesis": "Smoke-point behavior will be observed for flames in co-flowing air, and it will depend on nozzle diameter and co-flow velocity. With gravity-driven transport removed, flame properties are expected to differ from those in normal gravity.",
+  "approach": "A gas jet flame was lit on a small nozzle on the centerline of a flow duct in the Microgravity Science Glovebox. For each fuel and nozzle the crew set the air speed with a fan, ignited the flame and adjusted the fuel flow by hand until the flame just began to emit soot (the smoke point). Crew and ground identified smoke points live on video; the video was analyzed afterwards for flame length. Typical burns lasted 60 s and the glovebox was flushed with cabin air after every two burns.",
+  "fuel_state": "gas",
+  "fuel": [
+    "ethylene (C2H4)",
+    "propane (C3H8)",
+    "propylene (C3H6)",
+    "75 % propylene / 25 % nitrogen",
+    "50 % propylene / 50 % nitrogen",
+    "methane (CH4), attempted only"
+  ],
+  "geometry": "Round laminar gas-jet diffusion flame issuing from one of three interchangeable stainless nozzles, all 50 mm long with inner diameters of 0.41 (0.4064), 0.76 (0.762) or 1.6 (1.6002) mm, mounted on the centerline of a rectangular flow duct with Lexan top and front windows. The final report gives the duct interior as 172 mm x 43 mm x 43 mm, while the papers and thesis describe an approximately 76 x 76 mm square cross-section with rounded corners. Nozzle tip ~54 mm downstream of the inlet screen (papers: screen 50 mm upstream); perforated copper plate 120 mm downstream followed by a copper screen and heat sink. Coiled Kanthal hot-wire igniter (~4 A) swung to the nozzle tip for ignition; 105 mm retractable 45°-tilted ruler for length calibration.",
+  "o2_min_pct": 19,
+  "o2_max_pct": 24,
+  "pressure_min_psi": 14.65,
+  "pressure_max_psi": 14.65,
+  "conditions_note": "Not measured per test. The final report states that the ISS cabin air used to flush the glovebox is kept within 19 to 24 % O2 (a 2011 paper estimates 20 to 23 %). 101 kPa (14.65 psi), 298 K and 21 +/- 1 % O2 are the values assumed in the published calculations. The SRD specified only 'Shuttle ambient pressure'; oxygen was not a requirement. ambient_temperature_K = 298 is the value assumed in the published calculations, not a measurement.",
+  "ambient_temperature_K": 298,
+  "diluents": [
+    "nitrogen (in the fuel, for the propylene mixtures)"
+  ],
+  "additives": null,
+  "flow": "Forced co-flowing air from a 3-inch DC fan (Panasonic FBA08A12H1A) drawing on the glovebox atmosphere, through a ceramic honeycomb and screens to remove swirl; fan speed set by a multi-turn potentiometer (a minimum fan voltage is kept even at dial 0 so fuel cannot accumulate). Co-flow velocity 5.4–65 cm/s at the smoke points (table range up to ~85 cm/s). The duct velocity profile is non-uniform (lower on the centerline near the nozzle because of the nozzle boundary layer); it was mapped at 18 locations (stations 13 and 56 mm downstream of the nozzle tip) for 6 fan settings. Fuel flow set manually with a second potentiometer to cross the smoke point; typical burn 60 s, MSG flushed with ISS cabin air after every two burns.",
+  "gravity": "microgravity",
+  "gravity_note": "ISS, with normal-gravity tests on a prototype module at the University of Maryland",
+  "hardware": "MSG",
+  "hardware_note": "Flow duct apparatus modified from the Enclosed Laminar Flames (ELF) experiment, with a fan, three interchangeable nozzles (0.41, 0.76, 1.6 mm), hot-wire igniter, 12 exchangeable fuel bottles, mass flow controller, radiometer, still camera and video camera, operated with a hand-held control box.",
+  "hardware_link": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Columbus/Microgravity_Science_Glovebox",
+  "related_investigations": [
+    "PSI-26 (BASS, reused the flow duct)",
+    "Laminar Soot Processes (LSP)",
+    "Enclosed Laminar Flames (ELF)"
+  ],
+  "sensors": [
+    "Nikon D100 digital still camera (modified) (luminous flame length and shape; soot emission (smoke point))",
+    "Panasonic WV-CP654 analog color video camera (flame appearance, smoke-point identification, flame length)",
+    "Oriel 71768 thermopile radiometer (integrated flame radiation (qualitative only))",
+    "TSI 8475 omni-directional hot-element anemometer (co-flow air velocity ('AIR' reading on the video overlay))",
+    "Fuel mass flow controller (fuel flow rate)",
+    "Video titler / data logger (time-stamped fuel flow, fan speed, air velocity and radiometer gain)",
+    "SRD measurement requirement: fuel mass flow (25 to 500 sccm), co-flow fan voltage (0.5 to 12 V), co-flow velocity (5 to 50 cm/s) and flame radiation, each to +/-10 % of reading at 4 Hz; color video plus 2 to 3 raw high-resolution color images (at least 3000 x 2000 pixels) per test"
+  ],
+  "measured_or_computed_quantities": [
+    "luminous flame length",
+    "smoke-point flame length and fuel flow rate",
+    "co-flow air velocity",
+    "fuel flow rate",
+    "flame radiation (qualitative)",
+    "jet Reynolds number, adiabatic flame temperature and stoichiometric mixture fraction (computed)"
+  ],
+  "variables_between_tests": [
+    "fuel",
+    "nitrogen dilution of the fuel",
+    "nozzle diameter",
+    "co-flow air velocity",
+    "fuel flow rate"
+  ],
+  "test_summary": {
+    "total_tests": 526,
+    "total_tests_note": "flames ignited, from the final report; the PSI table holds 469 flow conditions from 151 ignitions",
+    "test_dates": "14 February to 23 June 2009, 12 sessions",
+    "test_points": "108 in Increment 18 and 155 in Increments 19/20",
+    "ignitions_by_fuel": {
+      "Ethylene": 24,
+      "Propane": 27,
+      "Propylene": 37,
+      "75% Propylene": 37,
+      "50% Propylene": 23,
+      "Methane": 4
+    },
+    "nozzle_diameter_mm": [
+      0.41,
+      0.76,
+      1.6
+    ],
+    "fuel_flow_sccm": [
+      6.15,
+      231.6
+    ],
+    "fuel_mass_flow_mg_s": [
+      0.163,
+      4.397
+    ],
+    "coflow_velocity_cm_s": [
+      4.42,
+      85.28
+    ],
+    "smoke_points_found": 55,
+    "smoke_points": {
+      "Ethylene": {
+        "Zst": 0.0637,
+        "Tad_K": 2367,
+        "d_mm": [
+          0.76,
+          1.6
+        ],
+        "ua_cm_s": [
+          18,
+          58
+        ],
+        "LSP_mm": [
+          37,
+          105
+        ],
+        "uf_cm_s": [
+          69.6,
+          734
+        ],
+        "mf_mg_s": [
+          1.62,
+          3.89
+        ],
+        "Re": [
+          127,
+          636
+        ],
+        "smoke_points": 6
+      },
+      "Propane": {
+        "Zst": 0.0603,
+        "Tad_K": 2264,
+        "d_mm": [
+          0.76,
+          1.6
+        ],
+        "ua_cm_s": [
+          16,
+          45
+        ],
+        "LSP_mm": [
+          46,
+          105
+        ],
+        "uf_cm_s": [
+          48.9,
+          460
+        ],
+        "mf_mg_s": [
+          1.8,
+          3.84
+        ],
+        "Re": [
+          176,
+          788
+        ],
+        "smoke_points": 6
+      },
+      "Propylene": {
+        "Zst": 0.0637,
+        "Tad_K": 2332,
+        "d_mm": [
+          0.41,
+          1.6
+        ],
+        "ua_cm_s": [
+          5.4,
+          57
+        ],
+        "LSP_mm": [
+          13,
+          59
+        ],
+        "uf_cm_s": [
+          11.2,
+          763
+        ],
+        "mf_mg_s": [
+          0.39,
+          1.73
+        ],
+        "Re": [
+          36.4,
+          630
+        ],
+        "smoke_points": 20
+      },
+      "75% Propylene": {
+        "Zst": 0.0768,
+        "Tad_K": 2317,
+        "d_mm": [
+          0.76,
+          1.6
+        ],
+        "ua_cm_s": [
+          13,
+          65
+        ],
+        "LSP_mm": [
+          15,
+          44
+        ],
+        "uf_cm_s": [
+          19.9,
+          272
+        ],
+        "mf_mg_s": [
+          0.64,
+          1.98
+        ],
+        "Re": [
+          49.8,
+          324
+        ],
+        "smoke_points": 13
+      },
+      "50% Propylene": {
+        "Zst": 0.1018,
+        "Tad_K": 2288,
+        "d_mm": [
+          0.76,
+          1.6
+        ],
+        "ua_cm_s": [
+          11,
+          49
+        ],
+        "LSP_mm": [
+          22,
+          50
+        ],
+        "uf_cm_s": [
+          49.6,
+          112
+        ],
+        "mf_mg_s": [
+          1.45,
+          3.29
+        ],
+        "Re": [
+          89.4,
+          207
+        ],
+        "smoke_points": 7
+      }
+    },
+    "planned_tests_srd": {
+      "per_fuel": "9 specified points (3 nozzles x 2 co-flow levels of 50 % and 100 % of maximum x fuel flow at 50 % or 100 % of the smoke point) plus 5 repeats",
+      "fuels": 6,
+      "predetermined_flames": 54,
+      "repeat_flames": 30,
+      "total": 84,
+      "minimal_success_flames": 27,
+      "complete_success_flames": 84
+    },
+    "required_ranges_srd": {
+      "fuel_flow_sccm_N2_equivalent": [
+        0,
+        500
+      ],
+      "oxidizer_velocity_cm_s": [
+        5,
+        50
+      ],
+      "nozzle_diameter_mm": [
+        0.4,
+        0.8,
+        1.6
+      ],
+      "flame_length_mm": [
+        5,
+        100
+      ]
+    },
+    "flight_test_data_II": {
+      "file": "PSI-107_Raw Data_Spice Flight Test Data II modified.xls",
+      "test_days_GMT_2009": [
+        "045",
+        "048",
+        "052",
+        "055",
+        "058",
+        "062"
+      ],
+      "flames": 154,
+      "data_rows": 170,
+      "flames_by_fuel": {
+        "ethylene": 21,
+        "propane": 22,
+        "propylene": 45,
+        "75% propylene": 16,
+        "50% propylene": 39,
+        "methane": 11
+      },
+      "flames_by_nozzle_mm": {
+        "0.4064": 44,
+        "0.762": 56,
+        "1.6002": 54
+      },
+      "air_velocity_cm_s": [
+        3.5,
+        66.5
+      ],
+      "fuel_flow_sccm": [
+        6.3,
+        357.1
+      ],
+      "fuel_mass_flow_mg_s": [
+        0.16,
+        4.4
+      ],
+      "luminous_flame_length_mm": [
+        2.3,
+        110.6
+      ],
+      "pressure_Pa": 101325,
+      "note": "Covers the first six test days (14 February to 3 March 2009, Increment 18) only. The pressure column is a constant 101325 Pa, i.e., a nominal value, not a measurement."
+    }
+  },
+  "safety_theme": [
+    "soot and smoke",
+    "flammability"
+  ],
+  "key_results": [
+    "Increasing the co-flow velocity increases the smoke-point flame length; a smaller nozzle also increases it.",
+    "Smoke-point length scales with nozzle diameter to the power -0.91 times air velocity to the power 0.41.",
+    "Sooting tendency in microgravity increases from ethylene to propane, 50 % propylene, 75 % propylene and propylene. This matches normal gravity except that ethylene and propane swap places.",
+    "Luminous flame length at the smoke point is proportional to fuel mass flow rate.",
+    "Residence time helps explain the trends but does not give a quantitative correlation of the smoke points.",
+    "No smoke point could be found for methane: the flames reached the end of the duct first."
+  ],
+  "space_benefits": "Understanding soot formation and emission in microgravity flames supports spacecraft fire safety strategies for long missions.",
+  "earth_benefits": "Smoke points measure a fuel's tendency to soot; better understanding of soot in laminar flames helps with soot in practical turbulent flames, which affects health, climate and fire spread.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: Gas jet flames in cabin air near 1 atm only; no variation of oxygen or pressure. It informs soot and smoke behavior rather than material selection.",
+  "publications": [
+    {
+      "title": "Laminar smoke points of coflowing flames in microgravity",
+      "authors": "Dotson K.T., Sunderland P.B., Yuan Z.-G., Urban D.L.",
+      "doi": "10.1016/j.firesaf.2011.08.002"
+    },
+    {
+      "title": "Laminar Smoke Points in Coflow Measured Aboard the International Space Station",
+      "authors": "Dotson K., Sunderland P., Yuan Z.-G., Urban D.",
+      "doi": "10.2514/6.2010-1105"
+    },
+    {
+      "title": "Laminar Smoke Points of Microgravity Coflow Diffusion Flames (2009 Fall Technical Meeting, Eastern States Section of the Combustion Institute)",
+      "authors": "Dotson K.T., Sunderland P.B., Yuan Z.-G., Urban D.L.",
+      "doi": null
+    },
+    {
+      "title": "Smoke Points of Microgravity and Normal Gravity Coflow Diffusion Flames (M.S. thesis, University of Maryland, 2009)",
+      "authors": "Dotson K.T.",
+      "doi": null
+    },
+    {
+      "title": "Smoke Point in Co-flow Experiment (SPICE) – Laminar Smoke Point Properties of Non-buoyant Round-Jet Diffusion Flames, Final Report",
+      "authors": "Urban D.L., Sunderland P.B., Yuan Z.-G.",
+      "doi": null
+    },
+    {
+      "title": "Scaling of Gas-Jet Flame Lengths in Elevated Gravity",
+      "authors": "Sunderland P.B., Urban D.L., Nayagam V.",
+      "doi": "10.1007/978-1-4020-8682-3_22"
+    },
+    {
+      "title": "The Microgravity Science Glovebox (MSG), a Resource for Gravity-Dependent Phenomena Research on the International Space Station (ISS)",
+      "authors": "Spivey R.A., Jeter L.B., Vonk C.",
+      "doi": null
+    },
+    {
+      "title": "The Microgravity Science Glovebox as a Platform for Exploration Research on the International Space Station",
+      "authors": "Spivey R., Luz P.",
+      "doi": "10.2514/6.2006-941"
+    },
+    {
+      "title": "A Combined Experimental and Computational Study of Soot Formation in Normal and Microgravity Conditions",
+      "authors": "Dobbins R.R., Tinjero J., Squeo J., Zhao X., Hall R.J., Colket M.B., Long M.B., Smooke M.D.",
+      "doi": "10.1080/00102202.2022.2041621"
+    },
+    {
+      "title": "Shapes of nonbuoyant round hydrocarbon-fueled laminar-jet diffusion flames in still air",
+      "authors": "Aalburg C., Diez F.J., Faeth G.M., Sunderland P.B., Urban D.L., Yuan Z.-G.",
+      "doi": "10.1016/j.combustflame.2004.12.009"
+    },
+    {
+      "title": "Shapes of nonbuoyant round luminous hydrocarbon/air laminar jet diffusion flames",
+      "authors": "Lin K., Faeth G., Sunderland P., Urban D., Yuan Z.",
+      "doi": "10.1016/S0010-2180(98)00100-X"
+    }
+  ],
+  "data_quality_notes": [
+    "O2: the final report states that the ISS cabin air used to flush the MSG is maintained within 19–24% O2 (the 2011 paper estimated 20–23%); O2 was not measured per test. Calculations assume 21±1% O2.",
+    "Pressure was not measured: 101 kPa (14.65 psi) is the value assumed in the published calculations, so pressure_min_psi = pressure_max_psi = 14.65 is nominal.",
+    "In-flight anomaly: soot accumulated on the duct outlet screen and changed the coflow; the crew vacuumed it clean on 2009-06-15. This made propylene smoke points with the 0.41 mm burner non-repeatable between days.",
+    "Methane appears in 4 table rows, but no methane smoke point was found: the flames reached the copper plate at the end of the duct first.",
+    "Hardware discrepancies between the documents: duct size (172 x 43 x 43 mm in the final report vs ~76 x 76 mm cross-section in the papers), fuel bottle size (150 ml vs 75 cc) and MFC make (MKS vs Sierra).",
+    "Flames reached steady state within ~5 s of ignition or of a flow change; periodic flame motion was seen at high coflow, with large burners and long flames.",
+    "SPICE flow-duct hardware was later reused (slightly modified) by BASS (PSI-26).",
+    "The final report's table lists 52 smoke points while its closing remarks and the 2011 paper give 55.",
+    "526 flames were ignited against 84 planned in the SRD, because the crew became faster with the apparatus and fuel was left over.",
+    "The PSI file 'Spice Flight Test Data II modified.xls' (master sheet of ISS tests) covers only GMT days 045–062 of 2009: 154 flames in 170 data rows, with air velocity 3.5–66.5 cm/s, fuel flow 0.16–4.40 mg/s and flame length 2.3–110.6 mm. Its pressure column is a constant 101325 Pa, which confirms that pressure was assumed, not measured."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-107",
+    "https://doi.org/10.60555/9kbh-e962",
+    "PSI-107_Experimental table_Spice.csv (PSI repository)",
+    "SPICE Final Report 12_2_2012.pdf (PSI repository: PSI-107_Reports_SPICE_FinalReport.pdf)",
+    "Exp_19-20_SPICE_30-Day_PostFlight_Report.pdf (PSI repository: PSI-107_Reports_SPICE_30-DayPostFlightReport.pdf)",
+    "Dotson K.T., M.S. thesis, University of Maryland, 2009 (PSI repository: PSI-107_Reports_..._DotsonThesis.pdf)",
+    "https://www.grace.umd.edu/~pbs/2011%20Dotson%20et%20al.%20FSJ.pdf",
+    "https://doi.org/10.1016/j.firesaf.2011.08.002",
+    "Science Requirements for SPICE, 23 August 2007 (SPICE_SRD_8-23-07_with_sigs.doc)",
+    "PSI-107_Raw Data_Spice Flight Test Data II modified.xls (PSI repository)"
+  ],
+  "missing": [
+    "start and end dates (empty on the PSI page)",
+    "measured oxygen and pressure",
+    "per-flame data for the later test days (after GMT 062 of 2009), not in the 'Flight Test Data II' file"
+  ]
+}

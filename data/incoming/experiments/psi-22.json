@@ -1,0 +1,263 @@
+{
+  "psi_id": "PSI-22",
+  "name": "Advanced Combustion via Microgravity Experiments / Electric-Field Effects on Laminar Diffusion Flames",
+  "acronym": "ACME/E-FIELD Flames",
+  "doi": "10.60555/se5a-8c73",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Laminar Flames",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with normal-gravity laboratory tests",
+  "keywords": [
+    "electric field",
+    "ion-driven wind",
+    "chemi-ionization",
+    "ion current",
+    "methane",
+    "ethylene",
+    "soot",
+    "coflow flame"
+  ],
+  "principal_investigator": "Derek Dunn-Rankin (University of California, Irvine)",
+  "project_scientist": "Dennis P. Stocker (NASA GRC)",
+  "investigators_note": "University project scientist: Yu-Chien (Alice) Chien (UC Irvine). Co-Investigators: Felix Weinberg (Imperial College London, died 2012) and Sunny Karnani. Lead collaborator: Sergey Minaev (Far Eastern Federal University). NASA science team: Uday G. Hegde and Vedha Nayagam (CWRU); Fumiaki Takahashi was deputy project scientist for drop testing.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA: NNX17AC51A",
+  "start_date": "2016-11-18",
+  "end_date": "2020-11-17",
+  "public_release_date": "2019-04-15",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Gain an improved understanding of flame ion production and learn how an electric field (ion-driven wind) can be used to control non-premixed flames. Specific objectives: (A) determine the relationship between electric field voltage and chemi-ion current as functions of total fuel (methane, ethylene) flow rate and nitrogen dilution; (B) obtain the time response of flame chemiluminescence, luminosity and ion current to large step changes in voltage; (C) evaluate and manipulate sooting behavior (soot volume fraction and location of luminous soot) in relation to field voltage and ion current; (D) use the ion current vs. voltage behavior to characterize near-limit lifted flames and use the ion-driven wind to stabilize or reattach them.",
+  "hypothesis": "Electric fields applied in microgravity will strongly influence laminar diffusion flames, allowing flame stability, soot behavior and combustion to be controlled through the ion-driven wind and chemi-ionization.",
+  "approach": "A voltage of up to 10 kV, of either sign, was applied between the burner and a copper mesh above it. In each test a flame was ignited, allowed to settle, and the voltage was swept in small steps or ramps while ion current, light emission and images were recorded. Round 1 (March to May 2018) used the coflow burner with and without a weak air flow; round 2 (September to November 2018) used a simple gas-jet burner. Fuels were methane and ethylene, pure or diluted with nitrogen. Tests were commanded from the ground with scripts.",
+  "fuel_state": "gas",
+  "fuel": [
+    "methane (CH4)",
+    "ethylene (C2H4)"
+  ],
+  "geometry": "Laminar non-premixed jet flames on the axis of the 0.4 m diameter ACME chamber insert, with a flat circular copper mesh electrode downstream of the burner. (1) Coflow burner (same as CLD Flame): stainless fuel tube ID 2.16 mm (nominal 2.2 mm), OD 2.41 mm, protruding 3.1 mm beyond the annulus outlet; outer tube ID 25 mm; annulus outlet is a 6.4 mm thick Hastelloy X honeycomb (0.81 mm cells, 0.05 mm foil). Mesh 37 mm above the fuel tube outlet (alternate position 52 mm, not used). (2) Gas-jet burner ('2.1 mm'): same tubing, ID 2.16 mm, OD 2.41 mm, mesh nominally 35 mm downstream. Mesh: 8.9 cm diameter with copper ring (8.4 cm without), square copper weave of 7.1 wires/cm, 0.43 mm wire diameter, 48% open area. Retractable resistively heated hot-wire igniter with crew-exchangeable tip and stepper-motor radial drive.",
+  "o2_min_pct": 21,
+  "o2_max_pct": 21,
+  "pressure_min_psi": 14.5,
+  "pressure_max_psi": 14.5,
+  "conditions_note": "Chamber atmosphere and coflow were synthetic air (21 % O2, 79 % N2 by volume) in all tests, at a nominal 100 kPa (14.5 psi). Pressure was measured but per-test values are not in the PSI table. Tests are constant-volume, so pressure rises slightly and oxygen falls during a test. ambient_temperature_K = 298 is a nominal value (cabin room temperature, about 25 °C), assumed by the team; it was not measured or reported for these tests.",
+  "ambient_temperature_K": 298,
+  "diluents": [
+    "nitrogen"
+  ],
+  "additives": null,
+  "flow": "Coflow burner tests with a weak coflow of synthetic air (21/79 O2/N2 by volume), e.g. 3.1 cm/s, or with no coflow (0 cm/s); gas-jet burner tests with the fuel jet issuing into the quiescent chamber atmosphere (same synthetic air). Fuel jet velocities of e.g. 15, 19 and 27 cm/s. The applied field drives an ion wind upward (mesh negative, positive ions toward the mesh) or toward the burner (mesh positive), which can push the flame down onto the burner.",
+  "gravity": "microgravity",
+  "gravity_note": "ISS, with comparison tests in normal gravity",
+  "hardware": "CIR-ACME",
+  "hardware_note": "ACME chamber insert in the Combustion Integrated Rack (chamber about 100 L, about 90 L free), with the coflow or gas-jet burner, retracting igniter, high-voltage power supplies (one polarity installed at a time) and a removable copper mesh electrode 35 to 37 mm above the burner.",
+  "hardware_link": "https://www1.grc.nasa.gov/space/iss-research/iss-fcf/combustion-science/acme/implementation/",
+  "related_investigations": [
+    "PSI-23 (ACME s-Flame)",
+    "PSI-10 (ACME Flame Design)",
+    "ACME CLD Flame",
+    "ACME BRE",
+    "ACME CFI-G"
+  ],
+  "sensors": [
+    "High-voltage power supply and ion-current measurement (mesh potential and chemi-ion current through the flame (V–I curves))",
+    "ACME data camera (DataCam) (flame shape, luminosity, soot location; color-ratio soot pyrometry and soot volume fraction)",
+    "Intensified monochrome camera (CH* chemiluminescence imaging (reaction-zone location))",
+    "HiBMs camera with collimated illumination (soot volume fraction by light extinction)",
+    "Analog color operations camera (flame behavior during operations)",
+    "Photomultiplier tube (PMT) modules (x3) (OH* (310 nm), CH* and broadband (neutral-density filtered) emission vs time)",
+    "Thermopile radiometers (x6) (flame radiant emission)",
+    "Chamber pressure and temperature sensors (chamber pressure and gas temperature)",
+    "Mass flow controllers (x3) (fuel, N2 dilution and coflow air flow rates)",
+    "Space Acceleration Measurement System (SAMS) (acceleration environment)"
+  ],
+  "measured_or_computed_quantities": [
+    "ion current as a function of applied voltage (V-I curve)",
+    "field strength at peak ion current",
+    "flame shape and luminosity",
+    "OH*, CH* and broad-band light emission",
+    "flame radiation",
+    "soot location",
+    "chamber pressure and temperature, gas flow rates"
+  ],
+  "variables_between_tests": [
+    "burner type (coflow or gas-jet)",
+    "fuel",
+    "fuel dilution with nitrogen",
+    "fuel jet velocity",
+    "coflow air velocity (0 or 3.1 cm/s)",
+    "mesh polarity",
+    "applied voltage"
+  ],
+  "test_summary": {
+    "total_tests": 219,
+    "test_days": 20,
+    "test_dates": "14 March to 15 November 2018",
+    "coflow_burner": {
+      "tests": 120,
+      "test_dates": "14 March to 17 May 2018"
+    },
+    "gas_jet_burner": {
+      "tests": 99,
+      "test_dates": "26 September to 15 November 2018"
+    },
+    "fuel_concentration_pct": {
+      "methane": [
+        40,
+        70,
+        100
+      ],
+      "ethylene": [
+        25,
+        30,
+        50,
+        80,
+        100
+      ]
+    },
+    "fuel_jet_velocity_cm_s": [
+      15,
+      19,
+      27
+    ],
+    "coflow_velocity_cm_s": [
+      0,
+      3.1
+    ],
+    "voltage_kV": [
+      0,
+      10
+    ],
+    "field_strength_kV_cm": [
+      0,
+      2.7
+    ],
+    "burner_to_mesh_distance_mm": [
+      35,
+      37
+    ],
+    "ambient_o2_pct": [
+      21,
+      21
+    ],
+    "pressure_psi": [
+      14.5,
+      14.5
+    ]
+  },
+  "safety_theme": [
+    "flame control",
+    "soot and smoke"
+  ],
+  "key_results": [
+    "In microgravity the V-I curve shows a distinct ion-current peak at the most compact flame, then a drop to a lower saturation plateau; 1-g flames rise smoothly to saturation.",
+    "Peak ion current is roughly proportional to fuel flow velocity and increases with coflow; it is higher in microgravity than in comparable 1-g flames.",
+    "The electric body force can produce flame oscillations similar to buoyant flicker, and microgravity flames under a field can mimic 1-g flame shapes.",
+    "With the gas-jet burner and an upward ion wind the V-I curve is parabolic, unlike the coflow burner; reversing polarity does not give an inverted result.",
+    "Soot plus electric field gives complex behavior: soot elimination, showers of incandescent particles, unstable 'dancing' flames, and soot deposits on the burner and mesh."
+  ],
+  "space_benefits": "Not aimed at a space application, but the findings could help future space combustion devices, for example for solid waste processing.",
+  "earth_benefits": "Electric fields could allow stable, leaner burner operation with less soot and pollutant emission, and more efficient combustion.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: All tests in 21 % O2 near 1 atm, with gas fuels on a burner. It adds understanding of flame control by electric fields, not flammability limits.",
+  "publications": [
+    {
+      "title": "Electric-field effects on methane coflow flames aboard the international space station (ISS): ACME E-FIELD flames",
+      "authors": "Chien Y.-C., Stocker D.P., Hegde U.G., Dunn-Rankin D.",
+      "doi": "10.1016/j.combustflame.2022.112443"
+    },
+    {
+      "title": "ACME/E-FIELD Flames Final Report",
+      "authors": "Stocker D.P., Dunn-Rankin D., Chien Y.-C.",
+      "doi": null
+    },
+    {
+      "title": "Electric Field Effects on Flames in Microgravity on the International Space Station (2018 Spring Technical Meeting, Central States Section of the Combustion Institute)",
+      "authors": "Chien Y.-C., Tinajero J., Stocker D., Hegde U., Dunn-Rankin D.",
+      "doi": null
+    },
+    {
+      "title": "Ion Current and Flame Changes with Electric Fields in Microgravity",
+      "authors": "Chien Y.C., Tinajero J., Stocker D., Hegde U., Dunn-Rankin D.",
+      "doi": null
+    },
+    {
+      "title": "Microgravity Experiments of Electric Field Effects on Laminar Ethylene/Air Diffusion Flames (ASGSR 2018)",
+      "authors": "Chien Y.-C., Tinajero J., Stocker D., Hegde U., Dunn-Rankin D.",
+      "doi": null
+    },
+    {
+      "title": "Non-premixed axisymmetric flames driven by ion currents",
+      "authors": "Tinajero J., Dunn-Rankin D.",
+      "doi": "10.1016/j.combustflame.2018.10.036"
+    },
+    {
+      "title": "Characterizing I-V Curves for Non-Premixed Methane Flames Stabilized on Different Burner Configurations",
+      "authors": "Tinajero J., Bernard G., Autef L., Dunn-Rankin D.",
+      "doi": "10.1080/00102202.2017.1331218"
+    },
+    {
+      "title": "Detailed characterization of DC electric field effects on small non-premixed flames",
+      "authors": "Karnani S., Dunn-Rankin D.",
+      "doi": "10.1016/j.combustflame.2015.03.019"
+    },
+    {
+      "title": "Ion current and carbon monoxide release from an impinging methane/air coflow flame in an electric field",
+      "authors": "Chien Y.-C., Escofet-Martin D., Dunn-Rankin D.",
+      "doi": "10.1016/j.combustflame.2019.03.022"
+    },
+    {
+      "title": "Electric Field Induced Changes of a Diffusion Flame and Heat Transfer near an Impinging Surface",
+      "authors": "Chien Y.-C., Dunn-Rankin D.",
+      "doi": "10.3390/en11051235"
+    },
+    {
+      "title": "Behavior of a small diffusion flame as an electrically active component in a high-voltage circuit",
+      "authors": "Borgatelli F., Dunn-Rankin D.",
+      "doi": "10.1016/j.combustflame.2011.06.002"
+    },
+    {
+      "title": "Numerical prediction of ion current from a small methane jet flame",
+      "authors": "Yamashita K., Karnani S., Dunn-Rankin D.",
+      "doi": "10.1016/j.combustflame.2009.02.002"
+    },
+    {
+      "title": "Using large electric fields to control transport in microgravity",
+      "authors": "Dunn-Rankin D., Weinberg F.J.",
+      "doi": "10.1196/annals.1362.037"
+    },
+    {
+      "title": "Canceling buoyancy of gaseous fuel flames in a gravitational environment using an ion-driven wind",
+      "authors": "Papac M.J., Dunn-Rankin D.",
+      "doi": "10.1196/annals.1362.038"
+    },
+    {
+      "title": "Electrical aspects of flame quenching",
+      "authors": "Weinberg F.J., Dunn-Rankin D., Carleton F.B., Karnani S., Markides C., Zhai M.",
+      "doi": "10.1016/j.proci.2012.07.007"
+    }
+  ],
+  "data_quality_notes": [
+    "O2: the chamber atmosphere and the coflow were synthetic air, 21% O2 / 79% N2 by volume, in all tests (no O2 variation). Some vitiation occurs during each constant-volume test.",
+    "Pressure: nominal 100 kPa (14.5 psi) in the final report; pressure was measured (chamber pressure sensor) but per-test values are not in the experimental table. The CIR chamber can operate up to 300 kPa.",
+    "Hardware changes before flight: the 1.3 mm jet burner was dropped (fall 2016); coflow-burner tests were added to compensate for the slow HVPS; polarity switching within a test was dropped because of electromagnetic interference.",
+    "Thin Filament Pyrometry (14 µm SiC fibers) was not used because the fibers interfere with the electric field.",
+    "Anomalies: IPSU-G drive failure (2018-04-27, recovered 2018-05-07); IPSU-1/HiBMs unavailable on 2018-09-26 and 2018-10-01; heavy soot deposited on the coflow burner after the last positive-mesh ethylene day (2018-05-17), cleaned by the crew on 2018-06-19; MFC flow oscillations.",
+    "The last test day (2018-11-15, 100% C2H4 bottle diluted to 25/50/80/100%) appears twice in the PSI experimental table; it is counted once (11 flames).",
+    "ambient_temperature_K = 298 is nominal (assumed), not a measurement."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-22",
+    "https://doi.org/10.60555/se5a-8c73",
+    "PSI-22_Experimental table_ACME E-FIELD Flames.csv (PSI repository)",
+    "E-FIELD_Flames_Final_Report.pdf (ACME/E-FIELD Flames Final Report, 10 April 2021)",
+    "E-FIELD_Flames_30-day_report_Inc_55-56_20181115.pdf",
+    "E-FIELD_Flames_30-day_report_Inc_57-58_20190601.pdf",
+    "ACME_fact_sheet_20180519.pdf, ACME_fact_sheet_20180820.pdf",
+    "PS-01548, PS-02788, PS-03055 ACME info sheets; PS-00538 'Unlocking Mysteries'",
+    "https://science.nasa.gov/biological-physical/investigations/e-field-flames",
+    "https://ntrs.nasa.gov/api/citations/20210021781/downloads/JASMAC%20ACME%20paper%2020210921.pdf"
+  ],
+  "missing": [
+    "per-test flow rates and voltages (not in the PSI table)",
+    "measured ambient temperature (298 K used as a nominal value)"
+  ]
+}

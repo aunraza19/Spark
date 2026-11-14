@@ -1,0 +1,314 @@
+{
+  "psi_id": "PSI-101",
+  "name": "Smoke Aerosol Measurement Experiment-Reflight",
+  "acronym": "SAME-R",
+  "doi": "10.60555/2np7-jv14",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Spacecraft Fire Safety",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with post-flight ground tests",
+  "keywords": [
+    "Soot",
+    "SAME",
+    "Spacecraft Fire Safety",
+    "Smoke",
+    "Flames",
+    "Transmission Electron Microscopy",
+    "Teflon",
+    "Kapton",
+    "Pyrell",
+    "Silicon Rubber",
+    "Cotton",
+    "SAME-2"
+  ],
+  "principal_investigator": "David Urban (NASA GRC)",
+  "project_scientist": "Claire Fortenberry (NASA GRC)",
+  "investigators_note": "Co-Investigators: Zeng-guang Yuan (NASA GRC), Jiann C. Yang (NIST), Thomas Cleary (NIST), George W. Mulholland (University of Maryland). The experiment is also referred to as SAME-2 and SAMER.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": null,
+  "start_date": "2010-07-01",
+  "end_date": "2010-09-30",
+  "public_release_date": "2024-09-18",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Quantify the size of smoke particles produced in low gravity by overheated spacecraft materials, and relate the particle size distribution to how the smoke is generated and transported. Reflight of SAME (2007), whose microscope samples were contaminated, with a new material, wider test conditions and a new instrument.",
+  "hypothesis": "Without buoyant flow, smoke from a pyrolyzing or smoldering source stays longer and more concentrated near the source, so particles grow larger than in normal gravity (with fewer particles for the same smoke mass). This changes how smoke detectors respond and could leave some detectors without an alarm.",
+  "approach": "Reused the SAME hardware already on orbit. Small material samples were heated by a wire for about 60 s to produce smoke without flame; the smoke was measured immediately and again after aging in a chamber. Changes from SAME: Pyrell foam replaced the dibutyl-phthalate samples; higher heating temperatures and a no-flow condition were added; the MPASS instrument replaced one diagnostic enclosure. Flight tests ran from 16 July to 9 September 2010 (66 test points). Three post-flight ground tests followed: flow tests for dilution ratios, 1 g microscope samples under the same conditions, and size-distribution measurements to check the lognormal assumption.",
+  "fuel_state": "solid",
+  "fuel": [
+    "Kapton (polyimide)",
+    "Teflon",
+    "silicone rubber",
+    "lamp wick (cellulose)",
+    "Pyrell (intumescent fire-retardant foam)"
+  ],
+  "geometry": "small material samples overheated by a resistance wire, loaded in six-position carousels; smoke produced by pyrolysis/smoldering, not by an open flame",
+  "o2_min_pct": null,
+  "o2_max_pct": null,
+  "pressure_min_psi": null,
+  "pressure_max_psi": null,
+  "conditions_note": "Oxygen and pressure were not test variables and are not stated in the metadata, table or final report; tests ran in the Microgravity Science Glovebox in ISS cabin air. Heating level is recorded as the wire resistance ratio Rt/R0 (1.22 to 1.48 across materials); the report quotes sample temperatures from about 240 C to about 575 C depending on material.",
+  "ambient_temperature_K": null,
+  "diluents": [
+    "nitrogen (used only to dilute the smoke stream for the instruments)"
+  ],
+  "additives": null,
+  "flow": "inlet air velocity of 8 cm/s (baseline), with runs at 2 cm/s, 1 cm/s and no flow during heating",
+  "gravity": "microgravity",
+  "gravity_note": "ISS; matching 1 g ground tests were run after the flight for comparison",
+  "hardware": "MSG",
+  "hardware_note": "SAME apparatus in the Microgravity Science Glovebox (MSG). The PSI metadata points to the Comparative Soot Diagnostics (CSD) hardware as heritage: the attached hardware document is the 1996 CSD paper 'Smoke Detection in Low-G Fires' (Urban, Griffin, Gard, Hoy), which describes an earlier glovebox experiment, not the SAME-R hardware itself. Details of the SAME apparatus are in the SAME final report.",
+  "hardware_link": "https://ntrs.nasa.gov/api/citations/19960008413/downloads/19960008413.pdf",
+  "related_investigations": [
+    "SAME",
+    "CSD (Comparative Soot Diagnostics)",
+    "DAFT",
+    "DAFT-2"
+  ],
+  "sensors": [
+    "P-Trak condensation particle counter (particle number concentration)",
+    "ionization detector (first moment of the size distribution)",
+    "DustTrak aerosol monitor (mass concentration)",
+    "MPASS two-moment smoke sensor (developed at NASA GRC)",
+    "thermal precipitators collecting particles on TEM grids, analyzed by electron microscope after return (70 samples)",
+    "Space Shuttle (STS) smoke detector, in the runs labelled 'STS det'",
+    "post-flight sample weight loss"
+  ],
+  "measured_or_computed_quantities": [
+    "particle number concentration",
+    "particle mass concentration",
+    "count mean diameter, diameter of average mass, geometric mean diameter and geometric standard deviation (moment method)",
+    "particle shape (liquid droplets vs solid agglomerates)",
+    "effect of aging time on particle size",
+    "smoke detector response"
+  ],
+  "variables_between_tests": [
+    "material",
+    "heating temperature (Rt/R0)",
+    "inlet air velocity (8, 2, 1, 0 cm/s)",
+    "smoke aging time (about 30 s up to about 1900 s)",
+    "heating duration (60 s, one run at 120 s)"
+  ],
+  "test_summary": {
+    "total_rows": 109,
+    "note": "Rows with a test number ending in 'a' are second measurements of the same smoke after aging. The final report counts 67 runs (66 test points) and 109 entries.",
+    "test_dates": "16 July to 9 September 2010",
+    "rows_by_inlet_velocity_cm_s": {
+      "8.1": 74,
+      "0": 22,
+      "1": 6,
+      "2": 5,
+      "8": 2
+    },
+    "by_material": {
+      "Kapton": {
+        "rows": 29,
+        "heating_runs": 16,
+        "aged_measurements": 13,
+        "rt_r0_range": [
+          1.38,
+          1.48
+        ]
+      },
+      "Silicone": {
+        "rows": 22,
+        "heating_runs": 14,
+        "aged_measurements": 8,
+        "rt_r0_range": [
+          1.304,
+          1.36
+        ]
+      },
+      "Lampwick": {
+        "rows": 20,
+        "heating_runs": 13,
+        "aged_measurements": 7,
+        "rt_r0_range": [
+          1.245,
+          1.28
+        ]
+      },
+      "Teflon": {
+        "rows": 18,
+        "heating_runs": 12,
+        "aged_measurements": 6,
+        "rt_r0_range": [
+          1.253,
+          1.452
+        ]
+      },
+      "Pyrell": {
+        "rows": 20,
+        "heating_runs": 12,
+        "aged_measurements": 8,
+        "rt_r0_range": [
+          1.22,
+          1.23
+        ]
+      }
+    }
+  },
+  "particle_size_table": {
+    "note": "Baseline runs, diameters in micrometers, from Table 1 of the final report. 'aged' = after 720 s.",
+    "columns": [
+      "material",
+      "state",
+      "geometric_mean_diameter",
+      "count_mean_diameter",
+      "diameter_of_average_mass",
+      "geometric_std_dev"
+    ],
+    "rows": [
+      [
+        "Kapton",
+        "unaged",
+        0.047,
+        0.062,
+        0.106,
+        2.072
+      ],
+      [
+        "Kapton",
+        "aged",
+        0.102,
+        0.121,
+        0.169,
+        1.79
+      ],
+      [
+        "Lampwick",
+        "unaged",
+        0.103,
+        0.142,
+        0.271,
+        2.232
+      ],
+      [
+        "Lampwick",
+        "aged",
+        0.269,
+        0.308,
+        0.401,
+        1.673
+      ],
+      [
+        "Silicone",
+        "unaged",
+        0.152,
+        0.221,
+        0.468,
+        2.382
+      ],
+      [
+        "Silicone",
+        "aged",
+        0.32,
+        0.4,
+        0.628,
+        1.956
+      ],
+      [
+        "Teflon",
+        "unaged",
+        0.093,
+        0.111,
+        0.173,
+        2.081
+      ],
+      [
+        "Teflon",
+        "aged",
+        0.08,
+        0.115,
+        0.237,
+        2.342
+      ],
+      [
+        "Pyrell",
+        "unaged",
+        0.177,
+        0.227,
+        0.377,
+        2.032
+      ],
+      [
+        "Pyrell",
+        "aged",
+        0.348,
+        0.4,
+        0.529,
+        1.697
+      ]
+    ]
+  },
+  "safety_theme": [
+    "detection"
+  ],
+  "key_results": [
+    "Smoke particle size depends strongly on the material. Teflon and Kapton smoke particles are very small (diameter of average mass about 0.1 to 0.17 micrometers unaged); lamp wick, silicone and Pyrell are several times larger.",
+    "The small Teflon and Kapton particles are hard to detect with light-scattering detectors, while a detector sensitive enough for them would give nuisance alarms from large dust particles. The report concludes that reliable detection needs a detector measuring more than one moment of the size distribution.",
+    "The MPASS two-moment sensor gave a response at least twice as uniform across materials and particle sizes as a single-output sensor, and can tell a high smoke concentration from a lower concentration of large dust particles, reducing false alarms.",
+    "Particles grow as smoke ages: for most materials the diameters roughly doubled after 720 s.",
+    "Particles are larger at low airflow. With no flow during heating, the diameter of average mass was 30 to 40 % larger for all materials. Smoke trapped in an avionics enclosure can therefore be expected to be much larger than smoke released in ventilated areas. This effect is specific to low gravity.",
+    "Smoke from lamp wick, silicone rubber and Kapton forms liquid droplets; Teflon and Pyrell form solid, chain-like agglomerates. Pyrell changed to spherical particles under no flow.",
+    "The moment method with a lognormal size distribution was validated by the flight and ground tests as a way to characterize spacecraft smoke.",
+    "Unlike SAME, the electron microscope samples were clean and gave good particle images."
+  ],
+  "space_benefits": "Baseline low-gravity smoke data for evaluating current spacecraft smoke detectors and for designing an advanced fire detector for long-duration missions.",
+  "earth_benefits": "Smoke detectors based on these results can be used in other confined, extreme environments such as submarines and underwater laboratories.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: relevant to fire detection in any crewed vehicle or habitat; oxygen and pressure were not varied, so it says nothing specific about the lunar-base atmosphere. The dust-versus-smoke discrimination result is relevant to dusty lunar and Martian habitats.",
+  "publications": [
+    {
+      "title": "Smoke Aerosol Measurement Experiment-2: Comparison of Flight Experiment Results with Ground Test Results",
+      "authors": "Meyer Marit E., Urban David L., Ruff Gary A., Mulholland George, Yuan Zeng-guang, Bryg Victoria, Cleary Thomas, Yang Jiann",
+      "doi": "10.2514/6.2013-3433",
+      "link": "http://dx.doi.org/10.2514/6.2013-3433"
+    },
+    {
+      "title": "Evaluation of Low-Gravity Smoke Particulate for Spacecraft Fire Detection",
+      "authors": "D Urban, G Ruff, G Mulholland, M Meyer, ZG Yuan, T Cleary, J Yang, P Greenberg, V Bryg",
+      "doi": null,
+      "link": "https://ntrs.nasa.gov/api/citations/20140006579/downloads/20140006579.pdf"
+    },
+    {
+      "title": "Particle Morphology and Size Results from the Smoke Aerosol Measurement Experiment-2",
+      "authors": "Urban David, Ruff Gary, Greenberg Paul, Fischer David, Meyer Marit, Mulholland George, Yuan Zeng-guang, Bryg Victoria, Cleary Thomas, Yang Jiann",
+      "doi": "10.2514/6.2012-3536",
+      "link": "http://dx.doi.org/10.2514/6.2012-3536"
+    },
+    {
+      "title": "Preliminary Results from the Smoke Aerosol Measurement Experiment - Reflight",
+      "authors": "D Urban, G Ruff, M Meyer, T Cleary, J Yang, G Mulholland, ZG Yuan, V Bryg",
+      "doi": null,
+      "link": "http://adsabs.harvard.edu/abs/2012ESASP.699E..82U"
+    },
+    {
+      "title": "Detection of Smoke from Microgravity Fires",
+      "authors": "DL Urban, D Griffin, G Ruff, T Cleary, J Yang, G Mulholland, ZG Yuan",
+      "doi": null,
+      "link": "https://www.jstor.org/stable/44682732"
+    },
+    {
+      "title": "Evaluation of spacecraft smoke detector performance in the low-gravity environment",
+      "authors": "Meyer Marit E., Urban David L., Mulholland George W., Bryg Victoria, Yuan Zeng-Guang, Ruff Gary A., Cleary Thomas, Yang Jiann",
+      "doi": "10.1016/j.firesaf.2018.04.004",
+      "link": "http://dx.doi.org/10.1016/j.firesaf.2018.04.004"
+    }
+  ],
+  "data_quality_notes": [
+    "The experiment table gives dates without a year (the final report gives 2010).",
+    "Test 57 appears under both Lampwick and Teflon with the same values; one of the two rows is probably a duplicate entry.",
+    "The final report is a working document: it reuses text from a conference paper and has an unresolved reference marker ('ref. xx')."
+  ],
+  "sources": [
+    "PSI-101 metadata file (i_Investigation.txt)",
+    "PSI-101 Experimental Table (PSI-101_Experimental_table_SAME-R.csv)",
+    "SAME-R final report (SAMER_Final_0602_2014.pdf, 89 pages): abstract, introduction, flight operation, results sections A, B and D, Table 1",
+    "SAME-R_HARDWARE.pdf: Urban et al., 'Smoke Detection in Low-G Fires' (1996, CSD heritage hardware)"
+  ],
+  "missing": [
+    "oxygen concentration, pressure and temperature inside the glovebox during the tests",
+    "detailed description of the SAME apparatus (in the SAME final report, PSI page of SAME)",
+    "sample heating temperature for each run (the table gives only Rt/R0)",
+    "list of data files available in PSI"
+  ]
+}

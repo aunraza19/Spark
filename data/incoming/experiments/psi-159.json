@@ -1,0 +1,223 @@
+{
+  "psi_id": "PSI-159",
+  "name": "Advanced Combustion via Microgravity Experiments / Cool Flames Investigation with Gases",
+  "acronym": "ACME CFI-G",
+  "doi": "10.60555/cyt1-kh64",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Flames of Gaseous Fuels",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), supported by CFD simulations",
+  "keywords": [
+    "chemical kinetics",
+    "dilution",
+    "ethane",
+    "formaldehyde",
+    "heat loss",
+    "intensified video camera",
+    "low-temperature combustion",
+    "n-butane",
+    "porous burner",
+    "negative-temperature coefficient"
+  ],
+  "principal_investigator": "Peter B. Sunderland (University of Maryland, Fire Protection Engineering)",
+  "project_scientist": "Dennis P. Stocker (NASA GRC)",
+  "investigators_note": "Co-Investigators: Richard L. Axelbaum (Washington University in St. Louis), Forman A. Williams (UC San Diego). Selected for flight by NSF and CASIS rather than NASA. An extension of ACME's Flame Design experiment and a follow-on to the droplet Cool Flames Investigation (CFI).",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "National Science Foundation (NSF) / Center for the Advancement of Science in Space (CASIS)",
+  "start_date": "2021-03",
+  "end_date": "2021-10",
+  "public_release_date": "2025-11-20",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Find the conditions under which cool diffusion flames (low-temperature flames, peak 500-1000 K) occur with gaseous fuels on a spherical burner, for normal and inverse flames and a broad range of dilution, flame temperature, flow rate and pressure. Support the tests with CFD and identify a chemical kinetics mechanism that matches the ISS measurements.",
+  "hypothesis": "ISS testing can demonstrate for the first time: steady cool diffusion flames on spherical porous burners; cool diffusion flames of propane, n-butane and n-pentane; cool flames over a wide range of conditions and pressures; inverse cool diffusion flames; and cool flames that extinguish when flow decreases and switch to a hot flame when flow increases, with possible oscillation between hot and cool flames.",
+  "approach": "Spherical diffusion flames on a porous burner in microgravity, in two rounds. Normal flames (March to June 2021): fuel, pure or diluted with nitrogen, flows from the burner into an oxygen/nitrogen atmosphere. Inverse flames (July to October 2021): an oxygen/nitrogen mixture of up to 85 % oxygen flows from the burner into a chamber filled with nitrogen and fuel, giving an inside-out flame. One extra normal-flame day was added on 18 October 2021. Ethane replaced n-pentane, whose vapor pressure was too low.",
+  "fuel_state": "gas",
+  "fuel": [
+    "ethane",
+    "propane",
+    "n-butane"
+  ],
+  "geometry": "porous spherical burner, 6.35 mm diameter, in the ACME chamber insert (about 0.4 m diameter); spherical flame around the burner",
+  "o2_min_pct": 12,
+  "o2_max_pct": 85,
+  "pressure_min_psi": 7.3,
+  "pressure_max_psi": 48.0,
+  "conditions_note": "The O2 range combines two different configurations; see test_summary. In normal flames O2 is the chamber atmosphere (18 to 40 %). In inverse flames O2 is the gas leaving the burner (12 to 85 %) while the chamber holds fuel and nitrogen with no oxygen, so 85 % is not an ambient oxygen level. Pressures are approximate values from the experiment tables, converted from bar.",
+  "ambient_temperature_K": null,
+  "diluents": [
+    "nitrogen"
+  ],
+  "additives": null,
+  "flow": "no forced external flow; gas issues radially from the burner. Burner flow rate was a test variable (fuel 0.1 to 3.2 mg/s in normal flames; oxygen about 0.9 to 9.1 mg/s in inverse flames)",
+  "gravity": "microgravity",
+  "gravity_note": "ISS; about 30 s of steady microgravity is needed for these flames, which drop towers cannot provide",
+  "hardware": "CIR-ACME",
+  "hardware_note": "ACME chamber insert in the Combustion Integrated Rack (CIR). Reused the spherical porous burners and gas delivery of ACME Flame Design and the diagnostics of the CFI droplet experiment. Retracting resistive igniter. Tests are set up by the crew and run from the ground. Known shortcoming: the burners did not always give spherically symmetric flames.",
+  "hardware_link": "https://www1.grc.nasa.gov/space/iss-research/iss-fcf/combustion-science/acme/implementation/",
+  "related_investigations": [
+    "ACME Flame Design",
+    "CFI",
+    "FLEX",
+    "FLEX-2",
+    "ACME E-FIELD Flames",
+    "ACME BRE"
+  ],
+  "sensors": [
+    "intensified video camera with formaldehyde filter (detects cool flames)",
+    "ACME color data camera",
+    "High-Bitdepth Multispectral (HiBMs) camera",
+    "radiometers",
+    "photomultiplier tubes (PMT)",
+    "thermocouple rake near the burner and burner surface thermocouple"
+  ],
+  "measured_or_computed_quantities": [
+    "whether the flame ignites and whether a cool flame follows the hot flame",
+    "burn time and whether the flame self-extinguished or the flow was stopped",
+    "flame size and shape",
+    "peak burner temperature",
+    "adiabatic flame temperature and stoichiometric mixture fraction (computed)",
+    "chamber composition before and after each test"
+  ],
+  "variables_between_tests": [
+    "flame type (normal or inverse)",
+    "fuel",
+    "fuel dilution with nitrogen",
+    "oxygen concentration",
+    "pressure",
+    "burner flow rate",
+    "thermocouple rake in or out"
+  ],
+  "test_summary": {
+    "total_tests": 333,
+    "test_dates": "29 March to 18 October 2021 (test IDs are year and day of year)",
+    "normal_flames": {
+      "tests": 179,
+      "test_days": 11,
+      "ambient_o2_pct": [
+        18.0,
+        40.0
+      ],
+      "pressure_bar": [
+        0.51,
+        3.04
+      ],
+      "pressure_psi": [
+        7.4,
+        44.1
+      ],
+      "fuel_fraction_in_burner_gas": [
+        0.0,
+        1.0
+      ],
+      "fuel_flow_mg_s": [
+        0.1,
+        3.215
+      ],
+      "burn_time_s": [
+        1.0,
+        304.0
+      ],
+      "tests_by_fuel": {
+        "ethane": 14,
+        "50% butane": 30,
+        "propane": 20,
+        "30% butane": 52,
+        "30% propane": 36,
+        "30% ethane": 27
+      },
+      "hot_ignition": {
+        "yes": 132,
+        "no": 47
+      },
+      "tests_with_cool_flame_recorded": 7
+    },
+    "inverse_flames": {
+      "tests": 154,
+      "test_days": 12,
+      "burner_o2_pct": [
+        12.0,
+        85.0
+      ],
+      "tests_at_85_pct_o2": 79,
+      "pressure_bar": [
+        0.5,
+        3.31
+      ],
+      "pressure_psi": [
+        7.3,
+        48.0
+      ],
+      "fuel_fraction_in_chamber": [
+        0.056,
+        0.429
+      ],
+      "o2_flow_mg_s": [
+        0.93,
+        9.08
+      ],
+      "burn_time_s": [
+        0.5,
+        152.0
+      ],
+      "tests_by_fuel": {
+        "ethane": 53,
+        "propane": 43,
+        "butane": 58
+      },
+      "hot_ignition": {
+        "no": 15,
+        "yes": 131,
+        "flash": 8
+      }
+    }
+  },
+  "safety_theme": [
+    "flammability",
+    "extinguishment"
+  ],
+  "key_results": [
+    "Spherical cool diffusion flames burning gases were observed for the first time.",
+    "Cool flames were hard to produce: they were obtained only for normal n-butane flames at about 2 bar with about 39 % ambient oxygen. The hot flames they followed were 2.6 times as large.",
+    "A cool flame can reignite into a hot flame: on the added test day, platinum in an exposed thermocouple near the burner catalyzed hot-flame reignition from the cool flames.",
+    "One test recorded five transitions from hot flame to cool flame (six hot and five cool flames in sequence).",
+    "Burner temperature has an important effect on these cool flames; they sit in fuel-rich regions near a mixture fraction of 0.53.",
+    "Highest oxygen levels of any microgravity test in PSI: 79 inverse-flame tests with 85 % oxygen flowing from the burner, at pressures from about 0.55 to 3.3 bar.",
+    "From the experiment table: normal flames in about 21 % ambient oxygen self-extinguished within about 20 s, while at 35 to 40 % oxygen flames burned for up to five minutes or until the flow was stopped.",
+    "From the experiment table: with 85 % oxygen from the burner, inverse flames at about 0.55 bar burned until the flow was stopped, while at 2.2 and 3.3 bar almost all self-extinguished. The chamber fuel fraction also differed between these test days, so pressure is not the only factor.",
+    "On the ground, cool diffusion flames were also observed for the first time near the surface of a liquid fuel pool (n-heptane), with peak temperatures of 705 to 760 K."
+  ],
+  "space_benefits": "Not the focus of the investigation (the report notes that only one ACME experiment, BRE, targeted spacecraft fire safety). Useful to fire safety as data on flames at high oxygen concentration and at pressures from about half to three atmospheres, and on cool flames that persist or reignite after a hot flame goes out.",
+  "earth_benefits": "Tests and advances cool-flame chemical kinetics mechanisms, which should help develop cleaner and more efficient internal combustion engines (ultra-lean combustion could raise engine thermal efficiency from about 38 % toward 60 %).",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: the normal-flame tests cover ambient oxygen from 18 to 40 % at 0.5 to 3 bar, which brackets the lunar-base atmosphere (about 30 % oxygen or more at 10.2 psi, about 0.7 bar). The fuel is gas on a burner, not a solid material, so it informs models rather than material selection.",
+  "publications": [
+    {
+      "title": "Spherical gas-fueled cool diffusion flames",
+      "authors": "Kim Minhyeng, Waddell Kendyl A., Sunderland Peter B., Nayagam Vedha, Stocker Dennis P., Dietrich Daniel L., Ju Yiguang, Williams Forman A., Irace Phillip, Axelbaum Richard L.",
+      "doi": "10.1016/j.proci.2022.07.015",
+      "link": "https://doi.org/10.1016/j.proci.2022.07.015"
+    },
+    {
+      "title": "Cool diffusion flames in a stably stratified stagnation flow",
+      "authors": "Waddell Kendyl A., Lee Han Ju, Nayagam Vedha, Axelbaum Richard L., Sunderland Peter B.",
+      "doi": "10.1016/j.combustflame.2023.112852",
+      "link": "https://doi.org/10.1016/j.combustflame.2023.112852"
+    }
+  ],
+  "data_quality_notes": [
+    "The 'Cool flame?' column of the normal-flame table is filled in for only 8 tests; an empty cell does not mean no cool flame was looked for.",
+    "A few cells contain spreadsheet errors (#DIV/0!, #VALUE!) and one day of inverse tests (day 8) lost most of its data.",
+    "The inverse-flame table has several hundred empty rows after the data, and 'inverse' is written with and without a capital letter.",
+    "The final report is dated November 2022 and states that data analysis was still under way."
+  ],
+  "sources": [
+    "PSI-159 metadata file (i_Investigation.txt)",
+    "PSI-159 Experimental Table, normal flames (179 tests) and inverse flames (154 tests)",
+    "ACME/CFI-G Final Report, 21 November 2022, 93 pages: sections 1, 2, 3.A and 4",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-159"
+  ],
+  "missing": [
+    "initial gas temperature in the chamber",
+    "cool flame temperatures measured on the added test day (in the publications, not in the report)",
+    "list of data files available in PSI"
+  ]
+}

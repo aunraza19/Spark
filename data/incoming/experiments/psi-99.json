@@ -1,0 +1,228 @@
+{
+  "psi_id": "PSI-99",
+  "name": "Spacecraft Fire Experiment-II",
+  "acronym": "SAFFIRE-II",
+  "doi": "10.60555/2chp-m469",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Surface Combustion",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (remotely operated flight experiment in an uncrewed Cygnus cargo vehicle after it left the ISS), compared with normal-gravity NASA-STD-6001 Test 1 results and ground tests",
+  "keywords": [
+    "spacecraft fire safety",
+    "material flammability",
+    "flammability limit",
+    "concurrent flame spread",
+    "opposed flame spread",
+    "silicone",
+    "SIBAL cotton-fiberglass fabric",
+    "PMMA",
+    "Nomex",
+    "NASA-STD-6001",
+    "large-scale fire"
+  ],
+  "principal_investigator": "David L. Urban (NASA GRC)",
+  "project_scientist": null,
+  "investigators_note": "PSI roles: Principal Investigator David L. Urban (NASA GRC); Investigator Gary A. Ruff (NASA GRC, Saffire project manager). NASA GRC science team (2016 NTRS presentation): Sandra Olson, Daniel Dietrich, Suleyman Gokoglu, Paul Ferkul, John Easton, Justin Niehaus. International Topical Team: Carlos Fernandez-Pello (UC Berkeley), James S. T'ien (Case Western Reserve), Jose L. Torero (University of Queensland), Guillaume Legros (UPMC Paris), Christian Eigenbrod (ZARM, University of Bremen), Nickolay Smirnov (Lomonosov Moscow State University), Osamu Fujita (Hokkaido University), Sebastien Rouvreau (Belisama R&D), Olivier Minster and Balazs Toth (ESA ESTEC), Grunde Jomaas (Technical University of Denmark).",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA Advanced Exploration Systems (AES) Division (PSI lists only 'NASA'; AES per the Orbital ATK OA-5 release)",
+  "start_date": "2016-09-30",
+  "end_date": "2017-04-01",
+  "public_release_date": "2024-09-18",
+  "flight_platform": "Cygnus Spacecraft (Orbital ATK OA-5, after unberthing from the ISS)",
+  "objective": "Determine how rapidly a large-scale fire grows in low gravity and investigate low-gravity flammability limits compared with those from NASA's normal-gravity material flammability screening test (NASA-STD-6001 Test 1). The specific Saffire-II objective was to quantify this effect in long-duration low gravity using samples of the same size as the NASA-STD-6001 Test 1 samples.",
+  "hypothesis": "Because fire behavior differs greatly between normal and reduced gravity, using terrestrial fires and fire standards to design spacecraft fire safety systems carries inherent risk from significant uncertainty, which grows as missions go further from Earth. Large-scale fire experiments in an expendable spacecraft can provide the missing microgravity data without risk to a crew.",
+  "approach": "The Saffire-II module (flow duct plus avionics bay) flew on the Cygnus OA-5 cargo vehicle and was operated from the ground after Cygnus left the ISS on 21 November 2016. A sample card with 9 samples (5 cm x 29 cm each) sat in the middle of a large flow duct; fans at the top of the duct drew cabin air through flow straighteners at the bottom. The samples were ignited one after another with a hot-wire igniter at the upstream end (concurrent flow) or downstream end (opposed flow) and burned in forced air flow of 20 cm/s (PSI table; the PSI summary mentions 20 or 30 cm/s). Two cameras recorded the flames, and thermocouples, radiometers, O2, CO2 and pressure sensors and anemometers recorded the conditions. All data were compressed and downlinked (maximum 20 Gbit) before Cygnus re-entered and burned up on 27 November 2016.",
+  "fuel_state": "solid",
+  "fuel": [
+    "silicone (thicknesses 0.27, 0.37, 0.61 and 1.03 mm per the PSI table)",
+    "SIBAL cotton-fiberglass fabric (75 % cotton / 25 % fiberglass)",
+    "PMMA (10 mm flat slab)",
+    "structured PMMA (10 mm with a 4 mm thick grooved center section)",
+    "PMMA with Nomex (transition sample: 5 cm PMMA then 24 cm Nomex)"
+  ],
+  "geometry": "Nine thin or thick flat solid samples, each 5 cm wide x 29 cm long, mounted on one sample card (3 x 3 layout) in the middle of the Saffire flow duct; flames spread along the sample surfaces (two-sided burning). Thicknesses: silicone 0.27–1.03 mm, SIBAL fabric about 0.37 mm, PMMA 10 mm with a tapered edge for ignition, structured PMMA 10 mm with a 4 mm grooved center, PMMA 0.85 mm followed by Nomex 0.37 mm. The overall Saffire module was about 53 x 90 x 133 cm.",
+  "o2_min_pct": 21.5,
+  "o2_max_pct": 22.1,
+  "pressure_min_psi": 14.56,
+  "pressure_max_psi": 14.64,
+  "conditions_note": "O2 values come from the PSI experimental table: about 21.5 % for sample 1 and about 22.1 % for the others, dropping to 21.9 % by the end of sample 9. They were derived from the measured CO2 production and referenced to the initial O2 reported by the ISS. Pressure and temperature are measured values from the Cygnus pressurized cargo module (PCM) sensors in the PSI file 'Saffire-II Telemetry Data.xlsx': pressure 14.56–14.64 psi and air temperature 19.78–21.33 °C (292.9–294.5 K) over the test period; ambient_temperature_K is the mid-range value.",
+  "ambient_temperature_K": 293.7,
+  "diluents": [
+    "nitrogen (air)"
+  ],
+  "additives": null,
+  "flow": "Forced air flow drawn through the flow duct by fans at the top, after flow straighteners at the bottom. 20 cm/s for all nine samples in the PSI table (the PSI summary says 20 or 30 cm/s depending on material; a 2017 paper reports the two SIBAL samples at 20 and 25 cm/s). Concurrent flow for 8 samples and opposed flow for sample 4 (silicone). The design range was 10–30 cm/s. Flow was turned off at the end of some burns.",
+  "gravity": "microgravity",
+  "gravity_note": "Free-flying Cygnus cargo vehicle in low Earth orbit after leaving the ISS (21 November 2016); compared with normal-gravity NASA-STD-6001 Test 1 results and ground tests (e.g., UC Berkeley low-pressure tests, ZARM Bremen)",
+  "hardware": "SAFFIRE",
+  "hardware_note": "Saffire-II flight unit inside the Cygnus pressurized cargo module: flow duct with sample card, fans and flow straighteners, hot-wire igniters, two cameras, thermocouples, radiometers, solid-state O2, CO2 and pressure sensors, two anemometers, and an avionics bay with power, computer and data acquisition. The unit was destroyed on re-entry, so all data were downlinked. Separate hardware was built for each Saffire flight.",
+  "hardware_link": "https://cdn.northropgrumman.com/-/media/wp-content/uploads/Cygnus-Fact-Sheet-1.pdf, https://ntrs.nasa.gov/api/citations/20170000230/downloads/20170000230.pdf",
+  "related_investigations": [
+    "Saffire-I (large SIBAL fabric, Cygnus OA-6, 2016)",
+    "Saffire-III (large SIBAL fabric, Cygnus OA-7, 2017)",
+    "Saffire-IV to VI",
+    "PSI-26 (BASS, small-scale flame spread over solids in the ISS)",
+    "NASA-STD-6001 Test 1 (normal-gravity flammability screening test)"
+  ],
+  "sensors": [
+    "two cameras (flame size, position and spread rate)",
+    "thermocouples (flow, flame and plume temperatures; flame stand-off distance)",
+    "two radiometers (flame radiation)",
+    "solid-state O2 sensor (O2 mole fraction)",
+    "solid-state CO2 sensor (CO2 mole fraction)",
+    "solid-state pressure sensor (pressure)",
+    "two anemometers (flow velocity)"
+  ],
+  "measured_or_computed_quantities": [
+    "burn length",
+    "flame spread rate",
+    "flame length (limiting length)",
+    "burn time",
+    "flame, plume and flow temperatures",
+    "flame radiation",
+    "O2 concentration (derived from CO2 production)",
+    "CO2 concentration",
+    "pressure",
+    "flow velocity",
+    "regression rate (PMMA)"
+  ],
+  "variables_between_tests": [
+    "material",
+    "sample thickness",
+    "flow direction (concurrent or opposed)",
+    "ignition power and time",
+    "air flow velocity"
+  ],
+  "test_summary": {
+    "total_tests": 9,
+    "test_dates": "21 November 2016 (all nine samples burned in succession, about 2 hours in total)",
+    "tests_by_material": {
+      "silicone": 4,
+      "SIBAL cotton-fiberglass": 2,
+      "PMMA": 2,
+      "PMMA & Nomex": 1
+    },
+    "tests_by_flow_direction": {
+      "concurrent": 8,
+      "opposed": 1
+    },
+    "air_flow_cm_s": 20,
+    "ambient_o2_pct": [
+      21.5,
+      22.1
+    ],
+    "ignition_power_W": [
+      80,
+      97
+    ],
+    "ignition_time_s": [
+      9.2,
+      30
+    ],
+    "burn_time_s": {
+      "silicone": "insignificant",
+      "SIBAL": [
+        115,
+        145
+      ],
+      "PMMA & Nomex": 140,
+      "PMMA": [
+        600,
+        900
+      ]
+    },
+    "microgravity_burn_length": {
+      "silicone (4 samples)": "about 0",
+      "SIBAL": "29 cm (complete)",
+      "PMMA & Nomex": "5 cm (PMMA consumed, Nomex not ignited)",
+      "PMMA (2 samples)": "about 10 cm"
+    },
+    "images": "more than 100,000",
+    "note": "From the PSI experimental table (samples 2-1 to 2-9). Pre- and post-test flow visualization data sets (F1, F2) are not counted as tests. Thickness values in the PSI table differ from the 2015–2016 planning documents (e.g., silicone 0.25/0.36/0.61 mm, SIBAL 0.33 mm)."
+  },
+  "safety_theme": [
+    "flammability",
+    "flame spread",
+    "material selection"
+  ],
+  "key_results": [
+    "None of the four silicone samples (0.27–1.03 mm, concurrent or opposed at 20 cm/s and about 22 % O2) burned significantly in microgravity (burn length about 0), whereas in normal-gravity tests 0.27 and 0.37 mm silicone burned completely and 0.61 mm burned 7.6 cm.",
+    "Both SIBAL fabric samples burned completely (29 cm) with spread rates of 2.1 and 2.6 mm/s; in microgravity the concurrent flame reached a nearly steady length instead of accelerating as in normal gravity.",
+    "In the transition sample the PMMA portion burned completely but the flame did not ignite the Nomex.",
+    "The thick PMMA flames reached a steady limiting length and stayed anchored at the upstream end, so flame spread is controlled by the slow regression rate (0.01–0.04 mm/s); a grooved center section formed a deep inverted-V notch that increased heat transfer.",
+    "Flames went out quickly when the flow was turned off, supporting the ISS strategy of shutting off ventilation on a fire alarm.",
+    "A limiting flame size in low-speed forced flow makes flashover in a spacecraft unlikely and can be used to set the heat release rate for vehicle design.",
+    "Normal-gravity tests at reduced pressure approximate the microgravity spread rates (about 30 kPa for the SIBAL fabric).",
+    "All nine samples burned as planned and all data were downlinked by 25 November 2016 (complete mission success)."
+  ],
+  "space_benefits": "Provides the first data on fires of realistic scale in a spacecraft cabin: microgravity flammability limits of spacecraft materials, validation of NASA's material selection criteria (NASA-STD-6001), the effects of microgravity and limited oxygen on flame size, and flame growth data for spacecraft fire detection, suppression and design of exploration vehicles.",
+  "earth_benefits": "Better understanding of fire in small, sealed environments such as mines, airplanes and submarines, which benefits fire safety and prevention on Earth.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: Spacecraft cabin air near 22 % O2 and about 100 kPa, forced flow of 20 cm/s; directly relevant to material selection and fire spread in a crewed cabin, but no variation of oxygen or pressure.",
+  "publications": [
+    {
+      "title": "Buoyant Effects on the Flammability of Silicone Samples Planned for the Spacecraft Fire Experiment (Saffire)",
+      "authors": "Niehaus J.E., Ferkul P.V., Gokoglu S.A., Ruff G.A.",
+      "doi": null
+    },
+    {
+      "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status",
+      "authors": "Schoren W., Ruff G.A., Urban D.L.",
+      "doi": null
+    },
+    {
+      "title": "Flame spread: Effects of microgravity and scale",
+      "authors": "Urban D.L., Ferkul P., Olson S., Ruff G.A., Easton J., T'ien J.S., Liao Y.-T.T., Li C., Fernandez-Pello C., Torero J.L., Legros G., Eigenbrod C., Smirnov N., Fujita O., Rouvreau S., Toth B., Jomaas G.",
+      "doi": "10.1016/j.combustflame.2018.10.012"
+    },
+    {
+      "title": "Buoyancy effects on concurrent flame spread over thick PMMA",
+      "authors": "Thomsen M., Fernandez-Pello C., Ruff G.A., Urban D.L.",
+      "doi": "10.1016/j.combustflame.2018.10.016"
+    },
+    {
+      "title": "Concurrent Flame Spread Over Two-Sided Thick PMMA Slabs in Microgravity",
+      "authors": "Olson S.L., Urban D.L., Ruff G.A., Ferkul P.V., Toth B., Eigenbrod C., Meyer F., Jomaas G.",
+      "doi": "10.1007/s10694-019-00863-3"
+    },
+    {
+      "title": "Transient flame growth and spread processes over a large solid fabric in concurrent low-speed flows in microgravity – Model versus experiment",
+      "authors": "Li C., Liao Y.-T.T., T'ien J.S., Urban D.L., Ferkul P., Olson S., Ruff G.A., Easton J.",
+      "doi": "10.1016/j.proci.2018.05.168"
+    },
+    {
+      "title": "Evaluation of gas and particle sensors for detecting spacecraft-relevant fire emissions",
+      "authors": "Wang X., Zhou H., Arnott W.P., Meyer M.E., Taylor S., Firouzkouhi H., Moosmüller H., Chow J.C., Watson J.G.",
+      "doi": "10.1016/j.firesaf.2020.102977"
+    }
+  ],
+  "data_quality_notes": [
+    "O2 per sample is not a direct measurement: it was derived from the measured CO2 production, referenced to the initial O2 reported by the ISS.",
+    "Thermocouples on the two SIBAL samples (S5, S6) were mounted closer to the surface than specified (0.175 and 0.125 inch instead of 0.20 +/- 0.02 inch); the locations are known and the risk of missing the flame was judged low (waiver SFS-W-009).",
+    "Sample thicknesses in the PSI table differ from earlier planning documents, and two entries ('037 mm') are probably 0.37 mm.",
+    "Air flow: the PSI table gives 20 cm/s for every sample, but the PSI summary mentions 20 or 30 cm/s and a 2017 paper reports one SIBAL sample at 25 cm/s.",
+    "Number of radiometers: the PSI summary says two; a 2016 NASA presentation planned four for the Saffire hardware.",
+    "start_date and end_date are the investigation dates on the PSI page; the burns themselves took place on 21 November 2016.",
+    "No project scientist is listed on the PSI page.",
+    "Pressure and ambient temperature come from the Cygnus PCM sensors (CygnusPressureData and CygnusTemperatureData sheets of 'Saffire-II Telemetry Data.xlsx'); these are cabin readings, not readings inside the Saffire flow duct."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-99",
+    "https://doi.org/10.60555/2chp-m469",
+    "PSI-99_Experimental table_SAFFIRE-2.csv (PSI repository)",
+    "PSI-99_Science Documents_SAFFIRE-II Readme.docx (PSI repository)",
+    "PSI-99_Raw Data_SAFFIRE-II Operations.pdf (PSI repository)",
+    "PSI-99_Raw Data_SFS-W-009 thermocouple height nonconformance (PSI repository)",
+    "https://ntrs.nasa.gov/api/citations/20160010292/downloads/20160010292.pdf",
+    "https://discovery-pp.ucl.ac.uk/id/eprint/10069823/8/Ferkul_The_Saffire_Experiment_2017_US_National_Meeting_Final.pdf",
+    "https://doi.org/10.1007/s10694-019-00863-3 (abstract)",
+    "https://pubmed.ncbi.nlm.nih.gov/35197652/ (Thomsen et al., abstract: 100 kPa, 200 mm/s)",
+    "https://www.space.com/34866-nasa-space-fire-experiments-video-success.html",
+    "https://businesswire.com/news/home/20161121005607/en/",
+    "PSI-99_Raw Data_Saffire-II Telemetry Data.xlsx (PSI repository)"
+  ],
+  "missing": [
+    "project scientist (not on the PSI page)",
+    "normal-gravity flame spread rates for the PMMA samples ('Acceleratory' only)",
+    "SAFFIRE Objectives, Development and Status paper (in PSI, download failed)"
+  ]
+}

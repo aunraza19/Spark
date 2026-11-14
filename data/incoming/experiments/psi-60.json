@@ -1,0 +1,122 @@
+{
+  "psi_id": "PSI-60",
+  "name": "Computational and Experimental Analysis of SPICE Data Sets",
+  "acronym": null,
+  "doi": "10.60555/mzjm-yv57",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Gaseous",
+  "project_type": "Ground Investigation",
+  "study_type": "computational and image analysis: soot temperature and volume fraction derived from SPICE flight images in PSI, compared with detailed soot simulations; no new experiments",
+  "keywords": [
+    "soot formation",
+    "smoke point",
+    "coflow diffusion flame",
+    "color-ratio pyrometry",
+    "soot volume fraction",
+    "radiation re-absorption",
+    "soot aggregates",
+    "SPICE"
+  ],
+  "principal_investigator": "Mitchell D. Smooke (Yale University)",
+  "project_scientist": "Daniel L. Dietrich (NASA GRC)",
+  "investigators_note": "Co-Investigator: Marshall B. Long (Yale University). Proposal title is the same as the investigation title.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA, PSI grant",
+  "start_date": "2019-06-05",
+  "end_date": "2022-08-29",
+  "public_release_date": "2025-09-30",
+  "flight_platform": null,
+  "objective": "Improve understanding of what controls the large difference in soot formation between normal-gravity and microgravity flames. Combine computational and experimental methods to derive temperature distributions and soot volume fractions from the Smoke Point in Coflow Experiment (SPICE) data in PSI, analysing over 1600 raw DSLR images with advanced soot models, to better understand soot formation, oxidation, radiative re-absorption and aggregate growth in heavily sooting flames; reconcile microgravity and normal-gravity flame behaviour; identify the key processes behind smoke point development; and provide a framework for testing model parameter sensitivity.",
+  "hypothesis": "Microgravity produces longer, more diffuse flames with lower temperatures and more soot than normal gravity, and feeding the measured temperature fields into the simulations would reduce the gap between measured and predicted soot distributions.",
+  "approach": "Raw Nikon NEF images from SPICE were decoded into three color channels and analysed by color-ratio pyrometry to obtain soot temperature fields; SPICE's absolute light calibration was then used to compute soot volume fractions. A coupled flow-species-soot model was modified to include radiation re-absorption and discrete-sectional aggregate formation, and run for both the Yale and ACME burner configurations in normal gravity and microgravity. Comparisons with the measurements guided sensitivity studies of soot parameters, including radiation, scattering, boundary conditions and heat transfer to the burner.",
+  "fuel_state": "gas",
+  "fuel": null,
+  "geometry": "coflow laminar diffusion flames; simulations for the Yale burner and the ACME burner configurations",
+  "o2_min_pct": null,
+  "o2_max_pct": null,
+  "pressure_min_psi": null,
+  "pressure_max_psi": null,
+  "conditions_note": "The record does not give the fuels, oxygen levels, pressures or flow rates of the SPICE flames analysed or of the simulations.",
+  "ambient_temperature_K": null,
+  "diluents": null,
+  "additives": null,
+  "flow": "coflow (fuel jet surrounded by an oxidizer flow); velocities not given on the record",
+  "gravity": "microgravity",
+  "gravity_note": "SPICE flight images (microgravity) analysed; simulations run for both normal gravity and microgravity",
+  "hardware": null,
+  "hardware_note": "No hardware: analysis and modeling study (PSI record lists no associated hardware). The images came from Nikon DSLR cameras used in SPICE.",
+  "hardware_link": null,
+  "related_investigations": [
+    "PSI-107 (listed as related on the record; title not given)",
+    "SPICE (source of the flight images; its PSI ID is not stated on the record)"
+  ],
+  "sensors": [],
+  "measured_or_computed_quantities": [
+    "soot temperature field (color-ratio pyrometry of SPICE images)",
+    "soot volume fraction (from SPICE absolute light calibration)",
+    "computed soot, temperature and species fields (normal gravity and microgravity)",
+    "sensitivity of soot predictions to radiation, scattering, boundary conditions and burner heat transfer"
+  ],
+  "variables_between_tests": [
+    "gravity (normal or microgravity)",
+    "burner configuration (Yale or ACME)",
+    "soot model parameters (radiation, scattering, boundary conditions, burner heat transfer)"
+  ],
+  "test_summary": {
+    "total_tests": null,
+    "note": "No experiments; the record has no experimental or modeling table. Over 1600 raw DSLR images from SPICE were analysed; the number of flames and simulation cases is not given.",
+    "images_analysed": ">1600 raw Nikon NEF images",
+    "burner_configurations_simulated": [
+      "Yale burner",
+      "ACME burner"
+    ],
+    "psi_record": {
+      "version": 1,
+      "version_date": "2025-09-30",
+      "version_change": "New data release",
+      "submitted_date": "2022-08-29",
+      "size_kb": 7.56,
+      "files": [
+        "PSI-60_metadata_NEWID-5_Computational and Ex.zip"
+      ],
+      "experimental_table": null,
+      "modeling_table": null,
+      "read_me": null,
+      "representative_images": null
+    }
+  },
+  "safety_theme": [
+    "detection",
+    "smoke"
+  ],
+  "key_results": [],
+  "space_benefits": "Better predictive models of soot formation, flame structure and radiation in microgravity, supporting safer fire detection and suppression and cleaner combustion technologies for long-duration missions.",
+  "earth_benefits": "Helps reduce pollutant emissions, optimize combustion efficiency and inform the design of cleaner energy and industrial systems.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: analysis of gas-fuel coflow flames from SPICE plus modeling; the record gives no fuel, oxygen or pressure values, so it cannot be placed against lunar base conditions here. Relevant to soot and smoke prediction rather than material flammability.",
+  "publications": [
+    {
+      "title": "A Combined Experimental and Computational Study of Soot Formation in Normal and Microgravity Conditions (2022)",
+      "authors": "Dobbins Richard R., Tinjero Jesse, Squeo Joseph, Zhao Xinyu, Hall Robert J., Colket Meredith B., Long Marshall B., Smooke Mitchell D.",
+      "doi": "10.1080/00102202.2022.2041621"
+    }
+  ],
+  "data_quality_notes": [
+    "Ground investigation: no flight or laboratory tests, and no experimental or modeling table on the record.",
+    "The only file in PSI is a 7.56 KB metadata archive; no derived temperature or soot fields, model output or reports are available, so the record contains no results.",
+    "The record does not name the fuels or the SPICE test conditions analysed, and does not say which PSI investigation holds the SPICE data (only PSI-107 is listed as related).",
+    "The same 2022 publication (Dobbins et al.) is also listed on PSI-21 (ACME CLD Flame), so it is not exclusive to this investigation.",
+    "The co-author listed as 'Tinjero Jesse' appears to be a misspelling of Jesse Tinajero, as spelled in other ACME publications.",
+    "The record's citation line does not list authors.",
+    "The investigation ended on 29 August 2022, the data were submitted the same day, and the first release was on 30 September 2025."
+  ],
+  "sources": [
+    "PSI-60 record, saved page (Version 1): description, contacts, files, publications, version history; https://psi.nasa.gov/physci/repo/data/investigations/PSI-60"
+  ],
+  "missing": [
+    "all results (soot temperatures, soot volume fractions, model comparisons, sensitivity findings): not in the PSI files; they would be in the listed publication",
+    "fuels, oxygen levels, pressures and flow rates of the SPICE flames and simulations",
+    "which SPICE runs were analysed",
+    "number of simulation cases",
+    "title of related investigation PSI-107"
+  ]
+}

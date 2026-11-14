@@ -1,0 +1,313 @@
+{
+  "psi_id": "PSI-68",
+  "name": "Flame Extinguishment Experiment - 2",
+  "acronym": "FLEX-2",
+  "doi": "10.60555/byp8-h018",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Spacecraft Fire Safety",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with numerical simulations",
+  "keywords": [
+    "droplet combustion",
+    "bi-component fuels",
+    "flame extinction",
+    "soot",
+    "cool flames",
+    "droplet arrays",
+    "surrogate fuels"
+  ],
+  "principal_investigator": "Forman A. Williams (University of California, San Diego)",
+  "project_scientist": "Michael C. Hicks (NASA GRC)",
+  "investigators_note": "Co-Investigators: Frederick L. Dryer (Princeton University), Benjamin D. Shaw (UC Davis), Mun Y. Choi (University of Connecticut), Vedha Nayagam (Case Western Reserve University), C. Thomas Avedisian (Cornell University), Daniel L. Dietrich (NASA GRC).",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA: NNX16AR09A",
+  "start_date": "2016-08-12",
+  "end_date": "2019-09-30",
+  "public_release_date": "2019-09-30",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Extend the results of FLEX-1 to fuels and environmental conditions that mimic real combustors, and provide benchmark data on bi-component droplet combustion over a wide range of initial conditions to validate numerical simulations and develop new theoretical models. Detailed objectives: (1) role of liquid-phase mixing on the burning of bi-component droplets; (2) steady and unsteady liquid- and gas-phase phenomena in pure-fuel combustion; (3) flame extinction mechanisms and boundaries; (4) soot formation, including soot volume fraction and soot-shell dynamics; (5) influence of droplet interactions on flammability limits and extinction of droplet arrays; (6) validation of droplet-combustion models.",
+  "hypothesis": "Numerical simulations of droplet combustion make approximations for chemistry, radiation and the coupling of gas and liquid that have not been checked against benchmark data. Microgravity removes buoyancy, so the droplet behavior depends only on capillary stresses and the basic processes, including the change from radiative to diffusive extinction, can be observed and compared with the models.",
+  "approach": "The chamber was filled with the chosen atmosphere and left about 2 minutes to settle. Fuel was dispensed to form a droplet, free or on a support fiber; the needles retracted and at least 10 s passed for internal motion to die down. The igniters were powered for 1 to 5 s and retracted. In some tests the droplet was then moved at a steady slow speed to create a weak flow, and some tests used two droplets in a line.",
+  "fuel_state": "liquid",
+  "fuel": [
+    "n-heptane",
+    "n-octane",
+    "n-decane",
+    "iso-octane",
+    "ethanol",
+    "50 % n-heptane / 50 % iso-octane",
+    "95 % propanol / 5 % glycerol",
+    "80 % propanol / 20 % glycerol"
+  ],
+  "geometry": "Isolated spherical droplets of 1.5 to 5 mm initial diameter (+/-0.25 mm, reproducible within 5 %), deployed between two opposed needles of 0.010 inch (0.25 mm) OD stainless steel tubing with flared tips, either released free or placed on a beaded support fiber. Fiber: 235 mm long, 79 micron diameter silicon carbide, tensioned between two arms, with small stainless steel beads every 12 mm to pin droplets; it is rotated 68 degrees into the deployment area and can be translated to make a slow flow or to deploy two droplets in a line 12 or 24 mm apart. Ignition by two opposed hot-wire igniters (4 mm loops of 30 AWG Kanthal A-1 wire), with dual-droplet igniter tips for the array tests; everything except the fiber is kept out of a sphere of 10 initial droplet diameters after ignition. Centre of the CIR combustion chamber.",
+  "o2_min_pct": 17,
+  "o2_max_pct": 30,
+  "pressure_min_psi": 7.35,
+  "pressure_max_psi": 44.09,
+  "conditions_note": "Planned test matrix envelope (PSI experimental table and FLEX-2 SRD Table 2): O2 mole fraction 0.17, 0.21, 0.25 or 0.30 in nitrogen or helium, at 0.5, 1.0, 1.5, 2.0 or 3.0 atm. The SRD and Engineering Requirements Document (ERD) require the hardware to cover O2 0.10 to 0.40 (+/-0.005 on the initial charge) and 0.5 to 3.0 atm (+/-0.05 atm), with chamber pressure held within +/-10 % of the initial value during a test, initial gas and fuel temperature 18 to 27 C, relative humidity below 10 %, fuel vapor below 0.005 and each combustion product below 0.02 mole fraction before a test, and at least 2 minutes of settling after each chamber fill. Per-test values are not in the files read.",
+  "ambient_temperature_K": 298,
+  "diluents": [
+    "nitrogen",
+    "helium"
+  ],
+  "additives": null,
+  "flow": "Quiescent ambient in most tests; a controlled sub-buoyant convective flow was produced in some tests by translating the droplet at a uniform speed of 0.1–5 cm/s (motion starting when the igniters retract)",
+  "gravity": "microgravity",
+  "gravity_note": "ISS",
+  "hardware": "CIR-MDCA",
+  "hardware_note": "Multi-user Droplet Combustion Apparatus (MDCA) chamber insert inside the CIR combustion chamber: two fuel dispensers (syringe, latching solenoid valve, stepper motor), needle deployment system, fiber support system, two igniters, cooling plate on ISS water, a two-radiometer package, a color camera and white LED lighting. Avionics on the CIR optics bench run the test sequence automatically and are commanded from the ground. CIR provides the chamber, gas mixing (FOMA) and the main cameras.",
+  "hardware_link": "https://issnationallab.org/facilities/combustion-integrated-rack/, https://gipoc.grc.nasa.gov/wp/fcf-cir/mdca/",
+  "related_investigations": [
+    "PSI-69 (FLEX)"
+  ],
+  "sensors": [
+    "backlit droplet camera (CIR laser illumination and HiBMs or HFR/HR camera; at least 30 fps, 30 micron resolution, 60 to 100 fps in 2x2 binned mode)",
+    "OH* intensified UV camera (LLL-UV; 310 +/- 5 nm, at least 30 fps, 150 micron resolution)",
+    "MDCA color camera (Sony FCB-EX470L CCD with zoom, viewing through a turning mirror; near real-time downlink)",
+    "broad-band radiometer (0.6 to 5.0 microns)",
+    "narrow-band radiometer for water vapor emission (1.87 microns)",
+    "soot volume fraction by light extinction (660 nm backlight, 15 fps, 50 micron resolution)",
+    "soot and fiber temperature by two-color pyrometry with the HiBMs camera and liquid-crystal tunable filter (700 and 800 nm, at least 7 fps)",
+    "fiber translation encoder (fiber velocity and acceleration, at least 30 Hz)",
+    "chamber pressure (+/-0.01 atm) and gas temperature (+/-0.5 C) sensors",
+    "space acceleration measurement (below 1e-4 m/s2 required, 0.01 to 125 Hz)"
+  ],
+  "measured_or_computed_quantities": [
+    "droplet diameter over time and burning rate",
+    "flame diameter",
+    "extinction diameter (hot flame and cool flame)",
+    "soot volume fraction and soot shell",
+    "flame radiation",
+    "chamber pressure and temperature"
+  ],
+  "variables_between_tests": [
+    "fuel (pure or two-component mixture)",
+    "ambient gas (O2/N2 or O2/He)",
+    "oxygen mole fraction",
+    "ambient pressure",
+    "initial droplet diameter",
+    "free or fiber-supported droplet",
+    "droplet translation speed and acceleration (0.1 to 5 cm/s)",
+    "number of droplets and spacing (single droplet, or two droplets 12 or 24 mm apart)",
+    "igniter power and on-time (1 to 5 s)"
+  ],
+  "test_summary": {
+    "total_tests": 550,
+    "test_point_ids_in_raw_data": 760,
+    "raw_data_series": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "L (camera filter calibration)"
+    ],
+    "fuels": 8,
+    "ambient_o2_pct_levels": [
+      17,
+      21,
+      25,
+      30
+    ],
+    "pressure_atm_levels": [
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      3.0
+    ],
+    "pressure_psi": [
+      7.35,
+      44.09
+    ],
+    "droplet_initial_diameter_mm": [
+      1.5,
+      5
+    ],
+    "translation_velocity_cm_s": [
+      0.1,
+      5
+    ],
+    "igniter_on_time_s": [
+      1,
+      5
+    ],
+    "note": "total_tests = 550 is taken from the SRD estimate and assumed to be the number of tests performed. About 760 test-point IDs have settings files in the PSI raw data (this count includes calibration and repeated points).",
+    "planned_tests_srd": {
+      "total": 550,
+      "pure_fuel_quiescent": {
+        "n-decane": 100,
+        "ethanol": 100
+      },
+      "pure_fuel_flow": {
+        "n-decane": 50,
+        "ethanol": 50
+      },
+      "two_droplet_arrays": {
+        "ethanol": 25,
+        "n-decane": 25
+      },
+      "fuel_mixtures": {
+        "n-heptane/n-hexadecane": 50,
+        "1-propanol/glycerol": 50,
+        "n-heptane/iso-octane": 50,
+        "n-decane/n-propylbenzene": 50
+      }
+    },
+    "experiment_categories": [
+      "pure fuel (quiescent)",
+      "pure fuel with slow flow",
+      "two-droplet arrays",
+      "fuel mixtures (liquid-phase mixing and jet fuel surrogates)"
+    ],
+    "data_records_in_psi": "40 experiment data records grouped by test type (Binary Array, Condensed Phase, LCTF Calibration, LCTF Wavelengths, Quiescent, Radiometer Calibration, Surrogate Fuel), fuel composition and year (FLEX-2 DoD)",
+    "required_ranges": {
+      "o2_mole_fraction": [
+        0.1,
+        0.4
+      ],
+      "pressure_atm": [
+        0.5,
+        3.0
+      ],
+      "initial_temperature_C": [
+        18,
+        27
+      ],
+      "relative_humidity_pct_max": 10,
+      "droplet_diameter_mm": [
+        1.5,
+        5.0
+      ],
+      "translation_velocity_cm_s": [
+        0.1,
+        5.0
+      ]
+    }
+  },
+  "safety_theme": [
+    "extinguishment",
+    "flammability"
+  ],
+  "key_results": [
+    "Not summarized in the sources read. Publications linked to the investigation report cool-flame burning and cool-flame extinction of n-alkane droplets, and radiative extinction of large n-alkane droplets in oxygen-inert mixtures."
+  ],
+  "space_benefits": "FLEX-2 is aimed mainly at the fundamental understanding of liquid-fuel combustion rather than at fire safety (unlike FLEX), but its SRD notes that microgravity droplet combustion is of direct concern for combustion hazards in spacecraft for human exploration. Its extinction, soot and radiation data support fire models for spacecraft.",
+  "earth_benefits": "Liquid fuels are the main energy source for transport. Benchmark data on realistic and multi-component fuels support cleaner, more efficient combustors and the evaluation of future fuels.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: Planned oxygen from 17 to 30 % and pressures from 0.5 to 3 atm, with nitrogen or helium. Conditions cannot be tied to individual tests from the files read. The fuel is a liquid droplet, so it informs models rather than solid material selection.",
+  "publications": [
+    {
+      "title": "Droplet Combustion Experiments Aboard the International Space Station",
+      "authors": "Dietrich D.L., Nayagam V., Hicks M.C., Ferkul P.V., Dryer F.L., Farouk T., Shaw B.D., Suh H.K., Choi M.Y., Liu Y.C., Avedisian C.T., Williams F.A.",
+      "doi": "10.1007/s12217-014-9372-2"
+    },
+    {
+      "title": "Experimental Study of Initial Diameter Effects on Convection-free Droplet Combustion in the Standard Atmosphere for n-Heptane, n-Octane, and n-Decane: International Space Station and Ground-based Experiments",
+      "authors": "Liu Y.C., Avedisian C.T., Trenou K.N., Rah J.K., Hicks M.C.",
+      "doi": "10.2514/6.2014-1019"
+    },
+    {
+      "title": "Experimental Observations of the Low-Temperature Burning of Decane/Hexanol Droplets in Microgravity",
+      "authors": "Dietrich D.L., Calabria R., Massoli P., Nayagam V., Williams F.A.",
+      "doi": "10.1080/00102202.2016.1225730"
+    },
+    {
+      "title": "Cool-flame dodecane-droplet extinction diameters",
+      "authors": "Williams F.A., Nayagam V.",
+      "doi": "10.1016/j.combustflame.2019.10.036"
+    },
+    {
+      "title": "Quasi-steady combustion of normal-alkane droplets supported by Cool-Flame chemistry near diffusive extinction",
+      "authors": "Williams F.A., Nayagam V.",
+      "doi": "10.1080/13647830.2019.1588380"
+    },
+    {
+      "title": "Radiative extinction of large n-alkane droplets in oxygen-inert mixtures in microgravity",
+      "authors": "Nayagam V., Dietrich D.L., Hicks M.C., Williams F.A.",
+      "doi": "10.1016/j.combustflame.2018.04.023"
+    },
+    {
+      "title": "Unsteady droplet combustion with fuel thermal expansion",
+      "authors": "Nayagam V., Dietrich D.L., Williams F.A.",
+      "doi": "10.1016/j.combustflame.2018.01.035"
+    },
+    {
+      "title": "Isolated n-heptane droplet combustion in microgravity: \"Cool Flames\" – Two-stage combustion",
+      "authors": "Farouk T.I., Dryer F.L.",
+      "doi": "10.1016/j.combustflame.2013.09.011"
+    },
+    {
+      "title": "Multistage oscillatory \"Cool Flame\" behavior for isolated alkane droplet combustion in elevated pressure microgravity condition",
+      "authors": "Farouk T.I., Hicks M.C., Dryer F.L.",
+      "doi": null
+    },
+    {
+      "title": "Cool-flame extinction during n-alkane droplet combustion in microgravity",
+      "authors": "Nayagam V., Dietrich D.L., Hicks M.C., Williams F.A.",
+      "doi": null
+    },
+    {
+      "title": "Combustion of Butanol, Gasoline, and Butanol/Gasoline Mixture Droplets",
+      "authors": "Xu Y., Avedisian C.T.",
+      "doi": "10.1021/acs.energyfuels.5b00158"
+    },
+    {
+      "title": "The effect of support fibers on micro-convection in droplet combustion experiments",
+      "authors": "Liu Y.C., Xu Y., Avedisian C.T., Hicks M.C.",
+      "doi": null
+    },
+    {
+      "title": "Computational Modeling of Unsupported and Fiber-Supported n-Heptane Droplet Combustion in Reduced Gravity: A Study of Fiber Effects",
+      "authors": "Ghata N., Shaw B.D.",
+      "doi": "10.1080/00102202.2014.971950"
+    },
+    {
+      "title": "ISS Droplet Combustion Experiments - Uncertainties in Droplet Sizes and Burning Rates",
+      "authors": "Shaw B.D.",
+      "doi": "10.1007/s12217-014-9377-x"
+    },
+    {
+      "title": "Interpretation of Backlit Droplet Images from ISS Droplet Combustion Experiments",
+      "authors": "Yu F., Shaw B.D.",
+      "doi": "10.2478/gsr-2014-0007"
+    },
+    {
+      "title": "Developing Surrogates for Liquid Transportation Fuels: The Role of Spherically Symmetric Droplet Combustion",
+      "authors": "Avedisian C.T.",
+      "doi": "10.1007/978-81-322-2211-8_16"
+    },
+    {
+      "title": "Dynamic Differential Image Circle Diameter Measurement Precision Assessment: Application to Burning Droplets",
+      "authors": "Rasul R.B., Avedisian C.T., Xu Y., Hicks M.C., Reeves A.P.",
+      "doi": null
+    }
+  ],
+  "data_quality_notes": [
+    "The PSI experimental table for FLEX-2 is a summary of the test matrix (one row per fuel with ranges), not a per-test log; the per-test ambient composition is not in the files that could be parsed here.",
+    "O2: table values 0.17, 0.21, 0.25 and 0.30 mole fraction; the approach text quotes a planned range of 0.10–0.40.",
+    "Pressure: 0.5–3.0 atm (7.35–44.09 psi); the CIR chamber can operate at ~0–9 atm.",
+    "Test procedure: chamber filled and allowed to settle ~2 min; fuel dispensed; needles retracted; ≥10 s dwell; igniters on 1–5 s then retracted; optional droplet translation starts at igniter retraction.",
+    "PSI dates the investigation from 2016 to 2019, but the raw data include tests from December 2014.",
+    "The planned fuels in the SRD and ERD (pure n-decane and ethanol; n-heptane/n-hexadecane, 1-propanol/glycerol, n-heptane/iso-octane or n-heptane/octane, n-decane/n-propylbenzene) differ from the fuels in the PSI experimental table (n-heptane, n-octane, n-decane, iso-octane, ethanol and three mixtures). The PSI table is used for the fuel field.",
+    "The SRD lists pressures of 0.5, 1.0, 1.5, 2.0 and 3.0 atm in its test matrix envelope but 0.5, 1.0, 2.0 and 3.0 atm in its hardware requirements table.",
+    "The SRD and ERD are planning documents (ERD dated 4 February 2010); they give required ranges, not the conditions actually run.",
+    "test_summary.total_tests = 550 is the team's assumption: the planned number of tests in the FLEX-2 SRD, taken as the number performed."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+    "https://doi.org/10.60555/byp8-h018",
+    "PSI-68_Experimental table_Flex2.csv (PSI repository)",
+    "PSI-68 Raw Data per-test files (*_MDCA_Testpoint_Settings.txt, *_Chamber_Readings.txt, *_Cool_Flames.txt, D349D03.txt) (PSI repository)",
+    "https://doi.org/10.1007/s12217-014-9372-2",
+    "https://doi.org/10.2478/gsr-2014-0007",
+    "FLEX-2 Science Requirements Document, Rev. 1 (PSI-68_Science Documents_FLEX-2 SRD Final.pdf, 68 pages): sections 4.1, 4.2, 5.1, 5.2, 6.1, 6.2",
+    "FLEX-2 Engineering Requirements Document FLX-REQ-0001, 4 February 2010 (37 pages): sections 3.4 and 4.1",
+    "FLEX-2 DoD (PSI-68_Science Documents_FLEX-2 DoD.docx)",
+    "PSI-68 page: hardware links"
+  ],
+  "missing": [
+    "per-test ambient composition, pressure and fuel (the PSI raw data files read do not include them)",
+    "final report or results summary (key_results)"
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "psi_id": "PSI-100",
+  "name": "Spacecraft Fire Experiment-III",
+  "acronym": "SAFFIRE-III",
+  "doi": null,
+  "research_area": "Combustion Science",
+  "sub_research_area": "Spacecraft Fire, Smoke Distribution",
+  "project_type": null,
+  "study_type": "experimental (large-scale flight experiment in an uncrewed Cygnus vehicle after it left the ISS), with 1-g comparison tests",
+  "keywords": [
+    "concurrent flame spread",
+    "opposed flame spread",
+    "forced flow",
+    "large-scale fire",
+    "SIBAL fabric",
+    "spacecraft fire safety"
+  ],
+  "principal_investigator": "David L. Urban (NASA GRC)",
+  "project_scientist": null,
+  "investigators_note": "Gary A. Ruff (NASA GRC) was project manager of the Spacecraft Fire Safety Demonstration project. NASA co-authors include Paul V. Ferkul, Sandra L. Olson and John Easton. An international topical team (Fire Safety in Space, set up by ESA) helped define the experiment, including J.S. T'ien and Y.-T. Liao (Case Western), A.C. Fernandez-Pello (UC Berkeley), J.L. Torero, G. Legros, C. Eigenbrod, N. Smirnov, O. Fujita, S. Rouvreau, B. Toth and G. Jomaas.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA Advanced Exploration Systems (AES) Division, Human Exploration and Operations Mission Directorate",
+  "start_date": null,
+  "end_date": null,
+  "public_release_date": "2024-09-18",
+  "flight_platform": "Orbital ATK Cygnus OA-7 (S.S. John Glenn), after unberthing from the ISS",
+  "objective": "Same as SAFFIRE-I, at a different (higher) air flow: measure flame spread rate, mass consumption and heat release of a large-scale fire over a thin solid in low gravity; provide data to validate spacecraft fire models; evaluate NASA's normal-gravity screening test (NASA-STD-6001 Test 1) for low gravity.",
+  "hypothesis": null,
+  "approach": "A 40.6 x 94 cm sheet of SIBAL fabric (75 % cotton, 25 % fiberglass) was mounted in the middle of a flow duct and burned in forced air flow on 4 June 2017, remotely commanded from the ground. Two burns: first with the flame spreading in the same direction as the flow (concurrent, from a hot-wire igniter along one edge), then with the flame spreading against the flow (opposed) over the roughly 10 cm of fuel left. Images were compressed and downlinked, then selected raw images over the following days, before reentry.",
+  "fuel_state": "solid",
+  "fuel": [
+    "SIBAL fabric (75 % cotton, 25 % fiberglass by mass), thermally thin and charring"
+  ],
+  "geometry": "flat fabric sheet 40.6 cm wide, 94 cm long, 0.37 mm thick, area density 18 mg/cm2, on a metal frame in the centre of a rectangular flow duct of 46 x 51 cm cross-section; whole module about 53 x 90 x 133 cm",
+  "o2_min_pct": 21.0,
+  "o2_max_pct": 21.2,
+  "pressure_min_psi": 14.7,
+  "pressure_max_psi": 14.7,
+  "conditions_note": "Oxygen is the measured value during the concurrent burn (21.2 falling to 21.0 %). Pressure is the nominal cabin value (about 1 atm); the measured pressure history is in the telemetry but was not reviewed. Air flow was planned at about 30 cm/s before the flight; the post-flight results give 25 cm/s for both burns.",
+  "ambient_temperature_K": null,
+  "diluents": [
+    "nitrogen (air)"
+  ],
+  "additives": null,
+  "flow": "forced air flow of 25 cm/s along the sample, drawn through the duct by fans at the top and flow straighteners at the bottom; two anemometers measure it and feed the fan control",
+  "gravity": "microgravity",
+  "gravity_note": "free-flying Cygnus; measured acceleration record not reviewed",
+  "hardware": "Saffire flow unit",
+  "hardware_note": "Flow duct plus an avionics bay behind a Lexan window. Hot-wire igniter (29-gauge Kanthal) woven into the fabric in a saw-tooth pattern, 182 W for 8 s; a second igniter at the other end. The fabric was illuminated periodically by green LEDs so the char front could be seen. The hardware was nearly identical for SAFFIRE-I, -II and -III; only the sample card differed.",
+  "hardware_link": null,
+  "related_investigations": [
+    "PSI-98 SAFFIRE-I (same fabric, 20 cm/s)",
+    "PSI-99 SAFFIRE-II (nine small samples, flammability limits)"
+  ],
+  "sensors": [
+    "two video cameras, each viewing just over half of one side of the sample",
+    "four radiometers (two front, two back)",
+    "thermocouples at the duct inlet, in the plume, at the outlet, and woven into the sample at several heights",
+    "oxygen and carbon dioxide sensors",
+    "pressure transducer",
+    "two flow anemometers"
+  ],
+  "measured_or_computed_quantities": [
+    "flame base and pyrolysis front position over time",
+    "flame spread rate",
+    "burn duration and burned length",
+    "flame length",
+    "gas and surface temperatures",
+    "radiative emission",
+    "oxygen and carbon dioxide concentration and pressure history"
+  ],
+  "variables_between_tests": [
+    "flame spread direction (concurrent or opposed)"
+  ],
+  "test_summary": {
+    "total_tests": 2,
+    "test_date": "4 June 2017",
+    "tests": [
+      {
+        "test_id": "III-1",
+        "configuration": "concurrent",
+        "flow_cm_s": 25,
+        "o2_pct": [21.2, 21.0],
+        "burn_duration_s": 300,
+        "burned_length_cm": 84,
+        "spread_rate_mm_s": 2.3,
+        "normal_gravity_comparison": "complete burn, accelerating spread"
+      },
+      {
+        "test_id": "III-2",
+        "configuration": "opposed",
+        "flow_cm_s": 25,
+        "o2_pct": [21.2, 21.0],
+        "burn_duration_s": 60,
+        "burned_length_cm": 10,
+        "spread_rate_mm_s": 0.98,
+        "normal_gravity_comparison": "about 0 (no spread)"
+      }
+    ],
+    "saffire_i_reference": {
+      "flow_cm_s": 20,
+      "concurrent_spread_rate_mm_s": 1.8,
+      "concurrent_burn_duration_s": 420,
+      "opposed_spread_rate_mm_s": 1.3,
+      "flame_length_plateau_mm": 40,
+      "estimated_flame_power_W": "1200 +/- 300"
+    }
+  },
+  "safety_theme": [
+    "flame spread",
+    "flammability"
+  ],
+  "key_results": [
+    "Concurrent spread rate was 2.3 mm/s at 25 cm/s, against 1.8 mm/s at 20 cm/s in SAFFIRE-I. The ratio (1.28) is close to the flow ratio (1.25), and the authors state that concurrent spread rate is proportional to air flow velocity.",
+    "Burn time fell roughly in the inverse ratio of flame speed (about 400 s in SAFFIRE-I against about 320 s here).",
+    "Steady flame spread was possible over a large, thin, charring sample in low gravity, unlike in normal gravity, where the same fabric burns with accelerating spread.",
+    "Concurrent spread was more sensitive to the flow duct size than expected: Saffire flames spread more slowly than earlier small-duct tests of the same fuel, so a flame in a narrow gap may be more hazardous than one in an open volume.",
+    "The opposed flame spread much more slowly (0.98 mm/s) than the concurrent flame."
+  ],
+  "space_benefits": "First practical-scale fire tests in a spacecraft. The spread rates and flame behaviour provide benchmark data for validating fire-growth models used to plan crew response and design fire safety systems.",
+  "earth_benefits": null,
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: oxygen was about 21 % at about 1 atm, so the test does not cover the higher oxygen or reduced pressure expected for a lunar base. The fuel is a real solid fabric in realistic ventilation flow, which makes it directly relevant to flame spread over cabin materials. Only two burns, at a single flow speed, with no replicates.",
+  "publications": [
+    {
+      "title": "Saffire: A Novel Approach to Study of Spacecraft Fire Safety Using Un-manned Spacecraft (presentation, ASGSR 2017)",
+      "authors": "Urban David L., Ferkul Paul, Olson Sandra, Ruff Gary A., Easton John, et al.",
+      "doi": null
+    },
+    {
+      "title": "The Saffire Experiment: Large-Scale Combustion aboard Spacecraft (10th U.S. National Combustion Meeting, 2017)",
+      "authors": "Ferkul Paul, Urban David L., Olson Sandra, Ruff Gary A., Easton John, et al.",
+      "doi": null
+    },
+    {
+      "title": "Operation and Development Status of the Spacecraft Fire Experiments (Saffire) (ICES 2016)",
+      "authors": "Ruff Gary A., Urban David L.",
+      "doi": null
+    },
+    {
+      "title": "The effect of duct size, sample size, and fuel composition on concurrent flame spread over large cellulose samples in microgravity",
+      "authors": "Olson Sandra L., Ruff Gary A., Ferkul Paul V., Owens Jay C., Easton John, Liao Ya-Ting, et al.",
+      "doi": null
+    }
+  ],
+  "data_quality_notes": [
+    "The air flow speed differs between sources: about 30 cm/s in pre-flight documents, 25 cm/s in the post-flight results table. 25 cm/s is used here.",
+    "Burn duration of the concurrent test is 300 s in the results table and 320 s in the text of the same presentation.",
+    "The launch date is 18 April 2017 (NASA fact sheet); an earlier presentation lists 27 March 2017, the planned date at the time.",
+    "Only two burns at one flow speed and one oxygen level, with no replicates; the comparison with SAFFIRE-I is a two-point comparison, and oxygen was also slightly different (21.7 falling to 21.5 % in SAFFIRE-I).",
+    "A third-party repository describes the PSI-100 telemetry as 1 Hz and lists a DOI of 10.60555/040q-4h36; neither was checked against the PSI record."
+  ],
+  "sources": [
+    "Urban et al., ASGSR 2017 presentation, NTRS 20180005168 (Table 1: samples, conditions, results)",
+    "Ferkul et al., 10th U.S. National Combustion Meeting, 2017 (hardware, diagnostics, SAFFIRE-I results)",
+    "Ruff and Urban, ICES 2016, NTRS 20170000230 (hardware, diagnostics, downlink)",
+    "NASA fact sheet, Spacecraft Fire Safety Demonstration (Saffire)",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-100 (page could not be read; record metadata not verified)"
+  ],
+  "missing": [
+    "PSI record metadata: DOI, project type, start and end dates (the release date and personnel are carried over from an earlier summary and not verified)",
+    "flame length, pyrolysis length, temperatures, radiative flux and O2/CO2 time series for SAFFIRE-III",
+    "sensor positions, sampling rates and camera frame rates",
+    "measured acceleration environment and pressure history",
+    "fabric moisture conditioning before the test",
+    "anomaly log and measurement uncertainties",
+    "list of data files available in PSI"
+  ]
+}

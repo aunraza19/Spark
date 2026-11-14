@@ -1,0 +1,211 @@
+{
+  "psi_id": "PSI-102",
+  "name": "Smoke and Aerosol Measurement Experiment",
+  "acronym": "SAME",
+  "doi": "10.60555/gd4k-8h62",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Spacecraft Fire Safety",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with ground calibration, normal-gravity comparison tests and a CFD smoke transport model",
+  "keywords": [
+    "smoke aerosol",
+    "pyrolysis",
+    "particle size distribution",
+    "moment method",
+    "smoke detectors",
+    "spacecraft fire detection",
+    "Fire Dynamics Simulator"
+  ],
+  "principal_investigator": "David L. Urban (NASA GRC)",
+  "project_scientist": "Claire Fortenberry (NASA GRC)",
+  "investigators_note": "Co-Investigator: Jiann C. Yang (NIST). Final report authors: David L. Urban, Gary A. Ruff and William Sheredy (NASA GRC), Thomas Cleary and Jiann Yang (NIST), George Mulholland (University of Maryland) and Zeng-Guang Yuan (NCSER). John E. Brooker (NASA GRC) built the transport model; Victoria Bryg (NCSER) co-authored the 2009 analysis.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "Advanced Capabilities Division of the Exploration Systems Mission Directorate, through the ISS Research and the Fire Prevention, Detection and Suppression projects of the Exploration Technology Development Program",
+  "start_date": "2001-03-02",
+  "end_date": "2008-02-28",
+  "public_release_date": null,
+  "flight_platform": "International Space Station (ISS), Microgravity Science Glovebox (MSG), Expedition 15",
+  "objective": "Characterize the size distribution of smoke particles produced in low gravity by overheated spacecraft materials, including how aging and coagulation change it on the way to a detector, so that next-generation smoke detectors can be designed for exploration missions.",
+  "hypothesis": null,
+  "approach": "Small samples (about 3 mm diameter cylinders of material wrapped in a stainless steel wire) were resistively heated below their ignition point for about 60 s, with wire resistance used to control temperature; samples were pre-weighed and loaded six to a carousel. A piston drew the smoke over the sample at 2 to 8 cm/s into an aging chamber, held it for 10 to 1800 s to let particles coagulate, then pushed it past three instruments that each measure a different moment of the size distribution, plus ISS and Space Shuttle smoke detectors and a thermal precipitator collecting particles on TEM grids. Assuming a lognormal distribution, the moments give mean diameters and the spread of sizes. Samples were run at different temperatures, flows and aging times. Operated mostly from the ground, which allowed about 50 % more test points than planned. An FDS model simulated smoke transport and detector response in the ISS US Lab.",
+  "fuel_state": "solid (and one liquid held on a wick)",
+  "fuel": [
+    "Teflon",
+    "Kapton",
+    "silicone rubber",
+    "cellulose (cotton lamp wick)",
+    "dibutyl phthalate (DBP) retained in a cotton wick, used as a reference"
+  ],
+  "geometry": "small cylindrical samples heated in a smoke generation duct, with an aging chamber and a diagnostics duct, inside the Microgravity Science Glovebox",
+  "o2_min_pct": null,
+  "o2_max_pct": null,
+  "pressure_min_psi": null,
+  "pressure_max_psi": null,
+  "conditions_note": "Pyrolysis in air inside the glovebox; oxygen and pressure values not given in the report. No flaming combustion.",
+  "ambient_temperature_K": null,
+  "diluents": [
+    "nitrogen (air)"
+  ],
+  "additives": null,
+  "flow": "air flow over the sample of 2 to 8 cm/s, induced by the moving piston of the aging chamber during heating",
+  "gravity": "microgravity",
+  "gravity_note": "ISS",
+  "hardware": "SAME in the MSG",
+  "hardware_note": "Moment instruments: capillary-modified TSI P-Trak (zeroth moment, number concentration, 0 to 10^5 pt/cc and 20 nm to 1 micrometer, dilution needed since smoke reached 0.5 to 5 x 10^6 pt/cc); ionization chamber from a residential smoke detector (first moment, diameter concentration, no dilution); two TSI DustTraks with 1-micrometer and 10-micrometer inlet impactors (third moment, mass, 0.001 to 100 mg/m3; their difference gives the fraction above 1 micrometer). Signals digitized at 1 Hz by an 8-bit A/D converter. Calibrated before flight with monodisperse dioctyl phthalate droplets and polystyrene spheres against a TSI 3022 counter, a TEOM and a TSI Electrical Aerosol Detector. For the final results the DustTrak was calibrated directly for each smoke source against TEOM mass measurements, and estimated material densities were used to compute the diameter of average mass. About 5 hours of crew time to assemble.",
+  "hardware_link": null,
+  "related_investigations": [
+    "PSI-101 SAME-R / SAME-2 (reflight, Expedition 24, 2010)",
+    "PSI-47 DAFT / DAFT-2 (P-Trak feasibility test)",
+    "CSD (Comparative Soot Diagnostics, STS-75)"
+  ],
+  "sensors": [
+    "modified TSI P-Trak condensation particle counter",
+    "ionization chamber",
+    "two TSI DustTrak photometers (1 and 10 micrometer impactors)",
+    "ISS near-infrared forward-scattering smoke detector",
+    "Space Shuttle ionization smoke detector",
+    "thermal precipitator with TEM grids"
+  ],
+  "measured_or_computed_quantities": [
+    "particle number, diameter and mass concentrations (zeroth, first and third moments)",
+    "arithmetic (count) mean diameter and diameter of average mass",
+    "geometric mean diameter and geometric standard deviation (computed, lognormal assumed)",
+    "mass fraction above 1 micrometer",
+    "response of ISS and Shuttle smoke detectors",
+    "modeled smoke transport and alarm times in the ISS US Lab"
+  ],
+  "variables_between_tests": [
+    "material",
+    "pyrolysis temperature",
+    "air flow rate (2 to 8 cm/s)",
+    "smoke aging time (10 to 1800 s)",
+    "initial heating or reheat of the same sample"
+  ],
+  "test_summary": {
+    "total_samples": 30,
+    "samples_per_material": 6,
+    "total_tests": 47,
+    "tests_note": "Appendix A of the final report logs 47 test points, because some samples (mostly DBP) were reheated.",
+    "tests_by_material": {
+      "DBP": 22,
+      "Teflon": 7,
+      "Silicone rubber": 6,
+      "Lamp wick": 6,
+      "Kapton": 6
+    },
+    "test_dates": "9 September to 5 October 2007 (GMT 252 to 278)",
+    "final_results_nm": {
+      "source": "Final report Table 1 (baseline = no aging; aged = 720 s)",
+      "Kapton": {"Dg": 80, "D_arithmetic": 105, "D1_5": 179, "sigma_g": 2.08},
+      "Kapton_aged": {"Dg": 155, "D_arithmetic": 186, "D1_5": 267, "sigma_g": 1.82},
+      "lamp_wick": {"Dg": 186, "D_arithmetic": 227, "D1_5": 341, "sigma_g": 1.89},
+      "lamp_wick_aged": {"Dg": 258, "D_arithmetic": 308, "D1_5": 438, "sigma_g": 1.81},
+      "silicone_rubber": {"Dg": 189, "D_arithmetic": 257, "D1_5": 472, "sigma_g": 2.18},
+      "silicone_rubber_aged": {"Dg": 352, "D_arithmetic": 422, "D1_5": 606, "sigma_g": 1.83},
+      "Teflon": {"Dg": 170, "D_arithmetic": 205, "D1_5": 297, "sigma_g": 1.84},
+      "Teflon_aged": {"Dg": 228, "D_arithmetic": 273, "D1_5": 392, "sigma_g": 1.82},
+      "DBP": "not reported (reference material)"
+    },
+    "count_mean_diameter_2008_nm": {
+      "source": "AIAA-2008-0806 (appended to the final report), earlier analysis using only the P-Trak and ion chamber, baseline runs",
+      "silicone_rubber": {"D0_5": 263, "pct_larger_than_1g": 53},
+      "Teflon": {"D0_5": 223, "pct_larger_than_1g": null},
+      "lamp_wick": {"D0_5": 248, "pct_larger_than_1g": 65},
+      "Kapton": {"D0_5": 114, "pct_larger_than_1g": 58}
+    },
+    "fds_model": {
+      "code": "FDS 4.0.7, ISS Destiny Lab, about 5 cm cells",
+      "source": "propane burner surrogate, 0.023 m2, 57.6 kW/m2",
+      "soot_yields": "three levels (dimensionless), lowest 0.05",
+      "smoke_generation_mg_s": [1.46, 2.95, 8.47],
+      "iss_detector_alarm_mg_m3": 0.5
+    }
+  },
+  "safety_theme": [
+    "detection"
+  ],
+  "key_results": [
+    "For the materials tested, a substantial portion of the smoke particles were below 500 nm in diameter.",
+    "Teflon and Kapton smoke had small particles and narrow size distributions, with little mass above 1 micrometer. Silicone rubber and lamp wick smoke had much larger diameters of average mass, with almost half the mass in particles above 1 micrometer.",
+    "Aging the smoke for 720 s cut the number concentration while mass stayed fairly steady, consistent with coagulation with limited wall loss; the diameter of average mass grew (for example 179 to 267 nm for Kapton, 472 to 606 nm for silicone).",
+    "An earlier analysis found count mean diameters in low gravity typically about 50 % larger than in comparable normal-gravity tests (53 % silicone, 65 % lamp wick, 58 % Kapton).",
+    "All tests gave strong signals on the Space Shuttle ionization detector. For Teflon smoke, mostly below 1 micrometer, the ISS light-scattering detector signal was erratic. The authors conclude that small Kapton and Teflon particles are hard for light-scattering detectors while large silicone and lamp wick particles give very large signals, so detection against background dust needs a system that measures more than one moment of the size distribution.",
+    "The earlier CSD shuttle experiment saw poor Shuttle-detector response for overheated cellulose and silicone, which suggests some pre-fire conditions produce larger particles than SAME saw.",
+    "The FDS model showed smoke is mixed through the US Lab rather than collecting at the ceiling, so detection takes longer than in normal gravity; alarm times depend strongly on source location and obstructions, and some sources at the lowest soot yield never triggered an alarm."
+  ],
+  "space_benefits": "First smoke particle size data from overheated spacecraft materials in low gravity, used to set design requirements for future spacecraft smoke detectors. The report notes that extended lunar-surface missions will need detectors not fooled by lunar and other nuisance dust; telling smoke from dust (which tends to be large) will probably require some discrimination of particle size.",
+  "earth_benefits": "Smoke detector design for other closed environments, such as submarines and underwater laboratories.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: pyrolysis smoke from real spacecraft materials in ISS air; oxygen and pressure were not varied, so the tests do not cover lunar base atmospheres. Directly relevant to fire detection, including the need to reject lunar dust, rather than to flammability.",
+  "publications": [
+    {
+      "title": "Smoke Aerosol Measurement Experiment (SAME), final report, 15 March 2010 (NASA Technical Memorandum)",
+      "authors": "Urban David L., Ruff Gary A., Sheredy William, Cleary Thomas, Yang Jiann, Mulholland George, Yuan Zeng-Guang",
+      "doi": null
+    },
+    {
+      "title": "Smoke Particle Sizes in Low-Gravity and Implications for Spacecraft Smoke Detector Design (ICES 2009)",
+      "authors": "Urban David L., Ruff Gary A., Mulholland George W., Cleary Thomas G., Yang Jiann C., Yuan Zengguang, Bryg Victoria",
+      "doi": "10.4271/2009-01-2468"
+    },
+    {
+      "title": "Properties of Smoke from Overheated Spacecraft Materials in Low-Gravity (47th AIAA Aerospace Sciences Meeting, AIAA-2009-956)",
+      "authors": "Urban David L., Ruff Gary A., Cleary Thomas, Yang Jiann, Mulholland George, Yuan Zeng-Guang, Sheredy William",
+      "doi": null
+    },
+    {
+      "title": "Measurement of Smoke Particle Size under Low-Gravity Conditions (SAE ICES 2008, 2008-01-2089)",
+      "authors": "Urban David L., Ruff Gary, Mulholland George, Cleary Thomas, Yang Jiann, Yuan Zengguang",
+      "doi": null
+    },
+    {
+      "title": "Spacecraft Fire Detection: Smoke Properties and Transport in Low-Gravity (46th AIAA Aerospace Sciences Meeting, AIAA-2008-0806)",
+      "authors": "Urban David L., Ruff Gary A., Brooker John E., Cleary Thomas, Yang Jiann, Mulholland George, Yuan Zeng-Guang",
+      "doi": null
+    },
+    {
+      "title": "Moment Method for Obtaining Particle Size Measures of Test Smokes (NISTIR 7050, 2003)",
+      "authors": "Cleary T.G., Weinert D.W., Mulholland G.W.",
+      "doi": null
+    },
+    {
+      "title": "Smoke Characterization and Feasibility of the Moment Method for Spacecraft Fire Detection (Aerosol Science and Technology, 2015; covers SAME and SAME-2)",
+      "authors": "Meyer Marit E., Mulholland George W., Bryg Victoria, Urban David L., Yuan Zeng-guang, Ruff Gary A., Cleary Thomas, Yang Jiann",
+      "doi": "10.1080/02786826.2015.1025124"
+    },
+    {
+      "title": "Pyrolysis Smoke Generated Under Low-Gravity Conditions (Aerosol Science and Technology, 2015; covers SAME and SAME-2)",
+      "authors": "Mulholland George W., et al.",
+      "doi": "10.1080/02786826.2015.1025125"
+    }
+  ],
+  "data_quality_notes": [
+    "Size values come from three analysis stages that should not be mixed: count mean diameters from two instruments (2008), interim three-moment values (AIAA-2009-956, e.g. Teflon Dg 159 nm, silicone not converged) and the final report's Table 1 (Teflon Dg 170 nm). The final arithmetic means (257, 205, 227, 105 nm) are 2 to 9 % below the 2008 count means (263, 223, 248, 114 nm).",
+    "The final Table 1 is internally consistent with a lognormal distribution: Dg * exp(0.5 ln^2 sigma_g) and Dg * exp(1.5 ln^2 sigma_g) reproduce the arithmetic mean and D1.5 within rounding.",
+    "Two statements in the final report's text contradict its own Table 1: it calls 189 nm the 'count mean diameter' of silicone (Table 1 gives 189 nm as the geometric mean and 257 nm as the arithmetic mean), and it says the aged silicone diameter of average mass rises 'to over 1 micrometer' (Table 1 gives 606 nm; the 2009 ICES paper says 'over 500 nm').",
+    "The percentage increases over normal gravity come from the 2008 paper and are given without the 1-g reference diameters, sample sizes or uncertainties.",
+    "The 30 samples were run at different flow, temperature and aging conditions (47 test points in all), so there are few or no replicates per exact condition, and Table 1 gives single values per material without stating which runs they come from.",
+    "The report gives formulas for propagating moment uncertainties (M1 contributes most, M3 least) but no uncertainty values for the Table 1 diameters.",
+    "DBP was tested 22 times as a reference material, but no DBP results are reported.",
+    "The moment method assumes spherical particles and a lognormal distribution; the DustTrak response depends strongly on particle size and refractive index, and the final values rely on a per-source TEOM calibration that holds only if the size distribution does not change much.",
+    "TEM grids were contaminated with particles from the thermal precipitator assembly, limiting microscopic checks.",
+    "The erratic ISS detector signal is documented for Teflon; for Kapton the difficulty is an inference from particle size."
+  ],
+  "sources": [
+    "PSI-102 record (title, DOI, sub-research area, project type, dates, contacts, related investigation, file list)",
+    "SAME Final Report, 15 March 2010 (covering 1 November 2000 to 14 April 2009): abstract, sections 1-6, Table 1, Appendix A test log, appended papers (Appendices B-E)",
+    "Urban et al., AIAA-2008-0806 / NTRS 20080012612 (count mean diameters, comparison with 1 g, FDS model)",
+    "Urban et al., AIAA-2009-956 / NTRS 20120012884 (interim three-moment results)",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102"
+  ],
+  "missing": [
+    "public release date",
+    "sample masses per test",
+    "heater temperature, air flow and aging time for each of the 47 test points",
+    "which test points Table 1 values come from",
+    "aging chamber volume, dilution ratios and sampling flow rates",
+    "DBP results",
+    "normal-gravity reference diameters and uncertainties",
+    "validation of the FDS model against flight data",
+    "list of data files available in PSI"
+  ]
+}

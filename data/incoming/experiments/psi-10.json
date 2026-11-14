@@ -1,0 +1,367 @@
+{
+  "psi_id": "PSI-10",
+  "name": "Advanced Combustion via Microgravity Experiments / Flame Design",
+  "acronym": "ACME/Flame Design",
+  "doi": "10.60555/w4zy-bt45",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Flames of Gaseous Fuels",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with drop tower tests and a transient numerical model",
+  "keywords": [
+    "chemical kinetics",
+    "dilution",
+    "ethylene",
+    "flame growth",
+    "radiative extinction",
+    "stoichiometric mixture fraction",
+    "thin filament pyrometry"
+  ],
+  "principal_investigator": "Richard L. Axelbaum (Washington University in St. Louis)",
+  "project_scientist": "Dennis P. Stocker (NASA GRC)",
+  "investigators_note": "Co-Investigators: Peter B. Sunderland (University of Maryland, Fire Protection Engineering), David Urban (NASA GRC). Investigator: Sergey Frolov (Semenov Institute of Chemical Physics, Russian Academy of Sciences; joint experiment Flame Design - Adamant). Phillip H. Irace (then a doctoral student) led much of the ISS data analysis.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA: NCC-3697, NCC-1063, NNC06AA32A, NNX09AO53A, NNX15AC75A, 80NSSC20M0072",
+  "start_date": "1999-01-14",
+  "end_date": "2025-04-30",
+  "public_release_date": "2025-11-20",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "For spherical diffusion flames of gaseous fuel in microgravity: (A) find the limits at which soot starts to form, as a function of flow rate, mixture, amount of inert gas and pressure; (B) measure flame temperature, size, color and soot, and test whether steady flames can exist; (C) find extinction limits and the temperatures at which they occur, and tell radiative extinction from kinetic extinction.",
+  "hypothesis": "(1) Soot forms only where the local carbon-to-oxygen ratio and temperature exceed critical values and the strain rate is low enough. (2) Microgravity spherical diffusion flames extinguish when the peak temperature first falls below 1130 K. (3) Steady-state spherical diffusion flames are possible.",
+  "approach": "Spherical diffusion flames on a porous spherical burner, in drop towers and on the ISS, in two rounds. Normal flames (April to July 2019): ethylene, pure or diluted with nitrogen, flows from the burner into an oxygen/nitrogen atmosphere. Inverse flames (November 2021 to February 2022): an oxygen/nitrogen mixture of up to 85 % oxygen flows from the burner into a chamber filled with nitrogen and ethylene. One extra normal-flame day with propane (28 October 2021) was used to calibrate optical temperature measurements. Reactant flow rate was held constant in each test, or ramped in selected tests.",
+  "fuel_state": "gas",
+  "fuel": [
+    "ethylene (C2H4)",
+    "propane (C3H8), one test day only"
+  ],
+  "geometry": "porous stainless-steel spherical burner, 6.35 mm diameter, in the ACME chamber insert; spherical flame around the burner",
+  "o2_min_pct": 19.8,
+  "o2_max_pct": 85,
+  "pressure_min_psi": 6.3,
+  "pressure_max_psi": 44.4,
+  "conditions_note": "The O2 range combines two configurations; see test_summary. In normal flames O2 is the chamber atmosphere (about 20 to 40 %), at about 0.93 to 1.3 atm. In inverse flames O2 is the gas leaving the burner (21 to 85 %) while the chamber holds ethylene and nitrogen with no oxygen, so 85 % is not an ambient oxygen level; pressures there range from about 0.43 to 3 atm. The chamber pressure limit was raised from 1.5 to 3 atm in January 2022 for the last inverse-flame days.",
+  "ambient_temperature_K": null,
+  "diluents": [
+    "nitrogen"
+  ],
+  "additives": null,
+  "flow": "no forced external flow; gas issues radially from the burner at a constant flow rate (total 0.3 to about 21.5 mg/s in normal flames; about 1.8 to 13.8 mg/s in inverse flames), or ramped in selected tests",
+  "gravity": "microgravity",
+  "gravity_note": "ISS, plus earlier drop tower tests; the flames need far longer than drop towers allow (burn times up to 870 s were observed)",
+  "hardware": "CIR-ACME",
+  "hardware_note": "ACME chamber insert in the Combustion Integrated Rack (CIR), after the rack was reconfigured for ACME. Porous spherical burner, retracting igniter, short (far) thermocouple rake on all days except the propane day, which used the long (near) rake. Burner heating limits test duration: tests end when the porous sphere reaches its temperature limit.",
+  "hardware_link": "https://www1.grc.nasa.gov/space/iss-research/iss-fcf/combustion-science/acme/implementation/",
+  "related_investigations": [
+    "ACME CFI-G",
+    "ACME s-Flame",
+    "ACME BRE",
+    "ACME E-FIELD Flames",
+    "ACME CLD Flame",
+    "Flame Design - Adamant (joint Russian-American experiment)"
+  ],
+  "sensors": [
+    "color video camera",
+    "thin-filament pyrometry (gas temperature from glowing fibers)",
+    "thermocouples (burner temperature; rake in the gas)",
+    "photomultiplier tubes (broad-band and narrow-band flame emission)",
+    "radiometers"
+  ],
+  "measured_or_computed_quantities": [
+    "flame size and growth over time",
+    "peak gas temperature",
+    "temperature at extinction",
+    "reactant mass flux at extinction",
+    "burn time",
+    "soot inception (sooting or soot-free flame)",
+    "adiabatic flame temperature and stoichiometric mixture fraction (computed)",
+    "chamber composition and pressure before and after each test"
+  ],
+  "variables_between_tests": [
+    "flame type (normal or inverse)",
+    "oxygen concentration",
+    "fuel dilution with nitrogen",
+    "reactant flow rate (constant or ramped)",
+    "pressure",
+    "fuel (ethylene, propane on one day)"
+  ],
+  "test_summary": {
+    "total_tests": 327,
+    "normal_flames": {
+      "tests": 207,
+      "test_days": 14,
+      "test_dates": "25 April to 25 July 2019 (ethylene), 28 October 2021 (propane)",
+      "ambient_o2_pct": [
+        19.8,
+        40.0
+      ],
+      "tests_by_ambient_o2_level": {
+        "about 20 %": 71,
+        "about 30 %": 6,
+        "about 40 %": 130
+      },
+      "pressure_atm": [
+        0.93,
+        1.3
+      ],
+      "pressure_psi": [
+        13.7,
+        19.1
+      ],
+      "fuel_fraction_in_burner_gas": [
+        0.05,
+        1.0
+      ],
+      "fuel_flow_mg_s": [
+        0.31,
+        2.52
+      ],
+      "adiabatic_flame_temperature_K": [
+        1683.0,
+        2831.0
+      ],
+      "tests_by_fuel": {
+        "C2H4": 187,
+        "C3H8": 20
+      },
+      "ramped_flow_tests": 60
+    },
+    "inverse_flames": {
+      "tests": 120,
+      "test_days": 8,
+      "test_dates": "24 November 2021 to 4 February 2022",
+      "burner_o2_pct": [
+        21.2,
+        85.0
+      ],
+      "tests_at_85_pct_o2": 52,
+      "pressure_atm": [
+        0.43,
+        3.02
+      ],
+      "pressure_psi": [
+        6.3,
+        44.4
+      ],
+      "tests_by_pressure_atm": {
+        "about 0.4": 4,
+        "about 0.5": 23,
+        "about 1": 69,
+        "about 2": 8,
+        "about 3": 16
+      },
+      "ethylene_fraction_in_chamber": [
+        0.08,
+        0.658
+      ],
+      "o2_flow_mg_s": [
+        1.52,
+        9.8
+      ],
+      "adiabatic_flame_temperature_K": [
+        2074.0,
+        2974.0
+      ],
+      "ramped_or_low_o2_tests": 11
+    }
+  },
+  "safety_theme": [
+    "extinguishment",
+    "flammability"
+  ],
+  "key_results": [
+    "All the ISS flames extinguished at the same critical temperature of 1130 K, across a broad range of oxygen levels, dilution and flow rates at about 1 bar.",
+    "Extinction also occurs at a fixed reactant mass flux: 0.2 g/m2-s of fuel for normal flames and 0.68 g/m2-s of oxygen for inverse flames. From these, a simple equation estimates the flame size at extinction from the reactant flow rate alone.",
+    "In microgravity a flame at constant flow keeps growing; as it grows it radiates more, cools, and goes out when radiative heat loss approaches the heat released (radiative extinction). The report notes this has implications for spacecraft fire safety.",
+    "Before going out, a flame may oscillate: part of it extinguishes and reforms, with growing amplitude, until complete extinction.",
+    "Steady-state spherical flames can exist in microgravity despite radiative loss, if the steady flame size is smaller than the size for radiative extinction. Flames showing steady behavior were observed for up to 870 s.",
+    "Sufficiently small flames with low radiative losses burn quasi-steadily; test duration is then limited by burner heating, not by the flame going out.",
+    "The chamber pressure limit was raised to 3 atm for the last test days because pressure was found to be a critical variable for predicting extinction; the principal investigator noted that extinction data over a wide pressure range could be valuable for spacecraft fire safety."
+  ],
+  "space_benefits": "Radiative extinction is of fundamental importance in microgravity, where there is no buoyant flow. The critical extinction temperature and mass flux give simple criteria for predicting whether a flame will sustain itself or go out, which supports predictive modeling of fire scenarios.",
+  "earth_benefits": "Potential to improve efficiency and reduce pollutant (soot) emissions in combustors on Earth; the work is contributing to designs of future coal power plants.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: the normal-flame tests cover ambient oxygen of about 20, 30 and 40 % near 1 atm, so they bracket the oxygen level expected for the lunar base (about 30 % or more), though not its reduced pressure. The inverse-flame tests cover pressures from about 0.43 to 3 atm, but with oxygen supplied from the burner. The fuel is gas on a burner, not a solid material, so it informs models rather than material selection.",
+  "publications": [
+    {
+      "title": "The kinetics and warm flame chemistry associated with radiative extinction of spherical diffusion flames",
+      "authors": "Waddell Kendyl A., Irace Phillip H., Yablonsky Gregory, Constales Denis, Sunderland Peter B., Axelbaum Richard L.",
+      "doi": "10.1080/13647830.2024.2326830"
+    },
+    {
+      "title": "Soot Formation in Spherical Diffusion Flames",
+      "authors": "Frolov Sergey M., Ivanov Vladislav S., Frolov Fedor S., Vlasov Pavel A., Axelbaum Richard, Irace Phillip H., Yablonsky Grigoriy, Waddell Kendyl",
+      "doi": "10.3390/math11020261"
+    },
+    {
+      "title": "On the existence of steady-state gaseous microgravity spherical diffusion flames in the presence of radiation heat loss",
+      "authors": "Irace Phillip H., Waddell Kendyl A., Constales Denis, Kim Minhyeng, Yablonsky Gregory, Sunderland Peter B., Axelbaum Richard L.",
+      "doi": "10.1016/j.proci.2022.07.049"
+    },
+    {
+      "title": "Critical temperature and reactant mass flux for radiative extinction of ethylene microgravity spherical diffusion flames at 1 bar",
+      "authors": "Irace Phillip H., Waddell Kendyl A., Constales Denis, Sunderland Peter B., Axelbaum Richard L.",
+      "doi": "10.1016/j.proci.2022.07.043"
+    },
+    {
+      "title": "An investigation of thermal radiation from laminar diffusion flames in a tri-coflow burner with central oxygen",
+      "authors": "Irace P.H., Gopan A., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2022.112158"
+    },
+    {
+      "title": "SPHERICAL DIFFUSION FLAME IN MICROGRAVITY CONDITIONS: FIRST RESULTS OF JOINT RUSSIAN-AMERICAN SPACE EXPERIMENT FLAME DESIGN - ADAMANT",
+      "authors": "undefined undefined, FROLOV S. M.",
+      "doi": "10.30826/NEPCAP9B-13"
+    },
+    {
+      "title": "Observations of long duration microgravity spherical diffusion flames aboard the International Space Station",
+      "authors": "Irace Phillip H., Lee Han Ju, Waddell Kendyl, Tan Logan, Stocker Dennis P., Sunderland Peter B., Axelbaum Richard L.",
+      "doi": "10.1016/j.combustflame.2021.02.019"
+    },
+    {
+      "title": "Double blue zones in inverse and normal laminar jet diffusion flames",
+      "authors": "Wang Zhengyang, Sunderland Peter B., Axelbaum Richard L.",
+      "doi": "10.1016/j.combustflame.2019.09.014"
+    },
+    {
+      "title": "Dilution effects on laminar jet diffusion flame lengths",
+      "authors": "Wang Zhengyang, Sunderland Peter B., Axelbaum Richard L.",
+      "doi": "10.1016/j.proci.2018.06.085"
+    },
+    {
+      "title": "A new method of flame temperature measurement utilizing the acoustic emissions from laser-induced plasmas",
+      "authors": "Wu Wendong, Adeosun Adewale, Axelbaum Richard L.",
+      "doi": "10.1016/j.proci.2018.07.096"
+    },
+    {
+      "title": "Structure and extinction of spherical burner-stabilized diffusion flames that are attached to the burner surface",
+      "authors": "Rodenhurst Melvin K., Chao Beei-Huan, Sunderland Peter B., Axelbaum Richard L.",
+      "doi": "10.1016/j.combustflame.2017.08.024"
+    },
+    {
+      "title": "Effects of Inert Placement (Z st) on Soot and Radiative Heat Flux in Turbulent Diffusion Flames",
+      "authors": "Gopan Akshay, Yang Zhiwei, Kumfer Benjamin M., Axelbaum Richard L.",
+      "doi": "10.1021/acs.energyfuels.7b01092"
+    },
+    {
+      "title": "Observation of water–gas shift equilibrium in diffusion flames",
+      "authors": "Wu Wendong, Yablonsky Gregory, Axelbaum Richard L.",
+      "doi": "10.1016/j.combustflame.2016.07.025"
+    },
+    {
+      "title": "An Approach to Thermocouple Measurements That Reduces Uncertainties in High-Temperature Environments",
+      "authors": "Krishnan Siddharth, Kumfer Benjamin M., Wu Wendong, Li Jichuan, Nehorai Arye, Axelbaum Richard L.",
+      "doi": "10.1021/acs.energyfuels.5b00071"
+    },
+    {
+      "title": "Modeled quenching limits of spherical hydrogen diffusion flames",
+      "authors": "Lecoustre V.R., Sunderland P.B., Chao B.H., Axelbaum R.L.",
+      "doi": "10.1016/j.proci.2012.07.029"
+    },
+    {
+      "title": "Simplifying the complexity of diffusion flames through interpretation in C/O ratio space",
+      "authors": "Xia Fei, Axelbaum Richard L.",
+      "doi": "10.1016/j.camwa.2013.01.008"
+    },
+    {
+      "title": "Numerical study of flame structure and soot inception interpreted in carbon-to-oxygen atom ratio space",
+      "authors": "Xia Fei, Yablonsky Gregory S., Axelbaum Richard L.",
+      "doi": "10.1016/j.proci.2012.06.043"
+    },
+    {
+      "title": "Stability of spray combustion for water/alcohols mixtures in oxygen-enriched air",
+      "authors": "Yi Fei, Axelbaum Richard L.",
+      "doi": "10.1016/j.proci.2012.05.088"
+    },
+    {
+      "title": "Numerical investigation of spherical diffusion flames at their sooting limits",
+      "authors": "Lecoustre V.R., Sunderland P.B., Chao B.H., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2011.05.022"
+    },
+    {
+      "title": "Kinetic and radiative extinctions of spherical burner-stabilized diffusion flames",
+      "authors": "Wang Q., Chao B.H.",
+      "doi": "10.1016/j.combustflame.2010.12.007"
+    },
+    {
+      "title": "Extremely weak hydrogen flames",
+      "authors": "Lecoustre V.R., Sunderland P.B., Chao B.H., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2010.07.024"
+    },
+    {
+      "title": "Characteristics of non-premixed oxygen-enhanced combustion: II. Flame structure effects on soot precursor kinetics resulting in soot-free flames",
+      "authors": "Skeen S.A., Yablonsky G., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2010.04.013"
+    },
+    {
+      "title": "Characteristics of non-premixed oxygen-enhanced combustion: I. The presence of appreciable oxygen at the location of maximum temperature",
+      "authors": "Skeen S.A., Yablonsky G., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2009.07.009"
+    },
+    {
+      "title": "Soot inception limits in laminar diffusion flames with application to oxy–fuel combustion",
+      "authors": "Kumfer B.M., Skeen S.A., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2008.03.008"
+    },
+    {
+      "title": "Radiative extinction of gaseous spherical diffusion flames in microgravity",
+      "authors": "SANTA K, CHAO B, SUNDERLAND P, URBAN D, STOCKER D, AXELBAUM R",
+      "doi": "10.1016/j.combustflame.2007.08.009"
+    },
+    {
+      "title": "Numerical and experimental observations of spherical diffusion flames",
+      "authors": "Santa K. J., Sun Z., Chao B. H., Sunderland P. B., Axelbaum R. L., Urban D. L., Stocker D. P.",
+      "doi": "10.1080/13647830601161567"
+    },
+    {
+      "title": "The effects of elevated pressure on the kinetics and extinction of hot, warm, and cool gaseous ethylene spherical diffusion flames",
+      "authors": "Waddell Kendyl A., Yablonsky Gregory, Constales Denis, Sunderland Peter B., Axelbaum Richard L.",
+      "doi": "10.1016/j.proci.2024.105400"
+    },
+    {
+      "title": "On Soot Inception in Nonpremixed Flames and the Effects of Flame Structure",
+      "authors": "CHAO B. H., LIU S., AXELBAUM R. L.",
+      "doi": "10.1080/00102209808952065"
+    },
+    {
+      "title": "Measurement and analysis of soot inception limits of oxygen-enriched coflow flames",
+      "authors": "Kumfer B.M., Skeen S.A., Chen R., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2006.08.004"
+    },
+    {
+      "title": "Scalar dissipation rate at extinction and the effects of oxygen-enriched combustion",
+      "authors": "Chen R., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2005.02.008"
+    },
+    {
+      "title": "A theoretical study on soot inception in spherical burner-stabilized diffusion flames",
+      "authors": "Liu S., Chao B.H., Axelbaum R.L.",
+      "doi": "10.1016/j.combustflame.2004.08.016"
+    },
+    {
+      "title": "SOOTING LIMITS OF MICROGRAVITY SPHERICAL DIFFUSION FLAMES IN OXYGEN-ENRICHED AIR AND DILUTED FUEL",
+      "authors": "SUNDERLAND P. B., URBAN D. L., STOCKER D. P., CHAO B.-H., AXELBAUM∗ R. L.",
+      "doi": "10.1080/00102200490514994"
+    },
+    {
+      "title": "Effects of structure and hydrodynamics on the sooting behavior of spherical microgravity diffusion flames",
+      "authors": "Sunderland P",
+      "doi": "10.1016/S0010-2180(02)00424-8"
+    }
+  ],
+  "data_quality_notes": [
+    "Rows marked RAMP, RAMPED or LOW O2 have no fixed flow or composition values in the table.",
+    "The 20 propane tests (day 13) list nominal values only (40 % oxygen, no final composition or pressure).",
+    "One inverse test ID reads 22042 where the neighbouring rows read 22024; probably a typo.",
+    "The final report is dated April 2023 and states that data analysis was still under way. The 1130 K result is reported for tests at about 1 bar; a 2024 publication in the list covers elevated pressure."
+  ],
+  "sources": [
+    "PSI-10 metadata file (i_Investigation.txt)",
+    "PSI-10 Experimental Table, normal flames (207 tests) and inverse flames (120 tests)",
+    "ACME/Flame Design Final Report, 6 April 2023, 109 pages: sections 1, 4.A, 4.C, 4.D",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-10"
+  ],
+  "missing": [
+    "soot inception limits (objective A): not summarized in the sections of the report that were read",
+    "burn time and extinction outcome per test (not in the PSI experiment tables)",
+    "initial gas temperature in the chamber",
+    "list of data files available in PSI"
+  ]
+}

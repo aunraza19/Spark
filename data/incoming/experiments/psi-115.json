@@ -1,0 +1,227 @@
+{
+  "psi_id": "PSI-115",
+  "name": "Utilization of the Smoke Aerosol Measurement Experiment Data for Advanced Modeling and Simulation of Smoke Generation in Micro-Gravity",
+  "acronym": null,
+  "doi": "10.60555/q0v5-1v28",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Smoke Aerosol, Combustion Simulation",
+  "project_type": "Ground Investigation",
+  "study_type": "numerical (2D direct numerical simulation of a compressible laminar flow with a nodal/sectional aerosol model); no flight experiment",
+  "keywords": [
+    "smoke",
+    "aerosol",
+    "pyrolysis",
+    "particle size distribution",
+    "nucleation",
+    "coagulation",
+    "condensation",
+    "thermophoresis",
+    "particle settling",
+    "dibutyl phthalate (DBP)",
+    "direct numerical simulation",
+    "microgravity"
+  ],
+  "principal_investigator": "Sean C. Garrick (University of Illinois)",
+  "project_scientist": null,
+  "investigators_note": "PSI roles: Principal Investigator Sean C. Garrick (University of Illinois); Technical Point of Contact Michael Hicks (NASA GRC). The final report is authored by Sean C. Garrick alone.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA: NNX17AF08A",
+  "start_date": "2017-01-30",
+  "end_date": "2019-12-31",
+  "public_release_date": "2024-09-18",
+  "flight_platform": "Not Applicable (ground-based numerical study)",
+  "objective": "Use numerical simulation to explore the influence of gravity on pyrolysis smoke growth from a fundamental perspective: quantify the differences between microgravity and Earth-gravity smoke and identify the fluid dynamic mechanisms that cause them.",
+  "hypothesis": "Without buoyancy, mixing and heat transfer are reduced, and the time-temperature history of the combustion vapors (particle precursors) and the particle trajectories are significantly altered, changing the composition of the smoke. The chemical composition of the burning material also affects the smoke.",
+  "approach": "Two-dimensional simulations of the formation and growth of dibutyl phthalate (DBP) smoke particles in a geometry similar to the SAME experiments. Room-temperature air (300 K) enters a long channel and flows over a heated rectangular sample (473.2 K) that releases DBP vapor at a constant mass flux of 8.4e-5 kg/(m2 s), representative of SAME mass-loss data. The compressible Navier-Stokes, energy and species equations are solved with a second-order MacCormack scheme on a 960 x 240 non-uniform grid. The particle size distribution is discretized into 45 nodes (volume ratio 2.25), with nucleation (classical theory with Girshick-Chiu correction), coagulation (Dahneke-corrected kernel), condensation/evaporation, thermophoresis (Talbot) and Stokes settling. Four base cases (8 and 10 cm/s inlet speed, Earth gravity and microgravity) plus four sensitivity cases (no settling, no thermophoresis, source rotated 90 degrees in both gravities) are compared at t = 7 s. Particle size distributions are computed from the particle flux through a plane 26 source thicknesses downstream.",
+  "fuel_state": "vapor (surrogate pyrolysis vapor released from a heated solid sample)",
+  "fuel": [
+    "dibutyl phthalate (DBP) vapor, used as a surrogate for the smoldering/pyrolysis materials of the SAME experiments"
+  ],
+  "geometry": "2D rectangular channel of height 6.82 Lo (Lo = 4.4 mm, the thickness of the heated source) with isothermal no-slip upper and lower walls; heated rectangular DBP source of thickness Lo and length 2.5 Lo placed 11 Lo downstream of the inlet; channel length about 40 Lo; particle size distributions sampled at x0 = 26 Lo downstream of the source. Sensitivity cases rotate the source 90 degrees.",
+  "o2_min_pct": 21,
+  "o2_max_pct": 21,
+  "pressure_min_psi": 14.7,
+  "pressure_max_psi": 14.7,
+  "conditions_note": "Nominal values: the simulated gas is air at atmospheric pressure (outlet boundary Patm); oxygen is not modeled as a separate species, so 21 % O2 and 14.7 psi are assumed values for air at 1 atm. Inlet air and wall temperature 300 K; heated source 473.2 K; DBP mass flux 8.4e-5 kg/(m2 s); results taken at t = 7 s (effective steady state).",
+  "ambient_temperature_K": 300,
+  "diluents": [
+    "nitrogen (air)"
+  ],
+  "additives": null,
+  "flow": "Laminar, steady forced cross-flow of air entering from the left at Uo = 0.08 m/s (the SAME flow speed) or 0.10 m/s, giving Re = 22.3 or 27.7 and Fr = 0.385 or 0.481 in Earth gravity (infinite in microgravity). Recirculating wakes form behind the heated source.",
+  "gravity": "microgravity and normal gravity (simulated)",
+  "gravity_note": "Simulations at g = 0 m/s2 (microgravity) and g = 9.81 m/s2 (Earth gravity) with otherwise identical conditions",
+  "hardware": null,
+  "hardware_note": "No flight hardware; numerical study based on the geometry and conditions of the SAME experiment (PSI-102) flown in the ISS Microgravity Science Glovebox. In-house validated compressible flow and aerosol code.",
+  "hardware_link": null,
+  "related_investigations": [
+    "PSI-102 (SAME, the experiment the simulations emulate)",
+    "PSI-101 (SAME-R)"
+  ],
+  "sensors": [
+    "none (numerical study); simulated outputs replace measurements"
+  ],
+  "measured_or_computed_quantities": [
+    "velocity field and vorticity (computed)",
+    "temperature field (computed)",
+    "DBP vapor mass fraction (computed)",
+    "nucleation rate (computed)",
+    "particle number density (computed)",
+    "diameter of average mass (computed)",
+    "particle size distribution at x0 = 26 (computed)",
+    "particle surface area density / smoke visualization (computed)"
+  ],
+  "variables_between_tests": [
+    "gravity (0 or 9.81 m/s2)",
+    "inlet air velocity (0.08 or 0.10 m/s)",
+    "particle settling on/off",
+    "thermophoresis on/off",
+    "orientation of the heated vapor source (rotated 90 degrees)"
+  ],
+  "test_summary": {
+    "total_tests": 8,
+    "cases": {
+      "1EG": {
+        "Uo_m_s": 0.08,
+        "g_m_s2": 9.81,
+        "Re": 22.3,
+        "Fr": 0.385
+      },
+      "1MG": {
+        "Uo_m_s": 0.08,
+        "g_m_s2": 0.0,
+        "Re": 22.3,
+        "Fr": "infinite"
+      },
+      "2EG": {
+        "Uo_m_s": 0.1,
+        "g_m_s2": 9.81,
+        "Re": 27.7,
+        "Fr": 0.481
+      },
+      "2MG": {
+        "Uo_m_s": 0.1,
+        "g_m_s2": 0.0,
+        "Re": 27.7,
+        "Fr": "infinite"
+      },
+      "1EG-NS": "1EG without particle settling",
+      "1MG-NT": "1MG without thermophoresis",
+      "1MG-R": "1MG with the heated source rotated 90 degrees",
+      "1EG-R": "1EG with the heated source rotated 90 degrees"
+    },
+    "source_temperature_K": 473.2,
+    "inlet_temperature_K": 300,
+    "dbp_mass_flux_kg_m2_s": 8.4e-05,
+    "reference_length_mm": 4.4,
+    "grid_points": [
+      960,
+      240
+    ],
+    "particle_size_nodes": 45,
+    "simulated_time_s": 7,
+    "note": "total_tests counts simulation cases (4 base + 4 sensitivity), not physical experiments.",
+    "particle_size_distributions": {
+      "source_files": "PSI-115_Analyzed Data_*PSD.dat (full distributions, PSI repository)",
+      "units": {
+        "diameter": "um"
+      },
+      "cases": {
+        "1EG": {
+          "file": "PSI-115_Analyzed Data_8cmGravityPSD.dat",
+          "mode_diameter_um": 7.08,
+          "secondary_peak_diameter_um": null,
+          "size_range_um_Q_ge_1": [
+            0.161,
+            35.9
+          ]
+        },
+        "1MG": {
+          "file": "PSI-115_Analyzed Data_8cmNoGravityPSD.dat",
+          "mode_diameter_um": 7.08,
+          "secondary_peak_diameter_um": 27.4,
+          "size_range_um_Q_ge_1": [
+            0.123,
+            139.0
+          ]
+        },
+        "1EG-NS": {
+          "file": "PSI-115_Analyzed Data_8cmGravityNS_PSD.dat",
+          "mode_diameter_um": 5.4,
+          "secondary_peak_diameter_um": 35.9,
+          "size_range_um_Q_ge_1": [
+            0.00279,
+            139.0
+          ]
+        },
+        "1MG-NT": {
+          "file": "PSI-115_Analyzed Data_8cmNoGravityNoTF_PSD.dat",
+          "mode_diameter_um": 5.4,
+          "secondary_peak_diameter_um": 27.4,
+          "size_range_um_Q_ge_1": [
+            0.474,
+            139.0
+          ]
+        },
+        "2EG": {
+          "file": "PSI-115_Analyzed Data_10cmGravityPSD.dat",
+          "mode_diameter_um": 5.4,
+          "secondary_peak_diameter_um": 20.9,
+          "size_range_um_Q_ge_1": [
+            0.00279,
+            35.9
+          ]
+        },
+        "2MG": {
+          "file": "PSI-115_Analyzed Data_10cmNoGravityPSD.dat",
+          "mode_diameter_um": 5.4,
+          "secondary_peak_diameter_um": 20.9,
+          "size_range_um_Q_ge_1": [
+            0.622,
+            139.0
+          ]
+        }
+      },
+      "note": "Values from the PSI data files, nodes 2 to 45 (node 1 is the vapor). The data files give mode diameters of 5.4 to 7.1 um (the node sizes nearest to the about 5 um quoted in the report) and secondary peaks of 21 to 36 um. No PSD files are provided for the rotated-source cases (1MG-R, 1EG-R)."
+    }
+  },
+  "safety_theme": [
+    "smoke detection",
+    "soot and smoke"
+  ],
+  "key_results": [
+    "In Earth gravity buoyancy makes all fields asymmetric and carries vapor toward the cool upper wall, where nucleation is strongly enhanced (about 1e14 vs 1e12 m-3 s-1 in microgravity).",
+    "Gravitational settling removes large particles in Earth gravity: maximum size about 40 um and a single mode near 5 um at 8 cm/s.",
+    "Without buoyancy or settling, the microgravity plume is symmetric and contains very large particles (> 40 um); with a prominent hot recirculating wake behind the source the size distribution is bimodal (about 5 um and about 30 um).",
+    "Turning off settling in Earth gravity gives a bimodal distribution similar to microgravity, confirming settling as a key difference.",
+    "Thermophoresis keeps particles away from the hot source; without it particles evaporate near the source and fewer large particles form.",
+    "Rotating the source 90 degrees shrinks the wake: the large-particle mode disappears and the microgravity mode diameter is about 10 um, roughly twice the Earth-gravity value.",
+    "Increasing the flow speed from 8 to 10 cm/s reduces the effect of buoyancy and delays interaction with the upper wall.",
+    "Future experiments should quantify surface interactions and hot recirculating vapor, which control geometry-dominated features of the size distribution."
+  ],
+  "space_benefits": "Explains why smoke particles in spacecraft are larger than on Earth (no settling, longer residence in hot vapor-rich recirculation), supporting the design and calibration of smoke detectors for the ISS and future vehicles, since detectors calibrated for terrestrial smoke may have the wrong particle-size sensitivity.",
+  "earth_benefits": "Models and tools that relate temperature, gravity and material properties to smoke particle characteristics can lead to better smoke detection and fire prevention.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: Numerical study of pre-fire (pyrolysis/smoldering) smoke in air at 1 atm and low forced flow; no flames, oxygen or pressure variation. Relevant to smoke detection rather than flammability.",
+  "publications": [],
+  "data_quality_notes": [
+    "This is a numerical (ground) investigation: there are no measured data; all quantities are simulation outputs.",
+    "DBP is a surrogate for the materials burned in SAME, chosen because its properties are well known.",
+    "O2 and pressure are nominal values for air at 1 atm; oxygen is not modeled separately.",
+    "The simulation is two-dimensional and laminar; particles are assumed spherical, in thermal equilibrium with the gas, with no momentum exchange, and to stick to walls with 100 % efficiency.",
+    "Results are shown at t = 7 s; the aerosol is not strictly steady in the recirculation regions.",
+    "The PSI page lists no publications; the final report says a manuscript would be submitted to Aerosol Science & Technology.",
+    "PSI lists the PI affiliation as the University of Illinois; the final report title page does not state an affiliation.",
+    "The particle size distribution summary in test_summary comes from the PSI .dat files (the full curves are in those files). The node spacing is coarse (volume ratio 2.25, diameter ratio about 1.31), so the mode diameters (5.4 or 7.1 um) are the node sizes nearest to the about 5 um stated in the report. In the data files, case 2EG also shows a small secondary peak near 21 um."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-115",
+    "https://doi.org/10.60555/q0v5-1v28",
+    "PSI-115_Reports_NNX17AF08A_FinalReport.pdf (PSI repository; final report, 15 August 2020)",
+    "PSI-115_Analyzed Data_*PSD.dat and nodeDiameters.dat (PSI repository)"
+  ],
+  "missing": [
+    "peer-reviewed publication of the results",
+    "acronym (none on the PSI page)",
+    "comparison with measured SAME particle sizes (not part of the report)"
+  ]
+}

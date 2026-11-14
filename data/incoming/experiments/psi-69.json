@@ -1,0 +1,345 @@
+{
+  "psi_id": "PSI-69",
+  "name": "Flame Extinguishment Experiment",
+  "acronym": "FLEX",
+  "doi": "10.60555/mbq8-0451",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Spacecraft Fire Safety",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with ground tests and numerical models",
+  "keywords": [
+    "droplet combustion",
+    "flammability limits",
+    "limiting oxygen index",
+    "fire suppressant",
+    "methanol",
+    "n-heptane",
+    "radiative extinction",
+    "cool flames"
+  ],
+  "principal_investigator": "Forman A. Williams (University of California, San Diego)",
+  "project_scientist": "Daniel L. Dietrich (NASA GRC)",
+  "investigators_note": "PSI roles: Co-Investigators Michael Hicks (NASA GRC), Vedha Nayagam (Case Western Reserve University), Benjamin Shaw (UC Davis), Mun Choi (University of Missouri) and Frederick Dryer (University of South Carolina) (current affiliations as listed on PSI). The FLEX Research Requirements Document (2005) names Forman A. Williams as research team lead, with Michael Hicks and Vedha Nayagam as NASA team members and Mun Y. Choi (then Drexel University), Frederick L. Dryer (then Princeton University) and Benjamin D. Shaw as external members. Authors of the detailed results report also include Paul V. Ferkul and Victoria M. Bryg.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA: NNX09AM33A",
+  "start_date": "2007-08-01",
+  "end_date": "2016-07-31",
+  "public_release_date": "2016-07-31",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Map the flammability limits of liquid fuels in microgravity, measure the effectiveness of gaseous fire suppressants (e.g. CO2, He), and develop and validate predictive models of combustion and extinction limits under reduced gravity, using high-resolution measurements of droplet burning rates, flame extinction, flame radiation, soot and temperature over a systematic range of ambient conditions and suppressant concentrations.",
+  "hypothesis": "Without buoyant convection, the transport of heat and species, radiative heat loss and chemical kinetics all change, so the flammability limits of liquid fuels and the effectiveness of gaseous suppressants differ from those in normal gravity.",
+  "approach": "Single droplets of methanol or n-heptane were deployed in the CIR chamber, free or on a thin fiber, and ignited by hot wires. For each pressure the oxygen level was lowered and the droplet size varied until the flame either burned to completion, extinguished at a finite droplet size, or failed to ignite, which gives the limiting oxygen index. The tests were repeated with CO2 or helium added. In some tests the droplet was moved slowly near the end of the burn to add a weak flow. The 2005 requirements document planned the tests as sub-matrices: limiting oxygen index (LOI) versus pressure for heptane and methanol in still and slowly flowing gas, then the efficacy of CO2, helium and SF6 over a range of pressures and oxygen levels, the effect of a slow flow on CO2 efficacy, and the effect of higher pressure (stronger radiation) on suppressant efficacy.",
+  "fuel_state": "liquid",
+  "fuel": [
+    "methanol",
+    "n-heptane"
+  ],
+  "geometry": "Isolated spherical droplets, initial diameter 1.1–4.67 mm, deployed between two opposed 250 µm OD stainless-steel needles that retract before ignition (free droplets) or onto an 80 µm SiC support fiber (fiber-supported droplets), at the center of the CIR combustion chamber (~90 L); hot-wire igniters retracted after ignition",
+  "o2_min_pct": 12,
+  "o2_max_pct": 34,
+  "pressure_min_psi": 10.18,
+  "pressure_max_psi": 44.86,
+  "conditions_note": "Per-test initial ambient composition and pressure from the PSI experimental table (274 tests). Most tests were near 0.7 atm or 1 atm; 9 tests were at about 2 to 3 atm, all at 21 % O2. The balance gas is nitrogen, with CO2 up to 70 % or helium up to 45 % in the suppressant tests. The 2005 requirements document asked for O2 0.10 to 0.40 (+/-0.005), suppressants CO2, He and SF6 from 0 to 0.7 mole fraction, nitrogen as the balance, 0.5 to 3.0 atm (+/-0.05 atm, held within +/-10 % during a test), initial gas and fuel temperature 18 to 27 C, and relative humidity below 10 % for heptane and below 2 % for methanol. No SF6 tests appear in the PSI table. ambient_temperature_K = 298 is a nominal value (cabin room temperature, about 25 °C), assumed by the team; it was not measured or reported for these tests.",
+  "ambient_temperature_K": 298,
+  "diluents": [
+    "nitrogen",
+    "carbon dioxide",
+    "helium"
+  ],
+  "additives": null,
+  "flow": "Quiescent (no forced flow); some tests imposed a small sub-buoyant convective flow by slowly translating the droplet near the end of burning, and free droplets could have a small residual drift velocity",
+  "gravity": "microgravity",
+  "gravity_note": "ISS, with supporting ground-based tests",
+  "hardware": "CIR-MDCA",
+  "hardware_note": "Multi-user Droplet Combustion Apparatus inside the Combustion Integrated Rack chamber (about 90 L, rated to about 9 atm). Droplets are formed between two 250 micron needles that retract before ignition, or on an 80 micron SiC fiber. The CIR gas system (FOMA) sets the atmosphere.",
+  "hardware_link": "https://issnationallab.org/facilities/combustion-integrated-rack/, https://gipoc.grc.nasa.gov/wp/fcf-cir/mdca/",
+  "related_investigations": [
+    "PSI-68 (FLEX-2)"
+  ],
+  "sensors": [
+    "backlit droplet camera (HiBMs 12-bit digital camera with telecentric optics, laser-diode backlight at 650 to 660 nm)",
+    "MDCA color camera (flame view, near real-time downlink)",
+    "OH* intensified UV camera (flame location and extinction)",
+    "broad-band radiometer (0.6 to 5.0 microns)",
+    "narrow-band radiometer for water vapor emission (1.87 microns)",
+    "soot volume fraction and soot temperature measurement (required by the research requirements document)",
+    "chamber pressure transducers and gas composition from the CIR gas system (FOMA)"
+  ],
+  "measured_or_computed_quantities": [
+    "droplet diameter over time",
+    "burning rate",
+    "flame diameter",
+    "visible flame extinction diameter",
+    "burn time",
+    "flame radiation",
+    "how the test ended (extinction, disruption, completion)"
+  ],
+  "variables_between_tests": [
+    "fuel",
+    "ambient pressure",
+    "oxygen mole fraction",
+    "suppressant or diluent (N2, CO2, He) and its amount",
+    "initial droplet diameter",
+    "free or fiber-supported droplet",
+    "imposed slow flow"
+  ],
+  "test_summary": {
+    "total_tests": 274,
+    "test_dates": "5 March 2009 to 8 December 2011",
+    "tests_by_fuel": {
+      "methanol": 157,
+      "n-heptane": 117
+    },
+    "tests_by_diluent": {
+      "N2 only": 101,
+      "CO2 added": 123,
+      "He added": 50
+    },
+    "tests_by_outcome": {
+      "extinction": 186,
+      "disruption": 61,
+      "completion": 27
+    },
+    "ambient_o2_pct": [
+      12,
+      34
+    ],
+    "pressure_mmHg": [
+      526.3,
+      2319.9
+    ],
+    "pressure_psi": [
+      10.18,
+      44.86
+    ],
+    "co2_mole_fraction": [
+      0,
+      0.7
+    ],
+    "he_mole_fraction": [
+      0,
+      0.45
+    ],
+    "n2_mole_fraction": [
+      0.09,
+      0.88
+    ],
+    "droplet_initial_diameter_mm": [
+      1.1,
+      4.67
+    ],
+    "extinction_diameter_mm": [
+      0.12,
+      4.6
+    ],
+    "burning_rate_mm2_s": [
+      0.05,
+      1.06
+    ],
+    "burn_time_s": [
+      0.3,
+      39.2
+    ],
+    "planned_ranges_rrd": {
+      "o2_mole_fraction": [
+        0.1,
+        0.4
+      ],
+      "suppressant_mole_fraction": [
+        0,
+        0.7
+      ],
+      "suppressants": [
+        "CO2",
+        "He",
+        "SF6"
+      ],
+      "pressure_atm": [
+        0.5,
+        3.0
+      ],
+      "droplet_diameter_mm": [
+        2,
+        6
+      ],
+      "flow_velocity_cm_s": [
+        0.1,
+        5
+      ],
+      "initial_temperature_C": [
+        18,
+        27
+      ]
+    },
+    "planned_loi_matrix_example": "heptane and methanol, no fiber, 3 and 5 mm droplets, nitrogen balance: 0.5 atm at O2 0.20/0.30/0.35; 0.75 atm at 0.13/0.20/0.28/0.40; 1.0 atm at 0.10/0.15/0.21/0.30; 1.5 atm at 0.10/0.15/0.21 (28 tests)"
+  },
+  "safety_theme": [
+    "extinguishment",
+    "flammability",
+    "suppression"
+  ],
+  "key_results": [
+    "Two extinction modes were seen: large droplets go out by radiative heat loss, small ones by diffusive extinction; between the two, burning is quasi-steady.",
+    "After the visible hot flame around a large heptane droplet went out by radiation, the droplet kept vaporizing in a low-temperature 'cool flame'.",
+    "Limiting oxygen levels for methanol and heptane droplets were mapped at about 0.7 and 1 atm, with nitrogen, CO2 and helium."
+  ],
+  "space_benefits": "Flammability limits and suppressant effectiveness in microgravity, relevant to choosing spacecraft atmospheres and fire suppressants (the ISS uses CO2 extinguishers), and benchmark data for fire models.",
+  "earth_benefits": "Better droplet combustion models and understanding of cool-flame chemistry, relevant to engine efficiency and emissions.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: Covers oxygen from 12 to 34 % and pressures of about 0.7 and 1 atm (a few tests to 3 atm), with CO2 and helium as suppressants. The fuel is a liquid droplet, so it informs limits and models rather than solid material selection.",
+  "publications": [
+    {
+      "title": "Detailed Results from the Flame Extinguishment Experiment (FLEX) - March 2009 to December 2011",
+      "authors": "Dietrich D.L., Ferkul P.V., Bryg V.M., Nayagam M.V., Hicks M.C., Williams F.A., Dryer F.L., Shaw B.D., et al.",
+      "doi": null
+    },
+    {
+      "title": "Droplet Combustion Experiments Aboard the International Space Station",
+      "authors": null,
+      "doi": "10.1007/s12217-014-9372-2"
+    },
+    {
+      "title": "ISS Droplet Combustion Experiments - Uncertainties in Droplet Sizes and Burning Rates",
+      "authors": null,
+      "doi": "10.1007/s12217-014-9377-x"
+    },
+    {
+      "title": "Methanol Droplet Combustion in Oxygen-Inert Environments in Microgravity",
+      "authors": null,
+      "doi": null
+    },
+    {
+      "title": "Methanol Droplet Extinction in Oxygen/Carbon-dioxide/Nitrogen Mixtures in Microgravity: Results from the International Space Station Experiments",
+      "authors": null,
+      "doi": null
+    },
+    {
+      "title": "Activation energy asymptotics for methanol droplet extinction in microgravity",
+      "authors": null,
+      "doi": "10.1016/j.combustflame.2013.05.011"
+    },
+    {
+      "title": "Isolated n-heptane droplet combustion in microgravity: \"Cool Flames\" – Two-stage combustion",
+      "authors": null,
+      "doi": "10.1016/j.combustflame.2013.09.011"
+    },
+    {
+      "title": "Can cool flames support quasi-steady alkane droplet burning?",
+      "authors": null,
+      "doi": "10.1016/j.combustflame.2012.07.012"
+    },
+    {
+      "title": "Cool-flame extinction during n-alkane droplet combustion in microgravity",
+      "authors": null,
+      "doi": "10.1016/j.combustflame.2015.01.012"
+    },
+    {
+      "title": "The role of cool-flame chemistry in quasi-steady combustion and extinction of n-heptane droplets",
+      "authors": null,
+      "doi": "10.1080/13647830.2014.934296"
+    },
+    {
+      "title": "Partial-Burning Regime for Quasi-Steady Droplet Combustion Supported by Cool Flames",
+      "authors": null,
+      "doi": "10.2514/1.J054437"
+    },
+    {
+      "title": "Asymptotic analysis of quasi-steady n-heptane droplet combustion supported by cool-flame chemistry",
+      "authors": null,
+      "doi": "10.1080/13647830.2016.1248494"
+    },
+    {
+      "title": "Tethered methanol droplet combustion in carbon-dioxide enriched environment under microgravity conditions",
+      "authors": null,
+      "doi": "10.1016/j.combustflame.2011.06.014"
+    },
+    {
+      "title": "A Numerical Study On The Extinction Characteristics Of Droplet Combustion Under Microgravity Conditions",
+      "authors": null,
+      "doi": "10.2514/6.2012-1252"
+    },
+    {
+      "title": "On the extinction characteristics of alcohol droplet combustion under microgravity conditions – A numerical study",
+      "authors": null,
+      "doi": "10.1016/j.combustflame.2012.04.005"
+    },
+    {
+      "title": "Oxygen Lewis Number Effects on Reduced Gravity Combustion of Methanol and n-Heptane Droplets",
+      "authors": null,
+      "doi": "10.1080/00102202.2015.1072176"
+    },
+    {
+      "title": "Experimental Study of Initial Diameter Effects on Convection-free Droplet Combustion in the Standard Atmosphere for n-Heptane, n-Octane, and n-Decane",
+      "authors": null,
+      "doi": "10.2514/6.2014-1019"
+    },
+    {
+      "title": "Interpretation of Backlit Droplet Images from ISS Droplet Combustion Experiments",
+      "authors": null,
+      "doi": "10.2478/gsr-2014-0007"
+    },
+    {
+      "title": "The effect of support fibers on micro-convection in droplet combustion experiments",
+      "authors": null,
+      "doi": "10.1016/j.proci.2014.07.022"
+    },
+    {
+      "title": "Computational Modeling of Unsupported and Fiber-Supported n-Heptane Droplet Combustion in Reduced Gravity: A Study of Fiber Effects",
+      "authors": null,
+      "doi": "10.1080/00102202.2014.971950"
+    },
+    {
+      "title": "Combustion of Methanol Droplets in Air-Diluent Environments with Reduced and Normal Gravity",
+      "authors": null,
+      "doi": "10.1155/2012/587987"
+    },
+    {
+      "title": "Influence of Gravity and Ambient Pressure on Combustion and Flammability of n-Heptane and 1-Propanol Droplets in Air-Diluent Environments",
+      "authors": null,
+      "doi": "10.1080/00102202.2010.498798"
+    },
+    {
+      "title": "Ignition and combustion of n-heptane droplets in carbon dioxide enriched environments",
+      "authors": null,
+      "doi": "10.1016/j.icheatmasstransfer.2009.10.006"
+    },
+    {
+      "title": "Computational modeling of n-heptane droplet combustion in air–diluent environments under reduced-gravity",
+      "authors": null,
+      "doi": "10.1016/j.ijheatmasstransfer.2010.08.005"
+    },
+    {
+      "title": "Nonane droplet combustion with and without buoyant convection: Flame structure, burning rate and extinction in air and helium",
+      "authors": null,
+      "doi": "10.1016/j.proci.2008.06.221"
+    },
+    {
+      "title": "Experiments on Submillimeter Free Droplet Flame Extinction",
+      "authors": null,
+      "doi": "10.1080/00102202.2012.759946"
+    }
+  ],
+  "data_quality_notes": [
+    "O2, pressure and diluent ranges come from the per-test initial ambient composition in the PSI experimental table; pressure converted from mmHg to psi.",
+    "The PSI objective also mentions SF6 as a suppressant, but no SF6 tests appear in the experimental table.",
+    "The table header lists burning rate in 'mm'; the values are consistent with the d²-law burning rate constant in mm²/s.",
+    "'measured_outputs' is an extra field (not in the template) with the measured results per test.",
+    "The PSI publication list has ~50 entries; only the FLEX-specific ones are included here, and the PSI API did not return author names.",
+    "The file supplied as 'FLEX_EIRD_v4.pdf' is the FLEX Research Requirements Document dated 4 November 2005 (81 pages), a planning document. It is internally inconsistent on some ranges (text: O2 0.10 to 0.50 and pressure 0.5 to 1.0 atm; requirement tables: O2 0.10 to 0.40 and pressure 0.5 to 3.0 atm).",
+    "Key results come from publications, not from the PSI page; author names for most publications were not returned by PSI.",
+    "ambient_temperature_K = 298 is nominal (assumed), not a measurement."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+    "https://doi.org/10.60555/mbq8-0451",
+    "PSI-69_Experimental table_FLEX.csv (PSI repository)",
+    "https://doi.org/10.1007/s12217-014-9372-2",
+    "https://ntrs.nasa.gov/citations/20150023456",
+    "https://ntrs.nasa.gov/api/citations/20040142397/downloads/20040142397.pdf",
+    "FLEX Research Requirements Document, 4 November 2005 (supplied as FLEX_EIRD_v4.pdf, 81 pages): title page, sections 4.1 to 4.3, 5.1, 5.2 and 5.4"
+  ],
+  "missing": [
+    "which tests used a fiber or an imposed flow",
+    "key results from the detailed results report (NTRS 20150023456, not read)",
+    "measured ambient temperature (298 K used as a nominal value)"
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "psi_id": "PSI-142",
+  "name": "Quantitative Studies of Cool Flame Transitions at Radiation / Stretch Extinction Using Counterflow Flames",
+  "acronym": null,
+  "doi": "10.60555/80qf-vj95",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Spacecraft Fire Safety",
+  "project_type": "Ground Investigation",
+  "study_type": "ground laboratory experiments (ozone-sensitized counterflow flames) and numerical modeling, using ISS FLEX data from PSI as reference",
+  "keywords": [
+    "cool flames",
+    "warm flames",
+    "counterflow flames",
+    "flame extinction",
+    "flammability limits",
+    "ozone",
+    "dimethyl ether",
+    "n-alkanes",
+    "elevated pressure"
+  ],
+  "principal_investigator": "Yiguang Ju (Princeton University)",
+  "project_scientist": "Daniel L. Dietrich (NASA GRC), listed as Technical Point of Contact",
+  "investigators_note": "Co-Investigator: Christopher B. Reuter (Princeton University). Frequent co-authors on the listed publications: Omar R. Yehia, Sang Hee Won, Mengni Zhou, Eric Lin and Tanvir I. Farouk.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA",
+  "start_date": "2016-08-01",
+  "end_date": "2021-07-31",
+  "public_release_date": "2024-09-18",
+  "flight_platform": "Not applicable",
+  "objective": "Using FLEX flight data from PSI, run new simulations and ground experiments with ozone-sensitized counterflow flames to: (1) build a new diagram of the flammability limits of diffusion cool flames affected by radiation, diffusion and convection; (2) connect the flammability and extinction limits of hot and cool flames; (3) verify phenomena seen in the ISS FLEX experiments; (4) obtain quantitative data on extinction limits, flame temperature and species distributions to validate kinetic and radiation models involving cool flames; (5) extend cool-flame studies from ISS droplets to a more general one-dimensional ground system with radiation, diffusion, convection and low-temperature chemistry.",
+  "hypothesis": "Oxygen concentration, dilution, pressure, diffusion and convection control the transition from hot flames to cool flames; the investigation asks which conditions cause this transition and how the cool-flame flammable region relates to the hot-flame flammability and extinction limits.",
+  "approach": "Using the FLEX flight conditions, the effect of oxygen concentration on cool-flame extinction limits was compared with three numerical schemes: (a) spark-assisted flame propagation of an n-heptane/air mixture; (b) one-dimensional freely propagating dimethyl ether (DME) flames using an arc-length continuation method; (c) cool-flame regimes and burning limits of DME/air at elevated pressure (up to 20 atm). Ground measurements used ozone-sensitized counterflow flames (per the objectives and the experimental table). Details are in the publications 'Dynamics of cool flames' (doi 10.1016/j.pecs.2019.100787), 'Understanding Cool Flames and Warm Flames' (doi 10.1016/j.proci.2020.09.019) and 'Study of the low-temperature reactivity of large n-alkanes through cool diffusion flame extinction' (doi 10.1016/j.combustflame.2017.01.028).",
+  "fuel_state": "gas and vaporized liquid fuels",
+  "fuel": [
+    "dimethyl ether (DME), including DME/methane mixtures",
+    "n-heptane",
+    "large n-alkanes (per the publication titles)"
+  ],
+  "geometry": "one-dimensional counterflow (opposed-jet) diffusion flames; numerical one-dimensional freely propagating and spark-assisted flames",
+  "o2_min_pct": null,
+  "o2_max_pct": null,
+  "pressure_min_psi": null,
+  "pressure_max_psi": 294,
+  "conditions_note": "Oxygen concentration was varied but values are not given on the record. The 20 atm (about 294 psi) maximum applies to the DME/air simulations; pressures of the laboratory experiments are not given.",
+  "ambient_temperature_K": null,
+  "diluents": null,
+  "additives": [
+    "ozone (to sensitize low-temperature chemistry)"
+  ],
+  "flow": "counterflow (opposed jets); strain rates not given on the record",
+  "gravity": "normal gravity",
+  "gravity_note": "ground laboratory and numerical study; results compared with ISS FLEX microgravity data",
+  "hardware": "Principal Investigator laboratory hardware",
+  "hardware_note": "Counterflow burner at Princeton University; formaldehyde (CH2O) planar laser-induced fluorescence and thermometry are listed in the experimental table.",
+  "hardware_link": null,
+  "related_investigations": [
+    "PSI-69 (listed as related on the record; FLEX, source of the flight data)",
+    "PSI-117 (lists PSI-142 as related)"
+  ],
+  "sensors": [
+    "CH2O planar laser-induced fluorescence (PLIF)",
+    "thermometry (method not given on the record)"
+  ],
+  "measured_or_computed_quantities": [
+    "cool-flame extinction (CFE) limits, with and without ozone",
+    "hot-flame extinction (HFE) limits",
+    "flame temperature",
+    "species distributions, including formaldehyde",
+    "flammability and burning limits of hot, warm and cool flames (computed)"
+  ],
+  "variables_between_tests": [
+    "fuel",
+    "oxygen concentration",
+    "ozone addition",
+    "dilution",
+    "pressure",
+    "strain rate (counterflow)"
+  ],
+  "test_summary": {
+    "total_tests": null,
+    "note": "The experimental table is a list of 9 published data sets (figures in the reference papers), not a test log; only the first 5 rows were visible in the saved page.",
+    "data_sets_visible": [
+      {"data_id": 1, "description": "CFE limit with ozone", "reference_doi": "10.1016/j.combustflame.2017.01.028", "figure": 4},
+      {"data_id": 2, "description": "CFE limit without ozone", "reference_doi": "10.1016/j.combustflame.2017.01.028", "figure": 5},
+      {"data_id": 3, "description": "CFE and HFE predicted vs measured", "reference_doi": "10.1016/j.combustflame.2017.01.028", "figure": 7},
+      {"data_id": 4, "description": "Measured and computed DME/O2/O3 CFE and HFE", "reference_doi": "10.1016/j.proci.2018.07.050", "figure": 2},
+      {"data_id": 5, "description": "CH2O PLIF and thermometry", "reference_doi": "10.1016/j.combustflame.2018.03.013", "figure": 8}
+    ],
+    "data_sets_total": 9,
+    "max_simulated_pressure_atm": 20,
+    "psi_record": {
+      "version": 2,
+      "version_date": "2025-03-06",
+      "version_change": "Analyzed data release",
+      "submitted_date": "2024-09-18",
+      "size_kb": 730.58,
+      "files": [
+        "PSI-142_metadata_PSI-164_Quantitative Studies.zip",
+        "PSI-142_Experimental table_Data Summary Table.csv",
+        "PSI-142_Analyzed Data_PSI data summary Princeton with links.xlsx"
+      ],
+      "modeling_table": null,
+      "read_me": null,
+      "representative_images": null
+    }
+  },
+  "safety_theme": [
+    "extinguishment",
+    "flammability"
+  ],
+  "key_results": [
+    "The warm diffusion flame has a double reaction zone structure and plays a critical role in the transition between cool flames and hot flames.",
+    "At elevated pressure the flammable region of warm and cool flames expands, because low- and intermediate-temperature reactivity increases with pressure.",
+    "Since many real engines operate at 20 to 40 atm, cool and warm flames are relevant flame regimes for high-pressure near-limit combustion."
+  ],
+  "space_benefits": "Warm and cool diffusion flames matter in microgravity because of the long residence times possible there; the work helps explain how flames move between hot, warm and cool regimes near extinction, which relates to the FLEX observations on the ISS.",
+  "earth_benefits": "Relevant to combustion in highly turbulent flows and to high-pressure near-limit combustion in engines (20 to 40 atm); the calculations advance understanding of near-limit flame dynamics and guide experiments on different flame regimes.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: ground study of gas and vaporized fuels in counterflow flames at normal gravity, with simulations up to 20 atm; oxygen levels are not given, so it cannot be placed against lunar base conditions here. Informs cool-flame and extinction models rather than material selection.",
+  "publications": [
+    {
+      "title": "Dynamics of cool flames",
+      "authors": "Ju Yiguang, Reuter Christopher B., Yehia Omar R., Farouk Tanvir I., Won Sang Hee",
+      "doi": "10.1016/j.pecs.2019.100787"
+    },
+    {
+      "title": "The radical index and the effect of oxygen concentration on non-premixed cool flame extinction of large n-alkanes",
+      "authors": "Zhou Mengni, Yehia Omar R., Xu Wenbin, Reuter Christopher B., Wang Ziyu, Yan Chao, Jiang Bo, Ju Yiguang",
+      "doi": "10.1016/j.combustflame.2021.111471"
+    },
+    {
+      "title": "On the propagation limits and speeds of premixed cool flames at elevated pressures",
+      "authors": "Ju Yiguang",
+      "doi": "10.1016/j.combustflame.2017.01.006"
+    },
+    {
+      "title": "Study of the low-temperature reactivity of large n-alkanes through cool diffusion flame extinction",
+      "authors": "Reuter Christopher B., Lee Minhyeok, Won Sang Hee, Ju Yiguang",
+      "doi": "10.1016/j.combustflame.2017.01.028"
+    },
+    {
+      "title": "Counterflow flame experiments and chemical kinetic modeling of dimethyl ether/methane mixtures",
+      "authors": "Reuter Christopher B., Zhang Rui, Yehia Omar R., Rezgui Yacine, Ju Yiguang",
+      "doi": "10.1016/j.combustflame.2018.06.004"
+    },
+    {
+      "title": "Low-temperature multistage warm diffusion flames",
+      "authors": "Yehia Omar R., Reuter Christopher B., Ju Yiguang",
+      "doi": "10.1016/j.combustflame.2018.03.013"
+    },
+    {
+      "title": "Dynamics and burning limits of near-limit hot, warm, and cool diffusion flames of dimethyl ether at elevated pressures",
+      "authors": "Lin Eric, Reuter Christopher B., Ju Yiguang",
+      "doi": "10.1016/j.proci.2018.05.082"
+    },
+    {
+      "title": "On the chemical characteristics and dynamics of n-alkane low-temperature multistage diffusion flames",
+      "authors": "Yehia Omar R., Reuter Christopher B., Ju Yiguang",
+      "doi": "10.1016/j.proci.2018.06.161"
+    },
+    {
+      "title": "Transient interactions between a premixed double flame and a vortex",
+      "authors": "Reuter Christopher B., Katta Viswanath R., Yehia Omar R., Ju Yiguang",
+      "doi": "10.1016/j.proci.2018.07.050"
+    },
+    {
+      "title": "Quantitative measurements of HO2/H2O2 and intermediate species in low and intermediate temperature oxidation of dimethyl ether",
+      "authors": "Kurimoto Naoki, Brumfield Brian, Yang Xueliang, Wada Tomoya, Diévart Pascal, Wysocki Gerard, Ju Yiguang",
+      "doi": "10.1016/j.proci.2014.05.120"
+    },
+    {
+      "title": "Pressure and Radiation Effects on the Dynamics of Hot and Cool Diffusion Flames",
+      "authors": "Reuter C.B., Lin E., Ju Y.",
+      "doi": null
+    },
+    {
+      "title": "Understanding Cool Flames and Warm Flames (cited in the approach; not in the record's publication list)",
+      "authors": null,
+      "doi": "10.1016/j.proci.2020.09.019"
+    }
+  ],
+  "data_quality_notes": [
+    "The experimental table lists published data sets (paper and figure numbers), not individual tests; only 5 of its 9 rows were visible in the saved page. The full list is in PSI-142_Experimental table_Data Summary Table.csv.",
+    "Data set 4 ('Measured and computed DME/O2/O3 CFE and HFE') points to doi 10.1016/j.proci.2018.07.050, which the record's publication list gives as 'Transient interactions between a premixed double flame and a vortex'; the link may be wrong.",
+    "The approach describes only numerical schemes, while the objectives and experimental table describe ground counterflow experiments with ozone; the experiments themselves are not described on the record.",
+    "The key results come from the record's Research Impacts section and are stated without numbers.",
+    "Dietrich is listed as 'Technical Point of Contact', not 'Project Scientist'.",
+    "The record's citation line does not list authors.",
+    "The Supplementary Material of 'The radical index...' paper is listed as a separate publication without a DOI.",
+    "'Dynamics of cool flames' (2019) is also listed on PSI-117, so it is shared between the two investigations."
+  ],
+  "sources": [
+    "PSI-142 record, saved page (Version 2): description, contacts, experimental table page 1, files, publications, version history; https://psi.nasa.gov/physci/repo/data/investigations/PSI-142"
+  ],
+  "missing": [
+    "rows 6 to 9 of the experimental table: PSI-142_Experimental table_Data Summary Table.csv",
+    "quantitative results (extinction limits, temperatures, species): in the listed papers and PSI-142_Analyzed Data_PSI data summary Princeton with links.xlsx",
+    "oxygen levels, pressures and strain rates of the laboratory experiments",
+    "counterflow burner dimensions and thermometry method",
+    "number of experiments and simulation cases"
+  ]
+}

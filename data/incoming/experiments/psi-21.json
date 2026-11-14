@@ -1,0 +1,295 @@
+{
+  "psi_id": "PSI-21",
+  "name": "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame",
+  "acronym": "ACME/CLD Flame",
+  "doi": "10.60555/23e1-9950",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Flames of gaseous fuel",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), to provide benchmark data for computational models of chemical kinetics and soot",
+  "keywords": [
+    "coflow laminar diffusion flame",
+    "lifted flames",
+    "fuel dilution",
+    "methane",
+    "ethylene",
+    "soot formation",
+    "extinction limits"
+  ],
+  "principal_investigator": "Marshall B. Long (Yale University)",
+  "project_scientist": "Dennis P. Stocker (NASA GRC)",
+  "investigators_note": "Co-Investigator: Mitchell D. Smooke (Yale University). Proposal title: 'Fuel Dilution Studies of Coflow Laminar Diffusion Flames in a Microgravity Environment'. Lead Russian collaborator (from NASA's ACME overview, not the PSI record): Sergey S. Minaev. The precursor experiment was SLICE (Structure & Liftoff In Combustion Experiment), run in the ISS Microgravity Science Glovebox in January to March 2012.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": null,
+  "start_date": "2006-10-01",
+  "end_date": "2022-05-31",
+  "public_release_date": "2023-09-15",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "Provide experimental data for rigorous testing of computational models at the extremes of the fuel dilution spectrum: (A) characterize weak coflow diffusion flames of methane and ethylene, as a function of velocity and fuel dilution, through flame shape, lift-off height, temperature and extinction limits; (B) characterize the sooting tendencies of diffusion flames with long residence times, as a function of velocity and fuel dilution, through flame shape, gas temperature in the soot-free part of the flame, soot luminosity, soot temperature and soot volume fraction.",
+  "hypothesis": "Not stated as a testable hypothesis: the PSI record says the investigation gathered benchmark data to validate computational models, described in earlier publications by Smooke, Long and co-workers (Combust. Theory Model. 2004; Combust. Flame 2000; Proc. Combust. Inst. 2000 and 1998).",
+  "approach": "Methane and ethylene diffusion flames, often diluted with nitrogen, issue from a central nozzle into a surrounding air coflow, over a wide range of conditions; fuel and air velocities are typically matched, and lifted flames are studied so the flame does not depend on heat loss to the burner. Planned diagnostics (PSI record, written in the future tense): OH* and CH* chemiluminescence to follow lift-off height and flame shape as extinction is approached; soot luminosity and laser extinction for soot temperature and volume fraction in fuel-rich flames; thin-filament pyrometry for gas temperature in non-sooting regions. Model kinetics and soot sub-models are then adjusted to match. ISS operations ran in three periods: November 2017 to February 2018, May to September 2018, and February to March 2021 (NASA ACME overview).",
+  "fuel_state": "gas",
+  "fuel": [
+    "methane (CH4), diluted with nitrogen (25 to 40 % in the visible log rows)",
+    "ethylene (C2H4), diluted with nitrogen"
+  ],
+  "geometry": "coflow burner in the ACME chamber insert: central fuel nozzle surrounded by an air coflow; dimensions not in this summary",
+  "o2_min_pct": null,
+  "o2_max_pct": null,
+  "pressure_min_psi": null,
+  "pressure_max_psi": null,
+  "conditions_note": "The oxidizer is an air coflow; oxygen level and chamber pressure per test are not documented in the parts of the record that were read. Constant-volume chamber.",
+  "ambient_temperature_K": null,
+  "diluents": [
+    "nitrogen"
+  ],
+  "additives": null,
+  "flow": "forced coaxial flow: fuel from the nozzle and an air coflow around it, velocities typically matched; values not in this summary. The log lists only the full-scale rating of the installed mass flow controller (0.1 slpm on a nitrogen basis), not the flow used.",
+  "gravity": "microgravity",
+  "gravity_note": "ISS",
+  "hardware": "CIR-ACME",
+  "hardware_note": "ACME chamber insert in the Combustion Integrated Rack: nominally 100 L chamber, about 83 L free. Crew-exchangeable mass flow controllers. Available diagnostics include a calibrated high-definition color camera (CH* concentration, flame and soot temperature by pyrometry, soot volume fraction), a gray-scale camera with an opposed collimated light source (light-extinction soot volume fraction), intensified cameras for OH* and CH*, photomultiplier tubes, a thermopile radiometer array and a translating array of 14-micrometer silicon carbide fibers for thin-filament pyrometry. Which of these were used on each CLD test day is not stated here.",
+  "hardware_link": "https://www1.grc.nasa.gov/space/iss-research/iss-fcf/cir/acme/",
+  "related_investigations": [
+    "SLICE (precursor, ISS MSG, 2012)",
+    "ACME BRE (PSI-20)",
+    "ACME Flame Design (PSI-10)",
+    "ACME E-FIELD Flames",
+    "ACME s-Flame",
+    "ACME CFI-G"
+  ],
+  "sensors": [
+    "high-definition color camera",
+    "gray-scale camera with collimated back-light (light extinction)",
+    "intensified cameras (OH*, CH*)",
+    "photomultiplier tubes",
+    "thin-filament pyrometry",
+    "radiometers"
+  ],
+  "measured_or_computed_quantities": [
+    "flame shape and size",
+    "lift-off height",
+    "flame and soot temperature",
+    "CH* concentration",
+    "soot volume fraction",
+    "extinction (dilution) limits"
+  ],
+  "variables_between_tests": [
+    "fuel (methane or ethylene)",
+    "fuel dilution with nitrogen",
+    "fuel and coflow velocity"
+  ],
+  "test_summary": {
+    "total_test_days": 33,
+    "total_tests": null,
+    "operations_periods": [
+      "November 2017 to February 2018",
+      "May to September 2018",
+      "February to March 2021"
+    ],
+    "visible_log_rows": {
+      "note": "First page of the PSI experimental table (5 of 33 rows). Test Day = two-digit year plus three-digit day of year (late-hour transitions to the next day neglected), as defined on the record. MFC values are the maximum flow of the installed ACME mass flow controller in slpm on a nitrogen basis. Fuel concentration (diluted with nitrogen by volume) was varied between and sometimes during tests.",
+      "test_days": [
+        {
+          "code": "17319",
+          "date": "2017-11-15",
+          "test_type": "Methane based test",
+          "fuel_mfc_slpm": 0.1,
+          "n2_mfc_slpm": 0.1,
+          "fuel_bottle": "40% CH4",
+          "fuel_conc_pct": "30-40",
+          "ignited_flames": 10
+        },
+        {
+          "code": "17324",
+          "date": "2017-11-20",
+          "test_type": "Methane based test",
+          "fuel_mfc_slpm": 0.1,
+          "n2_mfc_slpm": 0.1,
+          "fuel_bottle": "40% CH5 (as written; read as 40% CH4)",
+          "fuel_conc_pct": "30-40",
+          "ignited_flames": 5
+        },
+        {
+          "code": "17342",
+          "date": "2017-12-08",
+          "test_type": "Methane based test",
+          "fuel_mfc_slpm": 0.1,
+          "n2_mfc_slpm": 0.1,
+          "fuel_bottle": "40% CH6 (as written; read as 40% CH4)",
+          "fuel_conc_pct": "40",
+          "ignited_flames": 8
+        },
+        {
+          "code": "17356",
+          "date": "2017-12-22",
+          "test_type": "Methane based test",
+          "fuel_mfc_slpm": 0.1,
+          "n2_mfc_slpm": 0.1,
+          "fuel_bottle": "40% CH7 (as written; read as 40% CH4)",
+          "fuel_conc_pct": "30-40",
+          "ignited_flames": 3
+        },
+        {
+          "code": "18003",
+          "date": "2018-01-03",
+          "test_type": "Methane based test",
+          "fuel_mfc_slpm": 0.1,
+          "n2_mfc_slpm": 0.1,
+          "fuel_bottle": "40% CH8 (as written; read as 40% CH4)",
+          "fuel_conc_pct": "25-40",
+          "ignited_flames": 9
+        }
+      ],
+      "ignited_flames_total": 35
+    },
+    "archive_size_tb": 1.82,
+    "psi_record": {
+      "version": 4,
+      "version_date": "2025-01-22",
+      "version_change": "Metadata update; added PSI-21_Experimental table_CLD Flame.csv",
+      "size": "1.82 TB",
+      "files": [
+        "PSI-21_metadata_PSI-97_ACME CLD Flame.zip (15.11 KB)",
+        "Experimental table (folder; contains PSI-21_Experimental table_CLD Flame.csv)",
+        "Raw Data (folder)"
+      ],
+      "modeling_table": null,
+      "read_me": null,
+      "representative_images": null,
+      "hardware_identifiers": [
+        "Combustion Integrated Rack (CIR)",
+        "ACME"
+      ]
+    }
+  },
+  "safety_theme": [
+    "extinguishment"
+  ],
+  "key_results": [
+    "The PSI record contains no results; the following are preliminary findings from NASA's ACME overview paper (Stocker, JASMAC 2021).",
+    "For sooty attached flames, soot volume fraction in microgravity can be several times that of comparable normal-gravity flames, and the microgravity flames are taller and wider.",
+    "Dilution limits for both methane and ethylene were extended in microgravity; the flames were more stable and could be lifted at lower fuel concentrations.",
+    "Quantitative lift-off heights, extinction limits, temperatures and soot volume fractions must be extracted from the 1.82 TB raw dataset or the publications."
+  ],
+  "space_benefits": "Indirect: validated soot and extinction sub-models feed the fire models used in spacecraft safety analysis. Soot production is much stronger in microgravity, which affects flame radiation and smoke.",
+  "earth_benefits": "Diffusion flames are the flame type of most practical combustion devices; predicting the coupling of transport and detailed chemistry is critical for modeling turbulent reacting flows, soot formation and radiation. Understanding diffusion flame extinction matters for fire suppression and engine efficiency. Microgravity removes buoyancy, which complicates both experiments and models in normal gravity.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: oxygen and pressure per test are not documented here, and the study is primarily fundamental (model validation), so its link to a lunar base scenario is indirect.",
+  "publications": [
+    {
+      "title": "A Combined Experimental and Computational Study of Soot Formation in Normal and Microgravity Conditions (includes ISS results)",
+      "authors": "Dobbins Richard R., Tinajero Jesse, Squeo Joseph, Zhao Xinyu, Hall Robert J., Colket Meredith B., Long Marshall B., Smooke Mitchell D.",
+      "doi": "10.1080/00102202.2022.2041621"
+    },
+    {
+      "title": "Constrained-temperature solutions of coflow laminar diffusion flames",
+      "authors": "Kempema Nathan J., Dobbins Richard R., Long Marshall B., Smooke Mitchell D.",
+      "doi": "10.1016/j.proci.2020.06.034"
+    },
+    {
+      "title": "Effects of pressure and fuel dilution on coflow laminar methane-air diffusion flames: A computational and experimental study",
+      "authors": "Cao Su, Ma Bin, Giassi Davide, Bennett Beth Anne V., Long Marshall B., Smooke Mitchell D.",
+      "doi": "10.1080/13647830.2017.1403051"
+    },
+    {
+      "title": "Effect of soot self-absorption on color-ratio pyrometry in laminar coflow diffusion flames",
+      "authors": "Kempema Nathan J., Long Marshall B.",
+      "doi": "10.1364/OL.43.001103"
+    },
+    {
+      "title": "Signal-to-noise ratio improvements in laser flow diagnostics using time-resolved image averaging and high dynamic range imaging",
+      "authors": "Giassi Davide, Long Marshall B.",
+      "doi": "10.1007/s00348-016-2218-5"
+    },
+    {
+      "title": "Analysis of CH* concentration and flame heat release rate in laminar coflow diffusion flames under microgravity and normal gravity (SLICE data)",
+      "authors": "Giassi D., Cao S., Bennett B.A., Stocker D.P., Takahashi F., Smooke M.D., Long M.B.",
+      "doi": "10.1016/j.combustflame.2016.02.012"
+    },
+    {
+      "title": "A computational and experimental study of coflow laminar methane/air diffusion flames: Effects of fuel dilution, inlet velocity, and gravity (SLICE data)",
+      "authors": "Cao S., Ma B., Bennett B.A.V., Giassi D., Stocker D.P., Takahashi F., Long M.B., Smooke M.D.",
+      "doi": "10.1016/j.proci.2014.05.138"
+    },
+    {
+      "title": "An experimental and computational study of soot formation in a coflow jet flame under microgravity and normal gravity (SLICE data)",
+      "authors": "Ma Bin, Cao Su, Giassi Davide, Stocker Dennis P., Takahashi Fumiaki, Bennett Beth Anne V., Smooke Mitchell D., Long Marshall B.",
+      "doi": "10.1016/j.proci.2014.05.064"
+    },
+    {
+      "title": "Absolute light calibration using S-type thermocouples",
+      "authors": "Ma Bin, Long Marshall B.",
+      "doi": "10.1016/j.proci.2012.05.030"
+    },
+    {
+      "title": "A comparison of Raman signatures and laser-induced incandescence with direct numerical simulation of soot growth in non-premixed ethylene/air flames",
+      "authors": "Herdman Jennifer D., Connelly Blair C., Smooke Mitchell D., Long Marshall B., Miller J. Houston",
+      "doi": "10.1016/j.carbon.2011.07.050"
+    },
+    {
+      "title": "Soot and thin-filament pyrometry using a color digital camera",
+      "authors": "Kuhn Peter B., Ma Bin, Connelly Blair C., Smooke Mitchell D., Long Marshall B.",
+      "doi": "10.1016/j.proci.2010.05.006"
+    },
+    {
+      "title": "Imaging Flames: From Advanced Laser Diagnostics to Snapshots",
+      "authors": "Long Marshall",
+      "doi": "10.1142/9789814295789_0004"
+    },
+    {
+      "title": "A paradigm shift in the interaction of experiments and computations in combustion research",
+      "authors": "Connelly B.C., Bennett B.A.V., Smooke M.D., Long M.B.",
+      "doi": "10.1016/j.proci.2008.05.066"
+    },
+    {
+      "title": "Computational and experimental investigation of the interaction of soot and NO in coflow diffusion flames",
+      "authors": "Connelly B.C., Long M.B., Smooke M.D., Hall R.J., Colket M.B.",
+      "doi": "10.1016/j.proci.2008.06.182"
+    },
+    {
+      "title": "Distributed-memory parallel computation of a forced, time-dependent, sooting, ethylene/air coflow diffusion flame",
+      "authors": "Dworkin S.B., Cooke J.A., Bennett B.A.V., Connelly B.C., Long M.B., Smooke M.D., Hall R.J., Colket M.B.",
+      "doi": "10.1080/13647830903159293"
+    },
+    {
+      "title": "Measurements and calculations of formaldehyde concentrations in a methane/N2/air, non-premixed flame: Implications for heat release rate",
+      "authors": "Dworkin S.B., Schaffer A.M., Connelly B.C., Long M.B., Smooke M.D., Puccio M.A., McAndrew B., Miller J.H.",
+      "doi": "10.1016/j.proci.2008.05.083"
+    },
+    {
+      "title": "Computational and experimental study of a forced, time-dependent, methane-air coflow diffusion flame",
+      "authors": "Dworkin S.B., Connelly B.C., Schaffer A.M., Bennett B.A.V., Long M.B., Smooke M.D., Puccio M.P., McAndrews B., Miller J.H.",
+      "doi": "10.1016/j.proci.2006.08.109"
+    },
+    {
+      "title": "Recent Research on Flames of Gaseous Fuel Aboard the International Space Station (JASMAC 2021; not listed on the PSI record)",
+      "authors": "Stocker Dennis P.",
+      "doi": null
+    }
+  ],
+  "data_quality_notes": [
+    "No final report exists; the PSI record (description and experimental table) is the primary source.",
+    "The experimental table labels fuel bottles '40% CH4', '40% CH5', '40% CH6', '40% CH7' and '40% CH8' on consecutive rows. These species do not exist; they are almost certainly spreadsheet auto-increment errors for 40% CH4 (all rows are 'Methane based test'). Inferred, not confirmed by NASA.",
+    "The fuel bottle is 40 % CH4 in N2, further diluted on orbit to 25 to 40 % fuel; concentration was varied between and sometimes during tests.",
+    "The MFC columns give the full-scale rating of the installed fuel and nitrogen controllers (0.1 slpm, nitrogen basis), not the flows used.",
+    "Only the first 5 of 33 rows were visible in the saved page, all methane; the notes column is cut off after 'However'. The full table is in PSI-21_Experimental table_CLD Flame.csv.",
+    "Most publications on the record predate the ISS flights (ground studies and the 2012 SLICE precursor); the 2022 Dobbins et al. paper is the one listed by NASA as including ISS results.",
+    "The record lists one publication twice (Cao et al., doi 10.1016/j.proci.2014.05.138).",
+    "The investigation window (2006 to 2022) covers the whole project; flight operations were 2017 to 2021."
+  ],
+  "sources": [
+    "PSI-21 record, saved page (Version 4): description, experimental table page 1, files, publications, version history; https://psi.nasa.gov/physci/repo/data/investigations/PSI-21",
+    "Stocker, JASMAC 2021, NTRS 20210021781: ACME hardware, CLD Flame operations periods and preliminary findings",
+    "ACME peer-reviewed publications list (Stocker, 30 August 2023)"
+  ],
+  "missing": [
+    "funding",
+    "full experimental table (28 more rows, including all ethylene runs) and the complete table notes: PSI-21_Experimental table_CLD Flame.csv",
+    "nozzle and coflow diameters",
+    "coflow and fuel velocities, oxygen level and pressure per test",
+    "actual fuel flow per test",
+    "ignition settings",
+    "which diagnostics were actually used, optical filters and the light source for extinction",
+    "all quantitative results"
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "psi_id": "PSI-26",
+  "name": "Burning and Suppression of Solids",
+  "acronym": "BASS",
+  "doi": "10.60555/58h4-dy80",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Spacecraft Fire Safety",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS)",
+  "keywords": [
+    "Flame Spread",
+    "Fire safety",
+    "Fire suppression system",
+    "Forced Flow Flame",
+    "Damkohler number",
+    "Kinetic regime",
+    "Boundary layer"
+  ],
+  "principal_investigator": "Paul Ferkul (NASA GRC)",
+  "project_scientist": "Sandra L. Olson (NASA GRC)",
+  "investigators_note": "Co-Investigators: Fumiaki Takahashi and James T'ien (Case Western Reserve University).",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": null,
+  "start_date": "2009-10-01",
+  "end_date": "2013-06-30",
+  "public_release_date": "2013-06-30",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "1) Bridge the gap between the normal-gravity NASA-STD-6001 Test 1 method, ground-based microgravity tests and actual material flammability in microgravity, by observing flames over practical (thicker) fuels in typical geometries for the long times available in flight, including wake flames. 2) Assess the effectiveness of an inert gaseous extinguishing agent (nitrogen, similar to that used on ISS) in putting out flames over different materials, geometries, preheating and flow conditions.",
+  "hypothesis": "Materials in microgravity, with adequate ventilation, burn as well as or better than the same material in normal gravity under otherwise identical conditions. Testing this for anything but the thinnest materials needs more microgravity time than drop towers or parabolic flights provide.",
+  "approach": "Solid samples were burned in a small flow duct (reused SPICE hardware) inside the Microgravity Science Glovebox. A hot wire ignited each sample; a fan set the air speed along the sample, with flow in the same direction as flame spread (concurrent), against it (opposed), or onto a sphere (stagnation or wake ignition). Air speed was changed during each burn to find extinction at low flow and blow-off at high flow, and a nitrogen jet was used to try to put flames out. In 2013 the glovebox was filled with nitrogen to lower the oxygen level. The Science Requirements Document (February 2010) planned four changes to the SPICE hardware: replaceable solid fuel samples, an adjustable igniter, a nitrogen gas jet for extinguishment and a way to shut the flow off completely. Each sample was to burn for about one minute, be photographed, and then be extinguished by stepping up the nitrogen flow.",
+  "fuel_state": "solid",
+  "fuel": [
+    "SIBAL cotton-fiberglass fabric (75 % cotton, 25 % fiberglass by mass)",
+    "PMMA (acrylic) spheres and slabs",
+    "Nomex",
+    "Ultem",
+    "candles (paraffin wax, Japan wax)",
+    "wax slabs"
+  ],
+  "geometry": "Samples mounted in a small flow duct with a 7.6 cm x 7.6 cm square cross-section. SIBAL fabric: thin sheets 8.5 cm long, 1 or 2 cm wide, ~0.32 mm thick, area density ~18 mg/cm². PMMA spheres of 1 and 2 cm diameter. Flat PMMA slabs, Nomex and Ultem sheets (~2 cm wide), candles and flat wax slabs. Ignition by a 29-gauge Kanthal hot-wire igniter (pre-wired for fabrics; positioned at the stagnation region or in the wake for spheres).",
+  "o2_min_pct": 15.9,
+  "o2_max_pct": 22.7,
+  "pressure_min_psi": 14.26,
+  "pressure_max_psi": 14.82,
+  "conditions_note": "Measured values from the ISS environment columns of the as-run test matrix. In 2012 the tests ran in ISS air (about 20.9 to 22.7 % O2). In 2013 the glovebox working volume was diluted with nitrogen to about 16 to 17.8 % O2. Pressure was not controlled (0.97 to 1.009 atm); CO2 was 1.37 to 3.51 mmHg. The SRD (2010) required the cabin O2 to be measured on each test day and restricted testing to 21 % O2 or more; the 2013 reduced-oxygen tests went beyond that original requirement. Pressure was specified only as ambient. ambient_temperature_K = 298 is a nominal value (cabin room temperature, about 25 °C), assumed by the team; it was not measured or reported for these tests.",
+  "ambient_temperature_K": 298,
+  "diluents": [
+    "nitrogen"
+  ],
+  "additives": null,
+  "flow": "Forced air flow from a variable-speed fan along the fuel surface, from 0 (fan off) up to ~44 cm/s; concurrent, opposed and stagnation-point (spheres, with forward-stagnation or wake ignition) configurations; gaseous N2 (GN2) suppressant jet could be added into the flow. Requirements (SRD 2010): air speed adjustable from 5 to 50 cm/s, measured by an anemometer; nitrogen 0–500 sccm through a mass flow controller; the flow must be able to shut off completely as a safety measure to extinguish the flame.",
+  "gravity": "microgravity",
+  "gravity_note": "ISS",
+  "hardware": "MSG",
+  "hardware_note": "Slightly modified SPICE flow duct (7.6 cm x 7.6 cm cross-section) in the Microgravity Science Glovebox, with a variable-speed fan, hot-wire igniters, a nitrogen suppressant line, a radiometer, a video camera and a digital still camera. SRD imaging requirements: color video from 20 mm upstream of the fuel to the end of the duct, and 2–3 high-resolution raw still images per test (at least 3000 x 2000 pixels).",
+  "hardware_link": "https://www1.grc.nasa.gov/space/iss-research/msg/",
+  "related_investigations": [
+    "PSI-107 (SPICE)",
+    "PSI-25",
+    "BASS-II"
+  ],
+  "sensors": [
+    "Color video camera (flame size, shape, color, spread rate, extinction)",
+    "Digital still camera (SLR) (flame shape and position over time; solid regression)",
+    "Radiometer (flame radiative emission)",
+    "Fan / air flow display (air velocity in the duct)",
+    "GN2 flow display (suppressant nitrogen flow)",
+    "ISS / MSG cabin environment sensors (O2 volume fraction, total pressure, CO2 partial pressure)",
+    "CSA-CP (O2 concentration in the MSG working volume during N2 vitiation)",
+    "Anemometer in the flow duct (air speed; SRD requirement 5–50 cm/s, ±10 % of reading at 4 Hz)",
+    "Nitrogen mass flow controller (suppressant flow, 25–500 sccm, ±10 % of reading at 4 Hz)"
+  ],
+  "measured_or_computed_quantities": [
+    "flame size, shape and color",
+    "flame spread rate",
+    "extinction and blow-off conditions",
+    "flame radiation (radiometer)",
+    "air speed and nitrogen flow",
+    "cabin O2, pressure and CO2 for each test"
+  ],
+  "variables_between_tests": [
+    "fuel material",
+    "sample shape and size",
+    "air flow speed (changed during each test)",
+    "flow direction (concurrent, opposed, stagnation, wake)",
+    "oxygen concentration",
+    "nitrogen suppressant flow",
+    "sample position in the duct"
+  ],
+  "test_summary": {
+    "total_tests": 116,
+    "matrix_rows": 121,
+    "test_dates": "30 March 2012 to 1 June 2013",
+    "tests_by_fuel": {
+      "SIBAL fabric": 12,
+      "PMMA sphere 2 cm": 50,
+      "PMMA sphere 1 cm": 20,
+      "PMMA slab": 8,
+      "Nomex": 6,
+      "Ultem": 2,
+      "candle": 17,
+      "wax slab": 6
+    },
+    "ambient_o2_pct": [
+      15.9,
+      22.7
+    ],
+    "reduced_o2_rows": 26,
+    "pressure_atm": [
+      0.97,
+      1.009
+    ],
+    "pressure_psi": [
+      14.26,
+      14.82
+    ],
+    "co2_mmHg": [
+      1.37,
+      3.51
+    ],
+    "air_flow_cm_s": [
+      0,
+      44
+    ],
+    "n2_suppressant_flow_cc_min": [
+      0,
+      495
+    ],
+    "note": "tests_by_fuel counts matrix rows (121); reduced_o2_rows are rows below 19 % O2; planned_tests_srd: the SRD test matrix had 30 sample assemblies and 60 flames (complete success); minimal success was 20 tests (8 flat samples, 4 PMMA spheres, 4 candles and 4 PMMA wake flames, each set at different flow speeds)",
+    "planned_tests_srd": 60,
+    "planned_samples_srd": 30,
+    "planned_flow_speeds_cm_s": [
+      5,
+      10,
+      20,
+      30,
+      50
+    ]
+  },
+  "safety_theme": [
+    "flammability",
+    "extinguishment",
+    "flame spread",
+    "suppression"
+  ],
+  "key_results": [
+    "Ultem and Nomex HT90-40 did not burn in ISS air (21 to 22 % O2) at about 15 cm/s, as in normal gravity; Nomex III did burn.",
+    "The cotton-fiberglass fabric spread a flame steadily against a 9 cm/s flow, which the test log notes it does not do in normal gravity.",
+    "The nitrogen jet often blew out the front (stagnation) part of a PMMA sphere flame but not the wake flame; crew notes say the jet was entraining air into the flame. Wake flames went out only when all flow stopped.",
+    "Flames survived down to very low air speeds (about 1 cm/s or less) before extinguishing.",
+    "In about 17 % O2 a 2 cm PMMA sphere took minutes to ignite but then burned, with a blue flame."
+  ],
+  "space_benefits": "Spacecraft materials are selected with a normal-gravity test (NASA-STD-6001 Test 1). BASS provides flammability and nitrogen-suppression data in real microgravity to check that method and to validate fire models for spacecraft design.",
+  "earth_benefits": "Validated combustion models apply to many combustion problems on Earth.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: Solid fuels in forced flow, with measured oxygen from about 16 to 22.7 % near 1 atm, plus nitrogen suppression. No tests above cabin oxygen and none at reduced pressure.",
+  "publications": [
+    {
+      "title": "The Microgravity Science Glovebox as a Platform for Exploration Research on the International Space Station",
+      "authors": "Spivey R., Luz P.",
+      "doi": "10.2514/6.2006-941"
+    },
+    {
+      "title": "Opposed-flow flame spread: A comparison of microgravity and normal gravity experiments to establish the thermal regime",
+      "authors": "Bhattacharjee S., Laue M., Carmignani L., Ferkul P., Olson S.",
+      "doi": "10.1016/j.firesaf.2015.11.011"
+    },
+    {
+      "title": "Simplified model for predicting difference between flammability limits of a thin material in normal gravity and microgravity environments",
+      "authors": "Takahashi S., Ebisawa T., Bhattacharjee S., Ihara T.",
+      "doi": "10.1016/j.proci.2014.07.017"
+    },
+    {
+      "title": "A Correlation for an Effective Flow Velocity for Capturing the Boundary Layer Effect in Opposed-Flow Flame Spread over Thin Fuels",
+      "authors": "Bhattacharjee S., Nagarkar R., Nakamura Y.",
+      "doi": "10.1080/00102202.2014.900056"
+    },
+    {
+      "title": "Radiation signature in opposed-flow flame spread",
+      "authors": "Bhattacharjee S., Paolini C.P., Miller F., Nagarkar R.",
+      "doi": "10.1504/PCFD.2012.048249"
+    },
+    {
+      "title": "The Effect of Boundary Layer on Blow-Off Extinction in Opposed-Flow Flame Spread: Results of Experiments and Simplified Analysis",
+      "authors": "Bhattacharjee S., Carmignani L.",
+      "doi": "10.1299/jsmeatem.2015.14.289"
+    },
+    {
+      "title": "Role of Gas Radiation in the Mechanism of Opposed-Flow Flame Spread in a Microgravity Environment",
+      "authors": "Villaraza J.R., Carmignani L., Bhattacharjee S.",
+      "doi": null
+    },
+    {
+      "title": "Thickness and Fuel Preheating Effects on Material Flammability in Microgravity from the BASS Experiment",
+      "authors": "Ferkul P., Olson S.L., Takahashi F., Endo M., Johnston M.C., T'ien J.S.",
+      "doi": null
+    },
+    {
+      "title": "A novel apparatus for flame spread study",
+      "authors": "Bhattacharjee S., Bundy M., Paolini C., Patel G., Tran W.",
+      "doi": "10.1016/j.proci.2012.05.076"
+    },
+    {
+      "title": "Opposed-Flow Flame Spread in a Narrow Channel Apparatus over Thin PMMA Sheets",
+      "authors": "Bornand G.R., Miller F.J., Pepper J.M., Olson S.L., Wichman I.S.",
+      "doi": null
+    }
+  ],
+  "data_quality_notes": [
+    "BASS used slightly modified on-orbit SPICE (Smoke Point In Co-flow Experiment) hardware.",
+    "O2 and pressure ranges come from the ISS environment columns of the as-run test matrix; pressure converted from atm (0.97–1.009 atm) to psi.",
+    "The experimental table on the PSI page lists only samples; flow, O2, pressure, CO2 and GN2 values come from the as-run test matrix.",
+    "Ultem and Nomex HT90-40 did not sustain flame spread in ISS air (21–22% O2) at ~15 cm/s; Nomex III did burn.",
+    "Test numbering repeats in a few rows of the as-run matrix (89 to 91, 85, 24).",
+    "Key results above are taken from the as-run test log and a 2014 results presentation, not from the final report.",
+    "The PSI metadata lists 'PSI-26_Reports_BASS_FinalReport.pdf' (original 'Ferkul-BASS Report 2013.pdf'), but the file does not exist on the server and the Reports folder is not shown on the page.",
+    "The BASS-II Summary Report states that BASS-II was the first ISS use of nitrogen dilution of the glovebox volume, so the 2013 reduced-oxygen tests in this table may belong to BASS-II; not confirmed.",
+    "SRD (February 2010) planned 60 flames on 30 samples: SIBAL 1 and 2 cm wide, Nomex III, Nomex HT90-40, Ultem, PMMA spheres and hemispheres (wake flames) of 1 and 2 cm, a one-sided 2 mm PMMA slab, a wax-saturated fiberglass slab and paraffin or Japan-wax candles in tubes (front or wake ignition), at 5–50 cm/s. The as-run matrix (121 rows) went well beyond this.",
+    "ambient_temperature_K = 298 is nominal (assumed), not a measurement."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+    "https://doi.org/10.60555/58h4-dy80",
+    "PSI-26_Science Documents_As Run_Test Matrix.xlsx (PSI repository)",
+    "PSI-26_Experimental table_BASS.csv (PSI repository)",
+    "https://ntrs.nasa.gov/api/citations/20130012832/downloads/20130012832.pdf",
+    "https://ntrs.nasa.gov/api/citations/20140011099/downloads/20140011099.pdf",
+    "https://ntrs.nasa.gov/api/citations/20150008962/downloads/20150008962.pdf",
+    "https://issnationallab.org/?p=42222",
+    "PSI-26_Science Documents_SRD_BASS.pdf (PSI repository, February 2010)"
+  ],
+  "missing": [
+    "flame spread rates per test",
+    "funding (empty on the PSI page)",
+    "BASS final report (listed in the PSI metadata but the file does not exist on the server)",
+    "measured ambient temperature (298 K used as a nominal value)"
+  ]
+}

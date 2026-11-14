@@ -1,0 +1,222 @@
+{
+  "psi_id": "PSI-20",
+  "name": "Advanced Combustion via Microgravity Experiments / Burning Rate Emulator",
+  "acronym": "ACME/BRE",
+  "doi": null,
+  "research_area": "Combustion Science",
+  "sub_research_area": null,
+  "project_type": null,
+  "study_type": "experimental (flight experiment on the ISS), with normal-gravity and drop tower tests and analytical/radiation modeling",
+  "keywords": [
+    "burning rate emulation",
+    "condensed fuels",
+    "ethylene",
+    "methane",
+    "heat of gasification",
+    "radiative extinction",
+    "oxygen-enriched atmospheres",
+    "flammability map"
+  ],
+  "principal_investigator": "James G. Quintiere (University of Maryland, Fire Protection Engineering)",
+  "project_scientist": "Dennis P. Stocker (NASA GRC)",
+  "investigators_note": "Co-Investigators: Peter B. Sunderland (University of Maryland) and John L. de Ris (FM Global, retired). Parham Dehghani (doctoral student, University of Maryland) did much of the ISS analysis; Anna E. Wright (MS 2021) analysed extinction times. Fumiaki Takahashi (CWRU) was Deputy Project Scientist in preparatory drop testing; Uday G. Hegde and Vedha Nayagam (CWRU) were on the NASA science team for flight operations. Lead Russian collaborator: Alexander Y. Snegirev.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA ISS Research Program, agreement 80NSSC20M0119 (cited in Wright 2021); other awards not listed in the sources read",
+  "start_date": null,
+  "end_date": null,
+  "public_release_date": null,
+  "flight_platform": "International Space Station (ISS), Increments 58-59 and 63-64",
+  "objective": "Establish the burning conditions of condensed fuels in a quiescent microgravity atmosphere in terms of material properties: (1) observe long-duration burning of CH4/N2 and C2H4/N2 on porous burners of 25 and 50 mm in O2/N2 atmospheres, including NASA's candidate crew atmospheres (14.7 psia / 21 %, 10.2 psia / 26.5 %, 8.2 psia / 34 % O2); (2) repeat in O2/CO2 atmospheres (desired; not done, NASA did not include it); (3) find extinction limits. Gas flames emulate solids and liquids by matching their heats of combustion and gasification.",
+  "hypothesis": null,
+  "approach": "A flat burner fed with gaseous fuel (ethylene, pure or diluted with nitrogen, and methane) emulates a burning solid or liquid surface. Heat flux back to the burner is measured; heat flux divided by fuel flow gives the effective heat of gasification. Flow rate, ambient oxygen and pressure were varied. Round 1 (February to April 2019) used only the 25 mm burner and ethylene; Round 2 (September 2020 to January 2021) added the 50 mm burner and methane (not together). Most long tests were ended by cutting the fuel after about 3 minutes (one flame ran 5 minutes); others self-extinguished. Results were combined with an analytical flame model, a radiation correlation and the RADCAL model to build flammability maps.",
+  "fuel_state": "gas (emulating solid and liquid fuels)",
+  "fuel": [
+    "ethylene (C2H4), pure or diluted with nitrogen; heats of combustion 15 to 47.2 kJ/g in the dissertation data, 23.6 and 47.2 kJ/g in Round 1",
+    "methane (CH4), pure or diluted with nitrogen (Round 2, 25 mm burner only)"
+  ],
+  "geometry": "flat round burners of 25 mm and 50 mm diameter; copper face with 125 holes of 1.2 mm acting as a calorimeter, ceramic flow straightener, 1 mm stainless-steel sidewalls; dome-shaped flame above the burner",
+  "o2_min_pct": 18,
+  "o2_max_pct": 40,
+  "pressure_min_psi": 8.2,
+  "pressure_max_psi": 14.7,
+  "conditions_note": "Nominal oxygen levels were 21, 25 (Round 2), 26.5, 34 and 40 %; measured values per test ranged from about 18 to 39 %. Pressures were nominally 14.7, 10.2 and 8.2 psia (1, 0.7 and 0.565 bar). Two conditions match NASA candidate exploration atmospheres: 26.5 % O2 at 10.2 psia and 34 % O2 at 8.2 psia. The 40 % O2 tests were at 14.7 psia. Constant-volume chamber of about 85 L free volume, so oxygen is consumed during long burns.",
+  "ambient_temperature_K": null,
+  "diluents": [
+    "nitrogen"
+  ],
+  "additives": null,
+  "flow": "no forced external flow (quiescent chamber); fuel issues from the burner face at a constant mass flux of about 1 to 12 g/m2-s",
+  "gravity": "microgravity",
+  "gravity_note": "ISS. Drop towers (5.2 s) are too short: the gas phase needs about 20 s and the burner surface about 40 s to approach steady state.",
+  "hardware": "CIR-ACME",
+  "hardware_note": "ACME chamber insert in the Combustion Integrated Rack: nominally 100 L chamber, about 15 L filled by hardware. Resistively heated, retractable igniter. Nitrogen-calibrated Hastings mass flow controllers (Wright 2021: HFM-300, 0.2 or 0.5 slpm full scale; Dehghani 2022 names model HFC-302D). Two embedded Medtherm heat flux gauges, copper calorimeter face, Dexter Research 2M wide-angle radiometers (BRE array, later replaced by the ACME array), photomultiplier tubes, thin-filament pyrometry, operations camera and ACME camera. Data per test day limited to about 127,000 MB downlink.",
+  "hardware_link": "https://www1.grc.nasa.gov/space/iss-research/iss-fcf/cir/acme/",
+  "related_investigations": [
+    "ACME CLD Flame",
+    "ACME E-FIELD Flames",
+    "ACME Flame Design",
+    "ACME s-Flame",
+    "ACME CFI-G"
+  ],
+  "sensors": [
+    "two embedded heat flux gauges (centre and offset radius)",
+    "copper slug calorimeter (burner face)",
+    "thermopile radiometers (Dexter Research 2M, barium fluoride windows), about 160 and 200 mm from the burner",
+    "photomultiplier tubes, including OH* at 310 nm",
+    "thin-filament pyrometry (silicon carbide fibers), used in many Round 2 tests",
+    "operations video camera (30 fps) and ACME still camera"
+  ],
+  "measured_or_computed_quantities": [
+    "heat flux to the burner and effective heat of gasification",
+    "radiative loss fraction",
+    "flame height and radius",
+    "oscillation onset time and extinction time",
+    "flame temperature (thin-filament pyrometry, four flames analysed)",
+    "flame steadiness (fraction of computed steady height and heat flux reached)",
+    "flammability maps of heat of gasification against heat of combustion and mass flux (computed)"
+  ],
+  "variables_between_tests": [
+    "burner diameter (25 or 50 mm)",
+    "fuel (ethylene or methane)",
+    "fuel dilution with nitrogen",
+    "fuel mass flow rate",
+    "ambient oxygen concentration",
+    "pressure"
+  ],
+  "test_summary": {
+    "total_tests": 194,
+    "total_tests_note": "Sum of the final report's Table 1 (62 + 132). The same report's text says 196 successful ignitions, as does Wright 2021 (59 + 137). The dissertation gives 59 for Round 1, and elsewhere 103, 146 and 149 for different subsets.",
+    "test_days": 18,
+    "round_1": {
+      "dates": "February to April 2019 (Increments 58-59)",
+      "burner_mm": [25],
+      "fuels": ["C2H4", "C2H4 50 % in N2"],
+      "flames_by_day": {
+        "19039 (8 Feb)": 10,
+        "19051 (20 Feb)": 8,
+        "19056 (25 Feb)": 8,
+        "19063 (4 Mar)": 6,
+        "19066 (7 Mar)": 6,
+        "19070 (11 Mar)": 7,
+        "19087 (28 Mar)": 8,
+        "19091 (1 Apr)": 0,
+        "19094 (4 Apr)": 9
+      },
+      "flames": 62,
+      "note": "No flames on 19091 because the igniter had failed at the end of the previous test day."
+    },
+    "round_2": {
+      "dates": "September 2020 to January 2021 (Increments 63-64)",
+      "burner_mm": [25, 50],
+      "fuels": ["C2H4", "C2H4 diluted in N2", "CH4"],
+      "flames_by_day": {
+        "20247 (3 Sep, 50 mm, C2H4)": 13,
+        "20261 (17 Sep, 25 mm, C2H4)": 13,
+        "20279 (5 Oct, 25 mm, CH4)": 21,
+        "20339 (4 Dec, 25 mm, CH4)": 18,
+        "20346 (11 Dec, 25 mm, C2H4)": 12,
+        "20352 (17 Dec, 25 mm, C2H4)": 10,
+        "20358 (23 Dec, 25 mm, C2H4)": 17,
+        "21020 (20 Jan, 25 mm, C2H4)": 15,
+        "21028 (28 Jan, 50 mm, C2H4)": 13
+      },
+      "flames": 132,
+      "note": "Many of the first 50 mm tests were not at the intended flow rate, so a make-up day was held."
+    },
+    "fuel_terminated_flames_analysed": 49,
+    "self_extinguished_tests_listed_in_wright_2021": {
+      "C2H4_25mm": 58,
+      "C2H4_50mm": 22,
+      "CH4_25mm": 28,
+      "extinction_time_s": {
+        "C2H4": [9.5, 149.3],
+        "CH4": [5.5, 42.7]
+      }
+    },
+    "fuel_mass_flux_g_m2_s": [1, 12]
+  },
+  "safety_theme": [
+    "flammability",
+    "extinguishment"
+  ],
+  "key_results": [
+    "All flames in 21 % oxygen self-extinguished within 40 s, and flames at nominal 25 % within 90 s. Quasi-steady flames were observed at nominal oxygen of 26.5 % and above (26.5, 34 and 40 %), including two NASA candidate exploration atmospheres.",
+    "Steady burning at elevated oxygen was not universal: small flames could burn for minutes, larger ones generally self-extinguished within about 1.5 minutes. Methane flames were harder to ignite and self-extinguished within a minute in all conditions, so burn time depends on fuel chemistry.",
+    "The 49 fuel-terminated flames reached on average 0.953 of their computed steady height (standard deviation 0.019) and more than 94 % of steady heat flux; self-extinguished flames reached only about 0.5 to 0.9.",
+    "Two extinction limits were found on a heat of combustion against heat of gasification map: radiative extinction for large flames and quenching for small flames.",
+    "Thin-filament pyrometry on four flames, confirmed by simulations, gave a critical extinction temperature of 1100 to 1200 K. The literature value for buoyant normal-gravity flames is about 1600 K, which corresponds to a strain rate near 10 1/s, against about 1 1/s for 1100 K.",
+    "Radiative loss fraction reached about 60 % in microgravity against about 30 % in normal gravity, and was correlated with a dimensionless radiation parameter Omega (Xr = 0.49 Omega^0.12, R^2 = 0.87; or Xr = 0.0633 ln(Omega) + 0.452).",
+    "Ethylene flames, which soot in normal gravity, did not soot in microgravity except briefly at ignition; nitrogen dilution reduced soot.",
+    "Pressure had only a weak effect on the quality of burning, but changes radiative loss through the partial pressures of H2O and CO2.",
+    "Extinction time correlated with t = A * X_O2^3.42 * Re^-0.424 (R^2 = 0.61), independent of pressure: higher oxygen and lower fuel flow gave longer-lasting flames (Wright 2021).",
+    "From flammability maps the authors infer that polyethylene and polypropylene would burn in microgravity at about 3 g/m2-s, nylon and PMMA at about 2.5 g/m2-s and phenolic glass fiber at about 1 g/m2-s; materials with heats of combustion of 23.6 to 47.2 kJ/g and heats of gasification of about 1 to 10 kJ/g can burn. This is an inference from emulation and theory, not a test of those materials."
+  ],
+  "space_benefits": "Quasi-steady burning corresponding to materials such as PMMA and nylon was found without any air flow, while stopping ventilation is an established step in putting out spacecraft fires. This was seen in the elevated-oxygen atmospheres considered for future spacecraft. The authors suggest NASA may want to use its cone calorimeter flammability test (NASA-STD-6001B Test 2) more, because it measures the properties that set microgravity burning.",
+  "earth_benefits": null,
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: tests cover 21 to 40 % oxygen at 0.565 to 1 bar, including 26.5 % at 10.2 psia and 34 % at 8.2 psia, so they bracket both the oxygen level and the reduced pressure expected for a lunar base. The fuel is gas on a burner emulating solids, so conclusions about specific materials rest on modeling.",
+  "publications": [
+    {
+      "title": "Burning Emulations of Condensed Phase Fuels Aboard The International Space Station (PhD dissertation, University of Maryland, 2022)",
+      "authors": "Dehghani Parham",
+      "doi": "10.13016/fmbe-6bxq"
+    },
+    {
+      "title": "Using a Burning Rate Emulator to Analyze Flame Extinction Time on the International Space Station (MS thesis, University of Maryland, 2021)",
+      "authors": "Wright Anna Elizabeth",
+      "doi": null
+    },
+    {
+      "title": "Burning in microgravity: Experimental results and analysis (Combustion and Flame 228, 2021, 315-330)",
+      "authors": "Dehghani P., Sunderland P.B., Quintiere J.G., de Ris J.L.",
+      "doi": null
+    },
+    {
+      "title": "Theoretical analysis and predictions of burning in microgravity using a burning emulator (Combustion and Flame 233, 2021, 111572)",
+      "authors": "Dehghani P., Quintiere J.G.",
+      "doi": null
+    },
+    {
+      "title": "A burning rate emulator (BRE) for study of condensed fuel burning in microgravity",
+      "authors": "Markan A., Sunderland P.B., Quintiere J.G., de Ris J.L., Stocker D.P., Baum H.R.",
+      "doi": "10.1016/j.combustflame.2018.01.044"
+    },
+    {
+      "title": "Proceedings of the Combustion Institute 38 (2021) 4815 (numerical study of BRE flames)",
+      "authors": "Snegirev A., Kuznetsov E., Markus E., Dehghani P., Sunderland P.B.",
+      "doi": null
+    },
+    {
+      "title": "Thin-Filament Pyrometry and Analysis of Extinction Onset Temperature for Ethylene Flames on the Burning Emulator in the International Space Station (University of Edinburgh, 2021)",
+      "authors": "Venzon R.",
+      "doi": null
+    }
+  ],
+  "data_quality_notes": [
+    "Flame counts are inconsistent: the final report's Table 1 sums to 194 (62 + 132) while its text and Wright 2021 say 196; the dissertation uses 59, 103, 146 and 149 for different subsets, and both 46 and 49 for fuel-terminated flames.",
+    "Round 2 start differs between sources: September 2020 (final report), August 2020 (Wright 2021), July 2020 (Stocker 2021).",
+    "The dissertation's Round 1 chapter says pressures of '1 to about 0.4 bar', but its test design table and the final report give 0.56 to 1 bar.",
+    "The '3 to 4 times lower than normal gravity' burning rate is an average: at 25 mm, normal-gravity data give PMMA about 19 g/m2-s and PE/PP about 6 g/m2-s, against about 2.5 and 3 g/m2-s predicted for microgravity.",
+    "Radiometers often saturated (most BRE-array sensors in Round 1, many in Round 2), so radiative loss data come mainly from smaller flames and the +60 mm/offset sensors.",
+    "Water vapor condensed on the uncooled heat flux sensors below the 60 to 70 C dew point and then re-evaporated; for short methane burns this did not clear, so heat of gasification could not be computed.",
+    "Heating through the exposed edge of the copper calorimeter inflated raw heat flux by up to 3 times before correction.",
+    "The two radiative loss fits are nearly the same curve over the data range, not independent evidence.",
+    "The 1100 to 1200 K extinction temperature comes from four flames.",
+    "Uncertainty analysis (dissertation): heat of gasification 4.5 to 17.5 % (mean 5.7 %), fuel mass flux 1.3 to 17 % (mean 3.1 %).",
+    "A third-party repository lists the DOI as 10.60555/vb93-3y72 (not verified)."
+  ],
+  "sources": [
+    "ACME/BRE Final Report, 1 February 2022 (Stocker, Quintiere, Sunderland, de Ris, Dehghani): sections 1, 2.C, 3, 4.A-4.G, 5, Table 1",
+    "Dehghani 2022, PhD dissertation, University of Maryland: abstract, chapters 2-6, uncertainty analysis",
+    "Wright 2021, MS thesis, University of Maryland: test design tables and ISS data summary (Appendix B)",
+    "Stocker, JASMAC 2021, NTRS 20210021781",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20 (page could not be read)"
+  ],
+  "missing": [
+    "PSI record metadata: DOI, sub-research area, project type, start, end and release dates",
+    "ignition energy and duration",
+    "thin-filament pyrometry fiber positions",
+    "sampling rates and full radiometer viewing geometry",
+    "a single reconciled flame count",
+    "list of data files available in PSI"
+  ]
+}

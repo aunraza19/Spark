@@ -1,0 +1,234 @@
+{
+  "psi_id": "PSI-23",
+  "name": "Advanced Combustion via Microgravity Experiments / Structure and Response of Spherical Diffusion Flames",
+  "acronym": "ACME/s-Flame",
+  "doi": "10.60555/k57n-p030",
+  "research_area": "Combustion Science",
+  "sub_research_area": "Flames of gaseous fuels",
+  "project_type": "Microgravity Investigation",
+  "study_type": "experimental (flight experiment on the ISS), with drop tower tests and transient numerical simulations",
+  "keywords": [
+    "spherical diffusion flame",
+    "radiative extinction",
+    "kinetic extinction",
+    "Damkohler number",
+    "hydrogen",
+    "methane",
+    "ethylene",
+    "helium dilution",
+    "pulsating instability"
+  ],
+  "principal_investigator": "Chung K. Law (Princeton University)",
+  "project_scientist": "Dennis P. Stocker (NASA GRC)",
+  "investigators_note": "Co-Investigators: Stephen D. Tse (Rutgers University) and Kurt R. Sacksteder (NASA GRC). Lead collaborator: Vladimir V. Gubernov (P.N. Lebedev Physical Institute). NASA science team: Vedha Nayagam and Uday G. Hegde (CWRU); Fumiaki Takahashi was deputy project scientist for drop testing.",
+  "managing_nasa_center": "Glenn Research Center (GRC)",
+  "funding": "NASA: NCC3-1051, NNC06AA27A, NNX09AR03A, NNX15AC79A",
+  "start_date": "2015-02-05",
+  "end_date": "2019-11-24",
+  "public_release_date": "2018-04-05",
+  "flight_platform": "International Space Station (ISS)",
+  "objective": "In soot-free and sooty flames, and in comparison with detailed computational simulation (transport properties and detailed chemical kinetics, including chemiluminescence): (A) measure and characterize the transient structure (temperature, species distribution) of spherical diffusion flames that start from a non-steady state, for H2/CH4/diluent mixtures (soot-free) and C2H4/diluent mixtures (sooty) at different flow rates; (B) determine the quasi-steady convective/chemical-kinetic extinction limits (low system Damköhler number) and radiative/chemical-kinetic extinction limits (high system Damköhler number); (C) determine the existence, onset and nature (mode, frequency, amplitude) of pulsating instabilities predicted for fuel/diluent mixtures above a critical Lewis number.",
+  "hypothesis": "A transient numerical simulation with detailed chemistry, transport and radiation can describe spherical diffusion flames. Each measured feature (flame growth, steady states, extinction, instabilities, soot limits) is a test of that model and of how complete its chemical kinetic and transport descriptions are.",
+  "approach": "Fuel mixed with a diluent flowed out of a porous spherical burner into a still oxidizing atmosphere and was ignited to give a roughly spherical flame. The flow rate was held or ramped up or down to drive the flame to extinction. Round 1 (September 2019 to January 2020) used nitrogen as the diluent for both fuel and atmosphere; round 2 (May to July 2020) used helium. Tests were commanded from the ground with scripts and ended when the flame went out or the burner reached 250 C.",
+  "fuel_state": "gas",
+  "fuel": [
+    "hydrogen (H2)",
+    "methane (CH4)",
+    "ethylene (C2H4)",
+    "hydrogen/methane blends"
+  ],
+  "geometry": "Nominally spherical, one-dimensional diffusion flame around a porous spherical burner of 6.35 mm diameter (sintered porous sphere on a supply tube) on the axis of the ACME chamber insert (~0.4 m diameter) in the CIR chamber (free volume ~83–90 L); fuel/diluent issues outward into a quiescent oxidizing atmosphere. At high flow rates the flow was not spherically symmetric (more flow through the sphere–tube joint), giving offset, ellipsoidal or parabolic flames. Ignition by a retractable resistive igniter (loop tip in round 1, coil tip in round 2 except its first day).",
+  "o2_min_pct": 21,
+  "o2_max_pct": 30,
+  "pressure_min_psi": 14.7,
+  "pressure_max_psi": 14.7,
+  "conditions_note": "Nominal values from the PSI table: about 21 % or about 30 % O2 in nitrogen or helium at about 1 atm. Tests are constant-volume, so pressure rises and oxygen falls slightly as the day's tests consume it. ambient_temperature_K = 298 is a nominal value (cabin room temperature, about 25 °C), assumed by the team; it was not measured or reported for these tests.",
+  "ambient_temperature_K": 298,
+  "diluents": [
+    "nitrogen",
+    "helium"
+  ],
+  "additives": null,
+  "flow": "Quiescent ambient (no forced convection); flame driven only by the burner outflow. Burner flow rates from ~1 to ~17.5 cc/s, held steady or ramped up/down during a test to reach radiative (high flow) or kinetic (low flow) extinction. Fuel MFC up to 2 slpm (N2 basis; a 0.5 slpm fuel MFC limited some methane tests); oxidizer up to 20 slpm and nitrogen up to 5 slpm for chamber filling.",
+  "gravity": "microgravity",
+  "gravity_note": "ISS, plus earlier drop tower tests that were too short to show extinction",
+  "hardware": "CIR-ACME",
+  "hardware_note": "ACME chamber insert in the Combustion Integrated Rack (free volume about 83 to 90 L), with the 6.35 mm porous spherical burner, retracting igniter (loop tip, then coil tip for helium), fiber array for pyrometry and the short (far) thermocouple rake. Tests end when the burner reaches its 250 C limit.",
+  "hardware_link": "https://www1.grc.nasa.gov/space/iss-research/iss-fcf/combustion-science/acme/implementation/",
+  "related_investigations": [
+    "PSI-22 (ACME E-FIELD Flames)",
+    "PSI-10 (ACME Flame Design)",
+    "ACME CLD Flame",
+    "ACME BRE",
+    "ACME CFI-G"
+  ],
+  "sensors": [
+    "ACME DataCam (flame size and shape vs time, CH* imaging, soot pyrometry and Thin Filament Pyrometry)",
+    "LLL-UV intensified camera (OH* chemiluminescence imaging (flame location, important for faint H2 flames))",
+    "CFI intensified camera (chemiluminescence imaging)",
+    "HiBMs camera with Liquid-Crystal Tunable Filter (LCTF) (multi-wavelength imaging for soot pyrometry and TFP)",
+    "Analog color operations camera (flame behavior during operations)",
+    "Thin Filament Pyrometry (TFP) fiber array (gas temperature profile across the flame)",
+    "Thermopile radiometer array (flame radiative emission)",
+    "Photomultiplier tube (PMT) modules (x3) (chemiluminescence time histories (flame strength, oscillations, extinction))",
+    "Thermocouples (burner temperature (tests ended at the 250 °C burner limit) and spread of the thermal field)",
+    "Chamber pressure and burner internal pressure sensors (chamber pressure rise during a test; pressure drop across the porous burner)",
+    "CIR Gas Chromatograph Instrumentation Package (GCIP) (chamber atmosphere composition (O2, N2, CO2, CO, fuel) before/between/after tests)",
+    "Mass flow controllers (x3) (burner and chamber-fill gas flows)",
+    "Space Acceleration Measurement System (SAMS) (acceleration environment)"
+  ],
+  "measured_or_computed_quantities": [
+    "flame radius over time",
+    "radiative extinction (high flow) and kinetic extinction (low flow)",
+    "gas temperature (thin-filament pyrometry, thermocouples)",
+    "OH* and CH* light emission",
+    "flame radiation",
+    "burner temperature",
+    "chamber composition (gas chromatograph) and pressure"
+  ],
+  "variables_between_tests": [
+    "fuel and fuel blend",
+    "fuel dilution",
+    "diluent (nitrogen or helium)",
+    "oxygen concentration (about 21 or 30 %)",
+    "burner flow rate (constant or ramped)"
+  ],
+  "test_summary": {
+    "total_tests": 276,
+    "test_days": 18,
+    "nitrogen_dilution_round": {
+      "tests": 145,
+      "test_days": 9,
+      "test_dates": "11 September 2019 to 29 January 2020"
+    },
+    "helium_dilution_round": {
+      "tests": 131,
+      "test_days": 9,
+      "test_dates": "11 May to 8 July 2020"
+    },
+    "tests_by_iss_increment": {
+      "60": 29,
+      "61": 116,
+      "63": 131
+    },
+    "ambient_o2_pct_levels": [
+      21,
+      30
+    ],
+    "pressure_atm": [
+      1,
+      1
+    ],
+    "pressure_psi": [
+      14.7,
+      14.7
+    ],
+    "burner_flow_cc_s": [
+      1,
+      17.5
+    ],
+    "note": "the PSI table labels its tenth test day (11 May 2020, helium) as first round; it is counted here in the helium round, following the report"
+  },
+  "safety_theme": [
+    "extinguishment",
+    "flammability"
+  ],
+  "key_results": [
+    "N2-diluted CH4 and C2H4 flames in air showed both kinetic extinction at low flow rates and radiative extinction at high flow rates; radiative extinction was common on ISS, as predicted computationally but never seen in ground tests.",
+    "Example: 20% C2H4 / 80% N2 at 3 cc/s gave a quasi-steady flame; 5–10 cc/s gave radiative extinction; ramping down from 3 cc/s gave kinetic extinction before 1 cc/s.",
+    "Ethylene flames, sooty in 1 g, did not soot in microgravity except briefly during ignition, in any O2 level or diluent.",
+    "N2-diluted H2 flames would need very large sizes to self-extinguish; no radiative extinction was seen, but kinetic extinction on ramp-down was.",
+    "He dilution shifted the extinction limits, made ignition much harder and affected heat transfer to the burner; predicted pulsating instabilities were not conclusively observed in the video.",
+    "Flame luminosity does not necessarily reflect flame strength."
+  ],
+  "space_benefits": "Shows that radiative extinction is common for flames in microgravity and gives extinction data for testing flame models.",
+  "earth_benefits": "Benchmark data for chemical kinetic and transport models of hydrogen, methane and ethylene flames.",
+  "scenario_relevance": "NOT FILLED IN (to be computed from the team's ranking rules). Note: Oxygen of about 21 and 30 % near 1 atm, with nitrogen or helium as diluent, so it includes the oxygen level and a helium atmosphere but not reduced pressure. The fuel is gas on a burner, so it informs models rather than material selection.",
+  "publications": [
+    {
+      "title": "ACME/s-Flame Final Report",
+      "authors": "Stocker D.P., Law C.K., Tse S.D., et al.",
+      "doi": null
+    },
+    {
+      "title": "s-Flame 30-Day Operational Accomplishments Report, ISS Increment 63",
+      "authors": "Stocker D.P. and PI team",
+      "doi": null
+    },
+    {
+      "title": "Microgravity burner-generated spherical diffusion flames: experiment and computation",
+      "authors": "Tse S.D., Zhu D., Sung C.-J., Ju Y., Law C.K.",
+      "doi": "10.1016/S0010-2180(01)00247-4"
+    },
+    {
+      "title": "Porous spherical burner for combustion experimentation",
+      "authors": "Yoo S.W., Zhu D., Law C.K.",
+      "doi": "10.1063/1.2212399"
+    },
+    {
+      "title": "Oscillatory extinction of spherical diffusion flames: Micro-buoyancy experiment and computation",
+      "authors": "Yoo S.W., Christiansen E.W., Law C.K.",
+      "doi": "10.1016/S1540-7489(02)80008-6"
+    },
+    {
+      "title": "Chemiluminescent OH* and CH* flame structure and aerodynamic scaling of weakly buoyant, nearly spherical diffusion flames",
+      "authors": "Yoo S.W., Law C.K., Tse S.D.",
+      "doi": "10.1016/S1540-7489(02)80204-8"
+    },
+    {
+      "title": "On micro-buoyancy spherical diffusion flames and a double luminous zone structure of the hydrogen/methane flame",
+      "authors": "Sung C.J., Zhu D.L., Law C.K.",
+      "doi": "10.1016/S0082-0784(98)80108-2"
+    },
+    {
+      "title": "On intrinsic oscillation in radiation-affected diffusion flames",
+      "authors": "Wang H.Y., Law C.K.",
+      "doi": "10.1016/j.proci.2006.07.183"
+    },
+    {
+      "title": "Response of spherical diffusion flames subjected to rotation: Microgravity experimentation and computational simulation",
+      "authors": "Yoo S.W., Chaudhuri S., Sacksteder K.R., Zhang P., Zhu D., Law C.K.",
+      "doi": "10.1016/j.combustflame.2011.07.013"
+    },
+    {
+      "title": "Nonlinear Analysis of Pulsating Instabilities in Diffusion Flames",
+      "authors": "Wang H., Bechtold J., Law C.",
+      "doi": "10.2514/6.2005-544"
+    },
+    {
+      "title": "Opportunities and challenges of combustion in microgravity",
+      "authors": "Law C.K., Faeth G.M.",
+      "doi": "10.1016/0360-1285(94)90006-X"
+    },
+    {
+      "title": "Computational Simulation of Spherical Diffusion Flame Dynamics and Extinction in Microgravity",
+      "authors": "Xia T.",
+      "doi": null
+    },
+    {
+      "title": "Combustion Science: A Researcher's Guide to International Space Station",
+      "authors": "Gokoglu S.A., Dietrich D.L., Stocker D.P., Ferkul P.V., Olson S.L.",
+      "doi": null
+    }
+  ],
+  "data_quality_notes": [
+    "O2 and pressure: the experimental table gives ~21% or ~30% O2 at ~1 atm, noting that pressure rises and O2 drops with vitiation; pressure_min_psi = pressure_max_psi = 14.7 is nominal.",
+    "The experimental table writes the diluent as 'N3', 'N4', 'N5', 'N6' on several rows; these are typos for N2.",
+    "Tests ended automatically when the burner reached its 250 °C temperature limit; the PSI flame counts neglect flames that quenched right after ignition.",
+    "Anomalies: leaking first fuel bottle quick-connect (2019-07-30); IPSU-G image storage problems causing lost image data in round 1; on 2020-05-11 (first He day) only 7 of 15 tests ignited because helium's high thermal conductivity needed much more igniter power, so the loop igniter tip was replaced by a sturdier coil tip.",
+    "The fuel MFC (0.5 slpm) was too small for quasi-steady 45% CH4 flames in air, so methane tests moved to 30% O2.",
+    "ambient_temperature_K = 298 is nominal (assumed), not a measurement."
+  ],
+  "sources": [
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-23",
+    "https://doi.org/10.60555/k57n-p030",
+    "PSI-23_Experimental table_ACME s-Flame.csv (PSI repository)",
+    "s_Flame_final_report_20210729.pdf (ACME/s-Flame Final Report, 29 July 2021)",
+    "s-Flame_30-day_report_Inc_63_20201216.pdf"
+  ],
+  "missing": [
+    "per-test flow rates and fuel dilution (not in the PSI table)",
+    "extinction outcome per test",
+    "measured ambient temperature (298 K used as a nominal value)"
+  ]
+}
