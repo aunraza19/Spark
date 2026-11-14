@@ -20,6 +20,10 @@ class Issue(NamedTuple):
     message: str
 
 
+def format_issue(issue: Issue) -> str:
+    return f"{issue.severity.upper():7} {issue.file} {issue.record or '-'} {issue.rule}: {issue.message}"
+
+
 def _check(path: Path, record: str) -> tuple[Experiment | None, list[Issue]]:
     def issue(severity: str, rule: str, message: str) -> Issue:
         return Issue(severity, path.name, record, rule, message)
@@ -85,7 +89,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("directory", nargs="?", type=Path, default=EXPERIMENTS_DIR)
     valid, issues = validate_records(parser.parse_args(argv).directory)
     for found in issues:
-        print(f"{found.severity.upper():7} {found.file} {found.record or '-'} {found.rule}: {found.message}")
+        print(format_issue(found))
     errors = sum(found.severity == "error" for found in issues)
     print(f"{len(valid)} valid, {errors} errors, {len(issues) - errors} warnings")
     return 1 if errors else 0

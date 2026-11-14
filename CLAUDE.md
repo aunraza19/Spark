@@ -42,6 +42,7 @@ Audience: professors, students, aerospace researchers and engineers.
 - `uv run pytest` run the tests
 - `uv run ruff check .` lint (ruff default rules)
 - `uv run python scripts/validate_data.py` check the experiment records (exit 1 on any error)
+- `uv run python scripts/build_data.py` write the clean files into `data/clean`
 
 ## Rules and context
 @docs/working-rules.md
