@@ -148,8 +148,10 @@ def test_the_mini_book_is_the_researchers_guide_and_belongs_to_no_experiment(ref
     assert guide.file.startswith("np-2015-10-034")
 
 
-def test_open_questions_name_the_four_experiments(reference):
-    assert [q.experiment for q in reference.registry.open_questions] == ["PSI-21", "PSI-22", "PSI-20", "PSI-26"]
+def test_open_questions_name_the_experiments(reference):
+    assert [q.experiment for q in reference.registry.open_questions] == [
+        "PSI-21", "PSI-22", "PSI-20", "PSI-26", "PSI-22", "PSI-107",
+    ]
 
 
 def test_report_conditions_are_the_three_bre_entries(reference):

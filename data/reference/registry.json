@@ -257,6 +257,14 @@
     {
       "experiment": "PSI-26",
       "question": "The CSV has 122 rows, but the record says 121 matrix rows."
+    },
+    {
+      "experiment": "PSI-22",
+      "question": "The CSV has exact duplicate rows, dropped in the build and listed in the build report. Are they real repeats?"
+    },
+    {
+      "experiment": "PSI-107",
+      "question": "The CSV has exact duplicate rows, dropped in the build and listed in the build report. Are they real repeats?"
     }
   ]
 }

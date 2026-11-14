@@ -169,7 +169,9 @@ def test_report_carries_validation_issues_outside_psi_and_open_questions(real):
     assert report["outside_psi"] == [
         {"label": label, "status": "outside_psi"} for label in ("SoFIE", "FM2", "Saffire-IV", "Saffire-V", "Saffire-VI")
     ]
-    assert [q["experiment"] for q in report["open_questions"]] == ["PSI-21", "PSI-22", "PSI-20", "PSI-26"]
+    assert [q["experiment"] for q in report["open_questions"]] == [
+        "PSI-21", "PSI-22", "PSI-20", "PSI-26", "PSI-22", "PSI-107",
+    ]
 
 
 def test_build_is_repeatable_and_does_not_modify_the_input(tmp_path):
