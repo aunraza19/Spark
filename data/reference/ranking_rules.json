@@ -1,0 +1,15 @@
+{
+  "version": "ranking.v1",
+  "weighting_label": "our weighting",
+  "categories": {
+    "solid": { "label": "Solid material", "weight": 100 },
+    "emulated_solid": { "label": "Emulated solid", "weight": 70 },
+    "liquid": { "label": "Liquid", "weight": 40 },
+    "gas": { "label": "Gas", "weight": 25 },
+    "no_burning_test": { "label": "No burning test", "weight": 0 }
+  },
+  "distance_rule": "Each gap is a share of the target's own value: distance = hypot(oxygen gap / target oxygen, pressure gap / target pressure). A test inside the zone has distance 0.",
+  "atmosphere_rule": "Atmosphere match = 100 x (1 - min(1, distance of the experiment's nearest test)).",
+  "material_rule": "Material relevance is the weight of the experiment's fuel category, from fuel_categories.json.",
+  "sort_rule": "Atmosphere match, then material relevance, then PSI id."
+}

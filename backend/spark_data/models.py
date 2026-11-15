@@ -131,3 +131,25 @@ class ReportCondition(ReferenceModel):
     outcome: str
     source: Source
     note: str | None = None
+
+
+class Category(ReferenceModel):
+    label: str
+    weight: int
+
+
+class RankingRules(ReferenceModel):
+    version: str
+    weighting_label: str
+    categories: dict[str, Category]
+    distance_rule: str
+    atmosphere_rule: str
+    material_rule: str
+    sort_rule: str
+
+
+class FuelCategory(ReferenceModel):
+    psi_id: str
+    category: str
+    source: str
+    note: str | None = None
