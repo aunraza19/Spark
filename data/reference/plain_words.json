@@ -1,5 +1,9 @@
 {
-  "order": ["solid", "liquid", "gas"],
+  "order": [
+    "solid",
+    "liquid",
+    "gas"
+  ],
   "fuel_states": {
     "gas": {
       "singular": "a gas flame on a burner",
@@ -65,5 +69,41 @@
       "words": "No result is recorded for this test.",
       "source": "PSI-159 table column 'Self-ext or flow term' holds '-' for these tests, and the record does not define it."
     }
-  ]
+  ],
+  "places": {
+    "iss": {
+      "words": "on the ISS",
+      "source": "Our wording of the record field flight_platform, which names the International Space Station (ISS)."
+    },
+    "cygnus": {
+      "words": "in an uncrewed Cygnus cargo spacecraft, after it left the ISS",
+      "source": "Our wording of the record field flight_platform for PSI-98, PSI-99 and PSI-100: a Cygnus spacecraft after unberthing from the ISS."
+    },
+    "ground": {
+      "words": "as a ground study, with a computer model or lab tests",
+      "source": "Our wording of the record kind 'ground': the ground investigations are computational or ground laboratory studies."
+    }
+  },
+  "categories": {
+    "solid": {
+      "words": "solid material",
+      "source": "Our wording of the category 'solid' in fuel_categories.json (record fuel_state 'solid')."
+    },
+    "emulated_solid": {
+      "words": "a gas flame that stands in for a solid fuel",
+      "source": "Our wording of the category 'emulated_solid' in fuel_categories.json (PSI-20 burned gas to emulate solid and liquid fuels)."
+    },
+    "liquid": {
+      "words": "liquid fuel droplets",
+      "source": "Our wording of the category 'liquid' in fuel_categories.json (record fuel_state 'liquid')."
+    },
+    "gas": {
+      "words": "a gas flame on a burner",
+      "source": "Our wording of the category 'gas' in fuel_categories.json (record fuel_state 'gas')."
+    },
+    "no_burning_test": {
+      "words": "nothing, because it studied smoke or dust with no flame",
+      "source": "Our wording of the category 'no_burning_test' in fuel_categories.json (smoke, dust or aerosol studies with no flame)."
+    }
+  }
 }

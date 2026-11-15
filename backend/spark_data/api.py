@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 
 from spark_data.data import load_data
 from spark_data.models import Habitat
+from spark_data.pages import experiment_list, experiment_page, ranking_view
 from spark_data.paths import CLEAN_DIR, REFERENCE_DIR, WEB_DIST
 from spark_data.plain import about, map_summary, point_card
 from spark_data.snapshots import (
@@ -28,6 +29,14 @@ def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dis
     data = load_data(clean, reference)
 
     app = FastAPI(title="Spark data")
+
+    def _target(habitat: str, o2: float | None, psi: float | None) -> Habitat:
+        if habitat == "custom":
+            return _custom_target(o2, psi)
+        target = next((h for h in data.habitats if h.id == habitat and h.kind != "note"), None)
+        if target is None:
+            raise HTTPException(status_code=404, detail="unknown habitat")
+        return target
 
     @app.get("/api/habitats")
     def get_habitats():
@@ -62,18 +71,28 @@ def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dis
             raise HTTPException(status_code=404, detail="unknown experiment")
         return data.entries[psi_id]
 
+    @app.get("/api/experiment-list")
+    def get_experiment_list():
+        return experiment_list(data)
+
+    @app.get("/api/experiment-page/{psi_id}")
+    def get_experiment_page(psi_id: str):
+        page = experiment_page(data, psi_id)
+        if page is None:
+            raise HTTPException(status_code=404, detail="unknown experiment")
+        return page
+
+    @app.get("/api/ranking")
+    def get_ranking(habitat: str, o2: float | None = None, psi: float | None = None):
+        return ranking_view(data, _target(habitat, o2, psi))
+
     @app.get("/api/snapshot/map")
     def get_map_snapshot(
         habitat: str, o2: float | None = None, psi: float | None = None, shown_psi_max: float | None = None
     ):
         if shown_psi_max is not None and not (shown_psi_max > 0 and math.isfinite(shown_psi_max)):
             raise HTTPException(status_code=422, detail="shown_psi_max must be above 0 psi")
-        if habitat == "custom":
-            target = _custom_target(o2, psi)
-        else:
-            target = next((h for h in data.habitats if h.id == habitat and h.kind != "note"), None)
-            if target is None:
-                raise HTTPException(status_code=404, detail="unknown habitat")
+        target = _target(habitat, o2, psi)
         snapshot = build_map_snapshot(data, target, shown_psi_max)
         return {"key": snapshot_key(snapshot), "snapshot": snapshot, "summary": map_summary(data, target)}
 

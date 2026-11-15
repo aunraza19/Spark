@@ -183,3 +183,5 @@ class PlainWords(ReferenceModel):
     no_outcome: WordsWithSource
     unmapped: WordsWithSource
     outcomes: list[OutcomeWords]
+    places: dict[str, WordsWithSource]
+    categories: dict[str, WordsWithSource]
