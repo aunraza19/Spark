@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { AgentChatProvider } from "./AgentChat";
 import { AskAgent } from "./AskAgent";
 import type { BlockSpec } from "./api";
 import { explanationOk } from "./fixtures";
@@ -24,6 +25,7 @@ function mockExplain(body: unknown, status = 200) {
 beforeEach(() => vi.stubGlobal("ResizeObserver", QuietObserver));
 afterEach(() => vi.unstubAllGlobals());
 
+const wrap = (ui: React.ReactElement) => <AgentChatProvider>{ui}</AgentChatProvider>;
 const ask = () => screen.getByRole("button", { name: "Ask Spark agent" });
 const more = () => screen.getByRole("button", { name: "Ask more" });
 const chat = () => screen.queryByRole("complementary", { name: "Spark agent chat" });
@@ -36,7 +38,7 @@ async function openExplanation() {
 describe("Ask more", () => {
   it("is offered only under a checked explanation", async () => {
     mockExplain(explanationOk);
-    render(<AskAgent block={block} />);
+    render(wrap(<AskAgent block={block} />));
     expect(screen.queryByRole("button", { name: "Ask more" })).toBeNull();
     fireEvent.click(ask());
     expect(screen.queryByRole("button", { name: "Ask more" })).toBeNull();
@@ -49,7 +51,7 @@ describe("Ask more", () => {
     [{ status: "unavailable" }, 503, "Spark agent is not set up on this server."],
   ])("is not offered when the answer is %j", async (body, status, message) => {
     mockExplain(body, status);
-    render(<AskAgent block={block} />);
+    render(wrap(<AskAgent block={block} />));
     fireEvent.click(ask());
     await screen.findByText(message);
     expect(screen.queryByRole("button", { name: "Ask more" })).toBeNull();
@@ -57,7 +59,7 @@ describe("Ask more", () => {
 
   it("opens the chat panel, starting from the explanation just shown", async () => {
     mockExplain(explanationOk);
-    render(<AskAgent block={block} />);
+    render(wrap(<AskAgent block={block} />));
     await openExplanation();
     expect(chat()).toBeNull();
     fireEvent.click(more());
@@ -69,7 +71,7 @@ describe("Ask more", () => {
 
   it("closes with the panel's Close button and gives focus back to Ask more", async () => {
     mockExplain(explanationOk);
-    render(<AskAgent block={block} />);
+    render(wrap(<AskAgent block={block} />));
     await openExplanation();
     fireEvent.click(more());
     fireEvent.click(within(await screen.findByRole("complementary", { name: "Spark agent chat" })).getByRole("button", { name: "Close" }));
@@ -80,7 +82,7 @@ describe("Ask more", () => {
 
   it("closes with Escape and gives focus back to Ask more", async () => {
     mockExplain(explanationOk);
-    render(<AskAgent block={block} />);
+    render(wrap(<AskAgent block={block} />));
     await openExplanation();
     fireEvent.click(more());
     fireEvent.keyDown(await screen.findByRole("complementary", { name: "Spark agent chat" }), { key: "Escape" });
@@ -88,29 +90,19 @@ describe("Ask more", () => {
     await waitFor(() => expect(more()).toHaveFocus());
   });
 
-  it("closes when the explanation is closed", async () => {
+  it("keeps the chat open when the explanation above it is closed, because the chat is its own panel", async () => {
     mockExplain(explanationOk);
-    render(<AskAgent block={block} />);
+    render(wrap(<AskAgent block={block} />));
     await openExplanation();
     fireEvent.click(more());
     await screen.findByRole("complementary", { name: "Spark agent chat" });
     fireEvent.click(ask());
-    expect(chat()).toBeNull();
-  });
-
-  it("closes when the block changes, so a chat is never about another block", async () => {
-    mockExplain(explanationOk);
-    const { rerender } = render(<AskAgent block={block} />);
-    await openExplanation();
-    fireEvent.click(more());
-    await screen.findByRole("complementary", { name: "Spark agent chat" });
-    rerender(<AskAgent block={{ kind: "map", habitat: "iss", shown_psi_max: 20 }} />);
-    expect(chat()).toBeNull();
+    expect(chat()).not.toBeNull();
   });
 
   it("asks the chat route about the same block", async () => {
     const fn = mockExplain(explanationOk);
-    render(<AskAgent block={block} />);
+    render(wrap(<AskAgent block={block} />));
     await openExplanation();
     fireEvent.click(more());
     const panel = await screen.findByRole("complementary", { name: "Spark agent chat" });

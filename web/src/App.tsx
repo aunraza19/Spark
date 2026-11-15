@@ -19,6 +19,7 @@ import {
   type Summary,
 } from "./api";
 import { AboutFooter } from "./AboutFooter";
+import { AgentChatProvider, SiteHeader, useRegisterView } from "./AgentChat";
 import { AboutFooterLoader } from "./AboutFooterLoader";
 import { AtmosphereMap } from "./AtmosphereMap";
 import { DataSaysCard } from "./DataSaysCard";
@@ -99,6 +100,7 @@ function Home() {
     ...(selection.habitatId === "custom" && selection.custom ? { o2: selection.custom.o2, psi: selection.custom.psi } : {}),
     shown_psi_max: PRESSURE_VIEWS[view][1],
   };
+  useRegisterView(mapBlock);
 
   useEffect(() => {
     let current = true;
@@ -183,7 +185,7 @@ function Home() {
   );
 }
 
-export default function App() {
+function Page() {
   const route = useRoute();
   if (route.kind === "experiment") {
     return (
@@ -202,4 +204,13 @@ export default function App() {
     );
   }
   return <Home />;
+}
+
+export default function App() {
+  return (
+    <AgentChatProvider>
+      <SiteHeader />
+      <Page />
+    </AgentChatProvider>
+  );
 }

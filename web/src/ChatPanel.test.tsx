@@ -52,7 +52,7 @@ async function ask(question: string) {
 describe("ChatPanel", () => {
   it("is a side panel named Spark agent chat, with a Close button", () => {
     const onClose = vi.fn();
-    render(<ChatPanel block={block} answer={answer} onClose={onClose} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={onClose} />);
     expect(within(panel()).getByRole("heading", { name: "Spark agent chat" })).toBeInTheDocument();
     fireEvent.click(within(panel()).getByRole("button", { name: "Close" }));
     expect(onClose).toHaveBeenCalledTimes(1);
@@ -60,37 +60,37 @@ describe("ChatPanel", () => {
 
   it("closes on Escape", () => {
     const onClose = vi.fn();
-    render(<ChatPanel block={block} answer={answer} onClose={onClose} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={onClose} />);
     fireEvent.keyDown(panel(), { key: "Escape" });
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it("starts with the checked explanation as the first message, with its sources", () => {
-    render(<ChatPanel block={block} answer={answer} onClose={() => {}} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     const text = panel().textContent ?? "";
     for (const part of [answer.seeing, answer.fire_safety, answer.cannot_tell]) expect(text).toContain(part);
     expect(text).toContain("PSI-159, PSI-20");
   });
 
   it("puts the Spark agent label under every reply, the first one included", () => {
-    render(<ChatPanel block={block} answer={answer} onClose={() => {}} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     expect(within(panel()).getAllByText(NOTE)).toHaveLength(1);
   });
 
   it("says under the input that chat answers are not checked", () => {
-    render(<ChatPanel block={block} answer={answer} onClose={() => {}} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     expect(within(panel()).getByText(NOT_CHECKED)).toBeInTheDocument();
   });
 
   it("has an input and a Send button", () => {
-    render(<ChatPanel block={block} answer={answer} onClose={() => {}} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     expect(within(panel()).getByRole("textbox")).toHaveAttribute("placeholder", "Ask a follow-up question");
     expect(within(panel()).getByRole("button", { name: "Send" })).toBeInTheDocument();
   });
 
   it("sends the block, the explanation and the question, and streams the reply with its label", async () => {
     const fn = mockChat(sse([{ type: "text", delta: "Twenty " }, { type: "text", delta: "tests." }, { type: "done" }]));
-    render(<ChatPanel block={block} answer={answer} onClose={() => {}} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     await ask("How many are gas?");
     await within(panel()).findByText("Twenty tests.");
     const [url, init] = fn.mock.calls[0] as unknown as [string, RequestInit];
@@ -114,7 +114,7 @@ describe("ChatPanel", () => {
         { type: "done" },
       ]),
     );
-    render(<ChatPanel block={block} answer={answer} onClose={() => {}} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     await ask("How many in the lunar zone?");
     const card = await within(panel()).findByTestId("tool-card");
     await waitFor(() => expect(card).toHaveTextContent("20 tests"));
@@ -124,7 +124,7 @@ describe("ChatPanel", () => {
 
   it("says Spark agent is busy when the server is busy, with no alert", async () => {
     mockChat({ ok: false, status: 503, body: null });
-    render(<ChatPanel block={block} answer={answer} onClose={() => {}} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     await ask("Anything?");
     expect(await within(panel()).findByText(BUSY)).toBeInTheDocument();
     expect(screen.queryByRole("alert")).toBeNull();
@@ -132,7 +132,7 @@ describe("ChatPanel", () => {
 
   it("says it as a plain message when the stream carries an error event", async () => {
     mockChat(sse([{ type: "error", message: BUSY }]));
-    render(<ChatPanel block={block} answer={answer} onClose={() => {}} />);
+    render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     await ask("Anything?");
     expect(await within(panel()).findByText(BUSY)).toBeInTheDocument();
   });

@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState, type RefObject } from "react";
+import { useAgentChat } from "./AgentChat";
 import { fetchExplanation, type BlockSpec, type Explanation } from "./api";
-import { ChatPanel } from "./ChatPanel";
 import { AGENT_NOTE } from "./content";
 import { experimentHref } from "./route";
 
@@ -51,7 +51,6 @@ function Answer({
 
 export function AskAgent({ block }: { block: BlockSpec }) {
   const [open, setOpen] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
   const [result, setResult] = useState<Explanation | null>(null);
   const latest = useRef(0);
   const moreButton = useRef<HTMLButtonElement>(null);
@@ -60,7 +59,6 @@ export function AskAgent({ block }: { block: BlockSpec }) {
   useEffect(() => {
     latest.current += 1;
     setOpen(false);
-    setChatOpen(false);
     setResult(null);
   }, [blockKey]);
 
@@ -68,7 +66,6 @@ export function AskAgent({ block }: { block: BlockSpec }) {
     if (open) {
       latest.current += 1;
       setOpen(false);
-      setChatOpen(false);
       return;
     }
     const mine = ++latest.current;
@@ -79,10 +76,8 @@ export function AskAgent({ block }: { block: BlockSpec }) {
     });
   };
 
-  const closeChat = () => {
-    moreButton.current?.focus();
-    setChatOpen(false);
-  };
+  const { chat, openChat, closeChat } = useAgentChat();
+  const chatIsMine = Boolean(chat?.answer) && JSON.stringify(chat?.block) === blockKey;
 
   return (
     <div className="ask">
@@ -93,12 +88,16 @@ export function AskAgent({ block }: { block: BlockSpec }) {
         <div className="ask-panel" role="region" aria-label="Spark agent explanation" aria-live="polite">
           {!result && <p>Spark agent is reading this block.</p>}
           {result?.status === "ok" && (
-            <Answer result={result} chatOpen={chatOpen} onMore={() => (chatOpen ? closeChat() : setChatOpen(true))} moreRef={moreButton} />
+            <Answer
+              result={result}
+              chatOpen={chatIsMine}
+              onMore={() => (chatIsMine ? closeChat() : openChat({ block, answer: result.answer, opener: moreButton.current }))}
+              moreRef={moreButton}
+            />
           )}
           {result && result.status !== "ok" && <p>{MESSAGES[result.status]}</p>}
         </div>
       )}
-      {open && chatOpen && result?.status === "ok" && <ChatPanel block={block} answer={result.answer} onClose={closeChat} />}
     </div>
   );
 }

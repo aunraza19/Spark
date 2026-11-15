@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ApiError, fetchExperimentPage, type ExperimentPageData } from "./api";
+import { useRegisterView } from "./AgentChat";
 import { AskAgent } from "./AskAgent";
 import { BackLink } from "./BackLink";
 import { RECORD_LABEL } from "./content";
@@ -69,6 +70,7 @@ function Details({ page }: { page: ExperimentPageData }) {
 }
 
 export function ExperimentPage({ id }: { id: string }) {
+  useRegisterView({ kind: "experiment", experiment_id: id });
   const [page, setPage] = useState<ExperimentPageData | null>(null);
   const [problem, setProblem] = useState<"missing" | "failed" | null>(null);
 

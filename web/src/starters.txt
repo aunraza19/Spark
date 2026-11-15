@@ -1,0 +1,12 @@
+map: What was tested in this atmosphere?
+map: What happened in the closest tests?
+map: Which kinds of material have no test here?
+scenario: What was tested close to this target?
+scenario: What happened in the closest tests?
+scenario: Which kinds of material have no test here?
+ranking: Which experiments come closest, and what did they burn?
+ranking: What happened in the closest tests?
+ranking: Which kinds of material have no test here?
+experiment: What did this experiment burn, and where did it run?
+experiment: What were its key results?
+experiment: What can its data not tell me?
