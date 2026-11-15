@@ -137,7 +137,8 @@ def build_scenario_snapshot(data: "Data", habitat: Habitat) -> dict:
         "habitat": _habitat(habitat),
         "view": {
             "distance_rule": data.ranking.rules.distance_rule,
-            "tests_at_target": sum(at_target(gap(c, habitat)) for c in data.conditions),
+            "tests_at_target": sum(c.basis == "test" and at_target(gap(c, habitat)) for c in data.conditions),
+            "report_conditions_at_target": sum(c.basis == "report" and at_target(gap(c, habitat)) for c in data.conditions),
             "nearest_tests": [_entry(c, g, habitat) for c, g in closest],
             "inside_lunar_zone": in_zone(habitat.o2_pct, habitat.pressure_psi, lunar),
         },

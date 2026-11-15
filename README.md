@@ -60,11 +60,10 @@ The cleaned data is already in `data/clean`, so you do not need to rebuild it. T
 
 ## NASA data used
 
-- **NASA Physical Sciences Informatics (PSI) repository.** 24 combustion investigations: 19 flight experiments and 5 ground studies that re-analyse flight data. Their JSON records and test tables are in `data/incoming`. Source: https://psi.nasa.gov/physci/repo/search?q=combustion. The PSI data are open access. NASA lists them in the [AWS Open Data Registry](https://registry.opendata.aws/nasa-psi) with no restrictions on use. [TO VERIFY: the licence is CC0. Add a link to NASA's licence statement. I found no source that names CC0.]
-- **The Burning Rate Emulator (BRE) final report**, `BRE_final_report_20220201.pdf`, attached to experiment PSI-20 in PSI. We read three conditions from it (oxygen, pressure and what the flame did), each with its page and figure in `data/reference/report_conditions.json`. [TO FILL: link to the report.]
+- **NASA Physical Sciences Informatics (PSI) repository.** 24 combustion investigations: 19 flight experiments and 5 ground studies that re-analyse flight data. Their JSON records and test tables are in `data/incoming`. Source: https://psi.nasa.gov/physci/repo/search?q=combustion. Licence: the investigation pages for PSI-20, PSI-25, PSI-69 and PSI-159, which we checked, each state "License: CC0-1.0" (for example [PSI-25](https://psi.nasa.gov/physci/repo/data/investigations/PSI-25)). We did not read the licence line on the other pages.
+- **The Burning Rate Emulator (BRE) final report**, `BRE_final_report_20220201.pdf`, attached to experiment PSI-20 in PSI: https://psi.nasa.gov/physci/repo/data/investigations/PSI-20. We read three conditions from it (oxygen, pressure and what the flame did), each with its page and figure in `data/reference/report_conditions.json`.
 - **"A Researcher's Guide to: Combustion Science"**, NASA NP-2015-10-034-JSC, October 2015. It gives the ISS cabin atmosphere (page 19). Link: https://www.nasa.gov/sites/default/files/atoms/files/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf
 - **The challenge text**, for the lunar zone and the spacesuit atmosphere: https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/
-- **NASA spinoff pages** are planned for an "Earth" tab. They are not in the site yet, so nothing on the site comes from them. https://spinoff.nasa.gov/ [TO CONFIRM which pages we will use.]
 
 Experiments that are not in PSI (SoFIE, FM2, Saffire-IV to VI) are not shown as results.
 

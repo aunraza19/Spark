@@ -38,10 +38,10 @@ def test_the_iss_lines_never_say_zero_psi_or_zero_points(data):
 @pytest.mark.parametrize("target", [(21.0, 14.7), (28.0, 9.0), (34.0, 8.2)])
 def test_the_summary_and_the_scenario_agree_on_how_many_tests_are_at_the_target(data, target):
     habitat = custom(*target)
-    at = build_scenario_snapshot(data, habitat)["view"]["tests_at_target"]
+    view = build_scenario_snapshot(data, habitat)["view"]
     tests = sum(c.basis == "test" and at_target(gap(c, habitat)) for c in data.conditions)
     reports = sum(c.basis == "report" and at_target(gap(c, habitat)) for c in data.conditions)
-    assert at == tests + reports
+    assert (view["tests_at_target"], view["report_conditions_at_target"]) == (tests, reports)
     first = map_summary(data, habitat)["lead"][0]
     if tests:
         expected = f"{tests} test{'s' if tests != 1 else ''} ran at exactly this condition."

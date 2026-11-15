@@ -188,3 +188,45 @@ def test_internal_words_are_on_the_banned_list(word):
 )
 def test_the_prompt_carries_the_per_block_guidance(needed):
     assert needed in FILES.explain_prompt.lower()
+
+
+# --- the ranked list says what each top experiment's tests showed, with counts ---------
+
+
+def test_a_zone_ranking_counts_what_the_tests_inside_the_zone_showed_for_each_top_experiment(data):
+    snap = snapshot(data, RANKING)
+    top = [r["psi_id"] for r in snap["rows"][:3]]
+    experiments = snap["outcomes"]["experiments"]
+    assert [e["experiment_id"] for e in experiments] == top
+    first = experiments[0]
+    assert first["experiment_id"] == "PSI-159"
+    assert first["scope"] == "inside the zone"
+    assert first["tests"] == snap["rows"][0]["tests_inside_zone"]
+    assert first["burned"] == "a gas flame on a burner"
+    assert sum(r["tests"] for r in first["results"]) == first["tests"]
+    assert {r["tests"] for r in first["results"]} == {13, 5, 2}
+
+
+def test_a_report_condition_inside_the_zone_is_counted_apart_from_tests(data):
+    experiments = {e["experiment_id"]: e for e in snapshot(data, RANKING)["outcomes"]["experiments"]}
+    bre = experiments["PSI-20"]
+    assert bre["tests"] == 0 and bre["results"] == []
+    assert bre["report_conditions"] == [{"result": "The flame burned steadily.", "conditions": 1}]
+
+
+def test_an_experiment_with_nothing_inside_the_zone_says_so_with_zero_counts(data):
+    flex = next(e for e in snapshot(data, RANKING)["outcomes"]["experiments"] if e["experiment_id"] == "PSI-69")
+    assert flex["tests"] == 0 and flex["results"] == [] and flex["report_conditions"] == []
+
+
+def test_a_point_ranking_counts_the_tests_at_the_target(data):
+    snap = snapshot(data, {"kind": "ranking", "habitat": "iss"})
+    first = snap["outcomes"]["experiments"][0]
+    assert first["scope"] == "at exactly this condition"
+    assert first["tests"] > 0
+    assert sum(r["tests"] for r in first["results"]) == first["tests"]
+    assert {r["result"] for r in first["results"]} <= known_words(data)
+
+
+def test_the_prompt_tells_the_model_to_use_the_counts_for_a_ranked_list():
+    assert "outcomes.experiments" in FILES.explain_prompt

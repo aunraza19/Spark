@@ -71,7 +71,7 @@ describe("the custom scenario", () => {
   const snapshot = {
     schema: "s", data_version: "v", panel: "scenario" as const,
     habitat: { id: "custom", kind: "point", source: "x", o2_pct: 34, pressure_psi: 8.2 },
-    view: { distance_rule: "r", tests_at_target: 1, nearest_tests: [], inside_lunar_zone: true },
+    view: { distance_rule: "r", tests_at_target: 1, report_conditions_at_target: 0, nearest_tests: [], inside_lunar_zone: true },
   };
 
   it("has the button, asking about the scenario by its numbers", async () => {

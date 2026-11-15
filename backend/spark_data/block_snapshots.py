@@ -7,7 +7,7 @@ from spark_data.data import Data
 from spark_data.models import Habitat
 from spark_data.pages import _category, _category_label, experiment_page, ranking_view
 from spark_data.plain import _burned, _label, _point_for, _report_for, _result
-from spark_data.ranking import Condition, gap, nearest
+from spark_data.ranking import Condition, at_target, gap, nearest
 from spark_data.reference import in_zone
 from spark_data.snapshots import (
     SCHEMA,
@@ -141,6 +141,25 @@ def _inside_zone(data: Data, zone: Habitat) -> list[dict]:
     ]
 
 
+def _hit(condition: Condition, target: Habitat) -> bool:
+    return in_zone(condition.o2_min, condition.psi_max, target) if target.kind == "zone" else at_target(gap(condition, target))
+
+
+def _experiment_results(data: Data, psi_id: str, target: Habitat) -> dict:
+    """What every test of one experiment that is inside the zone, or at the target, showed. Report conditions are counted apart."""
+    here = [c for c in data.conditions if c.experiment_id == psi_id and _hit(c, target)]
+    tests = Counter(_result(data, psi_id, _point_for(data, c)["outcome"]) for c in here if c.basis == "test")
+    reports = Counter(_report_for(data, c).outcome_words for c in here if c.basis == "report")
+    return {
+        "experiment_id": psi_id,
+        "burned": data.plain.categories[_category(data, psi_id)].words,
+        "scope": "inside the zone" if target.kind == "zone" else "at exactly this condition",
+        "tests": sum(tests.values()),
+        "results": [{"result": words, "tests": n} for words, n in tests.most_common()],
+        "report_conditions": [{"result": words, "conditions": n} for words, n in reports.most_common()],
+    }
+
+
 def _with_outcomes(data: Data, snapshot: dict, target: Habitat) -> dict:
     """The agent also needs to know what happened in the tests the block points at, so the answer can say it."""
     panel, view = snapshot["panel"], snapshot.get("view", {})
@@ -159,7 +178,9 @@ def _with_outcomes(data: Data, snapshot: dict, target: Habitat) -> dict:
             for e in entries
         ]
     else:
-        listed = [nearest([c for c in data.conditions if c.experiment_id == row["psi_id"]], target, 1)[0][0] for row in snapshot["rows"][:3]]
+        top = [row["psi_id"] for row in snapshot["rows"][:3]]
+        outcomes["experiments"] = [_experiment_results(data, psi_id, target) for psi_id in top]
+        listed = [nearest([c for c in data.conditions if c.experiment_id == psi_id], target, 1)[0][0] for psi_id in top]
     outcomes["conditions"] = [_what_happened(data, c, target) for c in listed]
     return round_numbers({**snapshot, "outcomes": outcomes})
 

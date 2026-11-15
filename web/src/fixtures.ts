@@ -107,6 +107,7 @@ export const scenarioSnapshot: ScenarioSnapshot = {
   view: {
     distance_rule: "Each gap is a share of the target's own value: distance = hypot(oxygen gap / target oxygen, pressure gap / target pressure). A test inside the zone has distance 0.",
     tests_at_target: 0,
+    report_conditions_at_target: 0,
     inside_lunar_zone: false,
     nearest_tests: [
       { experiment_id: "PSI-20", test_id: "19056F1", basis: "report", o2_pct: 27, pressure_psi: 10.2, gap_o2_pct_points: -1, gap_psi: 1.2, distance: 0.138, source_file: "BRE_final_report_20220201.pdf", source_row: null },

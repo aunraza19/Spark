@@ -50,13 +50,15 @@ def test_the_nearest_five_tests_for_28_percent_and_9_psi(data):
 def test_no_test_was_run_at_28_percent_and_9_psi(data):
     view = build_scenario_snapshot(data, custom(28.0, 9.0))["view"]
     assert view["tests_at_target"] == 0
+    assert view["report_conditions_at_target"] == 0
     assert view["inside_lunar_zone"] is False
 
 
-def test_a_target_taken_from_a_report_condition_has_a_test_at_it_and_is_inside_the_zone(data):
+def test_a_target_taken_from_a_report_condition_has_a_report_condition_at_it_and_is_inside_the_zone(data):
     # BRE test 19070D1: 34 % oxygen at 8.2 psi.
     view = build_scenario_snapshot(data, custom(34.0, 8.2))["view"]
-    assert view["tests_at_target"] >= 1
+    assert view["tests_at_target"] == 0
+    assert view["report_conditions_at_target"] >= 1
     assert view["nearest_tests"][0]["distance"] == 0
     assert view["inside_lunar_zone"] is True
 

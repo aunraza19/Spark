@@ -4,9 +4,11 @@ import { formatNumber } from "./format";
 
 const signed = (value: number) => (value > 0 ? `+${formatNumber(value)}` : formatNumber(value));
 
-function atTarget(count: number): string {
-  if (count === 0) return "No test was run at this condition.";
-  return `${count} test${count === 1 ? " was" : "s were"} run at exactly this condition.`;
+function atTarget(tests: number, reports: number): string {
+  const parts: string[] = [];
+  if (tests > 0) parts.push(`${tests} test${tests === 1 ? " was" : "s were"} run at exactly this condition.`);
+  if (reports > 0) parts.push(`${reports} condition${reports === 1 ? "" : "s"} from a NASA report ${reports === 1 ? "matches" : "match"} this target exactly.`);
+  return parts.length ? parts.join(" ") : "No test was run at this condition.";
 }
 
 function Row({ entry }: { entry: SnapshotEntry }) {
@@ -40,7 +42,7 @@ export function ScenarioPanel({ snapshot, failed, ask }: { snapshot: ScenarioSna
           <p data-testid="scenario-zone">
             This target is {snapshot.view.inside_lunar_zone ? "" : "not "}inside the lunar zone.
           </p>
-          <p data-testid="scenario-at-target">{atTarget(snapshot.view.tests_at_target)}</p>
+          <p data-testid="scenario-at-target">{atTarget(snapshot.view.tests_at_target, snapshot.view.report_conditions_at_target)}</p>
           <table>
             <caption>Nearest tests to your target</caption>
             <thead>

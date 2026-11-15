@@ -224,6 +224,7 @@ export type ScenarioSnapshot = {
   view: {
     distance_rule: string;
     tests_at_target: number;
+    report_conditions_at_target: number;
     nearest_tests: SnapshotEntry[];
     inside_lunar_zone: boolean;
   };
