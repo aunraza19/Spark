@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ApiError, fetchExperimentPage, type ExperimentPageData } from "./api";
+import { AskAgent } from "./AskAgent";
 import { BackLink } from "./BackLink";
 import { RECORD_LABEL } from "./content";
 import { Evidence } from "./Evidence";
@@ -98,6 +99,7 @@ export function ExperimentPage({ id }: { id: string }) {
               {line}
             </p>
           ))}
+          <AskAgent block={{ kind: "experiment", experiment_id: page.psi_id }} />
           <h2>Key results</h2>
           <p className="evidence-label">{RECORD_LABEL}</p>
           {page.key_results.length === 0 ? (

@@ -738,3 +738,44 @@ article li {
 .see-all {
   margin-top: var(--space-3);
 }
+
+/* Spark agent */
+
+.ask {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+  margin: var(--space-3) 0;
+}
+
+@media (max-width: 720px) {
+  .ask {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ask-panel {
+  max-width: 66ch;
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--color-ink);
+}
+
+.ask-panel h4 {
+  margin: var(--space-3) 0 var(--space-1);
+}
+
+.ask-panel h4:first-child,
+.ask-panel p:first-child {
+  margin-top: 0;
+}
+
+.agent-note {
+  margin-top: var(--space-3);
+  color: var(--color-graphite);
+  font-size: var(--text-s);
+}
+
+.ask .button {
+  justify-self: start;
+}

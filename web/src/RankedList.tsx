@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchRanking, type RankingView, type Selection } from "./api";
+import { fetchRanking, type BlockSpec, type RankingView, type Selection } from "./api";
+import { AskAgent } from "./AskAgent";
 import { Evidence } from "./Evidence";
 import { experimentHref } from "./route";
 
@@ -32,6 +33,12 @@ function Table({ view }: { view: RankingView }) {
   );
 }
 
+function blockOf(selection: Selection): BlockSpec {
+  return selection.habitatId === "custom" && selection.custom
+    ? { kind: "ranking", habitat: "custom", o2: selection.custom.o2, psi: selection.custom.psi }
+    : { kind: "ranking", habitat: selection.habitatId };
+}
+
 export function RankedList({ selection }: { selection: Selection }) {
   const [view, setView] = useState<RankingView | null>(null);
   const [failed, setFailed] = useState(false);
@@ -60,6 +67,7 @@ export function RankedList({ selection }: { selection: Selection }) {
               {line}
             </p>
           ))}
+          <AskAgent block={blockOf(selection)} />
           <p className="note">Each bar shows how close the tests of an experiment came to this atmosphere.</p>
           <ol className="ranked">
             {view.rows.map((row) => (

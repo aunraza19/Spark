@@ -7,6 +7,7 @@ import {
   fetchReportConditions,
   fetchScenarioSnapshot,
   type About,
+  type BlockSpec,
   type CardRequest,
   type Habitat,
   type MapSnapshot,
@@ -92,6 +93,13 @@ function Home() {
   const view = showAll || forced ? "full" : "zoomed";
   const note = loaded ? viewNote(hiddenCounts(loaded.points, loaded.reports, view), view, forced) : "";
 
+  const mapBlock: BlockSpec = {
+    kind: "map",
+    habitat: selection.habitatId,
+    ...(selection.habitatId === "custom" && selection.custom ? { o2: selection.custom.o2, psi: selection.custom.psi } : {}),
+    shown_psi_max: PRESSURE_VIEWS[view][1],
+  };
+
   useEffect(() => {
     let current = true;
     setSnapshot(null);
@@ -123,10 +131,14 @@ function Home() {
               onChange={setSelection}
               presets={presetsFrom(loaded.reports)}
             />
-            <DataSaysCard summary={summary}>
+            <DataSaysCard summary={summary} ask={mapBlock}>
               <MapSummary snapshot={snapshot} viewNote={note} />
               {selection.habitatId === "custom" && selection.custom && (
-                <ScenarioPanel snapshot={scenario} failed={scenarioFailed} />
+                <ScenarioPanel
+                  snapshot={scenario}
+                  failed={scenarioFailed}
+                  ask={{ kind: "scenario", o2: selection.custom.o2, psi: selection.custom.psi }}
+                />
               )}
             </DataSaysCard>
             <section aria-labelledby="map-heading">

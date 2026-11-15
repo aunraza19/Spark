@@ -231,3 +231,31 @@ export type ScenarioSnapshot = {
 
 export const fetchScenarioSnapshot = (custom: { o2: number; psi: number }) =>
   getJson<{ key: string; snapshot: ScenarioSnapshot }>(`/api/snapshot/scenario?o2=${custom.o2}&psi=${custom.psi}`);
+
+export type BlockSpec =
+  | { kind: "map"; habitat: string; o2?: number; psi?: number; shown_psi_max?: number }
+  | { kind: "scenario"; o2: number; psi: number }
+  | { kind: "ranking"; habitat: string; o2?: number; psi?: number }
+  | { kind: "experiment"; experiment_id: string };
+
+export type AgentAnswer = { seeing: string; fire_safety: string; cannot_tell: string; sources: string[] };
+
+export type Explanation =
+  | { status: "ok"; answer: AgentAnswer; key: string; model: string; cached: boolean }
+  | { status: "unchecked" }
+  | { status: "busy" }
+  | { status: "unavailable" };
+
+export async function fetchExplanation(block: BlockSpec): Promise<Explanation> {
+  try {
+    const response = await fetch("/api/agent/explain", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ block }),
+    });
+    const body = (await response.json()) as Explanation;
+    return response.ok || body.status === "unavailable" ? body : { status: "busy" };
+  } catch {
+    return { status: "busy" };
+  }
+}

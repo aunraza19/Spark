@@ -1,4 +1,5 @@
-import type { ScenarioSnapshot, SnapshotEntry } from "./api";
+import type { BlockSpec, ScenarioSnapshot, SnapshotEntry } from "./api";
+import { AskAgent } from "./AskAgent";
 import { formatNumber } from "./format";
 
 const signed = (value: number) => (value > 0 ? `+${formatNumber(value)}` : formatNumber(value));
@@ -24,7 +25,7 @@ function Row({ entry }: { entry: SnapshotEntry }) {
   );
 }
 
-export function ScenarioPanel({ snapshot, failed }: { snapshot: ScenarioSnapshot | null; failed?: boolean }) {
+export function ScenarioPanel({ snapshot, failed, ask }: { snapshot: ScenarioSnapshot | null; failed?: boolean; ask?: BlockSpec }) {
   return (
     <section aria-labelledby="scenario-heading" className="scenario">
       <h2 id="scenario-heading">Custom scenario</h2>
@@ -32,6 +33,7 @@ export function ScenarioPanel({ snapshot, failed }: { snapshot: ScenarioSnapshot
       {!failed && !snapshot && <p>Loading...</p>}
       {snapshot && (
         <>
+          {ask && <AskAgent block={ask} />}
           <p data-testid="scenario-target">
             Your target: {formatNumber(snapshot.habitat.o2_pct)} % oxygen at {formatNumber(snapshot.habitat.pressure_psi)} psi.
           </p>

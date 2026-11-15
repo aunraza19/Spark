@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
-import type { Summary } from "./api";
+import type { BlockSpec, Summary } from "./api";
+import { AskAgent } from "./AskAgent";
 import { Evidence } from "./Evidence";
 
-export function DataSaysCard({ summary, children }: { summary: Summary | null; children?: ReactNode }) {
+export function DataSaysCard({ summary, ask, children }: { summary: Summary | null; ask?: BlockSpec | null; children?: ReactNode }) {
   return (
     <section aria-labelledby="data-says-heading" className="data-says">
       <h3 id="data-says-heading">What the data says here</h3>
@@ -11,6 +12,7 @@ export function DataSaysCard({ summary, children }: { summary: Summary | null; c
           {line}
         </p>
       ))}
+      {ask && <AskAgent block={ask} />}
       <Evidence>{children}</Evidence>
     </section>
   );

@@ -1,5 +1,6 @@
 import type {
   About,
+  Explanation,
   ExperimentPageData,
   ExperimentRow,
   Habitat,
@@ -291,5 +292,18 @@ export const reportPageFixture: ExperimentPageData = {
       source_files: ["BRE_final_report_20220201.pdf"],
       record_note: "The test table has no oxygen or pressure columns.",
     },
+  },
+};
+
+export const explanationOk: Explanation = {
+  status: "ok",
+  key: "abc",
+  model: "gemini-3.5-flash-lite",
+  cached: false,
+  answer: {
+    seeing: "There are 20 tests inside the lunar zone. They are all from PSI-159.",
+    fire_safety: "These tests burned a gas flame on a burner. No solid material was tested here.",
+    cannot_tell: "The data does not show how a solid would behave in this atmosphere.",
+    sources: ["PSI-159", "PSI-20"],
   },
 };
