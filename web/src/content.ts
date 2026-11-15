@@ -12,3 +12,5 @@ export const CAPTIONS = {
 };
 
 export const ILLUSTRATION_LABEL = "Illustration, not data";
+
+export const RECORD_LABEL = "From the experiment record (extracted from NASA PSI)";

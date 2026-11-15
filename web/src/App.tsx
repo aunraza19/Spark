@@ -18,13 +18,18 @@ import {
   type Summary,
 } from "./api";
 import { AboutFooter } from "./AboutFooter";
+import { AboutFooterLoader } from "./AboutFooterLoader";
 import { AtmosphereMap } from "./AtmosphereMap";
 import { DataSaysCard } from "./DataSaysCard";
+import { ExperimentList } from "./ExperimentList";
+import { ExperimentPage } from "./ExperimentPage";
 import { HabitatSelector } from "./HabitatSelector";
 import { Hero } from "./Hero";
 import { KnowDontKnow } from "./KnowDontKnow";
 import { MapSummary } from "./MapSummary";
 import { PointCard } from "./PointCard";
+import { RankedList } from "./RankedList";
+import { useRoute } from "./route";
 import { PRESSURE_VIEWS } from "./scale";
 import { ScenarioPanel } from "./ScenarioPanel";
 import { ThreeLines } from "./ThreeLines";
@@ -43,7 +48,7 @@ function presetsFrom(reports: ReportCondition[]): Preset[] {
     }));
 }
 
-export default function App() {
+function Home() {
   const [loaded, setLoaded] = useState<Loaded | null>(null);
   const [failed, setFailed] = useState(false);
   const [about, setAbout] = useState<About | null>(null);
@@ -148,6 +153,7 @@ export default function App() {
               />
             </section>
             {chosen && <PointCard key={JSON.stringify(chosen)} request={chosen} onClose={() => setChosen(null)} />}
+            <RankedList selection={selection} />
           </section>
         )}
         {loaded && <KnowDontKnow summary={summary} />}
@@ -163,4 +169,25 @@ export default function App() {
       </AboutFooter>
     </>
   );
+}
+
+export default function App() {
+  const route = useRoute();
+  if (route.kind === "experiment") {
+    return (
+      <>
+        <ExperimentPage id={route.id} />
+        <AboutFooterLoader />
+      </>
+    );
+  }
+  if (route.kind === "experiments") {
+    return (
+      <>
+        <ExperimentList />
+        <AboutFooterLoader />
+      </>
+    );
+  }
+  return <Home />;
 }

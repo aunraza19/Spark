@@ -99,8 +99,7 @@ a:focus-visible,
 }
 
 @media (min-width: 720px) {
-  .page,
-  .about {
+  .page {
     padding-left: var(--space-5);
     padding-right: var(--space-5);
   }
@@ -607,6 +606,13 @@ th {
   font-size: var(--text-s);
 }
 
+@media (min-width: 720px) {
+  .about {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+}
+
 .about h2 {
   margin-top: 0;
   font-size: var(--text-l);
@@ -614,4 +620,121 @@ th {
 
 .about h3 {
   font-size: var(--text-m);
+}
+
+/* experiment pages and the ranked list */
+
+.back {
+  margin: var(--space-4) 0 var(--space-3);
+}
+
+.page-title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xl);
+}
+
+.full-name {
+  color: var(--color-graphite);
+}
+
+.evidence-label {
+  margin: 0 0 var(--space-2);
+  color: var(--color-graphite);
+  font-size: var(--text-s);
+}
+
+article ul {
+  margin: 0 0 var(--space-3);
+  padding-left: var(--space-3);
+}
+
+article li {
+  max-width: 66ch;
+  margin-bottom: var(--space-2);
+}
+
+.experiments {
+  font-size: var(--text-m);
+}
+
+.experiments td {
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+.ranked-list {
+  margin-top: var(--space-5);
+}
+
+.ranked-list h3 {
+  margin-top: 0;
+}
+
+.ranked {
+  margin: var(--space-3) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ranked li {
+  display: grid;
+  grid-template-columns: var(--space-5) minmax(0, 26rem) 180px;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+
+.rank {
+  font-size: var(--text-l);
+  font-weight: 700;
+}
+
+.ranked-name a,
+.ranked-name .note {
+  display: block;
+}
+
+.bar {
+  height: var(--space-2);
+  background: var(--color-rule);
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-ink);
+}
+
+@media (max-width: 600px) {
+  .ranked li {
+    grid-template-columns: var(--space-5) minmax(0, 1fr);
+    row-gap: var(--space-1);
+  }
+
+  .bar {
+    grid-column: 2;
+  }
+}
+
+.not-scored {
+  margin-top: var(--space-3);
+  color: var(--color-graphite);
+  font-size: var(--text-s);
+}
+
+.not-scored summary {
+  cursor: pointer;
+  color: var(--color-ink);
+  font-size: var(--text-m);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.not-scored ul {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-3);
+}
+
+.see-all {
+  margin-top: var(--space-3);
 }

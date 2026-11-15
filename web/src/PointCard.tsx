@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { fetchPointCard, type CardRequest, type PointCard as Card } from "./api";
 import { Evidence } from "./Evidence";
+import { experimentHref } from "./route";
 
 function Sources({ evidence }: { evidence: Card["evidence"] }) {
   const where =
@@ -67,6 +68,9 @@ export function PointCard({ request, onClose }: { request: CardRequest; onClose:
             <dt>What happened</dt>
             <dd>{card.result}</dd>
           </dl>
+          <p>
+            <a href={experimentHref(card.evidence.experiment_id)}>Open the experiment</a>
+          </p>
           <Evidence>
             <Sources evidence={card.evidence} />
           </Evidence>

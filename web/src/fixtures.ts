@@ -1,4 +1,16 @@
-import type { About, Habitat, MapSnapshot, Point, PointCard, ReportCondition, ScenarioSnapshot, Summary } from "./api";
+import type {
+  About,
+  ExperimentPageData,
+  ExperimentRow,
+  Habitat,
+  MapSnapshot,
+  Point,
+  PointCard,
+  RankingView,
+  ReportCondition,
+  ScenarioSnapshot,
+  Summary,
+} from "./api";
 
 export const gas: Point = {
   experiment_id: "PSI-159", test_id: "21088A1", o2_pct_min: 39.39, o2_pct_max: 39.39,
@@ -180,5 +192,79 @@ export const reportCard: PointCard = {
   evidence: {
     experiment_id: "PSI-20", test_id: "19070D1", source_file: "BRE_final_report_20220201.pdf", source_row: null,
     page: 26, figure: "Figure 9", pressure_note: null,
+  },
+};
+
+export const experimentRows: ExperimentRow[] = [
+  { psi_id: "PSI-21", name: "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame", kind: "flight", fuel_type: "Gas", tests_with_conditions: 0, tests_text: "No per-test data" },
+  { psi_id: "PSI-25", name: "Burning and Suppression of Solids - II", kind: "flight", fuel_type: "Solid material", tests_with_conditions: 129, tests_text: "129 tests" },
+  { psi_id: "PSI-60", name: "Computational and Experimental Analysis of SPICE Data Sets", kind: "ground", fuel_type: "Gas", tests_with_conditions: 0, tests_text: "No per-test data" },
+];
+
+export const pageFixture: ExperimentPageData = {
+  psi_id: "PSI-25",
+  title: "BASS-II (PSI-25)",
+  name: "Burning and Suppression of Solids - II",
+  acronym: "BASS-II",
+  kind: "flight",
+  lead: ["It burned solid material.", "It ran on the ISS.", "129 tests have oxygen and pressure on the map."],
+  key_results: [
+    "PMMA rods stay flammable in microgravity down to about 13.5 % O2.",
+    "The flammability boundary is U-shaped.",
+    "Ignition is harder than sustaining a flame.",
+    "The three Nomex samples did not ignite.",
+    "A burning wax candle ejected a droplet of molten wax.",
+  ],
+  evidence: {
+    conditions: {
+      tests_on_map: 129,
+      ranges: { o2_pct: [12, 22.2], pressure_psi: [14.5, 14.7] },
+      source_files: ["PSI-25_Experimental table_BASS-II.csv"],
+      record_note: "Oxygen was varied from about 12 to 22 % at about 1 atm.",
+    },
+    fuels: ["cast PMMA (acrylic) thin films", "SIBAL fabric (cotton-fiberglass blend)"],
+    sensors: ["thermopile radiometer (Oriel 71768), uncalibrated", "airspeed transducer (TSI 8475)"],
+    publications: [
+      {
+        title: "Microgravity flammability boundary for PMMA rods",
+        authors: "Olson Sandra L., Ferkul Paul V.",
+        doi: "10.1016/j.combustflame.2017.03.001",
+        link: "http://dx.doi.org/10.1016/j.combustflame.2017.03.001",
+      },
+    ],
+    data_quality_notes: ["Four rows have implausible final O2 values and were ignored."],
+    record_file: "data/incoming/experiments/psi-25.json",
+    report_files: ["BASS-II Summary Report.pdf"],
+  },
+};
+
+export const groundPageFixture: ExperimentPageData = {
+  ...pageFixture,
+  psi_id: "PSI-60",
+  title: "PSI-60 study (PSI-60)",
+  kind: "ground",
+  lead: ["It burned a gas flame on a burner.", "It ran as a ground study, with a computer model or lab tests.", "It has no test table of its own, so it is not on the map."],
+  key_results: [],
+  evidence: { ...pageFixture.evidence, conditions: { ...pageFixture.evidence.conditions, tests_on_map: 0, ranges: null, source_files: [] }, fuels: null, publications: [], data_quality_notes: [] },
+};
+
+export const rankingFixture: RankingView = {
+  lead: ["For the lunar zone, the closest evidence comes from PSI-159 and PSI-20.", "Solid materials were not tested in this atmosphere."],
+  rows: [
+    { rank: 1, psi_id: "PSI-159", title: "ACME CFI-G (PSI-159)", category: "Gas", match: 100, tests_inside_zone: 20, tests_with_conditions: 179, material_relevance: 25 },
+    { rank: 2, psi_id: "PSI-20", title: "ACME/BRE (PSI-20)", category: "Emulated solid", match: 100, tests_inside_zone: 1, tests_with_conditions: 3, material_relevance: 70 },
+    { rank: 3, psi_id: "PSI-69", title: "FLEX (PSI-69)", category: "Liquid", match: 98.7, tests_inside_zone: 0, tests_with_conditions: 273, material_relevance: 40 },
+  ],
+  not_scored: [
+    { psi_id: "PSI-21", title: "CDFF (PSI-21)", category: "Gas", reason: "no per-test conditions in the tables loaded", material_relevance: 25 },
+    { psi_id: "PSI-60", title: "SPICE analysis (PSI-60)", category: "Gas", reason: "ground study: no test table of its own", material_relevance: 25 },
+  ],
+  evidence: {
+    weighting_label: "our weighting",
+    distance_rule: "Each gap is a share of the target's own value.",
+    atmosphere_rule: "Atmosphere match = 100 x (1 - min(1, distance of the experiment's nearest test)).",
+    material_rule: "Material relevance is the weight of the experiment's fuel category.",
+    sort_rule: "Atmosphere match, then tests inside the zone, then material relevance, then PSI id.",
+    weights: { "Solid material": 100, "Emulated solid": 70, Liquid: 40, Gas: 25, "No burning test": 0 },
   },
 };

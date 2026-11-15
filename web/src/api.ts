@@ -89,10 +89,89 @@ export type About = {
 
 export const fetchAbout = () => getJson<About>("/api/about");
 
+export class ApiError extends Error {
+  constructor(
+    url: string,
+    readonly status: number,
+  ) {
+    super(`${url}: ${status}`);
+  }
+}
+
 async function getJson<T>(url: string): Promise<T> {
   const response = await fetch(url);
-  if (!response.ok) throw new Error(`${url}: ${response.status}`);
+  if (!response.ok) throw new ApiError(url, response.status);
   return response.json() as Promise<T>;
+}
+
+export type ExperimentRow = {
+  psi_id: string;
+  name: string;
+  kind: "flight" | "ground";
+  fuel_type: string;
+  tests_with_conditions: number;
+  tests_text: string;
+};
+
+export type ExperimentPageData = {
+  psi_id: string;
+  title: string;
+  name: string;
+  acronym: string | null;
+  kind: "flight" | "ground";
+  lead: string[];
+  key_results: string[];
+  evidence: {
+    conditions: {
+      tests_on_map: number;
+      ranges: { o2_pct: [number, number]; pressure_psi: [number, number] } | null;
+      source_files: string[];
+      record_note: string;
+    };
+    fuels: string[] | null;
+    sensors: string[];
+    publications: { title: string; authors: string | null; doi: string | null; link: string | null }[];
+    data_quality_notes: string[];
+    record_file: string;
+    report_files: string[];
+  };
+};
+
+export type RankedRow = {
+  rank: number;
+  psi_id: string;
+  title: string;
+  category: string;
+  match: number;
+  tests_inside_zone: number | null;
+  tests_with_conditions: number;
+  material_relevance: number;
+};
+
+export type RankingView = {
+  lead: string[];
+  rows: RankedRow[];
+  not_scored: { psi_id: string; title: string; category: string; reason: string; material_relevance: number }[];
+  evidence: {
+    weighting_label: string;
+    distance_rule: string;
+    atmosphere_rule: string;
+    material_rule: string;
+    sort_rule: string;
+    weights: Record<string, number>;
+  };
+};
+
+export const fetchExperimentList = () => getJson<ExperimentRow[]>("/api/experiment-list");
+export const fetchExperimentPage = (psiId: string) =>
+  getJson<ExperimentPageData>(`/api/experiment-page/${encodeURIComponent(psiId)}`);
+
+export function fetchRanking(selection: Selection) {
+  const query =
+    selection.habitatId === "custom" && selection.custom
+      ? `habitat=custom&o2=${selection.custom.o2}&psi=${selection.custom.psi}`
+      : `habitat=${selection.habitatId}`;
+  return getJson<RankingView>(`/api/ranking?${query}`);
 }
 
 export const fetchHabitats = () => getJson<Habitat[]>("/api/habitats");
