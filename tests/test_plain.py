@@ -158,6 +158,34 @@ def test_every_sentence_is_under_20_words_and_free_of_jargon(data, target):
             assert banned not in sentence.lower(), sentence
 
 
+def every_target(data):
+    targets = {h.id: h for h in data.habitats}
+    targets["iss as a custom point"] = custom(21.0, 14.7)
+    for c in data.report_conditions:
+        if c.preset_label:
+            targets[c.preset_label] = custom(c.o2_pct_min, c.pressure_psi_min)
+    return targets
+
+
+def test_every_computed_sentence_for_every_habitat_and_preset_is_under_20_words(data):
+    targets = every_target(data)
+    assert {"lunar", "iss", "spacesuit", "NASA test atmosphere"} <= set(targets)
+    for name, target in targets.items():
+        summary = map_summary(data, target)
+        for sentence in sentences(summary["lead"] + summary["know"] + summary["dont_know"]):
+            assert len(sentence.split()) < 20, f"{name}: {sentence}"
+
+
+def test_every_sentence_in_every_card_of_every_point_and_report_is_under_20_words(data, points):
+    cards = [point_card(data, p["source_file"], p["source_row"], None, None) for p in points]
+    cards += [point_card(data, None, None, c.experiment_id, c.test_id) for c in data.report_conditions]
+    assert len(cards) == len(points) + len(data.report_conditions)
+    for card in cards:
+        for text in (card["title"], card["burned"], card["conditions"], card["result"], card["evidence"]["pressure_note"] or ""):
+            for sentence in sentences([text]):
+                assert len(sentence.split()) < 20, sentence
+
+
 def test_the_plain_words_cover_every_result_in_the_points(data, points):
     known = {(o.experiment_id, o.raw) for o in data.plain.outcomes}
     used = {(p["experiment_id"], p["outcome"]) for p in points if p["outcome"] is not None}
