@@ -3,15 +3,13 @@ import css from "./styles.css?raw";
 
 describe("styles", () => {
   it.each([
-    "--color-text",
-    "--color-muted",
-    "--color-surface",
-    "--color-border",
-    "--color-accent",
+    "--color-paper",
+    "--color-ink",
+    "--color-graphite",
+    "--color-flame",
+    "--color-amber",
+    "--color-lunar",
     "--color-zone",
-    "--color-gas",
-    "--color-liquid",
-    "--color-solid",
     "--space-1",
     "--space-2",
     "--space-3",

@@ -118,6 +118,12 @@ export default function App() {
               onChange={setSelection}
               presets={presetsFrom(loaded.reports)}
             />
+            <DataSaysCard summary={summary}>
+              <MapSummary snapshot={snapshot} viewNote={note} />
+              {selection.habitatId === "custom" && selection.custom && (
+                <ScenarioPanel snapshot={scenario} failed={scenarioFailed} />
+              )}
+            </DataSaysCard>
             <section aria-labelledby="map-heading">
               <h3 id="map-heading">Atmosphere map</h3>
               <div className="view-control">
@@ -128,7 +134,7 @@ export default function App() {
                     disabled={forced}
                     onChange={(e) => setShowAll(e.target.checked)}
                   />
-                  Show all
+                  Show the full pressure range
                 </label>
                 <span data-testid="view-note" className="view-note">{note}</span>
               </div>
@@ -142,12 +148,6 @@ export default function App() {
               />
             </section>
             {chosen && <PointCard key={JSON.stringify(chosen)} request={chosen} onClose={() => setChosen(null)} />}
-            <DataSaysCard summary={summary}>
-              <MapSummary snapshot={snapshot} viewNote={note} />
-              {selection.habitatId === "custom" && selection.custom && (
-                <ScenarioPanel snapshot={scenario} failed={scenarioFailed} />
-              )}
-            </DataSaysCard>
           </section>
         )}
         {loaded && <KnowDontKnow summary={summary} />}

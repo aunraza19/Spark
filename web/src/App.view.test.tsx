@@ -47,20 +47,20 @@ describe("App pressure range", () => {
     expect(drawn + hidden).toBe(allPoints.length);
   });
 
-  it("has a Show all control that is off and enabled at first", async () => {
+  it("has a Show the full pressure range control that is off and enabled at first", async () => {
     mockApi(allPoints);
     render(<App />);
     await screen.findAllByTestId("point");
-    const control = screen.getByRole("checkbox", { name: "Show all" });
+    const control = screen.getByRole("checkbox", { name: "Show the full pressure range" });
     expect(control).not.toBeChecked();
     expect(control).toBeEnabled();
   });
 
-  it("shows every mark with Show all and goes back to 0 to 20 psi when it is switched off", async () => {
+  it("shows every mark with Show the full pressure range and goes back to 0 to 20 psi when it is switched off", async () => {
     mockApi(allPoints);
     render(<App />);
     await screen.findAllByTestId("point");
-    const control = screen.getByRole("checkbox", { name: "Show all" });
+    const control = screen.getByRole("checkbox", { name: "Show the full pressure range" });
     fireEvent.click(control);
     await waitFor(() => expect(screen.getAllByTestId("point")).toHaveLength(4));
     expect(screen.getAllByTestId("report-condition")).toHaveLength(2);
@@ -77,7 +77,7 @@ describe("App pressure range", () => {
     fireEvent.click(screen.getByRole("radio", { name: "Custom" }));
     fireEvent.change(await screen.findByLabelText("Pressure (psi)"), { target: { value: "30" } });
     await waitFor(() => expect(screen.getAllByTestId("point")).toHaveLength(4));
-    const control = screen.getByRole("checkbox", { name: "Show all" });
+    const control = screen.getByRole("checkbox", { name: "Show the full pressure range" });
     expect(control).toBeChecked();
     expect(control).toBeDisabled();
     expect(screen.getByTestId("view-note")).toHaveTextContent("because your target is above 20 psi");
@@ -93,8 +93,8 @@ describe("App pressure range", () => {
     await waitFor(() => expect(screen.getAllByTestId("point")).toHaveLength(4));
     fireEvent.change(screen.getByLabelText("Pressure (psi)"), { target: { value: "9" } });
     await waitFor(() => expect(screen.getAllByTestId("point")).toHaveLength(3));
-    expect(screen.getByRole("checkbox", { name: "Show all" })).toBeEnabled();
-    expect(screen.getByRole("checkbox", { name: "Show all" })).not.toBeChecked();
+    expect(screen.getByRole("checkbox", { name: "Show the full pressure range" })).toBeEnabled();
+    expect(screen.getByRole("checkbox", { name: "Show the full pressure range" })).not.toBeChecked();
   });
 
   it("says so when nothing is hidden", async () => {

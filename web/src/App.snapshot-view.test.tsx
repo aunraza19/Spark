@@ -32,13 +32,13 @@ describe("App sends the pressure view with the map snapshot request", () => {
     await waitFor(() => expect(mapRequests()).toContain("/api/snapshot/map?habitat=lunar&shown_psi_max=20"));
   });
 
-  it("asks again with the full range when Show all is switched on, and again when it is off", async () => {
+  it("asks again with the full range when Show the full pressure range is switched on, and again when it is off", async () => {
     render(<App />);
     await screen.findAllByTestId("point");
-    fireEvent.click(screen.getByRole("checkbox", { name: "Show all" }));
+    fireEvent.click(screen.getByRole("checkbox", { name: "Show the full pressure range" }));
     await waitFor(() => expect(mapRequests()).toContain("/api/snapshot/map?habitat=lunar&shown_psi_max=80"));
     const before = mapRequests().length;
-    fireEvent.click(screen.getByRole("checkbox", { name: "Show all" }));
+    fireEvent.click(screen.getByRole("checkbox", { name: "Show the full pressure range" }));
     await waitFor(() => expect(mapRequests().length).toBeGreaterThan(before));
     expect(mapRequests().at(-1)).toBe("/api/snapshot/map?habitat=lunar&shown_psi_max=20");
   });

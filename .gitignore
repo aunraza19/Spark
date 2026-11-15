@@ -6,3 +6,5 @@ __pycache__/
 data/incoming/documents/*
 !data/incoming/documents/.gitkeep
 web/dist/
+
+web/screenshots/

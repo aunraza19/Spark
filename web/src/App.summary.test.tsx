@@ -40,13 +40,13 @@ describe("the explorer says it in words first", () => {
     expect(lines).toEqual(lunarSummary.lead);
   });
 
-  it("puts the card inside the explorer, after the map", async () => {
+  it("puts the card inside the explorer, before the map", async () => {
     mockApi();
     render(<App />);
     await screen.findByRole("heading", { name: "What the data says here" });
     const explorer = screen.getByRole("region", { name: "Explore the tests" });
     expect(within(explorer).getByRole("heading", { name: "What the data says here" })).toBeInTheDocument();
-    expect(before(screen.getByRole("group", { name: /oxygen against pressure/i }), screen.getByRole("heading", { name: "What the data says here" }))).toBe(true);
+    expect(before(screen.getByRole("heading", { name: "What the data says here" }), screen.getByRole("group", { name: /oxygen against pressure/i }))).toBe(true);
   });
 
   it("moves the old summary behind Show the evidence", async () => {

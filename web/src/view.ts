@@ -35,6 +35,6 @@ export function viewNote(hidden: Hidden, view: PressureView, forced: boolean): s
   if (hidden.reports > 0) {
     parts.push(`${noun(hidden.reports, "report condition")} above ${zoomedMax} psi ${hidden.reports === 1 ? "is" : "are"} not shown.`);
   }
-  if (hidden.points > 0 || hidden.reports > 0) parts.push("Switch on Show all to see them.");
+  if (hidden.points > 0 || hidden.reports > 0) parts.push("Switch on Show the full pressure range to see them.");
   return parts.join(" ");
 }

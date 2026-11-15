@@ -231,3 +231,12 @@ I checked this plan, and the first draft of it, against your list.
 
 ## Font check
 Public Sans has tabular figures. Both weights carry the tnum feature, and with it every digit is 1400 units wide. The default digits are proportional (the digit 1 is 814 units, the digit 8 is 1295). So tables and chart labels set font-variant-numeric: tabular-nums, and numbers then line up.
+
+## As built
+Where the build differs from the plan above, after looking at screenshots at 1440 and 390 px:
+- The y-axis title stays "Oxygen (% by volume)". It already carries its unit, and a test pins it.
+- The zone label sits at the bottom left of the zone, because no test sits there. On a phone the limits wrap into short lines so the label fits the narrow zone.
+- Solid triangles are drawn last and larger than the other marks (they were hidden under blue squares at 14.7 psi). The ISS and preset labels are drawn above the marks so no mark hides them. A custom target that sits on a preset is named once, with the preset's name.
+- The checkbox is "Show the full pressure range".
+- The key under the chart is one wrapping line of swatches and words, with no box.
+- Marks that sit exactly on top of each other (nine solid tests near 1 atm) cannot all be clicked with a mouse. The keyboard reaches each one.
