@@ -162,14 +162,6 @@ th{font-weight:600;color:var(--muted);font-size:13px;white-space:nowrap}
 td:first-child{font-weight:600;white-space:nowrap}
 input[type=search]{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 16px;width:100%;max-width:420px}
 
-/* approaches */
-.ideas{display:flex;flex-direction:column}
-.idea{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr) auto;gap:8px 32px;align-items:start;padding:22px 0;border-top:1px solid var(--line)}
-.idea:last-child{border-bottom:1px solid var(--line)}
-.idea .head{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-.idea .tags{display:flex;gap:6px;flex-wrap:wrap}
-.tag{font:500 12px var(--text);padding:2px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue)}
-@media (max-width:760px){.idea{grid-template-columns:1fr;gap:10px}}
 
 footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:20px}
 .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 32px;list-style:none;padding:0;margin:0;font-size:15px}
@@ -208,7 +200,6 @@ footer p{color:var(--muted);font-size:13px;max-width:80ch}
   <button role="tab" id="tab-overview" aria-selected="true" aria-controls="p-overview" data-tab="overview">Overview</button>
   <button role="tab" id="tab-lab" aria-selected="false" aria-controls="p-lab" data-tab="lab">Flame lab</button>
   <button role="tab" id="tab-data" aria-selected="false" aria-controls="p-data" data-tab="data">Data</button>
-  <button role="tab" id="tab-ideas" aria-selected="false" aria-controls="p-ideas" data-tab="ideas">Approaches</button>
 </nav>
 
 <main>
@@ -321,16 +312,6 @@ footer p{color:var(--muted);font-size:13px;max-width:80ch}
   </section>
 </div>
 
-<!-- APPROACHES -->
-<div id="p-ideas" role="tabpanel" aria-labelledby="tab-ideas" hidden class="stack" style="gap:24px">
-  <section class="col">
-    <h2>What other teams are building</h2>
-    <p class="muted" style="max-width:62ch">Public repositories for this challenge. Use them to find a gap, not to copy.</p>
-    <div class="seg" id="filters" aria-label="Filter approaches"></div>
-  </section>
-  <div class="ideas" id="cards"></div>
-  <p class="note">Common pitfall: placeholder rows presented as results. Use only real PSI data, label any ground-based model separately and avoid train and test leakage.</p>
-</div>
 </main>
 
 <footer id="links">
@@ -358,7 +339,7 @@ footer p{color:var(--muted);font-size:13px;max-width:80ch}
 
   /* ---------- Tabs ---------- */
   var tabBtns = Array.prototype.slice.call(document.querySelectorAll('#tabs [role=tab]'));
-  var panels = {overview:$('p-overview'),lab:$('p-lab'),data:$('p-data'),ideas:$('p-ideas')};
+  var panels = {overview:$('p-overview'),lab:$('p-lab'),data:$('p-data')};
   function showTab(name){
     if(!panels[name]) name='overview';
     Object.keys(panels).forEach(function(k){ panels[k].hidden = (k!==name); });
@@ -687,37 +668,6 @@ footer p{color:var(--muted);font-size:13px;max-width:80ch}
   }
   $('q').addEventListener('input',drawTable);
   drawBars(); drawTable();
-
-  /* ---------- Approaches ---------- */
-  var ideas = [
-    {t:'Prediction model',tags:['Model'],d:'Estimates extinction probability and burning-rate constant from fuel, O2, CO2, N2, pressure and droplet size on FLEX data. Streamlit front end.',u:'https://github.com/shaharia179/flame-in-freefall'},
-    {t:'Fire envelope screening',tags:['Model','Visual'],d:'Maps oxygen, pressure, gravity and ventilation to flag where a material passes the 1 g test yet burns in microgravity. Includes a live NASA research feed.',u:'https://github.com/samuelakosaonyejekwe/flame-in-freefall'},
-    {t:'Evidence explorer',tags:['Explorer'],d:'Question-led interface that ties each answer to matching NASA tests and shows evidence gaps. Its repository states its rows are illustrative demo data.',u:'https://github.com/meherabmehu/Flame_On'},
-    {t:'3D fire lab',tags:['Visual'],d:'Rack glovebox inside an ISS interior scan, with a flame driven by O2, pressure and flow sliders and a verdict computed from PSI rows.',u:'https://github.com/eres0045/spica-firelab'},
-    {t:'Education route',tags:['Education','Explorer'],d:'Adventure for ages 8 to 13 with page-cited BASS-II tests, a 3D experiment game and an evidence-gap map.',u:'https://github.com/A-K-M-Asifuzzaman/MicroFire-Atlas'},
-    {t:'Physics-informed platform',tags:['Model','Visual'],d:'Streamlit dashboard mixing verified flight records with a separately labelled ground-based model and leakage-free validation.',u:'https://github.com/ngu-ming-henn/Nasa-Space-Apps-Sarawak'}
-  ];
-  var allTags = ['All','Model','Visual','Explorer','Education'], active = 'All';
-  function drawIdeas(){
-    var f = $('filters'); f.innerHTML='';
-    allTags.forEach(function(t){
-      var b = document.createElement('button'); b.type='button'; b.textContent=t; b.setAttribute('aria-pressed',String(t===active));
-      b.addEventListener('click',function(){active=t;drawIdeas()}); f.appendChild(b);
-    });
-    var c = $('cards'); c.innerHTML='';
-    ideas.filter(function(i){return active==='All'||i.tags.indexOf(active)>-1}).forEach(function(i){
-      var row = document.createElement('article'); row.className='idea';
-      var head = document.createElement('div'); head.className='head';
-      var h = document.createElement('h3'); h.textContent=i.t;
-      var tg = document.createElement('div'); tg.className='tags';
-      i.tags.forEach(function(x){var s=document.createElement('span'); s.className='tag'; s.textContent=x; tg.appendChild(s)});
-      head.appendChild(h); head.appendChild(tg);
-      var p = document.createElement('p'); p.className='muted'; p.textContent=i.d;
-      var a = document.createElement('a'); a.href=i.u; a.target='_blank'; a.rel='noopener'; a.textContent='Open repository';
-      row.appendChild(head); row.appendChild(p); row.appendChild(a); c.appendChild(row);
-    });
-  }
-  drawIdeas();
 
   /* ---------- Start ---------- */
   showTab(location.hash.replace('#',''));

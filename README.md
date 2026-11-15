@@ -1,6 +1,6 @@
 # Spark: Flame in Freefall
 
-A web dashboard for the NASA Space Apps 2026 challenge "Flame in Freefall".
+A web dashboard for the NASA Space Apps 2026 challenge "Flame in Freefall", built by team Neural Spark.
 
 ## What the site does
 
@@ -71,6 +71,8 @@ Experiments that are not in PSI (SoFIE, FM2, Saffire-IV to VI) are not shown as 
 
 ## Use of AI
 
+AI helped in three places: Claude Code wrote much of the code, Claude helped produce the experiment records (see below), and Google Gemini powers Spark agent.
+
 **The code.** Much of the code, the tests and this README were written with Claude Code, Anthropic's AI coding assistant. We worked in small steps. Tests were written first and shown failing. A person reviewed and approved the work, and every commit passes the full test suite and the lint. At the time of writing that is about 930 automated tests (512 Python, 415 web). The AI did not write the data. The numbers on the site come from the data files, and tests check them.
 
 **Spark agent.** The "Ask Spark agent" button uses Google Gemini, model `gemini-3.5-flash-lite`, through Google AI Studio or Vertex AI. It explains one block of the page (the map summary, a custom scenario, the ranked list, or an experiment page) in four parts: what you are seeing, what it means for fire safety, what the data cannot tell you, and the sources. This is how it is kept honest:
@@ -84,7 +86,7 @@ Under a checked explanation, **Ask more** opens a chat panel that starts from th
 
 What the check cannot do: it proves numbers and sources are real, not that a sentence means the right thing. People have not reviewed the answers. The prompt files are in `data/reference/agent/`.
 
-**The experiment records.** [TO FILL: describe how the experiment JSON records in `data/incoming/experiments` were made, for example which tool or model produced them and how they were checked.]
+**The experiment records.** The experiment JSON records were made by our teammate Tomás Gonçalves using Claude, Anthropic's AI assistant, which read the NASA PSI investigation pages and reports and produced one structured record per experiment. The records were then checked by our validator (`scripts/validate_data.py`) and by spot checks against the source files.
 
 ## References
 
@@ -114,6 +116,6 @@ Direct dependencies and their licences, read from the package files.
 | @types/react, @types/react-dom | 19.3.0 | MIT |
 
 - **Font.** Public Sans, copyright 2015 The Public Sans Project Authors, under the SIL Open Font License 1.1. https://github.com/uswds/public-sans. It is served from this repository, not from a font service.
-- **Flame animation.** Adapted from a page made by our teammate, kept as `docs/inspiration/flame-lab.html`. [TO FILL: teammate's name.]
+- **Flame animation.** Adapted from a page made by our teammate Tomás Gonçalves, kept as `docs/inspiration/flame-lab.html`.
 - **Screenshots** in this README were taken with Playwright (Apache-2.0), a development tool that is not part of the repository or the tests.
-- **Our own licence.** [TO FILL.]
+- **Our own licence.** Our code is released under the MIT licence (see `LICENSE`). NASA data keeps its own licence (CC0-1.0 on the PSI pages checked).
