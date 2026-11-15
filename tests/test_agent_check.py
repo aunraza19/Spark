@@ -120,3 +120,12 @@ def test_every_part_must_be_a_non_empty_text(field):
 def test_the_answer_must_be_an_object_with_a_list_of_sources():
     assert check_answer(with_(sources="PSI-159"), SNAPSHOT, BANNED) != []
     assert check_answer(["not", "an", "object"], SNAPSHOT, BANNED) != []
+
+
+def test_more_than_six_sources_are_rejected_because_a_list_of_every_id_helps_nobody():
+    ids = [f"PSI-{n}" for n in range(1, 9)]
+    snapshot = {"ids": " ".join(ids)}
+    answer = {"seeing": "A.", "fire_safety": "B.", "cannot_tell": "C.", "sources": ids}
+    reasons = check_answer(answer, snapshot, BANNED)
+    assert any("at most six" in r for r in reasons)
+    assert check_answer({**answer, "sources": ids[:6]}, snapshot, BANNED) == []

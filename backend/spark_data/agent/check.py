@@ -42,6 +42,8 @@ def check_answer(answer: dict, snapshot: dict, banned: list[str]) -> list[str]:
             reasons.append(f"The source {source} is not a PSI id such as PSI-159.")
         elif source not in snapshot_ids:
             reasons.append(f"The source {source} is not in the data.")
+    if len(sources) > 6:
+        reasons.append("Name at most six sources: only the PSI ids your answer rests on, not every id in the data.")
     if snapshot_ids and not sources:
         reasons.append("Name at least one PSI id from the data in sources.")
 

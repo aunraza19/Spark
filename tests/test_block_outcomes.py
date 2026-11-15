@@ -230,3 +230,7 @@ def test_a_point_ranking_counts_the_tests_at_the_target(data):
 
 def test_the_prompt_tells_the_model_to_use_the_counts_for_a_ranked_list():
     assert "outcomes.experiments" in FILES.explain_prompt
+
+
+def test_the_prompt_asks_for_only_the_ids_the_answer_rests_on():
+    assert "at most six" in FILES.explain_prompt.lower()

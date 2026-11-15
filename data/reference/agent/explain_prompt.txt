@@ -28,4 +28,4 @@ Answer as JSON with exactly these four fields:
 - seeing: What you are seeing. One to three short sentences about what this block shows.
 - fire_safety: What it means for fire safety. One to three short sentences. Stay with what the tests show.
 - cannot_tell: What the data cannot tell you. One to three short sentences about the limits of this data.
-- sources: a list of the PSI ids from the snapshot that your answer rests on. At least one.
+- sources: a list of the PSI ids from the snapshot that your answer rests on, and that you name in the answer. At least one and at most six. Never list every id in the snapshot.
