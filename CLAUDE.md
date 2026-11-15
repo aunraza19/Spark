@@ -47,6 +47,7 @@ Audience: professors, students, aerospace researchers and engineers.
 - `uv run ruff check .` lint (ruff default rules)
 - `uv run python scripts/validate_data.py` check the experiment records (exit 1 on any error)
 - `uv run python scripts/build_data.py` write the clean files into `data/clean`
+- `uv run uvicorn --factory spark_data.api:create_app --port 8000` run the API (data from `data/clean`, read-only)
 
 ## Rules and context
 @docs/working-rules.md
