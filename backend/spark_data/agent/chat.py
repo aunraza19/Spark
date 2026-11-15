@@ -107,6 +107,8 @@ def run_chat(model: Model, files: AgentFiles, data: Data, context: dict, message
         f"\n\nExperiment names:\n{canonical(context['names'])}"
     )
     sent = list(messages)
+    if sent and sent[0].get("role") == "assistant":
+        sent.insert(0, {"role": "user", "text": "Explain this block."})
     try:
         for _ in range(MAX_ROUNDS):
             text = ""

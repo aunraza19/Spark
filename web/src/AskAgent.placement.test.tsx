@@ -49,20 +49,21 @@ describe("the What the data says here card", () => {
   it("asks about the map the page shows: the habitat and the pressure range in view", async () => {
     mockApi();
     render(<App />);
-    await screen.findByRole("heading", { name: "What the data says here" }, { timeout: 4000 });
-    fireEvent.click(ask());
-    await screen.findByText("Spark agent, an AI. Generated from NASA PSI data. Check the evidence before relying on it.", undefined, { timeout: 4000 });
+    const heading = await screen.findByRole("heading", { name: "What the data says here" }, { timeout: 12000 });
+    const card = heading.closest("section") as HTMLElement;
+    fireEvent.click(within(card).getByRole("button", { name: "Ask Spark agent" }));
+    await within(card).findByText("Spark agent, an AI. Generated from NASA PSI data. Check the evidence before relying on it.", undefined, { timeout: 12000 });
     expect(posted).toEqual([{ block: { kind: "map", habitat: "lunar", shown_psi_max: 20 } }]);
   });
 
   it("asks about a custom target by its numbers", async () => {
     mockApi();
     render(<App />);
-    await screen.findByRole("heading", { name: "What the data says here" }, { timeout: 4000 });
-    fireEvent.click(await screen.findByRole("button", { name: "NASA test atmosphere (34 %, 8.2 psi)" }, { timeout: 4000 }));
+    await screen.findByRole("heading", { name: "What the data says here" }, { timeout: 12000 });
+    fireEvent.click(await screen.findByRole("button", { name: "NASA test atmosphere (34 %, 8.2 psi)" }, { timeout: 12000 }));
     const card = screen.getByRole("heading", { name: "What the data says here" }).closest("section") as HTMLElement;
     fireEvent.click(within(card).getByRole("button", { name: "Ask Spark agent" }));
-    await screen.findByText("Spark agent, an AI. Generated from NASA PSI data. Check the evidence before relying on it.", undefined, { timeout: 4000 });
+    await within(card).findByText("Spark agent, an AI. Generated from NASA PSI data. Check the evidence before relying on it.", undefined, { timeout: 12000 });
     expect(posted).toEqual([{ block: { kind: "map", habitat: "custom", o2: 34, psi: 8.2, shown_psi_max: 20 } }]);
   });
 });

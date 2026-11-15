@@ -14,3 +14,5 @@ export const CAPTIONS = {
 export const ILLUSTRATION_LABEL = "Illustration, not data";
 
 export const RECORD_LABEL = "From the experiment record (extracted from NASA PSI)";
+
+export const AGENT_NOTE = "Spark agent, an AI. Generated from NASA PSI data. Check the evidence before relying on it.";

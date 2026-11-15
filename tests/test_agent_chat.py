@@ -90,7 +90,7 @@ def test_the_model_gets_the_chat_prompt_the_context_snapshot_the_messages_and_bo
     assert system.startswith("CHAT SYSTEM")
     assert "will burn" in system
     assert json.dumps(CONTEXT["snapshot"], sort_keys=True, separators=(",", ":")) in system
-    assert sent == messages
+    assert sent == [{"role": "user", "text": "Explain this block."}, *messages]
     assert {t["name"] for t in tools} == {"query_tests", "get_experiment"}
 
 
@@ -126,3 +126,18 @@ def test_the_chat_stops_after_a_few_rounds_of_tool_calls(data):
 def test_a_busy_model_becomes_one_error_event_with_a_plain_message(data):
     out = events(FakeModel(error=Busy("429")), data, [{"role": "user", "text": "Hi"}])
     assert out == [{"type": "error", "message": "Spark agent is busy. Try again in a minute."}]
+
+
+def test_a_chat_that_opens_with_the_explanation_gets_a_user_turn_in_front_of_it(data):
+    model = FakeModel(turns=[[{"type": "text", "delta": "ok"}]])
+    messages = [{"role": "assistant", "text": "What you are seeing: ...", "tool_calls": []}, {"role": "user", "text": "Why?"}]
+    events(model, data, messages)
+    sent = model.chat_calls[0][1]
+    assert sent[0] == {"role": "user", "text": "Explain this block."}
+    assert sent[1]["role"] == "assistant" and sent[2]["role"] == "user"
+
+
+def test_a_chat_that_already_opens_with_the_user_is_left_alone(data):
+    model = FakeModel(turns=[[{"type": "text", "delta": "ok"}]])
+    events(model, data, [{"role": "user", "text": "Hi"}])
+    assert model.chat_calls[0][1] == [{"role": "user", "text": "Hi"}]
