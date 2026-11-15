@@ -87,3 +87,19 @@ export function fetchMapSnapshot(selection: Selection) {
       : `habitat=${selection.habitatId}`;
   return getJson<{ key: string; snapshot: MapSnapshot }>(`/api/snapshot/map?${query}`);
 }
+
+export type ScenarioSnapshot = {
+  schema: string;
+  data_version: string;
+  panel: "scenario";
+  habitat: { id: string; kind: string; source: string; o2_pct: number; pressure_psi: number };
+  view: {
+    distance_rule: string;
+    tests_at_target: number;
+    nearest_tests: SnapshotEntry[];
+    inside_lunar_zone: boolean;
+  };
+};
+
+export const fetchScenarioSnapshot = (custom: { o2: number; psi: number }) =>
+  getJson<{ key: string; snapshot: ScenarioSnapshot }>(`/api/snapshot/scenario?o2=${custom.o2}&psi=${custom.psi}`);

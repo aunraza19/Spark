@@ -1,4 +1,4 @@
-import type { Habitat, MapSnapshot, Point, ReportCondition } from "./api";
+import type { Habitat, MapSnapshot, Point, ReportCondition, ScenarioSnapshot } from "./api";
 
 export const gas: Point = {
   experiment_id: "PSI-159", test_id: "21088A1", o2_pct_min: 39.39, o2_pct_max: 39.39,
@@ -84,4 +84,21 @@ export const reportFar: ReportCondition = {
   experiment_id: "PSI-20", test_id: "19999X1", o2_pct_min: 30, o2_pct_max: 30,
   pressure_psi_min: 30, pressure_psi_max: 30, fuel: "ethylene/N2 on a porous burner", outcome: "steady",
   source: { file: "BRE_final_report_20220201.pdf", page: 1, figure: "Figure 1" },
+};
+
+export const scenarioSnapshot: ScenarioSnapshot = {
+  schema: "spark.snapshot.v1", data_version: "163e1fe25dcd", panel: "scenario",
+  habitat: { id: "custom", kind: "point", o2_pct: 28, pressure_psi: 9, source: "User input" },
+  view: {
+    distance_rule: "Each gap is a share of the target's own value: distance = hypot(oxygen gap / target oxygen, pressure gap / target pressure). A test inside the zone has distance 0.",
+    tests_at_target: 0,
+    inside_lunar_zone: false,
+    nearest_tests: [
+      { experiment_id: "PSI-20", test_id: "19056F1", basis: "report", o2_pct: 27, pressure_psi: 10.2, gap_o2_pct_points: -1, gap_psi: 1.2, distance: 0.138, source_file: "BRE_final_report_20220201.pdf", source_row: null },
+      { experiment_id: "PSI-20", test_id: "19070K1", basis: "report", o2_pct: 26.5, pressure_psi: 10.2, gap_o2_pct_points: -1.5, gap_psi: 1.2, distance: 0.144, source_file: "BRE_final_report_20220201.pdf", source_row: null },
+      { experiment_id: "PSI-69", test_id: "41", basis: "test", o2_pct: 30, pressure_psi: 10.332, gap_o2_pct_points: 2, gap_psi: 1.332, distance: 0.164, source_file: "PSI-69_Experimental table_FLEX.csv", source_row: 42 },
+      { experiment_id: "PSI-69", test_id: "43", basis: "test", o2_pct: 30, pressure_psi: 10.343, gap_o2_pct_points: 2, gap_psi: 1.343, distance: 0.165, source_file: "PSI-69_Experimental table_FLEX.csv", source_row: 44 },
+      { experiment_id: "PSI-69", test_id: "42", basis: "test", o2_pct: 30, pressure_psi: 10.345, gap_o2_pct_points: 2, gap_psi: 1.345, distance: 0.166, source_file: "PSI-69_Experimental table_FLEX.csv", source_row: 43 },
+    ],
+  },
 };

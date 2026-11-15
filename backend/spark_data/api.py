@@ -7,7 +7,20 @@ from fastapi.staticfiles import StaticFiles
 from spark_data.data import load_data
 from spark_data.models import Habitat
 from spark_data.paths import CLEAN_DIR, REFERENCE_DIR, WEB_DIST
-from spark_data.snapshots import build_map_snapshot, snapshot_key
+from spark_data.snapshots import (
+    build_map_snapshot,
+    build_scenario_snapshot,
+    snapshot_key,
+)
+
+
+def _custom_target(o2: float | None, psi: float | None) -> Habitat:
+    valid = o2 is not None and psi is not None and 0 < o2 <= 100 and 0 < psi and math.isfinite(psi)
+    if not valid:
+        raise HTTPException(
+            status_code=422, detail="custom needs oxygen above 0 and up to 100 %, and pressure above 0 psi"
+        )
+    return Habitat(id="custom", label="Custom", kind="point", o2_pct=o2, pressure_psi=psi, source="User input")
 
 
 def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dist: Path = WEB_DIST) -> FastAPI:
@@ -51,17 +64,17 @@ def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dis
     @app.get("/api/snapshot/map")
     def get_map_snapshot(habitat: str, o2: float | None = None, psi: float | None = None):
         if habitat == "custom":
-            valid = o2 is not None and psi is not None and 0 < o2 <= 100 and 0 < psi and math.isfinite(psi)
-            if not valid:
-                raise HTTPException(
-                    status_code=422, detail="custom needs oxygen above 0 and up to 100 %, and pressure above 0 psi"
-                )
-            target = Habitat(id="custom", label="Custom", kind="point", o2_pct=o2, pressure_psi=psi, source="User input")
+            target = _custom_target(o2, psi)
         else:
             target = next((h for h in data.habitats if h.id == habitat and h.kind != "note"), None)
             if target is None:
                 raise HTTPException(status_code=404, detail="unknown habitat")
         snapshot = build_map_snapshot(data, target)
+        return {"key": snapshot_key(snapshot), "snapshot": snapshot}
+
+    @app.get("/api/snapshot/scenario")
+    def get_scenario_snapshot(o2: float | None = None, psi: float | None = None):
+        snapshot = build_scenario_snapshot(data, _custom_target(o2, psi))
         return {"key": snapshot_key(snapshot), "snapshot": snapshot}
 
     if (web_dist / "index.html").is_file():

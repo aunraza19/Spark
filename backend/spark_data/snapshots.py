@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from spark_data.models import Habitat
-from spark_data.ranking import Condition, Gap, nearest
+from spark_data.ranking import Condition, Gap, gap, nearest
 from spark_data.reference import in_zone
 
 if TYPE_CHECKING:
@@ -117,5 +117,25 @@ def build_map_snapshot(data: "Data", habitat: Habitat) -> dict:
         "panel": "map",
         "habitat": _habitat(habitat),
         "view": view,
+    }
+    return round_numbers(snapshot)
+
+
+def build_scenario_snapshot(data: "Data", habitat: Habitat) -> dict:
+    if habitat.kind != "point":
+        raise ValueError("a scenario needs a point target")
+    lunar = next(h for h in data.habitats if h.id == "lunar")
+    closest = nearest(data.conditions, habitat, 5)
+    snapshot = {
+        "schema": SCHEMA,
+        "data_version": data.data_version,
+        "panel": "scenario",
+        "habitat": _habitat(habitat),
+        "view": {
+            "distance_rule": data.ranking.rules.distance_rule,
+            "tests_at_target": sum(gap(c, habitat).distance == 0 for c in data.conditions),
+            "nearest_tests": [_entry(c, g, habitat) for c, g in closest],
+            "inside_lunar_zone": in_zone(habitat.o2_pct, habitat.pressure_psi, lunar),
+        },
     }
     return round_numbers(snapshot)

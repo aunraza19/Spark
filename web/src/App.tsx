@@ -4,15 +4,18 @@ import {
   fetchMapSnapshot,
   fetchPoints,
   fetchReportConditions,
+  fetchScenarioSnapshot,
   type Habitat,
   type MapSnapshot,
   type Point,
   type ReportCondition,
+  type ScenarioSnapshot,
   type Selection,
 } from "./api";
 import { AtmosphereMap } from "./AtmosphereMap";
 import { HabitatSelector } from "./HabitatSelector";
 import { MapSummary } from "./MapSummary";
+import { ScenarioPanel } from "./ScenarioPanel";
 import { hiddenCounts, needsFullRange, viewNote } from "./view";
 
 type Loaded = { habitats: Habitat[]; points: Point[]; reports: ReportCondition[] };
@@ -23,6 +26,8 @@ export default function App() {
   const [selection, setSelection] = useState<Selection>({ habitatId: "lunar" });
   const [snapshot, setSnapshot] = useState<MapSnapshot | null>(null);
   const [showAll, setShowAll] = useState(false);
+  const [scenario, setScenario] = useState<ScenarioSnapshot | null>(null);
+  const [scenarioFailed, setScenarioFailed] = useState(false);
 
   useEffect(() => {
     Promise.all([fetchHabitats(), fetchPoints(), fetchReportConditions()])
@@ -36,6 +41,19 @@ export default function App() {
     fetchMapSnapshot(selection)
       .then((result) => current && setSnapshot(result.snapshot))
       .catch(() => current && setFailed(true));
+    return () => {
+      current = false;
+    };
+  }, [selection]);
+
+  useEffect(() => {
+    setScenario(null);
+    setScenarioFailed(false);
+    if (selection.habitatId !== "custom" || !selection.custom) return;
+    let current = true;
+    fetchScenarioSnapshot(selection.custom)
+      .then((result) => current && setScenario(result.snapshot))
+      .catch(() => current && setScenarioFailed(true));
     return () => {
       current = false;
     };
@@ -79,6 +97,9 @@ export default function App() {
               {[...new Set(loaded.reports.map((r) => r.source.file))].join(", ")} (data/reference/report_conditions.json).
             </p>
           </section>
+          {selection.habitatId === "custom" && selection.custom && (
+            <ScenarioPanel snapshot={scenario} failed={scenarioFailed} />
+          )}
         </>
       )}
     </main>
