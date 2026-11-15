@@ -87,7 +87,7 @@ def _closest_per_experiment(items: list[Condition], target: Habitat, count: int)
     return [_entry(condition, found, target) for condition, found in ordered]
 
 
-def build_map_snapshot(data: "Data", habitat: Habitat) -> dict:
+def build_map_snapshot(data: "Data", habitat: Habitat, shown_psi_max: float | None = None) -> dict:
     view: dict = {
         "ambient_points_shown": len(data.points),
         "burner_points_hidden": data.burner_count,
@@ -107,6 +107,10 @@ def build_map_snapshot(data: "Data", habitat: Habitat) -> dict:
         view["nearest_outside_zone"] = _closest_per_experiment(outside, habitat, 3)
     else:
         view["nearest_tests_by_experiment"] = _closest_per_experiment(data.conditions, habitat, 3)
+    if shown_psi_max is not None:
+        view["pressure_range_shown"] = [0, shown_psi_max]
+        view["points_not_shown"] = sum(p["pressure_psi_max"] > shown_psi_max for p in data.points)
+        view["report_conditions_not_shown"] = sum(c.pressure_psi_max > shown_psi_max for c in data.report_conditions)
     with_conditions = {c.experiment_id for c in data.conditions}
     view["experiments_without_conditions"] = sorted(
         (i for i in data.entries if i not in with_conditions), key=lambda i: int(i[4:])

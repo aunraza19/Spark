@@ -40,7 +40,7 @@ describe("App first screen", () => {
   it("asks the API for the lunar snapshot and shows its summary", async () => {
     render(<App />);
     expect(await screen.findByTestId("inside-zone")).toHaveTextContent("20 test points");
-    expect(requested).toContain("/api/snapshot/map?habitat=lunar");
+    expect(requested).toContain("/api/snapshot/map?habitat=lunar&shown_psi_max=20");
   });
 
   it("never asks the API for burner points", async () => {
@@ -55,7 +55,7 @@ describe("App first screen", () => {
     fireEvent.click(screen.getByRole("radio", { name: "ISS cabin" }));
     await waitFor(() => expect(screen.queryByTestId("zone")).toBeNull());
     expect(screen.getByTestId("habitat-marker")).toBeInTheDocument();
-    await waitFor(() => expect(requested).toContain("/api/snapshot/map?habitat=iss"));
+    await waitFor(() => expect(requested).toContain("/api/snapshot/map?habitat=iss&shown_psi_max=20"));
   });
 
   it("sends a valid custom scenario to the API and marks it on the map", async () => {
@@ -64,7 +64,7 @@ describe("App first screen", () => {
     fireEvent.click(screen.getByRole("radio", { name: "Custom" }));
     fireEvent.change(await screen.findByLabelText("Oxygen (%)"), { target: { value: "28" } });
     fireEvent.change(screen.getByLabelText("Pressure (psi)"), { target: { value: "9" } });
-    await waitFor(() => expect(requested).toContain("/api/snapshot/map?habitat=custom&o2=28&psi=9"));
+    await waitFor(() => expect(requested).toContain("/api/snapshot/map?habitat=custom&o2=28&psi=9&shown_psi_max=20"));
     expect(screen.getByTestId("habitat-marker")).toBeInTheDocument();
   });
 

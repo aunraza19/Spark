@@ -62,14 +62,18 @@ def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dis
         return data.entries[psi_id]
 
     @app.get("/api/snapshot/map")
-    def get_map_snapshot(habitat: str, o2: float | None = None, psi: float | None = None):
+    def get_map_snapshot(
+        habitat: str, o2: float | None = None, psi: float | None = None, shown_psi_max: float | None = None
+    ):
+        if shown_psi_max is not None and not (shown_psi_max > 0 and math.isfinite(shown_psi_max)):
+            raise HTTPException(status_code=422, detail="shown_psi_max must be above 0 psi")
         if habitat == "custom":
             target = _custom_target(o2, psi)
         else:
             target = next((h for h in data.habitats if h.id == habitat and h.kind != "note"), None)
             if target is None:
                 raise HTTPException(status_code=404, detail="unknown habitat")
-        snapshot = build_map_snapshot(data, target)
+        snapshot = build_map_snapshot(data, target, shown_psi_max)
         return {"key": snapshot_key(snapshot), "snapshot": snapshot}
 
     @app.get("/api/snapshot/scenario")

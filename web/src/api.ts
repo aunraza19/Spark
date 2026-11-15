@@ -65,6 +65,9 @@ export type MapSnapshot = {
     nearest_outside_zone?: SnapshotEntry[];
     nearest_tests_by_experiment?: SnapshotEntry[];
     experiments_without_conditions: string[];
+    pressure_range_shown?: [number, number];
+    points_not_shown?: number;
+    report_conditions_not_shown?: number;
   };
 };
 
@@ -80,12 +83,12 @@ export const fetchHabitats = () => getJson<Habitat[]>("/api/habitats");
 export const fetchPoints = () => getJson<Point[]>("/api/points");
 export const fetchReportConditions = () => getJson<ReportCondition[]>("/api/report-conditions");
 
-export function fetchMapSnapshot(selection: Selection) {
+export function fetchMapSnapshot(selection: Selection, shownPsiMax: number) {
   const query =
     selection.habitatId === "custom" && selection.custom
       ? `habitat=custom&o2=${selection.custom.o2}&psi=${selection.custom.psi}`
       : `habitat=${selection.habitatId}`;
-  return getJson<{ key: string; snapshot: MapSnapshot }>(`/api/snapshot/map?${query}`);
+  return getJson<{ key: string; snapshot: MapSnapshot }>(`/api/snapshot/map?${query}&shown_psi_max=${shownPsiMax}`);
 }
 
 export type ScenarioSnapshot = {

@@ -16,6 +16,7 @@ import { AtmosphereMap } from "./AtmosphereMap";
 import { HabitatSelector } from "./HabitatSelector";
 import { MapSummary } from "./MapSummary";
 import { ScenarioPanel } from "./ScenarioPanel";
+import { PRESSURE_VIEWS } from "./scale";
 import { hiddenCounts, needsFullRange, viewNote } from "./view";
 
 type Loaded = { habitats: Habitat[]; points: Point[]; reports: ReportCondition[] };
@@ -34,17 +35,6 @@ export default function App() {
       .then(([habitats, points, reports]) => setLoaded({ habitats, points, reports }))
       .catch(() => setFailed(true));
   }, []);
-
-  useEffect(() => {
-    let current = true;
-    setSnapshot(null);
-    fetchMapSnapshot(selection)
-      .then((result) => current && setSnapshot(result.snapshot))
-      .catch(() => current && setFailed(true));
-    return () => {
-      current = false;
-    };
-  }, [selection]);
 
   useEffect(() => {
     setScenario(null);
@@ -67,6 +57,17 @@ export default function App() {
   const forced = needsFullRange(target);
   const view = showAll || forced ? "full" : "zoomed";
   const note = loaded ? viewNote(hiddenCounts(loaded.points, loaded.reports, view), view, forced) : "";
+
+  useEffect(() => {
+    let current = true;
+    setSnapshot(null);
+    fetchMapSnapshot(selection, PRESSURE_VIEWS[view][1])
+      .then((result) => current && setSnapshot(result.snapshot))
+      .catch(() => current && setFailed(true));
+    return () => {
+      current = false;
+    };
+  }, [selection, view]);
 
   return (
     <main className="page">
