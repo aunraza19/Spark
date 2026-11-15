@@ -46,7 +46,7 @@ describe("the explorer says it in words first", () => {
     await screen.findByRole("heading", { name: "What the data says here" });
     const explorer = screen.getByRole("region", { name: "Explore the tests" });
     expect(within(explorer).getByRole("heading", { name: "What the data says here" })).toBeInTheDocument();
-    expect(before(screen.getByRole("img", { name: /oxygen against pressure/i }), screen.getByRole("heading", { name: "What the data says here" }))).toBe(true);
+    expect(before(screen.getByRole("group", { name: /oxygen against pressure/i }), screen.getByRole("heading", { name: "What the data says here" }))).toBe(true);
   });
 
   it("moves the old summary behind Show the evidence", async () => {

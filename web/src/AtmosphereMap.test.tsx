@@ -116,6 +116,6 @@ describe("AtmosphereMap", () => {
 
   it("describes the chart for screen readers", () => {
     render(<AtmosphereMap points={points} reportConditions={[]} habitat={lunar} />);
-    expect(screen.getByRole("img", { name: /oxygen against pressure/i })).toBeInTheDocument();
+    expect(screen.getByRole("group", { name: /oxygen against pressure/i })).toBeInTheDocument();
   });
 });

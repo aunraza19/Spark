@@ -176,7 +176,7 @@ export function AtmosphereMap({ points, reportConditions, habitat, view = "full"
       <svg
         ref={svg}
         viewBox={`0 0 ${width} ${height}`}
-        role="img"
+        role="group"
         aria-label="Oxygen against pressure: one mark for each ambient test point"
       >
         {ticks(pressureDomain, view === "zoomed" ? 5 : 10).map((v) => (

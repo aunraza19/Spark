@@ -53,7 +53,7 @@ describe("page structure", () => {
     await screen.findAllByTestId("point");
     const explorer = screen.getByRole("region", { name: "Explore the tests" });
     expect(within(explorer).getByRole("radio", { name: "Lunar base or rover" })).toBeInTheDocument();
-    expect(within(explorer).getByRole("img", { name: /oxygen against pressure/i })).toBeInTheDocument();
+    expect(within(explorer).getByRole("group", { name: /oxygen against pressure/i })).toBeInTheDocument();
   });
 
   it("offers the NASA test atmosphere as a one-click preset built from the report data", async () => {
