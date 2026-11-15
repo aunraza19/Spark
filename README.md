@@ -29,15 +29,12 @@ You need Git, [uv](https://docs.astral.sh/uv/) (it installs Python 3.12 for you)
 ```
 git clone https://github.com/aunraza19/Spark.git
 cd Spark
-git checkout dashboard
 uv sync
 cd web
 npm install
 npm run build
 cd ..
 ```
-
-The `git checkout dashboard` line is needed until the dashboard branch is merged into main.
 
 Then start the site:
 
@@ -47,7 +44,12 @@ uv run uvicorn --factory spark_data.api:create_app --port 8000
 
 Open http://localhost:8000. The server serves the data and the built page together.
 
-**Spark agent is optional.** To use it, copy `.env.example` to `.env` (`cp .env.example .env`, or `copy .env.example .env` on Windows) and put a free Google AI Studio key in `GEMINI_API_KEY` (get one at https://aistudio.google.com/). The `.env` file is ignored by git. Without a key, everything works except the "Ask Spark agent" buttons, which say "Spark agent is not set up on this server."
+**Spark agent is optional.** It works with either of two Google Gemini setups. Copy `.env.example` to `.env` (`cp .env.example .env`, or `copy .env.example .env` on Windows) and fill in one of them. The `.env` file is ignored by git.
+
+- **A free Google AI Studio key** (the simplest way for anyone running the site). Get a key at https://aistudio.google.com/ and put it in `GEMINI_API_KEY`. Nothing else is needed. This is the default.
+- **Vertex AI.** Set `SPARK_GEMINI_BACKEND=vertex`, set `GOOGLE_CLOUD_PROJECT` to your Google Cloud project id, and set `GOOGLE_CLOUD_LOCATION=global`. Turn on the Vertex AI API in that project, then sign in once with `gcloud auth application-default login`. There is no API key for Vertex.
+
+Both use the same model, `gemini-3.5-flash-lite`. You can change it with `SPARK_GEMINI_MODEL`. Without either setup, everything works except the "Ask Spark agent" buttons, which say "Spark agent is not set up on this server."
 
 Other commands:
 
@@ -71,7 +73,7 @@ Experiments that are not in PSI (SoFIE, FM2, Saffire-IV to VI) are not shown as 
 
 **The code.** Much of the code, the tests and this README were written with Claude Code, Anthropic's AI coding assistant. We worked in small steps. Tests were written first and shown failing. A person reviewed and approved the work, and every commit passes the full test suite and the lint. At the time of writing that is about 930 automated tests (512 Python, 415 web). The AI did not write the data. The numbers on the site come from the data files, and tests check them.
 
-**Spark agent.** The "Ask Spark agent" button uses Google Gemini, model `gemini-3.5-flash-lite`, through Google AI Studio. It explains one block of the page (the map summary, a custom scenario, the ranked list, or an experiment page) in four parts: what you are seeing, what it means for fire safety, what the data cannot tell you, and the sources. This is how it is kept honest:
+**Spark agent.** The "Ask Spark agent" button uses Google Gemini, model `gemini-3.5-flash-lite`, through Google AI Studio or Vertex AI. It explains one block of the page (the map summary, a custom scenario, the ranked list, or an experiment page) in four parts: what you are seeing, what it means for fire safety, what the data cannot tell you, and the sources. This is how it is kept honest:
 
 - The server builds the facts for the block from the data files. The page cannot send its own text. The model gets only those facts.
 - Before an answer is shown, a check confirms that every number in it appears in those facts, that every source id is one of ours, that no sentence is 20 words or longer, and that none of a list of banned phrases appears. That list includes any claim that something will burn or is safe. If the check fails, the model is asked once more. If it fails again, the site says it could not give a checked explanation.

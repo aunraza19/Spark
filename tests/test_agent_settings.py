@@ -70,3 +70,13 @@ def test_describing_the_settings_never_includes_the_key():
 
 def test_the_settings_are_a_plain_value():
     assert Settings(backend="aistudio", model="m", api_key=None, project=None, location="x").configured() is False
+
+
+def test_the_default_vertex_location_is_global_where_the_gemini_3_models_are_served():
+    env = {"SPARK_GEMINI_BACKEND": "vertex", "GOOGLE_CLOUD_PROJECT": "my-project"}
+    assert load_settings(env=env, dotenv=Path("none.env")).location == "global"
+
+
+def test_a_location_in_the_environment_wins_over_the_default():
+    env = {"SPARK_GEMINI_BACKEND": "vertex", "GOOGLE_CLOUD_PROJECT": "p", "GOOGLE_CLOUD_LOCATION": "europe-west4"}
+    assert load_settings(env=env, dotenv=Path("none.env")).location == "europe-west4"

@@ -6,7 +6,7 @@ from pathlib import Path
 from spark_data.paths import REPO_ROOT
 
 DEFAULT_MODEL = "gemini-3.5-flash-lite"
-DEFAULT_LOCATION = "us-central1"
+DEFAULT_LOCATION = "global"
 
 
 @dataclass(frozen=True)
