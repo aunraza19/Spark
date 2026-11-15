@@ -2,6 +2,8 @@
 
 A web dashboard for the NASA Space Apps 2026 challenge "Flame in Freefall", built by team Neural Spark.
 
+**Live site:** https://spark-210503776654.us-central1.run.app
+
 ## What the site does
 
 Spark puts the microgravity fire experiments that NASA ran on the International Space Station on one map of oxygen against pressure. You pick an atmosphere (the ISS cabin, a lunar base, or your own numbers) and the site shows which tests came closest to it, what the flames did, and which kinds of material have no test there. Every number comes from NASA's PSI records or NASA's reports, every block can show its evidence, and an AI helper called Spark agent can explain any block in plain words.
@@ -59,6 +61,36 @@ Other commands:
 - On Windows, start the web commands from a shell whose path begins with an upper-case drive letter, such as `C:\...`. With a lower-case `c:\...`, Vitest fails with "failed to find the current suite".
 
 The cleaned data is already in `data/clean`, so you do not need to rebuild it. To rebuild it from the raw files in `data/incoming`, run `uv run python scripts/validate_data.py` and then `uv run python scripts/build_data.py`. The PDF reports are not in the repository.
+
+## Deploy
+
+The site runs as one Google Cloud Run service. The `Dockerfile` builds `web/` with Node 24, then runs the API with uv on Python 3.12. The API serves `web/dist`, `data/clean` and `data/reference`, and listens on the `PORT` that Cloud Run sets. There are no keys or credentials in the image or in the settings. The service signs in to Vertex AI as its own service account, `spark-run`, which has only the `roles/aiplatform.user` role.
+
+One-time setup, with `PROJECT=project-910a2ac9-c579-4a8d-834`:
+
+```
+gcloud config set project $PROJECT
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com
+gcloud iam service-accounts create spark-run --display-name="Spark Cloud Run"
+gcloud projects add-iam-policy-binding $PROJECT --member="serviceAccount:spark-run@$PROJECT.iam.gserviceaccount.com" --role="roles/aiplatform.user" --condition=None
+gcloud projects add-iam-policy-binding $PROJECT --member="serviceAccount:210503776654-compute@developer.gserviceaccount.com" --role="roles/run.builder" --condition=None
+```
+
+The last line lets Cloud Build, which runs as the project's default compute service account, build from source. The number is this project's number.
+
+Deploy or update:
+
+```
+gcloud run deploy spark --source . --region=us-central1 --project=$PROJECT --service-account=spark-run@$PROJECT.iam.gserviceaccount.com --allow-unauthenticated --max-instances=2 --min-instances=0 --memory=1Gi --set-env-vars="SPARK_GEMINI_BACKEND=vertex,GOOGLE_CLOUD_PROJECT=$PROJECT,GOOGLE_CLOUD_LOCATION=global"
+```
+
+To try the image on your own machine, run `docker build -t spark .` and then `docker run -p 8080:8080 spark`. Without Vertex access, everything works except the Spark agent.
+
+Known limits:
+
+- **Spark agent limits.** Each visitor gets 20 requests an hour, and the server gives 300 a day to everyone. Change them with `SPARK_LIMIT_PER_HOUR` and `SPARK_LIMIT_PER_DAY`. Only requests that call the model count, so a cached explanation is free. The counts are in memory, so each server instance has its own and a new revision starts again at zero. With `--max-instances=2` the real daily total can reach twice the setting.
+- **Visitor identity.** A visitor is the first entry of the `X-Forwarded-For` header. A client can set that header, so someone could dodge the hourly limit by changing it. The daily limit still caps the total.
+- **Cached explanations are temporary.** They are saved on the instance's own disk, which is lost when the instance stops. With `--min-instances=0` the first explanation after a quiet period calls the model.
 
 ## NASA data used
 

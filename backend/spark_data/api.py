@@ -164,7 +164,9 @@ def create_app(
     @app.post("/api/agent/explain")
     def post_explain(body: ExplainRequest, request: Request):
         snapshot, names = block_snapshot(body.block)
-        if not allowed(request):
+        # A cached answer costs nothing, so only a request that needs the model counts.
+        cached = cache.get(snapshot_key(snapshot), files.version, agent_model().model_id) is not None
+        if not cached and not allowed(request):
             return JSONResponse({"status": "limited", "message": LIMITED}, status_code=429)
         try:
             result = explain(snapshot, names, agent_model(), files, cache)
