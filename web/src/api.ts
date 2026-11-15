@@ -75,6 +75,8 @@ export type MapSnapshot = {
 
 export type Selection = { habitatId: string; custom?: { o2: number; psi: number } };
 
+export type Summary = { lead: string[]; know: string[]; dont_know: string[] };
+
 export type Preset = { label: string; o2: number; psi: number; source: string };
 
 export type About = {
@@ -101,7 +103,9 @@ export function fetchMapSnapshot(selection: Selection, shownPsiMax: number) {
     selection.habitatId === "custom" && selection.custom
       ? `habitat=custom&o2=${selection.custom.o2}&psi=${selection.custom.psi}`
       : `habitat=${selection.habitatId}`;
-  return getJson<{ key: string; snapshot: MapSnapshot }>(`/api/snapshot/map?${query}&shown_psi_max=${shownPsiMax}`);
+  return getJson<{ key: string; snapshot: MapSnapshot; summary?: Summary }>(
+    `/api/snapshot/map?${query}&shown_psi_max=${shownPsiMax}`,
+  );
 }
 
 export type ScenarioSnapshot = {

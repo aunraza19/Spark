@@ -424,6 +424,62 @@ td {
   vertical-align: top;
 }
 
+/* data card, evidence, know / don't know */
+
+.data-says {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.data-says h3 {
+  margin-top: 0;
+}
+
+.lead-line {
+  font-size: 1.1rem;
+}
+
+.evidence {
+  margin-top: var(--space-3);
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.evidence summary {
+  cursor: pointer;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.know-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+
+.know-column {
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.know-column h3 {
+  margin-top: 0;
+}
+
+.know-column ul {
+  margin: 0;
+  padding-left: var(--space-3);
+}
+
+.know-column li {
+  margin-bottom: var(--space-2);
+}
+
 /* about */
 
 .about {

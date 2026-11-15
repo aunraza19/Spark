@@ -1,4 +1,4 @@
-import type { About, Habitat, MapSnapshot, Point, ReportCondition, ScenarioSnapshot } from "./api";
+import type { About, Habitat, MapSnapshot, Point, ReportCondition, ScenarioSnapshot, Summary } from "./api";
 
 export const gas: Point = {
   experiment_id: "PSI-159", test_id: "21088A1", o2_pct_min: 39.39, o2_pct_max: 39.39,
@@ -116,5 +116,38 @@ export const aboutFixture: About = {
   known_problems: [
     "PSI-39: 8 repeated rows were dropped. One copy of each was kept.",
     "263 burner-oxygen points are kept off the map.",
+  ],
+};
+
+export const lunarSummary: Summary = {
+  lead: [
+    "20 tests ran inside the lunar zone.",
+    "All of them were gas flames on a burner.",
+    "A NASA report also describes 1 test inside it.",
+    "No solid material or liquid fuel was tested here.",
+  ],
+  know: ["Gas flames on a burner: 20 tests ran inside the lunar zone."],
+  dont_know: [
+    "Solid material: no test ran inside the lunar zone.",
+    "The closest was PSI-98: 8.3 points too little oxygen and 4.27 psi too much pressure.",
+    "Liquid fuel: no test ran inside the lunar zone.",
+    "The closest was PSI-69: 0.13 psi too much pressure.",
+    "16 of 24 experiments have no per-test conditions, so they are not on the map.",
+  ],
+};
+
+export const customSummary: Summary = {
+  lead: [
+    "No test ran at exactly this condition.",
+    "The closest evidence is a NASA report on ACME/BRE (PSI-20) at 27 % oxygen and 10.2 psi.",
+    "It burned ethylene/N2 on a porous burner.",
+    "The flame went out by itself after 45 s.",
+    "It had 1 point less oxygen and 1.2 psi more pressure than your target.",
+  ],
+  know: [],
+  dont_know: [
+    "Solid material: no test ran at exactly this condition.",
+    "The closest was PSI-98: 6.3 points less oxygen and 5.47 psi more pressure than your target.",
+    "16 of 24 experiments have no per-test conditions, so they are not on the map.",
   ],
 };

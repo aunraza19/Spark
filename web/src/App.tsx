@@ -14,11 +14,14 @@ import {
   type ReportCondition,
   type ScenarioSnapshot,
   type Selection,
+  type Summary,
 } from "./api";
 import { AboutFooter } from "./AboutFooter";
 import { AtmosphereMap } from "./AtmosphereMap";
+import { DataSaysCard } from "./DataSaysCard";
 import { HabitatSelector } from "./HabitatSelector";
 import { Hero } from "./Hero";
+import { KnowDontKnow } from "./KnowDontKnow";
 import { MapSummary } from "./MapSummary";
 import { PRESSURE_VIEWS } from "./scale";
 import { ScenarioPanel } from "./ScenarioPanel";
@@ -45,6 +48,7 @@ export default function App() {
   const [aboutFailed, setAboutFailed] = useState(false);
   const [selection, setSelection] = useState<Selection>({ habitatId: "lunar" });
   const [snapshot, setSnapshot] = useState<MapSnapshot | null>(null);
+  const [summary, setSummary] = useState<Summary | null>(null);
   const [showAll, setShowAll] = useState(false);
   const [scenario, setScenario] = useState<ScenarioSnapshot | null>(null);
   const [scenarioFailed, setScenarioFailed] = useState(false);
@@ -83,8 +87,13 @@ export default function App() {
   useEffect(() => {
     let current = true;
     setSnapshot(null);
+    setSummary(null);
     fetchMapSnapshot(selection, PRESSURE_VIEWS[view][1])
-      .then((result) => current && setSnapshot(result.snapshot))
+      .then((result) => {
+        if (!current) return;
+        setSnapshot(result.snapshot);
+        setSummary(result.summary ?? null);
+      })
       .catch(() => current && setFailed(true));
     return () => {
       current = false;
@@ -121,13 +130,16 @@ export default function App() {
                 <span data-testid="view-note" className="view-note">{note}</span>
               </div>
               <AtmosphereMap points={loaded.points} reportConditions={loaded.reports} habitat={target} view={view} />
-              <MapSummary snapshot={snapshot} viewNote={note} />
             </section>
-            {selection.habitatId === "custom" && selection.custom && (
-              <ScenarioPanel snapshot={scenario} failed={scenarioFailed} />
-            )}
+            <DataSaysCard summary={summary}>
+              <MapSummary snapshot={snapshot} viewNote={note} />
+              {selection.habitatId === "custom" && selection.custom && (
+                <ScenarioPanel snapshot={scenario} failed={scenarioFailed} />
+              )}
+            </DataSaysCard>
           </section>
         )}
+        {loaded && <KnowDontKnow summary={summary} />}
       </main>
       <AboutFooter about={about} failed={aboutFailed}>
         {loaded && (
