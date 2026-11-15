@@ -32,9 +32,13 @@ Audience: professors, students, aerospace researchers and engineers.
 - A record that fails validation is left out of clean output and listed. The validator exits 1.
 - Conditions known only from reports: data/reference/report_conditions.json, a few entries with source file, page, figure and test id.
 - Data in git: data/incoming JSON and CSV are committed. PDFs are not.
+- Chat library: assistant-ui, chosen by the spike in docs/chat-library-spike.md. The spike code stays on the unmerged branch spike/chat as reference for the agent phase.
+- Deployment target: one Cloud Run service. FastAPI serves the built frontend.
+- Priority: the dashboard first, the agent second.
 
 ## Open decisions
-- Chat library: assistant-ui or CopilotKit. Confirm it works with Vite during the chat library test.
+- Gemini access: through Vertex AI on Google Cloud, because the credits cover Gemini only through Vertex AI, not the AI Studio key. Set up in the agent phase.
+- In a browser, confirm the assistant-ui tool card and the page highlight. Agent phase.
 - Where the assistant's documents live. PDFs are git-ignored, so probably short text extracts in `data/clean`.
 
 ## Commands
