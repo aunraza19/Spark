@@ -24,9 +24,9 @@ Six named values. Everything else is one of these at lower opacity (rules are In
 | Name | Hex | Means | Contrast on white |
 |---|---|---|---|
 | Paper | #FFFFFF | The page. | |
-| Ink | #000000 | Text, axes, chart outlines, the stage. | 21.0 |
+| Ink | #000000 | Text, axes, chart outlines, the stage. Also the filled triangles that mark solid-material tests, the strongest marks on the map. | 21.0 |
 | Graphite | #595959 | Secondary text, captions, chart labels. | 7.0 |
-| Flame blue | #0B5CAD | A test run in microgravity. Also the 0 g flame label. | 6.7 |
+| Flame blue | #0B5CAD | A gas or liquid test run in microgravity. Also the 0 g flame label. | 6.7 |
 | Amber | #B45F00 | The flame on Earth, or "read with care" (a value from a report, a pressure from the record). | 4.6 |
 | Lunar green | #2E7D5B | The lunar zone and nothing else. | 5.0 |
 
@@ -174,15 +174,16 @@ PHONE, 390 px wide, 16 px gutters, one column
 - Buttons and inputs: 1 px Ink border, 2 px corners, white fill. On hover the fill goes to Ink at 6 %. A pressed preset is filled Ink with white text.
 - The disclosure ("Show the evidence") is plain text with the native marker, underlined.
 - The point card is not a box. It has a 2 px Ink rule on top, space, and a Close button.
-- Three lines, "What we know", the sentences and the footer have no border. Space and a 1 px rule do the grouping.
+- Three lines, "What we know", the sentences and the footer have no border. Space does the grouping.
+- A grey rule is used only where it separates two different things: the page content from the footer, and the two columns of "What we know, what we don't". It is never a decoration on every section.
 
 ## The map, at publication quality
 - Axis titles with units: "Oxygen in the air (% by volume)" and "Pressure (psi)".
 - Gridlines: Ink at 15 %, 1 px. Ticks and labels in Graphite, 14 px.
 - The lunar zone: Lunar green at 14 % with a 1.5 px outline, labelled inside the chart ("Lunar zone: 30 % oxygen or more, 10.2 psi or less"). The numbers come from data/reference/habitats.json.
 - The habitat point and the presets are drawn on the chart with a direct label: "ISS cabin", "NASA test atmosphere", "Your target".
-- Marks are small (radius 3 to 4 px). Shape carries the fuel: circle gas, square liquid, triangle solid. All test marks are Flame blue. Report conditions are Amber diamonds.
-- No legend box. One line of text under the chart explains the four shapes and the diamond.
+- Marks are small (radius 3 to 4 px). Shape carries the fuel: circle gas, square liquid, triangle solid. Gas and liquid marks are Flame blue. Solid marks are filled Ink (black) triangles with no transparency. They are the strongest marks on the map on purpose: the main finding is that solid materials were only tested near 1 atm. Report conditions are Amber diamonds.
+- No legend box. One line of text under the chart explains the shapes and the diamond. It still reads as a list of Gas, Liquid, Solid, Report condition and Target zone.
 
 ## Rules that keep it from looking generated
 - Colour only for meaning, as above. Everything else is black, white or grey.
@@ -220,10 +221,13 @@ I checked this plan, and the first draft of it, against your list.
 - styles.page.test.ts: the six "changes ... in dark mode" cases and the font-name case. I will rewrite them and show the diff.
 - App.summary.test.tsx, "puts the card inside the explorer, after the map", if you accept the new order.
 
-## Decisions for you
-1. Put the plain sentences above the map? Recommended: yes. If not, the order stays as it is.
-2. No photographs for now. OK?
-3. Public Sans, 400 and 700. OK?
-4. Stage corner ticks: yes or no? Recommended: yes, they are the whole "camera view".
-5. Draw the map at the real width (more code, readable on a phone) or keep the fixed drawing? Recommended: real width.
-6. May I rewrite the dark-mode and font cases in styles.page.test.ts, showing the diff?
+## Decisions (answered)
+1. The plain sentences go above the map.
+2. No photographs.
+3. Public Sans 400 and 700, from a local npm package (@fontsource/public-sans). No Google Fonts request in the built site.
+4. Subtle viewfinder corner ticks on the flame stage.
+5. The map is drawn at its real width. If that takes more than about 45 minutes, keep the fixed drawing with horizontal scrolling on narrow screens.
+6. The dark-mode and font-name cases in styles.page.test.ts are rewritten, with the diff shown.
+
+## Font check
+Public Sans has tabular figures. Both weights carry the tnum feature, and with it every digit is 1400 units wide. The default digits are proportional (the digit 1 is 814 units, the digit 8 is 1295). So tables and chart labels set font-variant-numeric: tabular-nums, and numbers then line up.
