@@ -136,7 +136,7 @@ export const lunarSummary: Summary = {
   lead: [
     "20 tests ran inside the lunar zone.",
     "All of them were gas flames on a burner.",
-    "A NASA report also describes 1 test inside it.",
+    "A NASA report also describes 1 condition inside it.",
     "No solid material or liquid fuel was tested here.",
   ],
   know: ["Gas flames on a burner: 20 tests ran inside the lunar zone."],

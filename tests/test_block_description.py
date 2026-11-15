@@ -29,10 +29,10 @@ def test_each_kind_of_block_gives_its_own_snapshot_and_names(data, spec, panel):
     assert names == names_for(data, snapshot)
 
 
-def test_the_map_block_snapshot_is_the_existing_map_snapshot(data):
+def test_the_map_block_snapshot_is_the_existing_map_snapshot_plus_outcomes(data):
     snapshot, _ = snapshot_for(data, {"kind": "map", "habitat": "lunar", "shown_psi_max": 20})
     lunar = next(h for h in data.habitats if h.id == "lunar")
-    assert snapshot == build_map_snapshot(data, lunar, 20)
+    assert {k: v for k, v in snapshot.items() if k != "outcomes"} == build_map_snapshot(data, lunar, 20)
 
 
 @pytest.mark.parametrize(

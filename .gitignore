@@ -8,3 +8,7 @@ data/incoming/documents/*
 web/dist/
 
 web/screenshots/
+
+# Spark agent answers are AI-generated and not reviewed. Keep only the README.
+data/agent_cache/*
+!data/agent_cache/README.md

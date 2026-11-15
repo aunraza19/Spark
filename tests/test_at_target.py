@@ -5,7 +5,7 @@ import pytest
 from spark_data.data import load_data
 from spark_data.models import Habitat
 from spark_data.plain import map_summary
-from spark_data.ranking import Condition, Gap, at_target
+from spark_data.ranking import Condition, Gap, at_target, gap
 from spark_data.snapshots import build_scenario_snapshot
 
 REPO = Path(__file__).resolve().parents[1]
@@ -39,8 +39,16 @@ def test_the_iss_lines_never_say_zero_psi_or_zero_points(data):
 def test_the_summary_and_the_scenario_agree_on_how_many_tests_are_at_the_target(data, target):
     habitat = custom(*target)
     at = build_scenario_snapshot(data, habitat)["view"]["tests_at_target"]
+    tests = sum(c.basis == "test" and at_target(gap(c, habitat)) for c in data.conditions)
+    reports = sum(c.basis == "report" and at_target(gap(c, habitat)) for c in data.conditions)
+    assert at == tests + reports
     first = map_summary(data, habitat)["lead"][0]
-    expected = "No test ran at exactly this condition." if at == 0 else f"{at} test{'s' if at != 1 else ''} ran at exactly this condition."
+    if tests:
+        expected = f"{tests} test{'s' if tests != 1 else ''} ran at exactly this condition."
+    elif reports:
+        expected = f"{reports} condition{'s' if reports != 1 else ''} from a NASA report {'match' if reports != 1 else 'matches'} this target exactly."
+    else:
+        expected = "No test ran at exactly this condition."
     assert first == expected
 
 

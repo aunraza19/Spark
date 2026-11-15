@@ -136,7 +136,7 @@ def _zone_summary(data: Data, zone: Habitat) -> dict:
         else:
             lead.append("They were " + _join_and([f"{by_type[t]} {phrases[t].plural}" for t in present]) + ".")
     if reports_inside:
-        lead.append(f"A NASA report also describes {_count(len(reports_inside), 'test')} inside it.")
+        lead.append(f"A NASA report also describes {_count(len(reports_inside), 'condition')} inside it.")
     if absent:
         lead.append(f"No {_join_or([phrases[t].absent for t in absent])} was tested here.")
 
@@ -158,8 +158,14 @@ def _point_summary(data: Data, habitat: Habitat) -> dict:
     phrases = data.plain.fuel_states
     here_all = [c for c in data.conditions if at_target(gap(c, habitat))]
     lead: list[str] = []
+    here_tests = [c for c in here_all if c.basis == "test"]
+    here_reports = [c for c in here_all if c.basis == "report"]
     if here_all:
-        lead.append(f"{_count(len(here_all), 'test')} ran at exactly this condition.")
+        if here_tests:
+            lead.append(f"{_count(len(here_tests), 'test')} ran at exactly this condition.")
+        if here_reports:
+            verb = "matches" if len(here_reports) == 1 else "match"
+            lead.append(f"{_count(len(here_reports), 'condition')} from a NASA report {verb} this target exactly.")
         condition, found = nearest(here_all, habitat, 1)[0]
         lead += _evidence_sentences(data, condition, found, habitat, "One was {subject}.")
     else:

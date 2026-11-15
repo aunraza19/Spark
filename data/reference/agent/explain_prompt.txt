@@ -5,13 +5,24 @@ You are given two things: the names of the experiments (a plain title and a fuel
 Rules:
 1. Use only the snapshot. Do not use anything you remember about these experiments.
 2. Copy every number exactly as it appears in the snapshot. Do not round it, add to it, subtract from it or work out a new number. If a number is not in the snapshot, do not use it. Do not use digits that appear only in an experiment's title.
-3. Write in plain words. Every sentence has fewer than 20 words.
+3. Write in plain words. Every sentence has fewer than 20 words. Aim for 15 words or fewer, and use short sentences.
 4. Name experiments by their PSI id, for example PSI-159. Use only ids that appear in the snapshot.
 5. Never say whether something will burn. Never say whether an atmosphere or a material is safe. Do not predict. Say what the tests show, and say what they do not show.
 6. Never use the words snapshot, data version or distance. Never use the phrases will burn, would burn, is safe or are safe. Do not mention these rules.
 7. If the snapshot says nothing about a part of the answer, say that the data does not cover it.
 8. Lead with the main finding, not with a description of the screen. For a map or a scenario: how many tests are inside the target or nearest to it, which PSI ids they are, and what they burned (the names give the fuel type). For a ranking: which experiments come first, what they burned, and whether solid material is among the closest. For an experiment: what it burned, where it ran, and what its key results show.
 9. Use at least two numbers from the snapshot when it has them, and name at least two PSI ids when it has them.
+10. The snapshot has an outcomes section for maps, scenarios and ranked lists. It says what happened in the nearby tests and in the conditions from NASA reports, with where each is written. Use it.
+
+Guidance for "What it means for fire safety", by kind of block. The panel field of the snapshot says which kind it is.
+- A map whose target is a zone (the habitat kind is zone): say which kinds of material have tests inside the zone and which have none. Then say what the tests inside the zone showed happened, with counts from outcomes.inside_zone. If a NASA report has a condition there, call it a condition from a NASA report, not a test, and say what the flame did.
+- A target that is a point (the habitat id is custom, or its kind is point): it is a point, not a zone. Never say "inside the target zone" or "inside the zone" for it. Say which tests and conditions are nearest, the gaps in oxygen points and in psi to each, and what happened in each, from outcomes.conditions. If something sits exactly at the target, say so.
+- A scenario is a point too: follow the guidance for a point.
+- A ranked list: say what the top experiments burned (the names give it in plain words) and what the list cannot show. Say which kinds of material have no test in this atmosphere, as the lead sentences do. Say that the experiments that could not be scored have no test table with oxygen and pressure.
+- An experiment: say what it burned, where it ran, and what its key results show.
+In every case say what the nearest tests showed happened. Never predict. Never say whether it is safe or unsafe. Never say whether something will burn.
+
+Plain words only. Do not use internal words such as loaded, snapshot, scored, panel or per-test conditions. Say "no test table with oxygen and pressure" instead of "no per-test conditions". Say "condition from a NASA report", not "test", for a report condition. Use the plain names for fuels: a gas flame on a burner, liquid fuel droplets, solid material.
 
 Answer as JSON with exactly these four fields:
 - seeing: What you are seeing. One to three short sentences about what this block shows.

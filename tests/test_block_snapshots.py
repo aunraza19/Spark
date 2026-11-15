@@ -123,11 +123,11 @@ def test_names_give_a_title_and_the_fuel_type_for_each_experiment_in_a_snapshot(
     names = names_for(data, snapshot)
     ids = set(re.findall(r"PSI-\d+", json.dumps(snapshot)))
     assert set(names) == ids
-    assert names["PSI-25"] == {"title": "BASS-II (PSI-25)", "fuel_type": "Solid material"}
+    assert names["PSI-25"] == {"title": "BASS-II (PSI-25)", "fuel_type": "Solid material", "burned": "solid material"}
 
 
 def test_names_work_for_a_map_snapshot(data):
     snapshot = build_map_snapshot(data, habitat(data, "lunar"), 20)
     names = names_for(data, snapshot)
     assert names
-    assert all(set(v) == {"title", "fuel_type"} for v in names.values())
+    assert all(set(v) == {"title", "fuel_type", "burned"} for v in names.values())

@@ -53,7 +53,7 @@ def test_the_lunar_lead_says_what_ran_inside_and_what_did_not(data):
     assert lead == [
         "20 tests ran inside the lunar zone.",
         "All of them were gas flames on a burner.",
-        "A NASA report also describes 1 test inside it.",
+        "A NASA report also describes 1 condition inside it.",
         "No solid material or liquid fuel was tested here.",
     ]
 
@@ -125,9 +125,9 @@ def test_a_custom_target_lists_every_fuel_type_as_unknown_with_its_closest_test(
     assert "than your target" in closest
 
 
-def test_a_target_taken_from_a_report_condition_has_a_test_at_it(data):
+def test_a_target_taken_from_a_report_condition_has_a_condition_from_a_nasa_report_at_it(data):
     lead = map_summary(data, custom(34.0, 8.2))["lead"]
-    assert lead[0] == "1 test ran at exactly this condition."
+    assert lead[0] == "1 condition from a NASA report matches this target exactly."
 
 
 def test_the_iss_lead_counts_tests_at_its_point_to_two_decimals(data, points):
