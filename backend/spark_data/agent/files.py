@@ -12,6 +12,10 @@ class AgentFiles:
     banned: list[str]
     version: str
 
+    def instructions(self, prompt: str) -> str:
+        """A prompt with the banned phrases from the file spelled out, so the model knows what the check will reject."""
+        return f"{prompt}\n\nNever use these words or phrases: {', '.join(self.banned)}."
+
 
 def load_files(directory: Path = REFERENCE_DIR / "agent") -> AgentFiles:
     explain_prompt = (directory / "explain_prompt.txt").read_text(encoding="utf-8").strip()

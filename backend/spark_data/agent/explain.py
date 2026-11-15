@@ -59,7 +59,7 @@ def explain(snapshot: dict, names: dict, model: Model, files: AgentFiles, cache:
     problems: list[str] = []
     for _ in range(2):
         retry = "" if not problems else "\n\nYour last answer had these problems. Fix all of them:\n" + "\n".join(f"- {p}" for p in problems)
-        answer, problems = _parse(model.one_shot(files.explain_prompt, prompt + retry))
+        answer, problems = _parse(model.one_shot(files.instructions(files.explain_prompt), prompt + retry))
         if answer is not None:
             problems = check_answer(answer, snapshot, files.banned)
         if not problems:

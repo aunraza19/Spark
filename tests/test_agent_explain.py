@@ -28,11 +28,12 @@ def test_a_checked_answer_is_returned_with_its_key_and_model(cache):
     assert result["cached"] is False
 
 
-def test_the_model_gets_the_system_prompt_file_and_the_snapshot_not_screen_text(cache):
+def test_the_model_gets_the_prompt_file_the_banned_list_and_the_snapshot_not_screen_text(cache):
     model = FakeModel(replies=[reply(SNAPSHOT)])
     explain(SNAPSHOT, NAMES, model, FILES, cache)
     system, prompt = model.one_shot_calls[0]
-    assert system == "EXPLAIN SYSTEM"
+    assert system.startswith("EXPLAIN SYSTEM")
+    assert "will burn" in system and "is safe" in system
     assert json.dumps(SNAPSHOT, sort_keys=True, separators=(",", ":")) in prompt
     assert "ACME CFI-G (PSI-159)" in prompt
 

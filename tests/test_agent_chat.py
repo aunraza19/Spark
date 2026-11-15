@@ -88,6 +88,7 @@ def test_the_model_gets_the_chat_prompt_the_context_snapshot_the_messages_and_bo
     events(model, data, messages)
     system, sent, tools = model.chat_calls[0]
     assert system.startswith("CHAT SYSTEM")
+    assert "will burn" in system
     assert json.dumps(CONTEXT["snapshot"], sort_keys=True, separators=(",", ":")) in system
     assert sent == messages
     assert {t["name"] for t in tools} == {"query_tests", "get_experiment"}

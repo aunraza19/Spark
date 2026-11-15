@@ -103,7 +103,7 @@ def run_tool(data: Data, name: str, args: dict) -> dict:
 
 def run_chat(model: Model, files: AgentFiles, data: Data, context: dict, messages: list[dict]) -> Iterator[dict]:
     system = (
-        f"{files.chat_prompt}\n\nSnapshot of the block the reader is looking at:\n{canonical(context['snapshot'])}"
+        f"{files.instructions(files.chat_prompt)}\n\nSnapshot of the block the reader is looking at:\n{canonical(context['snapshot'])}"
         f"\n\nExperiment names:\n{canonical(context['names'])}"
     )
     sent = list(messages)
