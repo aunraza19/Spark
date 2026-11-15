@@ -1,1 +1,2 @@
 data/incoming/** -text
+web/src/starters.txt text eol=lf

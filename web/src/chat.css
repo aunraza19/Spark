@@ -1,0 +1,189 @@
+/*
+  Styles for the Spark agent chat panel only.
+  Tailwind is imported without its global reset ("preflight") and only reads the chat files,
+  so no utility class or reset can reach the dashboard. The reset below is scoped to the panel.
+*/
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@import "tw-shimmer";
+
+@source "./components";
+@source "./ChatPanel.tsx";
+@source "./ToolCards.tsx";
+
+@custom-variant data-open (&:where([data-state="open"], [data-open]:not([data-open="false"])));
+
+@custom-variant data-closed (&:where([data-state="closed"], [data-closed]:not([data-closed="false"])));
+
+/* The dashboard has one light theme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Our font, our six colours (the variables are defined in styles.css) and our small radius. */
+/* Tailwind's own --text-xl would replace the dashboard's --text-xl at the root, so it is removed. The panel does not use text-xl. */
+@theme {
+  --text-xl: initial;
+  --text-xl--line-height: initial;
+}
+
+@theme inline {
+  --font-sans: var(--font-text);
+  --color-background: var(--color-paper);
+  --color-foreground: var(--color-ink);
+  --color-card: var(--color-paper);
+  --color-card-foreground: var(--color-ink);
+  --color-popover: var(--color-paper);
+  --color-popover-foreground: var(--color-ink);
+  --color-primary: var(--color-flame);
+  --color-primary-foreground: var(--color-paper);
+  --color-secondary: var(--color-hover);
+  --color-secondary-foreground: var(--color-ink);
+  --color-muted: var(--color-hover);
+  --color-muted-foreground: var(--color-graphite);
+  --color-accent: var(--color-hover);
+  --color-accent-foreground: var(--color-ink);
+  --color-destructive: var(--color-amber);
+  --color-border: var(--color-rule);
+  --color-input: var(--color-rule);
+  --color-ring: var(--color-ink);
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
+  --radius-2xl: 2px;
+  --radius-3xl: 2px;
+  --radius-4xl: 2px;
+
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height, var(--collapsible-panel-height, auto));
+    }
+  }
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height, var(--collapsible-panel-height, auto));
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/* Tailwind's reset, limited to the panel and to the tooltips it opens. */
+@layer base {
+  :where(.chat-panel, .chat-panel *, .chat-panel ::before, .chat-panel ::after, [data-slot="tooltip-content"], [data-slot="tooltip-content"] *) {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+
+  :where(.chat-panel) {
+    font-family: var(--font-text);
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+  }
+
+  :where(.chat-panel h1, .chat-panel h2, .chat-panel h3, .chat-panel h4, .chat-panel h5, .chat-panel h6) {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  :where(.chat-panel a) {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  :where(.chat-panel b, .chat-panel strong) {
+    font-weight: bolder;
+  }
+
+  :where(.chat-panel code, .chat-panel pre) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 1em;
+  }
+
+  :where(.chat-panel table) {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+
+  :where(.chat-panel button, .chat-panel input, .chat-panel select, .chat-panel textarea) {
+    font: inherit;
+    font-feature-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+
+  :where(.chat-panel button:not(:disabled), .chat-panel [role="button"]:not(:disabled)) {
+    cursor: pointer;
+  }
+
+  :where(.chat-panel ol, .chat-panel ul, .chat-panel menu) {
+    list-style: none;
+  }
+
+  :where(.chat-panel img, .chat-panel svg, .chat-panel video, .chat-panel canvas, .chat-panel audio, .chat-panel iframe, .chat-panel embed, .chat-panel object) {
+    display: block;
+    vertical-align: middle;
+  }
+
+  :where(.chat-panel img, .chat-panel video) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  :where(.chat-panel textarea) {
+    resize: vertical;
+  }
+
+  :where(.chat-panel ::placeholder) {
+    opacity: 1;
+    color: color-mix(in oklab, currentcolor 50%, transparent);
+  }
+
+  :where(.chat-panel [hidden]:not([hidden="until-found"])) {
+    display: none !important;
+  }
+
+  /* The dashboard's focus ring is an Ink outline, and it stays so inside the panel. */
+  :where(.chat-panel button:focus-visible, .chat-panel textarea:focus-visible, .chat-panel a:focus-visible) {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+}
+
+/* The tool card is ours, not assistant-ui's. */
+@layer components {
+  .chat-panel .tool-card {
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-graphite);
+    font-size: var(--text-s);
+  }
+
+  .chat-panel .tool-card p {
+    margin-bottom: 0.25rem;
+    max-width: none;
+  }
+
+  .chat-panel .tool-card table {
+    width: auto;
+  }
+
+  .chat-panel .tool-card td {
+    padding-right: 1rem;
+  }
+
+  .chat-panel .tool-card a {
+    text-decoration: underline;
+  }
+}

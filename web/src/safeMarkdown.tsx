@@ -50,7 +50,7 @@ export const MarkdownText: TextMessagePartComponent = ({ text }) => (
     {parseMarkdown(text).map((block, index) => {
       if (block.kind === "paragraph") {
         return (
-          <p key={index}>
+          <p key={index} className="mb-2 last:mb-0">
             {block.lines.map((line, i) => (
               <Fragment key={i}>
                 {i > 0 && <br />}
@@ -61,7 +61,15 @@ export const MarkdownText: TextMessagePartComponent = ({ text }) => (
         );
       }
       const items = block.items.map((item, i) => <li key={i}>{inline(item)}</li>);
-      return block.kind === "bullets" ? <ul key={index}>{items}</ul> : <ol key={index}>{items}</ol>;
+      return block.kind === "bullets" ? (
+        <ul key={index} className="mb-2 list-disc ps-5">
+          {items}
+        </ul>
+      ) : (
+        <ol key={index} className="mb-2 list-decimal ps-5">
+          {items}
+        </ol>
+      );
     })}
   </>
 );

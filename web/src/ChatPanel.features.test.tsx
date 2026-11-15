@@ -35,7 +35,7 @@ const open = (props: { answer?: AgentAnswer } = {}) =>
 
 async function send(text: string) {
   fireEvent.change(within(panel()).getByRole("textbox"), { target: { value: text } });
-  fireEvent.click(within(panel()).getByRole("button", { name: "Send" }));
+  fireEvent.click(within(panel()).getByRole("button", { name: "Send message" }));
 }
 
 describe("the context line", () => {
@@ -48,11 +48,9 @@ describe("the context line", () => {
 describe("the welcome message and the starter questions", () => {
   it("welcomes the reader and offers three starter questions as buttons when nothing has been said", () => {
     open();
-    const welcome = within(panel()).getByTestId("chat-welcome");
-    expect(welcome).toHaveTextContent("Ask me about lunar zone map.");
-    const buttons = within(welcome).getAllByRole("button");
-    expect(buttons.map((b) => b.textContent)).toEqual(startersFor(block));
-    expect(buttons).toHaveLength(3);
+    expect(within(panel()).getByTestId("chat-welcome")).toHaveTextContent("Ask me about lunar zone map.");
+    for (const question of startersFor(block)) expect(within(panel()).getByRole("button", { name: question })).toBeInTheDocument();
+    expect(startersFor(block)).toHaveLength(3);
   });
 
   it("is not shown when the chat starts from an explanation", () => {
@@ -94,12 +92,12 @@ describe("streaming, Stop, copy and regenerate", () => {
     );
     open();
     await send("Slow question");
-    const stop = await within(panel()).findByRole("button", { name: "Stop" });
-    expect(within(panel()).queryByRole("button", { name: "Send" })).toBeNull();
+    const stop = await within(panel()).findByRole("button", { name: "Stop generating" });
+    expect(within(panel()).queryByRole("button", { name: "Send message" })).toBeNull();
     fireEvent.click(stop);
     await waitFor(() => expect(signal?.aborted).toBe(true));
-    expect(await within(panel()).findByRole("button", { name: "Send" })).toBeInTheDocument();
-    expect(within(panel()).queryByRole("button", { name: "Stop" })).toBeNull();
+    expect(await within(panel()).findByRole("button", { name: "Send message" })).toBeInTheDocument();
+    expect(within(panel()).queryByRole("button", { name: "Stop generating" })).toBeNull();
   });
 
   it("copies a reply", async () => {
@@ -109,7 +107,7 @@ describe("streaming, Stop, copy and regenerate", () => {
     open();
     await send("How many?");
     await within(panel()).findByText("Twenty tests.");
-    const message = within(panel()).getByText("Twenty tests.").closest(".chat-agent") as HTMLElement;
+    const message = within(panel()).getByText("Twenty tests.").closest("[data-role=\"assistant\"]") as HTMLElement;
     fireEvent.click(within(message).getByRole("button", { name: "Copy" }));
     await waitFor(() => expect(writeText).toHaveBeenCalledWith("Twenty tests."));
   });
@@ -128,7 +126,7 @@ describe("streaming, Stop, copy and regenerate", () => {
 
   it("offers Copy under the explanation it starts from, but not Regenerate", () => {
     open({ answer });
-    const message = panel().querySelector(".chat-agent") as HTMLElement;
+    const message = panel().querySelector("[data-role=\"assistant\"]") as HTMLElement;
     expect(within(message).getByRole("button", { name: "Copy" })).toBeInTheDocument();
     const regenerate = within(message).queryByRole("button", { name: "Regenerate" });
     expect(regenerate === null || (regenerate as HTMLButtonElement).disabled).toBe(true);
@@ -136,7 +134,7 @@ describe("streaming, Stop, copy and regenerate", () => {
 
   it("has a button that scrolls to the latest message, idle while the reader is at the end", () => {
     open({ answer });
-    expect(within(panel()).getByRole("button", { name: "Scroll to latest" })).toBeDisabled();
+    expect(within(panel()).getByRole("button", { name: "Scroll to bottom" })).toBeDisabled();
   });
 });
 

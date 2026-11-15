@@ -73,7 +73,7 @@ Experiments that are not in PSI (SoFIE, FM2, Saffire-IV to VI) are not shown as 
 
 AI helped in three places: Claude Code wrote much of the code, Claude helped produce the experiment records (see below), and Google Gemini powers Spark agent.
 
-**The code.** Much of the code, the tests and this README were written with Claude Code, Anthropic's AI coding assistant. We worked in small steps. Tests were written first and shown failing. A person reviewed and approved the work, and every commit passes the full test suite and the lint. At the time of writing that is about 970 automated tests (514 Python, 454 web). The AI did not write the data. The numbers on the site come from the data files, and tests check them.
+**The code.** Much of the code, the tests and this README were written with Claude Code, Anthropic's AI coding assistant. We worked in small steps. Tests were written first and shown failing. A person reviewed and approved the work, and every commit passes the full test suite and the lint. At the time of writing that is about 975 automated tests (519 Python, 456 web). The AI did not write the data. The numbers on the site come from the data files, and tests check them.
 
 **Spark agent.** The "Ask Spark agent" button uses Google Gemini, model `gemini-3.5-flash-lite`, through Google AI Studio or Vertex AI. It explains one block of the page (the map summary, a custom scenario, the ranked list, or an experiment page) in four parts: what you are seeing, what it means for fire safety, what the data cannot tell you, and the sources. This is how it is kept honest:
 
@@ -82,7 +82,7 @@ AI helped in three places: Claude Code wrote much of the code, Claude helped pro
 - Every answer carries the label "Spark agent, an AI. Generated from NASA PSI data. Check the evidence before relying on it."
 - Answers are cached, so the same block gives the same answer. The cached answers are not committed.
 
-A **Spark agent** button in the page header opens a chat panel at any time. The panel says what it is about (for example "Talking about: lunar zone map" or "Talking about: experiment PSI-25"), offers three starter questions, and the server builds the facts for that view. Under a checked explanation, **Ask more** opens the same panel, starting from that explanation, so you can ask follow-up questions. The chat streams its replies, with a Stop button, and each reply can be copied or regenerated. Replies can use lists and bold, and everything else is shown as plain text. It can call two tools on the server: one counts test points in the data (`query_tests`) and one reads an experiment's record (`get_experiment`). Each tool result is shown as a small card in the chat. Chat replies cannot be checked before they appear, because they stream, so the panel says so under the input. They carry the same label. The chat is built with [assistant-ui](https://www.assistant-ui.com/).
+A **Spark agent** button in the page header opens a chat panel at any time. The panel says what it is about (for example "Talking about: lunar zone map" or "Talking about: experiment PSI-25"), offers three starter questions, and the server builds the facts for that view. Under a checked explanation, **Ask more** opens the same panel, starting from that explanation, so you can ask follow-up questions. The chat streams its replies, with a Stop button, and each reply can be copied or regenerated. Replies can use lists and bold, and everything else is shown as plain text. It can call two tools on the server: one counts test points in the data (`query_tests`) and one reads an experiment's record (`get_experiment`). Each tool result is shown as a small card in the chat. Chat replies cannot be checked before they appear, because they stream, so the panel says so under the input. They carry the same label. The chat is built with [assistant-ui](https://www.assistant-ui.com/) and its styled Thread components (MIT, copied into `web/src/components/` as its documentation describes), themed with our font and six colours. The chat also shows the model's reasoning summary in a "Reasoning" block. The thinking level is medium and can be changed with `SPARK_GEMINI_THINKING`. The reasoning, like the reply, is not checked.
 
 What the check cannot do: it proves numbers and sources are real, not that a sentence means the right thing. People have not reviewed the answers. The prompt files are in `data/reference/agent/`.
 
@@ -106,6 +106,12 @@ Direct dependencies and their licences, read from the package files.
 |---|---|---|
 | React, React DOM | 19.3.1 | MIT |
 | @assistant-ui/react (the chat panel) | 0.15.36 | MIT |
+| @assistant-ui/react-markdown (the chat panel's styled parts) | 0.14.26 | MIT |
+| Tailwind CSS, @tailwindcss/vite (the chat panel only) | 4.3.5 | MIT |
+| radix-ui | 1.8.1 | MIT |
+| lucide-react (icons) | 1.73.0 | ISC |
+| class-variance-authority | 0.7.1 | Apache-2.0 |
+| clsx, tailwind-merge, tw-shimmer, remark-gfm, zustand | 2.1.1, 3.7.0, 0.4.14, 4.0.1, 5.1.0 | MIT |
 | @fontsource/public-sans (the font) | 5.3.0 | OFL-1.1 |
 | Vite | 8.3.8 | MIT |
 | @vitejs/plugin-react | 6.3.0 | MIT |

@@ -117,6 +117,8 @@ def run_chat(model: Model, files: AgentFiles, data: Data, context: dict, message
                 if event["type"] == "text":
                     text += event["delta"]
                     yield event
+                elif event["type"] == "reasoning":
+                    yield event
                 elif event["type"] == "tool_call":
                     calls.append(event)
                     yield event

@@ -71,6 +71,22 @@ describe("the adapter", () => {
     expect(out.map((r) => r.content)).toEqual([[{ type: "text", text: "Hel" }], [{ type: "text", text: "Hello." }], [{ type: "text", text: "Hello." }]]);
   });
 
+  it("shows the model's reasoning as its own part, growing as it arrives, before the answer", async () => {
+    const { out } = await run(
+      [user("Hi")],
+      sse([{ type: "reasoning", delta: "Look at " }, { type: "reasoning", delta: "the zone." }, { type: "text", delta: "Done." }, { type: "done" }]),
+    );
+    expect(out.at(-1)!.content).toEqual([
+      { type: "reasoning", text: "Look at the zone." },
+      { type: "text", text: "Done." },
+    ]);
+  });
+
+  it("never sends the reasoning back to the server", () => {
+    const flat = toFlat([user("Hi"), assistant({ type: "reasoning", text: "secret thoughts" }, { type: "text", text: "Hello." })]);
+    expect(JSON.stringify(flat)).not.toContain("secret thoughts");
+  });
+
   it("shows a tool call, then fills in its result", async () => {
     const result = JSON.stringify({ count: 20, by_experiment: { "PSI-159": 20 }, source: "test_points.json" });
     const { out } = await run(

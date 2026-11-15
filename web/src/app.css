@@ -1,0 +1,5 @@
+/* The dashboard styles sit in their own layer, so the chat panel's Tailwind layers, which come after it, win inside the panel and nothing else changes. */
+@layer dashboard, theme, base, components, utilities;
+
+@import "./styles.css" layer(dashboard);
+@import "./chat.css";

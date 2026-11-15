@@ -16,6 +16,7 @@ class Settings:
     api_key: str | None = field(repr=False)
     project: str | None
     location: str
+    thinking: str = "medium"
 
     def configured(self) -> bool:
         if self.backend == "aistudio":
@@ -61,4 +62,5 @@ def load_settings(env: Mapping[str, str] | None = None, dotenv: Path | None = No
         api_key=get("GEMINI_API_KEY") or get("GOOGLE_API_KEY"),
         project=get("GOOGLE_CLOUD_PROJECT"),
         location=get("GOOGLE_CLOUD_LOCATION") or DEFAULT_LOCATION,
+        thinking=get("SPARK_GEMINI_THINKING") or "medium",
     )

@@ -83,6 +83,9 @@ export function makeAdapter(block: BlockSpec): ChatModelAdapter {
           if (event.type === "text") {
             if (last?.type === "text") parts[parts.length - 1] = { type: "text", text: last.text + event.delta };
             else parts.push({ type: "text", text: event.delta });
+          } else if (event.type === "reasoning") {
+            if (last?.type === "reasoning") parts[parts.length - 1] = { type: "reasoning", text: last.text + event.delta };
+            else parts.push({ type: "reasoning", text: event.delta });
           } else if (event.type === "tool_call") {
             parts.push({ type: "tool-call", toolCallId: event.id, toolName: event.name, args: event.args, argsText: JSON.stringify(event.args) });
           } else if (event.type === "tool_result") {

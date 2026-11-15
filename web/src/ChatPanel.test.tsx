@@ -46,7 +46,7 @@ const panel = () => screen.getByRole("complementary", { name: "Spark agent chat"
 async function ask(question: string) {
   const input = within(panel()).getByRole("textbox");
   fireEvent.change(input, { target: { value: question } });
-  fireEvent.click(within(panel()).getByRole("button", { name: "Send" }));
+  fireEvent.click(within(panel()).getByRole("button", { name: "Send message" }));
 }
 
 describe("ChatPanel", () => {
@@ -85,7 +85,7 @@ describe("ChatPanel", () => {
   it("has an input and a Send button", () => {
     render(<ChatPanel block={block} label="lunar zone map" answer={answer} onClose={() => {}} />);
     expect(within(panel()).getByRole("textbox")).toHaveAttribute("placeholder", "Ask a follow-up question");
-    expect(within(panel()).getByRole("button", { name: "Send" })).toBeInTheDocument();
+    expect(within(panel()).getByRole("button", { name: "Send message" })).toBeInTheDocument();
   });
 
   it("sends the block, the explanation and the question, and streams the reply with its label", async () => {

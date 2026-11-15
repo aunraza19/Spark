@@ -1,23 +1,14 @@
-import {
-  ActionBarPrimitive,
-  AssistantRuntimeProvider,
-  ComposerPrimitive,
-  MessagePrimitive,
-  ThreadPrimitive,
-  useAuiState,
-  useLocalRuntime,
-} from "@assistant-ui/react";
-import { useMemo } from "react";
+import { AssistantRuntimeProvider, AuiConfig, Suggestions, useLocalRuntime, type ToolCallMessagePartComponent } from "@assistant-ui/react";
+import { useMemo, type PropsWithChildren } from "react";
 import type { AgentAnswer, BlockSpec } from "./api";
 import { makeAdapter } from "./chatAdapter";
-import { AGENT_NOTE } from "./content";
-import { MarkdownText } from "./safeMarkdown";
+import { Thread, type ThreadComponents } from "@/components/assistant-ui/elements/thread.aui";
+import { Button } from "@/components/ui/button";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { startersFor } from "./starters";
 import { GetExperimentCard, QueryTestsCard } from "./ToolCards";
 
 export const NOT_CHECKED = "Answers in the chat are not checked like the explanation above. Check the evidence.";
-
-const toolCards = { by_name: { query_tests: QueryTestsCard, get_experiment: GetExperimentCard } };
 
 function explanationText(answer: AgentAnswer): string {
   return [
@@ -28,44 +19,15 @@ function explanationText(answer: AgentAnswer): string {
   ].join("\n\n");
 }
 
-function UserMessage() {
-  return (
-    <MessagePrimitive.Root className="chat-message chat-user">
-      <p className="chat-who">You</p>
-      <MessagePrimitive.Parts />
-    </MessagePrimitive.Root>
-  );
-}
+const cards: Record<string, ToolCallMessagePartComponent> = { query_tests: QueryTestsCard, get_experiment: GetExperimentCard };
 
-function AssistantMessage() {
-  const followsAQuestion = useAuiState((state) => state.message.index > 0);
-  return (
-    <MessagePrimitive.Root className="chat-message chat-agent">
-      <p className="chat-who">Spark agent</p>
-      <MessagePrimitive.Parts components={{ Text: MarkdownText, tools: toolCards }} />
-      <ActionBarPrimitive.Root className="chat-actions" hideWhenRunning>
-        <ActionBarPrimitive.Copy className="chat-action">Copy</ActionBarPrimitive.Copy>
-        {followsAQuestion && <ActionBarPrimitive.Reload className="chat-action">Regenerate</ActionBarPrimitive.Reload>}
-      </ActionBarPrimitive.Root>
-      <p className="agent-note">{AGENT_NOTE}</p>
-    </MessagePrimitive.Root>
-  );
-}
+const ToolCard: ToolCallMessagePartComponent = (props) => {
+  const Card = cards[props.toolName];
+  return Card ? <Card {...props} /> : null;
+};
 
-function Welcome({ block, label }: { block: BlockSpec; label: string }) {
-  return (
-    <div className="chat-welcome" data-testid="chat-welcome">
-      <p>Hello. Ask me about {label}. I can count tests and read experiment records from the data.</p>
-      <div className="chat-starters">
-        {startersFor(block).map((question) => (
-          <ThreadPrimitive.Suggestion key={question} prompt={question} send className="button">
-            {question}
-          </ThreadPrimitive.Suggestion>
-        ))}
-      </div>
-    </div>
-  );
-}
+// The cards are short and are the evidence, so they are always open.
+const OpenToolGroup = ({ children }: PropsWithChildren) => <>{children}</>;
 
 export function ChatPanel({ block, label, answer, onClose }: { block: BlockSpec; label: string; answer?: AgentAnswer; onClose: () => void }) {
   const blockKey = JSON.stringify(block);
@@ -73,37 +35,41 @@ export function ChatPanel({ block, label, answer, onClose }: { block: BlockSpec;
   const runtime = useLocalRuntime(adapter, {
     initialMessages: answer ? [{ role: "assistant", content: [{ type: "text", text: explanationText(answer) }] }] : undefined,
   });
+  const config = useMemo(() => AuiConfig({ suggestions: Suggestions(startersFor(block)) }), [blockKey]);
+  const components = useMemo<ThreadComponents>(
+    () => ({
+      ToolFallback: ToolCard,
+      ToolGroup: OpenToolGroup,
+      Welcome: () => (
+        <p data-testid="chat-welcome" className="mb-6 px-2 text-lg font-bold">
+          Hello. Ask me about {label}. I can count tests and read experiment records from the data.
+        </p>
+      ),
+    }),
+    [label],
+  );
 
   return (
-    <aside className="chat-panel" aria-label="Spark agent chat" onKeyDown={(event) => event.key === "Escape" && onClose()}>
-      <header className="chat-header">
-        <h3>Spark agent chat</h3>
-        <button type="button" className="button" onClick={onClose}>
+    <aside
+      className="chat-panel bg-background text-foreground border-border fixed inset-y-0 right-0 z-50 flex w-[min(440px,100%)] flex-col border-l text-sm max-[720px]:w-full"
+      aria-label="Spark agent chat"
+      onKeyDown={(event) => event.key === "Escape" && onClose()}
+    >
+      <header className="border-border flex items-center justify-between gap-2 border-b px-4 py-2">
+        <h3 className="text-base font-bold">Spark agent chat</h3>
+        <Button type="button" variant="outline" size="sm" onClick={onClose}>
           Close
-        </button>
+        </Button>
       </header>
-      <p className="chat-context">Talking about: {label}</p>
-      <AssistantRuntimeProvider runtime={runtime}>
-        <ThreadPrimitive.Root className="chat-thread">
-          <ThreadPrimitive.Viewport className="chat-viewport">
-            <ThreadPrimitive.Empty>
-              <Welcome block={block} label={label} />
-            </ThreadPrimitive.Empty>
-            <ThreadPrimitive.Messages components={{ UserMessage, AssistantMessage }} />
-          </ThreadPrimitive.Viewport>
-          <ThreadPrimitive.ScrollToBottom className="button chat-scroll">Scroll to latest</ThreadPrimitive.ScrollToBottom>
-          <ComposerPrimitive.Root className="chat-composer">
-            <ComposerPrimitive.Input autoFocus placeholder="Ask a follow-up question" rows={2} />
-            <ThreadPrimitive.If running={false}>
-              <ComposerPrimitive.Send className="button">Send</ComposerPrimitive.Send>
-            </ThreadPrimitive.If>
-            <ThreadPrimitive.If running>
-              <ComposerPrimitive.Cancel className="button">Stop</ComposerPrimitive.Cancel>
-            </ThreadPrimitive.If>
-          </ComposerPrimitive.Root>
-        </ThreadPrimitive.Root>
-      </AssistantRuntimeProvider>
-      <p className="chat-note">{NOT_CHECKED}</p>
+      <p className="border-border text-muted-foreground border-b px-4 py-2">Talking about: {label}</p>
+      <div className="min-h-0 flex-1">
+        <TooltipProvider>
+          <AssistantRuntimeProvider runtime={runtime} config={config}>
+            <Thread components={components} />
+          </AssistantRuntimeProvider>
+        </TooltipProvider>
+      </div>
+      <p className="border-border text-muted-foreground border-t px-4 py-2 text-xs">{NOT_CHECKED}</p>
     </aside>
   );
 }

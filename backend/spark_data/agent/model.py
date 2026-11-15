@@ -61,6 +61,7 @@ class GeminiModel:
         else:
             self._client = genai.Client(api_key=settings.api_key, http_options=types.HttpOptions(api_version="v1beta"))
         self.model_id = settings.model
+        self._thinking = settings.thinking
         self._parts: dict[str, object] = {}
 
     def _fail(self, error: Exception) -> ModelError:
@@ -113,13 +114,16 @@ class GeminiModel:
             system_instruction=system,
             tools=[types.Tool(function_declarations=tools)],
             automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
+            thinking_config=types.ThinkingConfig(thinking_level=types.ThinkingLevel(self._thinking.upper()), include_thoughts=True),
             temperature=0,
         )
         try:
             stream = self._client.models.generate_content_stream(model=self.model_id, contents=self._contents(messages), config=config)
             for chunk in stream:
                 for part in (chunk.candidates[0].content.parts or []) if chunk.candidates else []:
-                    if part.text:
+                    if part.text and part.thought:
+                        yield {"type": "reasoning", "delta": part.text}
+                    elif part.text:
                         yield {"type": "text", "delta": part.text}
                     if part.function_call:
                         call_id = part.function_call.id or f"call_{uuid.uuid4().hex[:12]}"

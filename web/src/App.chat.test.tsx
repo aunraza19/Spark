@@ -105,7 +105,7 @@ describe("the Spark agent button in the page header", () => {
     fireEvent.click(headerButton());
     const chat = await screen.findByRole("complementary", { name: "Spark agent chat" });
     expect(within(chat).getByText("Talking about: ISS cabin map")).toBeInTheDocument();
-    fireEvent.click(within(chat).getAllByRole("button").find((b) => b.textContent === startersFor({ kind: "map" } as never)[0]) as HTMLElement);
+    fireEvent.click(within(chat).getByRole("button", { name: startersFor({ kind: "map" } as never)[0] }));
     await within(chat).findByText("Here you go.");
     expect(chatBodies[0].block).toEqual({ kind: "map", habitat: "iss", shown_psi_max: 20 });
   });

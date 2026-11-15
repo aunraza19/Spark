@@ -80,3 +80,8 @@ def test_the_default_vertex_location_is_global_where_the_gemini_3_models_are_ser
 def test_a_location_in_the_environment_wins_over_the_default():
     env = {"SPARK_GEMINI_BACKEND": "vertex", "GOOGLE_CLOUD_PROJECT": "p", "GOOGLE_CLOUD_LOCATION": "europe-west4"}
     assert load_settings(env=env, dotenv=Path("none.env")).location == "europe-west4"
+
+
+def test_the_chat_thinks_at_medium_unless_the_environment_says_otherwise():
+    assert load_settings(env={}, dotenv=Path("none.env")).thinking == "medium"
+    assert load_settings(env={"SPARK_GEMINI_THINKING": "low"}, dotenv=Path("none.env")).thinking == "low"

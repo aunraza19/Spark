@@ -141,3 +141,28 @@ def test_a_chat_that_already_opens_with_the_user_is_left_alone(data):
     model = FakeModel(turns=[[{"type": "text", "delta": "ok"}]])
     events(model, data, [{"role": "user", "text": "Hi"}])
     assert model.chat_calls[0][1] == [{"role": "user", "text": "Hi"}]
+
+
+# --- reasoning ---------------------------------------------------------------------
+
+
+def test_the_models_reasoning_is_streamed_to_the_reader_but_never_sent_back_to_the_model(data):
+    turns = [
+        [
+            {"type": "reasoning", "delta": "I should count the lunar tests."},
+            {"type": "tool_call", "id": "c1", "name": "query_tests", "args": {"zone": "lunar"}},
+        ],
+        [{"type": "reasoning", "delta": "Now I can answer."}, {"type": "text", "delta": "Twenty."}],
+    ]
+    model = FakeModel(turns=turns)
+    events = list(run_chat(model, FILES, data, CONTEXT, [{"role": "user", "text": "How many?"}]))
+    assert [e["type"] for e in events] == ["reasoning", "tool_call", "tool_result", "reasoning", "text", "done"]
+    assert events[0]["delta"] == "I should count the lunar tests."
+    second_round = model.chat_calls[1][1]
+    assert "I should count" not in json.dumps(second_round)
+
+
+def test_a_chat_that_is_only_reasoning_and_text_ends_normally(data):
+    model = FakeModel(turns=[[{"type": "reasoning", "delta": "Thinking."}, {"type": "text", "delta": "Hi."}]])
+    events = list(run_chat(model, FILES, data, CONTEXT, [{"role": "user", "text": "Hello"}]))
+    assert events[-1] == {"type": "done"}

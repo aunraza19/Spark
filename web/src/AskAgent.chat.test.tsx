@@ -107,7 +107,7 @@ describe("Ask more", () => {
     fireEvent.click(more());
     const panel = await screen.findByRole("complementary", { name: "Spark agent chat" });
     fireEvent.change(within(panel).getByRole("textbox"), { target: { value: "Why?" } });
-    fireEvent.click(within(panel).getByRole("button", { name: "Send" }));
+    fireEvent.click(within(panel).getByRole("button", { name: "Send message" }));
     await waitFor(() => expect(fn.mock.calls.some(([url]) => url === "/api/agent/chat")).toBe(true));
     const call = fn.mock.calls.find(([url]) => url === "/api/agent/chat") as unknown as [string, RequestInit];
     expect(JSON.parse(call[1].body as string).block).toEqual(block);
