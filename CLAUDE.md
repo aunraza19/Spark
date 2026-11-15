@@ -25,7 +25,7 @@ Audience: professors, students, aerospace researchers and engineers.
 - Test points: o2_pct_min and o2_pct_max with an approximate flag, never a midpoint. Raw fuel and outcome text kept. Inverse-flame (burner oxygen) points go in their own file, never with ambient points.
 - Clean output: PSI-39 exact duplicate rows are dropped and listed in the build report. ambient_temperature_K is left out. A record that fails validation is left out and listed, and the validator exits 1.
 - Conditions known only from reports: data/reference/report_conditions.json, a few entries with source file, page, figure and test id.
-- Chat library: assistant-ui, chosen by the spike in docs/chat-library-spike.md. The spike code stays on the unmerged branch spike/chat as reference for the agent phase.
+- Chat library: assistant-ui, chosen by the spike in docs/chat-library-spike.md. The spike branch was deleted after the agent phase; its findings stay in that file.
 - Deployment target: one Cloud Run service, FastAPI serves the built frontend. Priority: the dashboard first, the agent second.
 - Dashboard: FastAPI serves all data and computed views and the frontend only draws. The map is plain SVG. Styling is plain CSS with variables, no gradients. Frontend tests: Vitest, Testing Library, jsdom, no browser automation.
 - Ranking: two visible scores. Atmosphere match is 100 x (1 - distance of the experiment's nearest test), distance as a share of the target's own values. Material relevance is the weight of the fuel category in data/reference/fuel_categories.json ("our weighting"). Order: atmosphere match, tests inside the zone, material relevance, PSI id. Experiments without per-test conditions are listed as not scored, with reasons.

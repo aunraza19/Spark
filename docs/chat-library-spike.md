@@ -1,6 +1,6 @@
 # Chat library spike: assistant-ui or CopilotKit
 
-Date: 2026-11-15. Spike code: branch `spike/chat`, commit `cd11faf`. It is never merged. It stays as reference for the agent phase.
+Date: 2026-11-15. Spike code: branch `spike/chat`, commit `cd11faf`. It was never merged, and the branch was deleted after the agent phase. These findings are what remains.
 
 ## Decision
 
