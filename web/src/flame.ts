@@ -43,9 +43,9 @@ export function flamePoints(cx: number, by: number, R: number, g: number, sway: 
 }
 
 const LAYERS: { scale: number; from: Colour; to: Colour }[] = [
-  { scale: 1, from: [40, 100, 230, 0.5], to: [255, 110, 30, 0.55] },
-  { scale: 0.66, from: [90, 160, 255, 0.85], to: [255, 175, 50, 0.9] },
-  { scale: 0.34, from: [190, 225, 255, 1], to: [255, 240, 190, 1] },
+  { scale: 1, from: [11, 92, 173, 0.75], to: [180, 95, 0, 0.75] },
+  { scale: 0.66, from: [74, 150, 224, 0.9], to: [240, 160, 60, 0.9] },
+  { scale: 0.34, from: [200, 225, 250, 1], to: [255, 235, 190, 1] },
 ];
 
 function paintFlame(ctx: Ctx2D, cx: number, by: number, R: number, g: number, sway: number, flick: number) {
@@ -67,18 +67,39 @@ function paintFlame(ctx: Ctx2D, cx: number, by: number, R: number, g: number, sw
 }
 
 function paintDroplet(ctx: Ctx2D, x: number, y: number) {
-  ctx.fillStyle = "#8a93a6";
+  ctx.fillStyle = "#8c8c8c";
   ctx.beginPath();
   ctx.arc(x, y, 6, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = "#c4cbd8";
+  ctx.fillStyle = "#cfcfcf";
   ctx.beginPath();
   ctx.arc(x - 2, y - 2, 2, 0, Math.PI * 2);
   ctx.fill();
 }
 
+// Four small corner marks, like the frame of a camera looking into the combustion chamber.
+export function drawViewfinder(ctx: Ctx2D, width: number, height: number): void {
+  const inset = 12;
+  const arm = 16;
+  ctx.strokeStyle = "rgba(255,255,255,0.4)";
+  ctx.lineWidth = 1;
+  for (const [x, y, dx, dy] of [
+    [inset, inset, 1, 1],
+    [width - inset, inset, -1, 1],
+    [inset, height - inset, 1, -1],
+    [width - inset, height - inset, -1, -1],
+  ]) {
+    ctx.beginPath();
+    ctx.moveTo(x + dx * arm, y);
+    ctx.lineTo(x, y);
+    ctx.lineTo(x, y + dy * arm);
+    ctx.stroke();
+  }
+}
+
 export function drawScene(ctx: Ctx2D, width: number, height: number, elapsedMs: number, reduced: boolean): void {
   ctx.clearRect(0, 0, width, height);
+  drawViewfinder(ctx, width, height);
   const by = height * 0.62;
   const gravity = [1, dropG(elapsedMs, reduced)];
   const xs = [width * 0.27, width * 0.73];
@@ -95,8 +116,8 @@ export function drawScene(ctx: Ctx2D, width: number, height: number, elapsedMs: 
     paintDroplet(ctx, xs[i], by);
     paintFlame(ctx, xs[i], by, R, g, sway, flick);
     paintDroplet(ctx, xs[i], by);
-    ctx.fillStyle = "rgba(233,238,251,0.85)";
-    ctx.font = `600 ${Math.round(Math.max(14, width * 0.036))}px "Bricolage Grotesque Variable", system-ui, sans-serif`;
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.font = `700 ${Math.round(Math.max(14, width * 0.036))}px "Public Sans", system-ui, sans-serif`;
     ctx.textAlign = "center";
     ctx.fillText(i === 0 ? "1 g" : g < 0.005 ? "about 0 g" : `${g.toFixed(2)} g`, xs[i], height * 0.1);
   });

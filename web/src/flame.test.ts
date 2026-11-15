@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { drawScene, dropG, ease, flamePoints } from "./flame";
+import { drawScene, drawViewfinder, dropG, ease, flamePoints } from "./flame";
 import { makeRecorder, texts } from "./recorder";
 
 describe("dropG", () => {
@@ -95,5 +95,55 @@ describe("drawScene", () => {
     drawScene(first.ctx, 500, 400, 100, true);
     drawScene(second.ctx, 500, 400, 5000, true);
     expect(JSON.stringify(first.calls)).toBe(JSON.stringify(second.calls));
+  });
+});
+
+describe("viewfinder", () => {
+  const near = (value: number, edge: number) => Math.abs(value - edge) <= 40;
+
+  it("draws four corner marks, each an L of two lines, in the corners of the frame", () => {
+    const recorder = makeRecorder();
+    drawViewfinder(recorder.ctx, 500, 400);
+    const moves = recorder.calls.filter((c) => c.name === "moveTo");
+    const lines = recorder.calls.filter((c) => c.name === "lineTo");
+    expect(moves).toHaveLength(4);
+    expect(lines).toHaveLength(8);
+    expect(recorder.calls.filter((c) => c.name === "stroke")).toHaveLength(4);
+    for (const call of [...moves, ...lines]) {
+      const [x, y] = call.args as number[];
+      expect(near(x, 0) || near(x, 500)).toBe(true);
+      expect(near(y, 0) || near(y, 400)).toBe(true);
+    }
+  });
+
+  it("is subtle: a thin line in a flat colour with at most half opacity", () => {
+    const recorder = makeRecorder();
+    drawViewfinder(recorder.ctx, 500, 400);
+    const colour = recorder.sets.find((s) => s.name === "strokeStyle")?.value as string;
+    expect(colour).toMatch(/^rgba\(\d+,\d+,\d+,0?\.\d+\)$/);
+    expect(Number(/,(0?\.\d+)\)$/.exec(colour)?.[1])).toBeLessThanOrEqual(0.5);
+    expect(recorder.sets.find((s) => s.name === "lineWidth")?.value).toBeLessThanOrEqual(1.5);
+  });
+
+  it("is part of every frame of the stage", () => {
+    const recorder = makeRecorder();
+    drawScene(recorder.ctx, 500, 400, 0, false);
+    expect(recorder.calls.filter((c) => c.name === "stroke").length).toBeGreaterThanOrEqual(6);
+  });
+});
+
+describe("the stage text", () => {
+  it("is set in Public Sans bold, the page font", () => {
+    const recorder = makeRecorder();
+    drawScene(recorder.ctx, 500, 400, 0, false);
+    const font = recorder.sets.find((s) => s.name === "font")?.value as string;
+    expect(font).toContain("Public Sans");
+    expect(font.startsWith("700 ")).toBe(true);
+  });
+
+  it("shows the 1 g and the 0 g flames as still frames with reduced motion", () => {
+    const recorder = makeRecorder();
+    drawScene(recorder.ctx, 500, 400, 0, true);
+    expect(texts(recorder)).toEqual(["1 g", "about 0 g"]);
   });
 });
