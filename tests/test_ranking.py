@@ -144,11 +144,38 @@ def test_lunar_atmosphere_scores_on_the_real_data(entries, real_conditions, luna
     }
 
 
-def test_lunar_order_uses_atmosphere_then_material_then_id(entries, real_conditions, lunar, ranking_data):
+def test_lunar_order_uses_atmosphere_then_tests_inside_then_material_then_id(
+    entries, real_conditions, lunar, ranking_data
+):
     result = rank(entries, real_conditions, lunar, ranking_data)
-    # PSI-20 and PSI-159 tie at 100 for atmosphere; PSI-20 wins on material (70 against 25).
+    # PSI-159 and PSI-20 tie at 100 for atmosphere; PSI-159 wins on tests inside the zone (20 against 1).
     assert [r.psi_id for r in result.rows] == [
-        "PSI-20", "PSI-159", "PSI-69", "PSI-39", "PSI-10", "PSI-98", "PSI-99", "PSI-25",
+        "PSI-159", "PSI-20", "PSI-69", "PSI-39", "PSI-10", "PSI-98", "PSI-99", "PSI-25",
+    ]
+
+
+def test_a_tie_in_atmosphere_is_broken_by_tests_inside_before_material(lunar, ranking_data):
+    entries = [
+        {"psi_id": "PSI-25", "kind": "flight"},  # solid, material 100
+        {"psi_id": "PSI-159", "kind": "flight"},  # gas, material 25
+        {"psi_id": "PSI-69", "kind": "flight"},  # liquid, material 40
+    ]
+    inside = {
+        "basis": "test", "o2_min": 34, "o2_max": 34, "psi_min": 8.2, "psi_max": 8.2,
+        "source_file": "f.csv", "source_row": 2,
+    }
+    items = [
+        Condition("PSI-25", "a", **inside),
+        Condition("PSI-159", "a", **inside),
+        Condition("PSI-159", "b", **inside),
+        Condition("PSI-69", "a", **inside),
+        Condition("PSI-69", "b", **inside),
+    ]
+    result = rank(entries, items, lunar, ranking_data)
+    # All three tie at 100. Two tests inside beat one even with the highest material (PSI-25).
+    # PSI-69 and PSI-159 tie on 2 inside, so material decides: 40 against 25.
+    assert [(r.psi_id, r.tests_inside_zone) for r in result.rows] == [
+        ("PSI-69", 2), ("PSI-159", 2), ("PSI-25", 1),
     ]
 
 
@@ -217,6 +244,20 @@ def test_there_is_one_fuel_category_per_registered_experiment_with_a_source(refe
     for entry in ranking_data.fuel_categories:
         assert entry.category in ranking_data.rules.categories, entry.psi_id
         assert entry.source.strip(), entry.psi_id
+
+
+@pytest.mark.parametrize("psi_id, reason", [("PSI-101", "no flame"), ("PSI-102", "no flaming combustion"), ("PSI-115", "no flame")])
+def test_smoke_studies_without_a_flame_are_no_burning_test_with_their_reason(ranking_data, psi_id, reason):
+    entry = next(f for f in ranking_data.fuel_categories if f.psi_id == psi_id)
+    assert entry.category == "no_burning_test"
+    assert reason in entry.source
+    assert entry.note is None
+
+
+def test_the_rules_file_states_the_sort_order(ranking_data):
+    assert ranking_data.rules.sort_rule == (
+        "Atmosphere match, then tests inside the zone, then material relevance, then PSI id."
+    )
 
 
 def test_psi_20_is_an_emulated_solid_by_the_challenge_text(ranking_data):

@@ -11,5 +11,5 @@
   "distance_rule": "Each gap is a share of the target's own value: distance = hypot(oxygen gap / target oxygen, pressure gap / target pressure). A test inside the zone has distance 0.",
   "atmosphere_rule": "Atmosphere match = 100 x (1 - min(1, distance of the experiment's nearest test)).",
   "material_rule": "Material relevance is the weight of the experiment's fuel category, from fuel_categories.json.",
-  "sort_rule": "Atmosphere match, then material relevance, then PSI id."
+  "sort_rule": "Atmosphere match, then tests inside the zone, then material relevance, then PSI id."
 }

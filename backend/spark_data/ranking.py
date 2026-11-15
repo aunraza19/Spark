@@ -131,6 +131,6 @@ def rank(entries: list[dict], items: list[Condition], target: Habitat, data: Ran
         rows.append(
             RankRow(psi_id, entry["kind"], category, atmosphere_match(nearest_distance), inside, len(own), material)
         )
-    rows.sort(key=lambda r: (-r.atmosphere_match, -r.material_relevance, _number(r.psi_id)))
+    rows.sort(key=lambda r: (-r.atmosphere_match, -(r.tests_inside_zone or 0), -r.material_relevance, _number(r.psi_id)))
     not_scored.sort(key=lambda n: (-n.material_relevance, _number(n.psi_id)))
     return Ranking(rows, not_scored)
