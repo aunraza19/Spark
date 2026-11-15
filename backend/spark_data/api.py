@@ -1,13 +1,22 @@
+import json
 import math
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
+from spark_data.agent.chat import run_chat
+from spark_data.agent.explain import AnswerCache, explain
+from spark_data.agent.files import load_files
+from spark_data.agent.model import GeminiModel, ModelError, NoModel, Unavailable
+from spark_data.agent.settings import load_settings
+from spark_data.block_snapshots import BadBlock, resolve_target, snapshot_for
 from spark_data.data import load_data
 from spark_data.models import Habitat
 from spark_data.pages import experiment_list, experiment_page, ranking_view
-from spark_data.paths import CLEAN_DIR, REFERENCE_DIR, WEB_DIST
+from spark_data.paths import AGENT_CACHE_DIR, CLEAN_DIR, REFERENCE_DIR, WEB_DIST
 from spark_data.plain import about, map_summary, point_card
 from spark_data.snapshots import (
     build_map_snapshot,
@@ -16,27 +25,49 @@ from spark_data.snapshots import (
 )
 
 
-def _custom_target(o2: float | None, psi: float | None) -> Habitat:
-    valid = o2 is not None and psi is not None and 0 < o2 <= 100 and 0 < psi and math.isfinite(psi)
-    if not valid:
-        raise HTTPException(
-            status_code=422, detail="custom needs oxygen above 0 and up to 100 %, and pressure above 0 psi"
-        )
-    return Habitat(id="custom", label="Custom", kind="point", o2_pct=o2, pressure_psi=psi, source="User input")
+class ExplainRequest(BaseModel):
+    block: dict
 
 
-def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dist: Path = WEB_DIST) -> FastAPI:
+class ChatRequest(BaseModel):
+    block: dict
+    messages: list[dict]
+
+
+def create_app(
+    clean: Path = CLEAN_DIR,
+    reference: Path = REFERENCE_DIR,
+    web_dist: Path = WEB_DIST,
+    settings=None,
+    model=None,
+    agent_cache=None,
+    agent_files=None,
+) -> FastAPI:
     data = load_data(clean, reference)
 
     app = FastAPI(title="Spark data")
 
     def _target(habitat: str, o2: float | None, psi: float | None) -> Habitat:
-        if habitat == "custom":
-            return _custom_target(o2, psi)
-        target = next((h for h in data.habitats if h.id == habitat and h.kind != "note"), None)
-        if target is None:
-            raise HTTPException(status_code=404, detail="unknown habitat")
-        return target
+        try:
+            return resolve_target(data, habitat, o2, psi)
+        except BadBlock as error:
+            raise HTTPException(status_code=error.status, detail=str(error)) from None
+
+    files = agent_files or load_files()
+    cache = AnswerCache(agent_cache or AGENT_CACHE_DIR)
+    agent_settings = settings or load_settings()
+    live: dict = {"model": model}
+
+    def agent_model():
+        if live["model"] is None:
+            live["model"] = GeminiModel(agent_settings) if agent_settings.configured() else NoModel(agent_settings.model)
+        return live["model"]
+
+    def block_snapshot(block: dict):
+        try:
+            return snapshot_for(data, block)
+        except BadBlock as error:
+            raise HTTPException(status_code=error.status, detail=str(error)) from None
 
     @app.get("/api/habitats")
     def get_habitats():
@@ -98,7 +129,7 @@ def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dis
 
     @app.get("/api/snapshot/scenario")
     def get_scenario_snapshot(o2: float | None = None, psi: float | None = None):
-        snapshot = build_scenario_snapshot(data, _custom_target(o2, psi))
+        snapshot = build_scenario_snapshot(data, _target("custom", o2, psi))
         return {"key": snapshot_key(snapshot), "snapshot": snapshot}
 
     @app.get("/api/about")
@@ -121,6 +152,30 @@ def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dis
         if card is None:
             raise HTTPException(status_code=404, detail="unknown test")
         return card
+
+    @app.post("/api/agent/explain")
+    def post_explain(body: ExplainRequest):
+        snapshot, names = block_snapshot(body.block)
+        try:
+            result = explain(snapshot, names, agent_model(), files, cache)
+        except Unavailable:
+            return JSONResponse({"status": "unavailable"}, status_code=503)
+        except ModelError:
+            return JSONResponse({"status": "busy"}, status_code=503)
+        if result["status"] != "ok":
+            return {"status": "unchecked"}
+        return {key: result[key] for key in ("status", "answer", "key", "model", "cached")}
+
+    @app.post("/api/agent/chat")
+    def post_chat(body: ChatRequest):
+        snapshot, names = block_snapshot(body.block)
+        context = {"snapshot": snapshot, "names": names}
+
+        def stream():
+            for event in run_chat(agent_model(), files, data, context, body.messages):
+                yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
+
+        return StreamingResponse(stream(), media_type="text/event-stream")
 
     if (web_dist / "index.html").is_file():
         app.mount("/", StaticFiles(directory=web_dist, html=True), name="web")
