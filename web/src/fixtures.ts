@@ -196,10 +196,15 @@ export const reportCard: PointCard = {
 };
 
 export const experimentRows: ExperimentRow[] = [
-  { psi_id: "PSI-21", name: "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame", kind: "flight", fuel_type: "Gas", tests_with_conditions: 0, tests_text: "No per-test data" },
-  { psi_id: "PSI-25", name: "Burning and Suppression of Solids - II", kind: "flight", fuel_type: "Solid material", tests_with_conditions: 129, tests_text: "129 tests" },
-  { psi_id: "PSI-60", name: "Computational and Experimental Analysis of SPICE Data Sets", kind: "ground", fuel_type: "Gas", tests_with_conditions: 0, tests_text: "No per-test data" },
+  { psi_id: "PSI-21", name: "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame", kind: "flight", fuel_type: "Gas", tests: 0, report_conditions: 0, tests_with_conditions: 0, tests_text: "No per-test data" },
+  { psi_id: "PSI-25", name: "Burning and Suppression of Solids - II", kind: "flight", fuel_type: "Solid material", tests: 129, report_conditions: 0, tests_with_conditions: 129, tests_text: "129 tests" },
+  { psi_id: "PSI-60", name: "Computational and Experimental Analysis of SPICE Data Sets", kind: "ground", fuel_type: "Gas", tests: 0, report_conditions: 0, tests_with_conditions: 0, tests_text: "No per-test data" },
 ];
+
+export const reportRow: ExperimentRow = {
+  psi_id: "PSI-20", name: "Advanced Combustion via Microgravity Experiments / Burning Rate Emulator", kind: "flight", fuel_type: "Emulated solid",
+  tests: 0, report_conditions: 3, tests_with_conditions: 3, tests_text: "3 conditions from a NASA report",
+};
 
 export const pageFixture: ExperimentPageData = {
   psi_id: "PSI-25",
@@ -218,6 +223,7 @@ export const pageFixture: ExperimentPageData = {
   evidence: {
     conditions: {
       tests_on_map: 129,
+      report_conditions_on_map: 0,
       ranges: { o2_pct: [12, 22.2], pressure_psi: [14.5, 14.7] },
       source_files: ["PSI-25_Experimental table_BASS-II.csv"],
       record_note: "Oxygen was varied from about 12 to 22 % at about 1 atm.",
@@ -266,5 +272,24 @@ export const rankingFixture: RankingView = {
     material_rule: "Material relevance is the weight of the experiment's fuel category.",
     sort_rule: "Atmosphere match, then tests inside the zone, then material relevance, then PSI id.",
     weights: { "Solid material": 100, "Emulated solid": 70, Liquid: 40, Gas: 25, "No burning test": 0 },
+  },
+};
+
+export const reportPageFixture: ExperimentPageData = {
+  ...pageFixture,
+  psi_id: "PSI-20",
+  title: "ACME/BRE (PSI-20)",
+  name: "Advanced Combustion via Microgravity Experiments / Burning Rate Emulator",
+  acronym: "ACME/BRE",
+  lead: ["It burned a gas flame that stands in for a solid fuel.", "It ran on the ISS.", "3 conditions from a NASA report are on the map."],
+  evidence: {
+    ...pageFixture.evidence,
+    conditions: {
+      tests_on_map: 0,
+      report_conditions_on_map: 3,
+      ranges: { o2_pct: [27, 34], pressure_psi: [8.2, 10.2] },
+      source_files: ["BRE_final_report_20220201.pdf"],
+      record_note: "The test table has no oxygen or pressure columns.",
+    },
   },
 };

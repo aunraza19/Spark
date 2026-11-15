@@ -12,7 +12,7 @@ function Table({ view }: { view: RankingView }) {
           <th>Experiment</th>
           <th>Atmosphere match</th>
           <th>Tests inside the zone</th>
-          <th>Tests with oxygen and pressure</th>
+          <th>Tests or report conditions on the map</th>
           <th>Material relevance ({view.evidence.weighting_label})</th>
         </tr>
       </thead>

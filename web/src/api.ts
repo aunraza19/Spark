@@ -109,6 +109,8 @@ export type ExperimentRow = {
   name: string;
   kind: "flight" | "ground";
   fuel_type: string;
+  tests: number;
+  report_conditions: number;
   tests_with_conditions: number;
   tests_text: string;
 };
@@ -124,6 +126,7 @@ export type ExperimentPageData = {
   evidence: {
     conditions: {
       tests_on_map: number;
+      report_conditions_on_map: number;
       ranges: { o2_pct: [number, number]; pressure_psi: [number, number] } | null;
       source_files: string[];
       record_note: string;

@@ -66,7 +66,7 @@ describe("ExperimentPage", () => {
     expect(evidence()).not.toHaveAttribute("open");
     const inside = within(evidence());
     expect(inside.getByText("Tests on the map: 129.")).toBeInTheDocument();
-    expect(inside.getByText("Oxygen in those tests: 12 to 22.2 %. Pressure: 14.5 to 14.7 psi.")).toBeInTheDocument();
+    expect(inside.getByText("Oxygen on the map: 12 to 22.2 %. Pressure on the map: 14.5 to 14.7 psi.")).toBeInTheDocument();
     expect(inside.getByText("Source: PSI-25_Experimental table_BASS-II.csv.")).toBeInTheDocument();
     expect(inside.getByText(pageFixture.evidence.conditions.record_note)).toBeInTheDocument();
     expect(inside.getByText("thermopile radiometer (Oriel 71768), uncalibrated")).toBeInTheDocument();
@@ -96,7 +96,7 @@ describe("ExperimentPage", () => {
     render(<ExperimentPage id="PSI-60" />);
     await screen.findByRole("heading", { level: 1 });
     expect(within(evidence()).getByText("Tests on the map: none.")).toBeInTheDocument();
-    expect(within(evidence()).queryByText(/Oxygen in those tests/)).toBeNull();
+    expect(within(evidence()).queryByText(/Oxygen on the map/)).toBeNull();
   });
 
   it("says so when the record lists no key results", async () => {

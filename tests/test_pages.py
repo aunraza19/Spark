@@ -7,7 +7,12 @@ from fastapi.testclient import TestClient
 from spark_data.api import create_app
 from spark_data.data import load_data
 from spark_data.models import Habitat
-from spark_data.pages import experiment_list, experiment_page, ranking_view
+from spark_data.pages import (
+    conditions_words,
+    experiment_list,
+    experiment_page,
+    ranking_view,
+)
 from spark_data.ranking import rank
 
 REPO = Path(__file__).resolve().parents[1]
@@ -274,3 +279,47 @@ def test_the_plain_words_for_places_and_categories_each_carry_a_source(data):
     for words in [*data.plain.places.values(), *data.plain.categories.values()]:
         assert words.words and words.source
     json.loads((REFERENCE / "plain_words.json").read_text(encoding="utf-8"))
+
+
+# --- report conditions are not tests -----------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "tests, reports, words",
+    [
+        (129, 0, "129 tests"),
+        (1, 0, "1 test"),
+        (0, 3, "3 conditions from a NASA report"),
+        (0, 1, "1 condition from a NASA report"),
+        (5, 2, "5 tests and 2 conditions from a NASA report"),
+        (0, 0, "No per-test data"),
+    ],
+)
+def test_the_words_for_tests_and_report_conditions_keep_them_apart(tests, reports, words):
+    assert conditions_words(tests, reports) == words
+
+
+def test_a_report_only_experiment_is_not_called_tests_in_the_list(data):
+    row = next(r for r in experiment_list(data) if r["psi_id"] == "PSI-20")
+    assert row["tests"] == 0
+    assert row["report_conditions"] == 3
+    assert row["tests_text"] == "3 conditions from a NASA report"
+
+
+def test_the_list_counts_tests_and_report_conditions_separately_for_every_experiment(data):
+    for row in experiment_list(data):
+        assert row["tests"] + row["report_conditions"] == row["tests_with_conditions"]
+
+
+def test_a_report_only_experiment_page_says_conditions_from_a_nasa_report(data):
+    page = experiment_page(data, "PSI-20")
+    assert page["lead"][2] == "3 conditions from a NASA report are on the map."
+    conditions = page["evidence"]["conditions"]
+    assert conditions["tests_on_map"] == 0
+    assert conditions["report_conditions_on_map"] == 3
+
+
+def test_an_experiment_with_tests_only_keeps_its_sentence(data):
+    n = count_of(data, "PSI-25")
+    assert experiment_page(data, "PSI-25")["lead"][2] == f"{n} tests have oxygen and pressure on the map."
+    assert experiment_page(data, "PSI-25")["evidence"]["conditions"]["report_conditions_on_map"] == 0

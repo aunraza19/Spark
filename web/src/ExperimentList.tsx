@@ -29,7 +29,7 @@ export function ExperimentList() {
               <tr>
                 <th>Experiment</th>
                 <th>What was burned</th>
-                <th>Tests with oxygen and pressure</th>
+                <th>Tests or report conditions on the map</th>
               </tr>
             </thead>
             <tbody>

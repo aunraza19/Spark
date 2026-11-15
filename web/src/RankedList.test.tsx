@@ -81,7 +81,7 @@ describe("RankedList", () => {
     const inside = within(details);
     expect(inside.getByRole("columnheader", { name: "Atmosphere match" })).toBeInTheDocument();
     expect(inside.getByRole("columnheader", { name: "Tests inside the zone" })).toBeInTheDocument();
-    expect(inside.getByRole("columnheader", { name: "Tests with oxygen and pressure" })).toBeInTheDocument();
+    expect(inside.getByRole("columnheader", { name: "Tests or report conditions on the map" })).toBeInTheDocument();
     expect(inside.getByRole("columnheader", { name: "Material relevance (our weighting)" })).toBeInTheDocument();
     expect(inside.getByText("98.7")).toBeInTheDocument();
     expect(inside.getByText("273")).toBeInTheDocument();

@@ -29,9 +29,10 @@ function Details({ page }: { page: ExperimentPageData }) {
       <List title="More key results from the record" items={page.key_results.slice(SHOWN_RESULTS)} />
       <h3>Conditions</h3>
       <p>Tests on the map: {conditions.tests_on_map || "none"}.</p>
+      {conditions.report_conditions_on_map > 0 && <p>Conditions from a NASA report: {conditions.report_conditions_on_map}.</p>}
       {conditions.ranges && (
         <p>
-          Oxygen in those tests: {formatRange(...conditions.ranges.o2_pct)} %. Pressure: {formatRange(...conditions.ranges.pressure_psi)} psi.
+          Oxygen on the map: {formatRange(...conditions.ranges.o2_pct)} %. Pressure on the map: {formatRange(...conditions.ranges.pressure_psi)} psi.
         </p>
       )}
       {conditions.source_files.length > 0 && <p>Source: {conditions.source_files.join("; ")}.</p>}

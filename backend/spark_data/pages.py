@@ -1,4 +1,3 @@
-from collections import Counter
 
 from spark_data.data import Data
 from spark_data.models import Habitat
@@ -30,28 +29,47 @@ def _place_key(entry: dict) -> str | None:
     return None
 
 
+def conditions_words(tests: int, reports: int) -> str:
+    parts = []
+    if tests:
+        parts.append(_count(tests, "test"))
+    if reports:
+        parts.append(f"{_count(reports, 'condition')} from a NASA report")
+    return " and ".join(parts) or "No per-test data"
+
+
+def _counts(data: Data, psi_id: str) -> tuple[int, int]:
+    own = [c for c in data.conditions if c.experiment_id == psi_id]
+    return sum(c.basis == "test" for c in own), sum(c.basis == "report" for c in own)
+
+
 def experiment_list(data: Data) -> list[dict]:
-    counts = Counter(c.experiment_id for c in data.conditions)
-    return [
-        {
-            "psi_id": psi_id,
-            "name": data.entries[psi_id]["record"]["name"],
-            "kind": data.entries[psi_id]["kind"],
-            "fuel_type": _category_label(data, psi_id),
-            "tests_with_conditions": counts[psi_id],
-            "tests_text": _count(counts[psi_id], "test") if counts[psi_id] else "No per-test data",
-        }
-        for psi_id in sorted(data.entries, key=_number)
-    ]
+    rows = []
+    for psi_id in sorted(data.entries, key=_number):
+        tests, reports = _counts(data, psi_id)
+        rows.append(
+            {
+                "psi_id": psi_id,
+                "name": data.entries[psi_id]["record"]["name"],
+                "kind": data.entries[psi_id]["kind"],
+                "fuel_type": _category_label(data, psi_id),
+                "tests": tests,
+                "report_conditions": reports,
+                "tests_with_conditions": tests + reports,
+                "tests_text": conditions_words(tests, reports),
+            }
+        )
+    return rows
 
 
-def _lead(data: Data, entry: dict, tests: int) -> list[str]:
+def _lead(data: Data, entry: dict, tests: int, reports: int) -> list[str]:
     psi_id = entry["psi_id"]
     place = _place_key(entry)
     where = f"It ran {data.plain.places[place].words}." if place else "Where it ran is not reported."
-    if tests:
-        verb = "has" if tests == 1 else "have"
-        on_map = f"{_count(tests, 'test')} {verb} oxygen and pressure on the map."
+    if tests and not reports:
+        on_map = f"{conditions_words(tests, 0)} {'has' if tests == 1 else 'have'} oxygen and pressure on the map."
+    elif tests or reports:
+        on_map = f"{conditions_words(tests, reports)} {'is' if tests + reports == 1 else 'are'} on the map."
     elif entry["kind"] == "ground":
         on_map = "It has no test table of its own, so it is not on the map."
     else:
@@ -65,6 +83,7 @@ def experiment_page(data: Data, psi_id: str) -> dict | None:
         return None
     record = entry["record"]
     own = [c for c in data.conditions if c.experiment_id == psi_id]
+    tests, reports = _counts(data, psi_id)
     ranges = (
         {
             "o2_pct": [min(c.o2_min for c in own), max(c.o2_max for c in own)],
@@ -79,11 +98,12 @@ def experiment_page(data: Data, psi_id: str) -> dict | None:
         "name": record["name"],
         "acronym": record["acronym"],
         "kind": entry["kind"],
-        "lead": _lead(data, entry, len(own)),
+        "lead": _lead(data, entry, tests, reports),
         "key_results": record["key_results"],
         "evidence": {
             "conditions": {
-                "tests_on_map": len(own),
+                "tests_on_map": tests,
+                "report_conditions_on_map": reports,
                 "ranges": ranges,
                 "source_files": sorted({c.source_file for c in own}),
                 "record_note": record["conditions_note"],
