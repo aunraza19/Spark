@@ -1,4 +1,4 @@
-import type { Habitat, MapSnapshot, Point, ReportCondition, ScenarioSnapshot } from "./api";
+import type { About, Habitat, MapSnapshot, Point, ReportCondition, ScenarioSnapshot } from "./api";
 
 export const gas: Point = {
   experiment_id: "PSI-159", test_id: "21088A1", o2_pct_min: 39.39, o2_pct_max: 39.39,
@@ -29,6 +29,7 @@ export const report: ReportCondition = {
   experiment_id: "PSI-20", test_id: "19070D1", o2_pct_min: 34, o2_pct_max: 34,
   pressure_psi_min: 8.2, pressure_psi_max: 8.2, fuel: "ethylene/N2 on a porous burner", outcome: "steady",
   source: { file: "BRE_final_report_20220201.pdf", page: 26, figure: "Figure 9" },
+  outcome_words: "The flame burned steadily.", preset_label: "NASA test atmosphere",
 };
 
 export const lunar: Habitat = {
@@ -84,6 +85,7 @@ export const reportFar: ReportCondition = {
   experiment_id: "PSI-20", test_id: "19999X1", o2_pct_min: 30, o2_pct_max: 30,
   pressure_psi_min: 30, pressure_psi_max: 30, fuel: "ethylene/N2 on a porous burner", outcome: "steady",
   source: { file: "BRE_final_report_20220201.pdf", page: 1, figure: "Figure 1" },
+  outcome_words: "The flame burned steadily.",
 };
 
 export const scenarioSnapshot: ScenarioSnapshot = {
@@ -101,4 +103,18 @@ export const scenarioSnapshot: ScenarioSnapshot = {
       { experiment_id: "PSI-69", test_id: "42", basis: "test", o2_pct: 30, pressure_psi: 10.345, gap_o2_pct_points: 2, gap_psi: 1.345, distance: 0.166, source_file: "PSI-69_Experimental table_FLEX.csv", source_row: 43 },
     ],
   },
+};
+
+export const aboutFixture: About = {
+  data_version: "abc123def456",
+  distance_rule: "Each gap is a share of the target's own value: distance = hypot(oxygen gap / target oxygen, pressure gap / target pressure). A test inside the zone has distance 0.",
+  sources: [
+    { label: "Test points", path: "data/clean/test_points.json", count: 878 },
+    { label: "Report conditions", path: "data/reference/report_conditions.json", count: 3, files: ["BRE_final_report_20220201.pdf"] },
+    { label: "Experiment records", path: "data/clean/experiments.json", count: 24 },
+  ],
+  known_problems: [
+    "PSI-39: 8 repeated rows were dropped. One copy of each was kept.",
+    "263 burner-oxygen points are kept off the map.",
+  ],
 };

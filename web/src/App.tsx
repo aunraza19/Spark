@@ -1,29 +1,48 @@
 import { useEffect, useState } from "react";
 import {
+  fetchAbout,
   fetchHabitats,
   fetchMapSnapshot,
   fetchPoints,
   fetchReportConditions,
   fetchScenarioSnapshot,
+  type About,
   type Habitat,
   type MapSnapshot,
   type Point,
+  type Preset,
   type ReportCondition,
   type ScenarioSnapshot,
   type Selection,
 } from "./api";
+import { AboutFooter } from "./AboutFooter";
 import { AtmosphereMap } from "./AtmosphereMap";
 import { HabitatSelector } from "./HabitatSelector";
+import { Hero } from "./Hero";
 import { MapSummary } from "./MapSummary";
-import { ScenarioPanel } from "./ScenarioPanel";
 import { PRESSURE_VIEWS } from "./scale";
+import { ScenarioPanel } from "./ScenarioPanel";
+import { ThreeLines } from "./ThreeLines";
 import { hiddenCounts, needsFullRange, viewNote } from "./view";
 
 type Loaded = { habitats: Habitat[]; points: Point[]; reports: ReportCondition[] };
 
+function presetsFrom(reports: ReportCondition[]): Preset[] {
+  return reports
+    .filter((r) => r.preset_label && r.o2_pct_min === r.o2_pct_max && r.pressure_psi_min === r.pressure_psi_max)
+    .map((r) => ({
+      label: r.preset_label as string,
+      o2: r.o2_pct_min,
+      psi: r.pressure_psi_min,
+      source: `${r.source.file}, page ${r.source.page}, ${r.source.figure}`,
+    }));
+}
+
 export default function App() {
   const [loaded, setLoaded] = useState<Loaded | null>(null);
   const [failed, setFailed] = useState(false);
+  const [about, setAbout] = useState<About | null>(null);
+  const [aboutFailed, setAboutFailed] = useState(false);
   const [selection, setSelection] = useState<Selection>({ habitatId: "lunar" });
   const [snapshot, setSnapshot] = useState<MapSnapshot | null>(null);
   const [showAll, setShowAll] = useState(false);
@@ -34,6 +53,9 @@ export default function App() {
     Promise.all([fetchHabitats(), fetchPoints(), fetchReportConditions()])
       .then(([habitats, points, reports]) => setLoaded({ habitats, points, reports }))
       .catch(() => setFailed(true));
+    fetchAbout()
+      .then(setAbout)
+      .catch(() => setAboutFailed(true));
   }, []);
 
   useEffect(() => {
@@ -70,39 +92,52 @@ export default function App() {
   }, [selection, view]);
 
   return (
-    <main className="page">
-      <h1>Flame in Freefall</h1>
-      {failed && <p role="alert" className="error">Could not load the data. Is the API running?</p>}
-      {loaded && (
-        <>
-          <HabitatSelector habitats={loaded.habitats} selection={selection} onChange={setSelection} />
-          <section aria-labelledby="map-heading">
-            <h2 id="map-heading">Atmosphere map</h2>
-            <div className="view-control">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={view === "full"}
-                  disabled={forced}
-                  onChange={(e) => setShowAll(e.target.checked)}
-                />
-                Show all
-              </label>
-              <span data-testid="view-note" className="view-note">{note}</span>
-            </div>
-            <AtmosphereMap points={loaded.points} reportConditions={loaded.reports} habitat={target} view={view} />
-            <MapSummary snapshot={snapshot} viewNote={note} />
-            <p data-testid="sources" className="sources">
-              Sources: {loaded.points.length} test points from the PSI test tables (data/clean/test_points.json).{" "}
-              {loaded.reports.length} report condition{loaded.reports.length === 1 ? "" : "s"} from{" "}
-              {[...new Set(loaded.reports.map((r) => r.source.file))].join(", ")} (data/reference/report_conditions.json).
-            </p>
+    <>
+      <main className="page">
+        <Hero />
+        {failed && <p role="alert" className="error">Could not load the data. Is the API running?</p>}
+        <ThreeLines />
+        {loaded && (
+          <section aria-labelledby="explore-heading" className="explore">
+            <h2 id="explore-heading">Explore the tests</h2>
+            <HabitatSelector
+              habitats={loaded.habitats}
+              selection={selection}
+              onChange={setSelection}
+              presets={presetsFrom(loaded.reports)}
+            />
+            <section aria-labelledby="map-heading">
+              <h3 id="map-heading">Atmosphere map</h3>
+              <div className="view-control">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={view === "full"}
+                    disabled={forced}
+                    onChange={(e) => setShowAll(e.target.checked)}
+                  />
+                  Show all
+                </label>
+                <span data-testid="view-note" className="view-note">{note}</span>
+              </div>
+              <AtmosphereMap points={loaded.points} reportConditions={loaded.reports} habitat={target} view={view} />
+              <MapSummary snapshot={snapshot} viewNote={note} />
+            </section>
+            {selection.habitatId === "custom" && selection.custom && (
+              <ScenarioPanel snapshot={scenario} failed={scenarioFailed} />
+            )}
           </section>
-          {selection.habitatId === "custom" && selection.custom && (
-            <ScenarioPanel snapshot={scenario} failed={scenarioFailed} />
-          )}
-        </>
-      )}
-    </main>
+        )}
+      </main>
+      <AboutFooter about={about} failed={aboutFailed}>
+        {loaded && (
+          <p data-testid="sources" className="sources">
+            Sources: {loaded.points.length} test points from the PSI test tables (data/clean/test_points.json).{" "}
+            {loaded.reports.length} report condition{loaded.reports.length === 1 ? "" : "s"} from{" "}
+            {[...new Set(loaded.reports.map((r) => r.source.file))].join(", ")} (data/reference/report_conditions.json).
+          </p>
+        )}
+      </AboutFooter>
+    </>
   );
 }

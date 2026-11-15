@@ -32,6 +32,8 @@ export type ReportCondition = {
   fuel: string;
   outcome: string;
   source: { file: string; page: number; figure: string };
+  outcome_words: string;
+  preset_label?: string;
   note?: string;
 };
 
@@ -72,6 +74,17 @@ export type MapSnapshot = {
 };
 
 export type Selection = { habitatId: string; custom?: { o2: number; psi: number } };
+
+export type Preset = { label: string; o2: number; psi: number; source: string };
+
+export type About = {
+  data_version: string;
+  distance_rule: string;
+  sources: { label: string; path: string; count: number; files?: string[] }[];
+  known_problems: string[];
+};
+
+export const fetchAbout = () => getJson<About>("/api/about");
 
 async function getJson<T>(url: string): Promise<T> {
   const response = await fetch(url);

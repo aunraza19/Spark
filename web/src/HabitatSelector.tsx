@@ -1,8 +1,13 @@
-import { useRef, useState } from "react";
-import type { Habitat, Selection } from "./api";
+import { useEffect, useRef, useState } from "react";
+import type { Habitat, Preset, Selection } from "./api";
 import { formatNumber } from "./format";
 
-type Props = { habitats: Habitat[]; selection: Selection; onChange: (selection: Selection) => void };
+type Props = {
+  habitats: Habitat[];
+  selection: Selection;
+  onChange: (selection: Selection) => void;
+  presets?: Preset[];
+};
 
 function describe(habitat: Habitat): string {
   if (habitat.kind === "zone") {
@@ -19,7 +24,7 @@ function check(o2Text: string, psiText: string): { o2: number; psi: number } | s
   return { o2, psi };
 }
 
-export function HabitatSelector({ habitats, selection, onChange }: Props) {
+export function HabitatSelector({ habitats, selection, onChange, presets = [] }: Props) {
   const choices = habitats.filter((h) => h.kind !== "note");
   const notes = habitats.filter((h) => h.kind === "note");
   const [o2Text, setO2Text] = useState(String(selection.custom?.o2 ?? ""));
@@ -28,6 +33,13 @@ export function HabitatSelector({ habitats, selection, onChange }: Props) {
   const lastCustom = useRef(selection.custom);
   const isCustom = selection.habitatId === "custom";
   const chosen = choices.find((h) => h.id === selection.habitatId);
+
+  useEffect(() => {
+    const custom = selection.custom;
+    if (!custom) return;
+    if (Number(o2Text) !== custom.o2) setO2Text(String(custom.o2));
+    if (Number(psiText) !== custom.psi) setPsiText(String(custom.psi));
+  }, [selection.custom?.o2, selection.custom?.psi]);
 
   const pickCustom = () => {
     const start = lastCustom.current ?? firstPoint(choices);
@@ -53,11 +65,11 @@ export function HabitatSelector({ habitats, selection, onChange }: Props) {
 
   return (
     <section aria-labelledby="habitat-heading" className="habitat">
-      <h2 id="habitat-heading">Habitat</h2>
+      <h3 id="habitat-heading">Habitat</h3>
       <fieldset>
         <legend>Which atmosphere do you want to compare with the tests?</legend>
         {choices.map((h) => (
-          <label key={h.id} className="choice">
+          <label key={h.id} className="choice" title={`Source: ${h.source}`}>
             <input
               type="radio"
               name="habitat"
@@ -67,11 +79,27 @@ export function HabitatSelector({ habitats, selection, onChange }: Props) {
             {h.label}
           </label>
         ))}
-        <label className="choice">
+        <label className="choice" title="Your own oxygen and pressure">
           <input type="radio" name="habitat" checked={isCustom} onChange={pickCustom} />
           Custom
         </label>
       </fieldset>
+      {presets.length > 0 && (
+        <div className="presets">
+          {presets.map((preset) => (
+            <button
+              key={preset.label}
+              type="button"
+              className="button"
+              title={`Source: ${preset.source}`}
+              aria-pressed={isCustom && selection.custom?.o2 === preset.o2 && selection.custom?.psi === preset.psi}
+              onClick={() => onChange({ habitatId: "custom", custom: { o2: preset.o2, psi: preset.psi } })}
+            >
+              {`${preset.label} (${formatNumber(preset.o2)} %, ${formatNumber(preset.psi)} psi)`}
+            </button>
+          ))}
+        </div>
+      )}
       {isCustom && (
         <div className="custom-fields">
           <label>
