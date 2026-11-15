@@ -22,6 +22,7 @@ class Condition:
     psi_max: float
     source_file: str
     source_row: int | None
+    fuel_state: str | None = None
 
 
 class Gap(NamedTuple):
@@ -73,7 +74,7 @@ def conditions(points: list[dict], report_conditions: list[ReportCondition]) -> 
     found = [
         Condition(
             p["experiment_id"], p["test_id"], "test", p["o2_pct_min"], p["o2_pct_max"],
-            p["pressure_psi_min"], p["pressure_psi_max"], p["source_file"], p["source_row"],
+            p["pressure_psi_min"], p["pressure_psi_max"], p["source_file"], p["source_row"], p["fuel_state"],
         )
         for p in points
     ]
@@ -95,6 +96,11 @@ def gap(condition: Condition, target: Habitat) -> Gap:
     o2 = min(max(target.o2_pct, condition.o2_min), condition.o2_max) - target.o2_pct
     psi = min(max(target.pressure_psi, condition.psi_min), condition.psi_max) - target.pressure_psi
     return Gap(o2, psi, math.hypot(o2 / target.o2_pct, psi / target.pressure_psi))
+
+
+def at_target(found: Gap) -> bool:
+    """A test is at the target when both gaps are zero to two decimals, the precision shown on screen."""
+    return abs(found.o2_pct_points) < 0.005 and abs(found.psi) < 0.005
 
 
 def atmosphere_match(distance: float) -> float:

@@ -12,7 +12,8 @@
       "file": "BRE_final_report_20220201.pdf",
       "page": 25,
       "figure": "Figure 7"
-    }
+    },
+    "outcome_words": "The flame burned steadily."
   },
   {
     "experiment_id": "PSI-20",
@@ -27,7 +28,9 @@
       "file": "BRE_final_report_20220201.pdf",
       "page": 26,
       "figure": "Figure 9"
-    }
+    },
+    "outcome_words": "The flame burned steadily.",
+    "preset_label": "NASA test atmosphere"
   },
   {
     "experiment_id": "PSI-20",
@@ -43,6 +46,7 @@
       "page": 25,
       "figure": "Figure 6"
     },
-    "note": "The report also calls this condition 26.5%."
+    "note": "The report also calls this condition 26.5%.",
+    "outcome_words": "The flame went out by itself after 45 s."
   }
 ]

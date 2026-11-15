@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from spark_data.models import Habitat, ReportCondition
+from spark_data.models import Habitat, PlainWords, Registry, ReportCondition
 from spark_data.ranking import Condition, RankingData, conditions, load_ranking
 from spark_data.reference import load_reference
 from spark_data.snapshots import data_version
@@ -18,6 +18,9 @@ class Data:
     ranking: RankingData
     conditions: list[Condition]
     data_version: str
+    plain: PlainWords
+    registry: Registry
+    build_report: dict
 
 
 def _read(directory: Path, name: str):
@@ -36,4 +39,7 @@ def load_data(clean: Path, reference: Path) -> Data:
         ranking=load_ranking(reference),
         conditions=conditions(points, ref.report_conditions),
         data_version=data_version(clean, reference),
+        plain=PlainWords.model_validate_json((reference / "plain_words.json").read_text(encoding="utf-8")),
+        registry=ref.registry,
+        build_report=_read(clean, "build_report.json"),
     )

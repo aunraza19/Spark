@@ -5,7 +5,8 @@
     "kind": "zone",
     "o2_pct_min": 30,
     "pressure_psi_max": 10.2,
-    "source": "Challenge text: 30% oxygen or more at 10.2 psi or less. Bounds are inclusive."
+    "source": "Challenge text: 30% oxygen or more at 10.2 psi or less. Bounds are inclusive.",
+    "short_name": "lunar zone"
   },
   {
     "id": "iss",

@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from spark_data.data import load_data
 from spark_data.models import Habitat
 from spark_data.paths import CLEAN_DIR, REFERENCE_DIR, WEB_DIST
+from spark_data.plain import about, map_summary, point_card
 from spark_data.snapshots import (
     build_map_snapshot,
     build_scenario_snapshot,
@@ -74,12 +75,33 @@ def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dis
             if target is None:
                 raise HTTPException(status_code=404, detail="unknown habitat")
         snapshot = build_map_snapshot(data, target, shown_psi_max)
-        return {"key": snapshot_key(snapshot), "snapshot": snapshot}
+        return {"key": snapshot_key(snapshot), "snapshot": snapshot, "summary": map_summary(data, target)}
 
     @app.get("/api/snapshot/scenario")
     def get_scenario_snapshot(o2: float | None = None, psi: float | None = None):
         snapshot = build_scenario_snapshot(data, _custom_target(o2, psi))
         return {"key": snapshot_key(snapshot), "snapshot": snapshot}
+
+    @app.get("/api/about")
+    def get_about():
+        return about(data)
+
+    @app.get("/api/point-card")
+    def get_point_card(
+        source_file: str | None = None,
+        source_row: int | None = None,
+        experiment_id: str | None = None,
+        test_id: str | None = None,
+    ):
+        if source_file is not None and source_row is not None:
+            card = point_card(data, source_file, source_row, None, None)
+        elif experiment_id is not None and test_id is not None:
+            card = point_card(data, None, None, experiment_id, test_id)
+        else:
+            raise HTTPException(status_code=422, detail="give source_file and source_row, or experiment_id and test_id")
+        if card is None:
+            raise HTTPException(status_code=404, detail="unknown test")
+        return card
 
     if (web_dist / "index.html").is_file():
         app.mount("/", StaticFiles(directory=web_dist, html=True), name="web")

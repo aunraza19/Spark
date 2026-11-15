@@ -1,0 +1,69 @@
+{
+  "order": ["solid", "liquid", "gas"],
+  "fuel_states": {
+    "gas": {
+      "singular": "a gas flame on a burner",
+      "plural": "gas flames on a burner",
+      "absent": "gas flame",
+      "source": "Our wording of the record field fuel_state 'gas' (burner flames)."
+    },
+    "liquid": {
+      "singular": "a burning fuel droplet",
+      "plural": "burning fuel droplets",
+      "absent": "liquid fuel",
+      "source": "Our wording of the record field fuel_state 'liquid' (single droplets)."
+    },
+    "solid": {
+      "singular": "a burning solid sample",
+      "plural": "burning solid samples",
+      "absent": "solid material",
+      "source": "Our wording of the record field fuel_state 'solid' (fabric, plastic and wax samples)."
+    }
+  },
+  "no_outcome": {
+    "words": "The tables do not record how this test ended.",
+    "source": "These test tables have no outcome column."
+  },
+  "unmapped": {
+    "words": "The table lists the result as \"{raw}\".",
+    "source": "Used when a table value has no entry below."
+  },
+  "outcomes": [
+    {
+      "experiment_id": "PSI-69",
+      "raw": "Extinction",
+      "words": "The flame went out before the droplet was used up.",
+      "source": "PSI-69 record, approach: tests ended when the flame 'burned to completion, extinguished at a finite droplet size, or failed to ignite'."
+    },
+    {
+      "experiment_id": "PSI-69",
+      "raw": "Completion",
+      "words": "The droplet burned until it was used up.",
+      "source": "PSI-69 record, approach: tests ended when the flame 'burned to completion, extinguished at a finite droplet size, or failed to ignite'."
+    },
+    {
+      "experiment_id": "PSI-69",
+      "raw": "Disruption",
+      "words": "The test ended in a disruption. The record does not say what that means.",
+      "source": "PSI-69 record, measured quantities: 'how the test ended (extinction, disruption, completion)', with no definition of disruption."
+    },
+    {
+      "experiment_id": "PSI-159",
+      "raw": "SE",
+      "words": "The flame went out by itself.",
+      "source": "PSI-159 record, key results and measured quantities: flames 'self-extinguished' or burned 'until the flow was stopped'."
+    },
+    {
+      "experiment_id": "PSI-159",
+      "raw": "FT",
+      "words": "The flame burned until the fuel flow was stopped.",
+      "source": "PSI-159 record, key results and measured quantities: flames 'self-extinguished' or burned 'until the flow was stopped'."
+    },
+    {
+      "experiment_id": "PSI-159",
+      "raw": "-",
+      "words": "No result is recorded for this test.",
+      "source": "PSI-159 table column 'Self-ext or flow term' holds '-' for these tests, and the record does not define it."
+    }
+  ]
+}

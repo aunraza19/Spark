@@ -72,6 +72,7 @@ class Habitat(ReferenceModel):
     label: str
     kind: Literal["zone", "point", "note"]
     source: str
+    short_name: str | None = None
     o2_pct_min: float | None = None
     pressure_psi_max: float | None = None
     o2_pct: float | None = None
@@ -130,6 +131,8 @@ class ReportCondition(ReferenceModel):
     fuel: str
     outcome: str
     source: Source
+    outcome_words: str
+    preset_label: str | None = None
     note: str | None = None
 
 
@@ -153,3 +156,30 @@ class FuelCategory(ReferenceModel):
     category: str
     source: str
     note: str | None = None
+
+
+class FuelPhrase(ReferenceModel):
+    singular: str
+    plural: str
+    absent: str
+    source: str
+
+
+class WordsWithSource(ReferenceModel):
+    words: str
+    source: str
+
+
+class OutcomeWords(ReferenceModel):
+    experiment_id: str
+    raw: str
+    words: str
+    source: str
+
+
+class PlainWords(ReferenceModel):
+    order: list[str]
+    fuel_states: dict[str, FuelPhrase]
+    no_outcome: WordsWithSource
+    unmapped: WordsWithSource
+    outcomes: list[OutcomeWords]

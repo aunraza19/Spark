@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from spark_data.models import Habitat
-from spark_data.ranking import Condition, Gap, gap, nearest
+from spark_data.ranking import Condition, Gap, at_target, gap, nearest
 from spark_data.reference import in_zone
 
 if TYPE_CHECKING:
@@ -137,7 +137,7 @@ def build_scenario_snapshot(data: "Data", habitat: Habitat) -> dict:
         "habitat": _habitat(habitat),
         "view": {
             "distance_rule": data.ranking.rules.distance_rule,
-            "tests_at_target": sum(gap(c, habitat).distance == 0 for c in data.conditions),
+            "tests_at_target": sum(at_target(gap(c, habitat)) for c in data.conditions),
             "nearest_tests": [_entry(c, g, habitat) for c, g in closest],
             "inside_lunar_zone": in_zone(habitat.o2_pct, habitat.pressure_psi, lunar),
         },
