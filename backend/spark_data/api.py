@@ -2,7 +2,7 @@ import json
 import math
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from spark_data.agent.chat import run_chat
 from spark_data.agent.explain import AnswerCache, explain
 from spark_data.agent.files import load_files
+from spark_data.agent.limits import LIMITED, Limiter
 from spark_data.agent.model import GeminiModel, ModelError, NoModel, Unavailable
 from spark_data.agent.settings import load_settings
 from spark_data.block_snapshots import BadBlock, resolve_target, snapshot_for
@@ -57,6 +58,13 @@ def create_app(
     cache = AnswerCache(agent_cache or AGENT_CACHE_DIR)
     agent_settings = settings or load_settings()
     live: dict = {"model": model}
+    limiter = Limiter(agent_settings.limit_per_hour, agent_settings.limit_per_day)
+
+    def allowed(request: Request) -> bool:
+        # Behind Cloud Run the first X-Forwarded-For entry is the visitor.
+        forwarded = request.headers.get("x-forwarded-for")
+        visitor = forwarded.split(",")[0].strip() if forwarded else (request.client.host if request.client else "unknown")
+        return limiter.allow(visitor)
 
     def agent_model():
         if live["model"] is None:
@@ -154,8 +162,10 @@ def create_app(
         return card
 
     @app.post("/api/agent/explain")
-    def post_explain(body: ExplainRequest):
+    def post_explain(body: ExplainRequest, request: Request):
         snapshot, names = block_snapshot(body.block)
+        if not allowed(request):
+            return JSONResponse({"status": "limited", "message": LIMITED}, status_code=429)
         try:
             result = explain(snapshot, names, agent_model(), files, cache)
         except Unavailable:
@@ -167,9 +177,11 @@ def create_app(
         return {key: result[key] for key in ("status", "answer", "key", "model", "cached")}
 
     @app.post("/api/agent/chat")
-    def post_chat(body: ChatRequest):
+    def post_chat(body: ChatRequest, request: Request):
         snapshot, names = block_snapshot(body.block)
         context = {"snapshot": snapshot, "names": names}
+        if not allowed(request):
+            return StreamingResponse(iter([f"data: {json.dumps({'type': 'error', 'message': LIMITED})}\n\n"]), media_type="text/event-stream")
 
         def stream():
             for event in run_chat(agent_model(), files, data, context, body.messages):

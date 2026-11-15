@@ -245,7 +245,8 @@ export type Explanation =
   | { status: "ok"; answer: AgentAnswer; key: string; model: string; cached: boolean }
   | { status: "unchecked" }
   | { status: "busy" }
-  | { status: "unavailable" };
+  | { status: "unavailable" }
+  | { status: "limited" };
 
 export async function fetchExplanation(block: BlockSpec): Promise<Explanation> {
   try {
@@ -255,7 +256,7 @@ export async function fetchExplanation(block: BlockSpec): Promise<Explanation> {
       body: JSON.stringify({ block }),
     });
     const body = (await response.json()) as Explanation;
-    return response.ok || body.status === "unavailable" ? body : { status: "busy" };
+    return response.ok || body.status === "unavailable" || body.status === "limited" ? body : { status: "busy" };
   } catch {
     return { status: "busy" };
   }

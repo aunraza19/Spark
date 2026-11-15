@@ -8,6 +8,7 @@ const MESSAGES = {
   unchecked: "Spark agent could not give a checked explanation. Open Show the evidence instead.",
   busy: "Spark agent is busy. Try again in a minute.",
   unavailable: "Spark agent is not set up on this server.",
+  limited: "Spark agent has reached its limit for now. Try again later.",
 };
 
 type Answered = Extract<Explanation, { status: "ok" }>;

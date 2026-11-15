@@ -17,6 +17,8 @@ class Settings:
     project: str | None
     location: str
     thinking: str = "medium"
+    limit_per_hour: int = 20
+    limit_per_day: int = 300
 
     def configured(self) -> bool:
         if self.backend == "aistudio":
@@ -63,4 +65,6 @@ def load_settings(env: Mapping[str, str] | None = None, dotenv: Path | None = No
         project=get("GOOGLE_CLOUD_PROJECT"),
         location=get("GOOGLE_CLOUD_LOCATION") or DEFAULT_LOCATION,
         thinking=get("SPARK_GEMINI_THINKING") or "medium",
+        limit_per_hour=int(get("SPARK_LIMIT_PER_HOUR") or 20),
+        limit_per_day=int(get("SPARK_LIMIT_PER_DAY") or 300),
     )
