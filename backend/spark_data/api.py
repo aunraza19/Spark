@@ -2,15 +2,16 @@ import json
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 
-from spark_data.paths import CLEAN_DIR, REFERENCE_DIR
+from spark_data.paths import CLEAN_DIR, REFERENCE_DIR, WEB_DIST
 
 
 def _read(directory: Path, name: str):
     return json.loads((directory / name).read_text(encoding="utf-8"))
 
 
-def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR) -> FastAPI:
+def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR, web_dist: Path = WEB_DIST) -> FastAPI:
     habitats = _read(reference, "habitats.json")
     report_conditions = _read(reference, "report_conditions.json")
     points = _read(clean, "test_points.json")
@@ -50,5 +51,8 @@ def create_app(clean: Path = CLEAN_DIR, reference: Path = REFERENCE_DIR) -> Fast
         if psi_id not in entries:
             raise HTTPException(status_code=404, detail="unknown experiment")
         return entries[psi_id]
+
+    if (web_dist / "index.html").is_file():
+        app.mount("/", StaticFiles(directory=web_dist, html=True), name="web")
 
     return app

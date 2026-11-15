@@ -47,7 +47,9 @@ Audience: professors, students, aerospace researchers and engineers.
 - `uv run ruff check .` lint (ruff default rules)
 - `uv run python scripts/validate_data.py` check the experiment records (exit 1 on any error)
 - `uv run python scripts/build_data.py` write the clean files into `data/clean`
-- `uv run uvicorn --factory spark_data.api:create_app --port 8000` run the API (data from `data/clean`, read-only)
+- `uv run uvicorn --factory spark_data.api:create_app --port 8000` run the API (data from `data/clean`, read-only). It also serves `web/dist` at `/` when that build exists.
+- In `web/`: `npm install`, `npm run dev` (port 5173, proxies `/api` to port 8000), `npm test`, `npm run typecheck`, `npm run build`
+- Windows: start the web commands from a shell whose path has an upper-case drive letter (`C:\...`). With a lower-case `c:\...` start folder, Vitest fails with "failed to find the current suite".
 
 ## Rules and context
 @docs/working-rules.md
