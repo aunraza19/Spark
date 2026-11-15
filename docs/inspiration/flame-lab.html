@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flame in Freefall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Design idea: a vacuum-dark board where the flame is the one loud thing. Blue = flame in orbit, amber = flame on Earth or a warning. */
+:root{
+  --bg:#f2f5fb; --surface:#ffffff; --sunk:#e6ebf6; --ink:#0d1530; --muted:#566080; --line:#d3dbed;
+  --blue:#0a6fb0; --blue-soft:#dcecfa; --amber:#a85d00; --amber-soft:#fdecc8;
+  --ok:#1f7a4d; --bad:#b3261e; --bad-soft:#fde4e1;
+  --display:'Bricolage Grotesque','Instrument Sans',system-ui,sans-serif;
+  --text:'Instrument Sans',system-ui,sans-serif;
+  --stage:#060a16;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a0f1e; --surface:#111a31; --sunk:#0d1428; --ink:#e9eefb; --muted:#96a1bf; --line:#243153;
+    --blue:#5cc8ff; --blue-soft:#10304a; --amber:#ffb340; --amber-soft:#3a2a0e;
+    --ok:#5fd39a; --bad:#ff8a7a; --bad-soft:#3b1d1a; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a0f1e; --surface:#111a31; --sunk:#0d1428; --ink:#e9eefb; --muted:#96a1bf; --line:#243153;
+  --blue:#5cc8ff; --blue-soft:#10304a; --amber:#ffb340; --amber-soft:#3a2a0e;
+  --ok:#5fd39a; --bad:#ff8a7a; --bad-soft:#3b1d1a; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--text);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 56px}
+p{margin:0}
+a{color:var(--blue);text-underline-offset:3px}
+[hidden]{display:none!important}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.num{font-variant-numeric:tabular-nums}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+/* type */
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.015em}
+h1{font-size:clamp(48px,7.4vw,96px);line-height:.95;font-weight:700;letter-spacing:-.03em;font-variation-settings:"wdth" 82}
+h2{font-size:clamp(24px,3.2vw,34px);line-height:1.1;font-weight:650}
+h3{font-size:17px;line-height:1.25;font-weight:600}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:48px;align-items:center;padding:56px 0 44px}
+.hero-copy{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.hero-copy .lede{font-size:clamp(17px,2vw,20px);line-height:1.5;color:var(--muted);max-width:46ch}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14px;color:var(--muted)}
+.meta span{display:inline-flex;align-items:center;gap:8px}
+.meta .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber)}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{font:500 15px var(--text);padding:11px 20px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+:root:not([data-theme="light"]) .btn.primary{color:#04121d}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .btn.primary{color:#fff}}
+:root[data-theme="light"] .btn.primary{color:#fff}
+.btn.primary:hover{filter:brightness(1.08)}
+.fig{margin:0;display:flex;flex-direction:column;gap:14px}
+canvas{display:block;width:100%;background:radial-gradient(120% 90% at 50% 70%,#0f1a38 0%,var(--stage) 62%)}
+#hero-cv{aspect-ratio:5/4;height:auto;border-radius:26px}
+#cv{height:360px;border-radius:14px}
+.caps{display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:14px}
+.caps b{display:block;font:600 15px var(--text);margin-bottom:2px}
+.caps .e b{color:var(--amber)}.caps .o b{color:var(--blue)}
+
+/* tabs */
+nav{position:sticky;top:0;z-index:5;display:flex;gap:2px;overflow-x:auto;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 -16px;padding:0 16px}
+nav button{font:500 15px var(--text);color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:16px 18px 14px;cursor:pointer;white-space:nowrap}
+nav button:hover{color:var(--ink)}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--blue)}
+main{padding-top:40px}
+.stack{display:flex;flex-direction:column;gap:56px}
+
+/* figures strip */
+.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:28px 0}
+.figure{padding:2px 24px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.figure:first-child{border-left:0;padding-left:0}
+.figure .n{font:650 clamp(40px,5vw,58px)/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.figure .n sup{font-size:.4em;letter-spacing:0}
+.figure .l{font-weight:600}
+.figure .d{color:var(--muted);font-size:14px}
+@media (max-width:640px){.figure{border-left:0;padding-left:0}}
+
+.note{border-left:3px solid var(--amber);background:var(--amber-soft);padding:12px 16px;border-radius:4px 12px 12px 4px;font-size:14px;max-width:80ch}
+.split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:56px}
+@media (max-width:820px){.split{grid-template-columns:1fr;gap:40px}}
+.col{display:flex;flex-direction:column;gap:18px}
+dl.facts{display:grid;grid-template-columns:78px 1fr;gap:16px 18px;margin:0}
+dl.facts dt{font-weight:600;color:var(--blue)}
+dl.facts dd{margin:0;max-width:60ch}
+.cd{display:flex;gap:28px}
+.cd div{display:flex;flex-direction:column}
+.cd b{font:650 clamp(40px,6vw,60px)/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.cd span{font-size:13px;color:var(--muted)}
+.prog{height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.prog>div{height:100%;width:0;background:var(--amber);transition:width .3s}
+
+/* stages (a true sequence) */
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px;margin-top:6px}
+.stage{position:relative;border-top:2px solid var(--line);padding-top:20px;display:flex;flex-direction:column;gap:4px}
+.stage::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--c,var(--blue));border:3px solid var(--bg)}
+.stage.s1{--c:var(--amber)}.stage.s2{--c:var(--muted)}.stage.s3{--c:var(--blue)}
+.stage b{font:600 17px var(--display)}
+.stage span{color:var(--muted);font-size:15px}
+@media (max-width:640px){.stages{grid-template-columns:1fr;gap:28px}}
+
+/* lab */
+.instrument{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:22px}
+.lab{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px}
+@media (max-width:820px){.lab{grid-template-columns:1fr}.instrument{padding:16px}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.stat{background:var(--sunk);border-radius:10px;padding:10px 12px}
+.stat .k{font-size:12px;color:var(--muted)}
+.stat .x{font:600 20px var(--display);font-variant-numeric:tabular-nums}
+@media (max-width:560px){.stats{grid-template-columns:1fr 1fr}}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font:500 14px var(--text);padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.seg button:hover{border-color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.ctl label{font-weight:500;font-size:15px}
+.ctl output{font:600 14px var(--text);color:var(--blue);font-variant-numeric:tabular-nums}
+.ctl input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--blue)}
+select{font:inherit;color:var(--ink);background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:9px 12px;width:100%}
+.ctl select{grid-column:1/-1}
+.verdict{border-radius:12px;padding:14px 16px;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.verdict b{font:600 17px var(--display)}
+.v-warn{background:var(--amber-soft);border-left:4px solid var(--amber)}
+.v-bad{background:var(--bad-soft);border-left:4px solid var(--bad)}
+.v-calm{background:var(--blue-soft);border-left:4px solid var(--blue)}
+.lab2{display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:1px solid var(--line);padding-top:22px}
+@media (max-width:820px){.lab2{grid-template-columns:1fr}}
+.box{display:flex;flex-direction:column;gap:10px;min-width:0}
+.gauge{position:relative;height:18px;background:var(--sunk);border-radius:9px;margin:4px 0}
+.gband{position:absolute;top:0;bottom:0;background:var(--amber-soft);border:1px solid var(--amber);border-radius:9px}
+.gpt{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--ink);border-radius:2px}
+.irow{display:grid;grid-template-columns:80px 1fr 52px;gap:10px;align-items:center;font-size:14px}
+.itrack{height:12px;background:var(--sunk);border-radius:6px;overflow:hidden}
+.ifill{height:100%;background:var(--blue);min-width:2px;border-radius:6px}
+.bigpct{font:650 44px/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+
+/* data */
+.bars{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:grid;grid-template-columns:100px 1fr 80px;gap:12px;align-items:center;font-size:14px}
+.bar-track{height:18px;background:var(--sunk);border-radius:9px;overflow:hidden}
+.bar-fill{height:100%;background:var(--blue);border-radius:9px;min-width:4px;transition:width .3s}
+.bar-row .v{text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.bar-row{grid-template-columns:84px 1fr 66px}}
+ul.plain{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:13px;white-space:nowrap}
+td:first-child{font-weight:600;white-space:nowrap}
+input[type=search]{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 16px;width:100%;max-width:420px}
+
+/* approaches */
+.ideas{display:flex;flex-direction:column}
+.idea{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr) auto;gap:8px 32px;align-items:start;padding:22px 0;border-top:1px solid var(--line)}
+.idea:last-child{border-bottom:1px solid var(--line)}
+.idea .head{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.idea .tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font:500 12px var(--text);padding:2px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue)}
+@media (max-width:760px){.idea{grid-template-columns:1fr;gap:10px}}
+
+footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:20px}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 32px;list-style:none;padding:0;margin:0;font-size:15px}
+footer p{color:var(--muted);font-size:13px;max-width:80ch}
+@media (max-width:900px){.hero{grid-template-columns:1fr;gap:32px;padding-top:36px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-copy">
+    <h1>Flame in<br>Freefall</h1>
+    <p class="lede">AI-powered fire safety insights from microgravity combustion data. Use NASA's spaceflight experiments to help keep crews safe on the ISS, on Artemis and on the way to Mars.</p>
+    <div class="actions">
+      <button type="button" class="btn primary" id="goLab">Open the flame lab</button>
+      <button type="button" class="btn" id="replay">Replay the drop</button>
+    </div>
+    <div class="meta">
+      <span class="live" id="dayChip">Hackathon 14&ndash;15 Nov 2026</span>
+      <span>NASA Space Apps Challenge 2026, challenge 8</span>
+      <span>Data from NASA PSI, NTRS and the Task Book (PSI files are CC0)</span>
+    </div>
+  </div>
+  <figure class="fig">
+    <canvas id="hero-cv" role="img" aria-label="Two flames side by side. On the left, a tall teardrop flame under Earth gravity. On the right, a flame that starts as a teardrop and settles into a round blue sphere as gravity drops to zero."></canvas>
+    <figcaption class="caps">
+      <div class="e"><b>On Earth, 1 g</b>Hot gas rises, so the flame stretches into a tall teardrop.</div>
+      <div class="o"><b>On the ISS, about 0 g</b>Nothing rises, so the flame rounds off into a dim sphere.</div>
+    </figcaption>
+  </figure>
+</header>
+
+<nav role="tablist" aria-label="Sections" id="tabs">
+  <button role="tab" id="tab-overview" aria-selected="true" aria-controls="p-overview" data-tab="overview">Overview</button>
+  <button role="tab" id="tab-lab" aria-selected="false" aria-controls="p-lab" data-tab="lab">Flame lab</button>
+  <button role="tab" id="tab-data" aria-selected="false" aria-controls="p-data" data-tab="data">Data</button>
+  <button role="tab" id="tab-ideas" aria-selected="false" aria-controls="p-ideas" data-tab="ideas">Approaches</button>
+</nav>
+
+<main>
+<!-- OVERVIEW -->
+<div id="p-overview" role="tabpanel" aria-labelledby="tab-overview" class="stack">
+  <section class="figures" aria-label="Key numbers">
+    <div class="figure"><div class="n">24</div><div class="l">PSI investigations</div><div class="d">About 21,900 files and 20 experimental tables</div></div>
+    <div class="figure"><div class="n">277</div><div class="l">NTRS documents</div><div class="d">Technical reports as PDF and full text</div></div>
+    <div class="figure"><div class="n">138</div><div class="l">Task Book projects</div><div class="d">Funded Combustion Science work</div></div>
+    <div class="figure"><div class="n">10<sup>&minus;5</sup> g</div><div class="l">Orbital gravity level</div><div class="d">Buoyant flow is effectively gone</div></div>
+  </section>
+  <p class="note">Dataset counts come from a community repository that downloaded the data on 27 Sep 2026, not from NASA's own page. The official challenge page blocks automated reading, so check it for exact scoring and deliverables.</p>
+
+  <section class="col">
+    <h2>The challenge in three lines</h2>
+    <dl class="facts">
+      <dt>Input</dt><dd>Real microgravity combustion records from NASA's Physical Sciences Informatics archive, plus technical reports and project records.</dd>
+      <dt>Task</dt><dd>Build AI-assisted insight that helps people understand how fire ignites, spreads and goes out in space.</dd>
+      <dt>Why</dt><dd>Spacecraft materials and cabin conditions on future missions must be judged for fire risk, and gravity changes how flames behave.</dd>
+    </dl>
+  </section>
+
+  <section class="col">
+    <h2>The physics in one screen</h2>
+    <p style="max-width:64ch">On Earth, hot gas rises and pulls fresh oxygen in, so flames are tall and teardrop-shaped. In freefall that buoyant flow vanishes. Oxygen reaches the flame by diffusion and by cabin ventilation, so flames are rounder, dimmer and can persist in conditions that would put them out on the ground. Try it in the flame lab.</p>
+    <h3 style="margin-top:14px">Two-stage burning reported for NASA FLEX droplet experiments</h3>
+    <div class="stages">
+      <div class="stage s1"><b>1. Hot flame</b><span>Normal burning of a fuel droplet.</span></div>
+      <div class="stage s2"><b>2. Radiative extinction</b><span>Heat loss by radiation puts the visible flame out.</span></div>
+      <div class="stage s3"><b>3. Cool flame</b><span>Low-temperature chemistry keeps burning with no visible flame.</span></div>
+    </div>
+    <p class="small muted">Source: team write-ups on GitHub. Confirm against the NTRS papers before citing.</p>
+  </section>
+</div>
+
+<!-- FLAME LAB -->
+<div id="p-lab" role="tabpanel" aria-labelledby="tab-lab" hidden>
+  <section class="instrument">
+    <div>
+      <h2>Flame lab</h2>
+      <p class="muted" style="max-width:70ch;margin-top:6px">A teaching toy. Change fuel, gravity, oxygen, pressure and airflow to see how the flame, the verdict, the uncertainty band and the variable-importance chart respond. These use placeholder rules, not NASA measurements.</p>
+    </div>
+    <div class="lab">
+      <div>
+        <canvas id="cv" role="img" aria-label="Animated flame whose shape follows the sliders"></canvas>
+        <div class="stats">
+          <div class="stat"><div class="k">Shape</div><div class="x" id="sShape">-</div></div>
+          <div class="stat"><div class="k">Aspect</div><div class="x" id="sAspect">-</div></div>
+          <div class="stat"><div class="k">Colour</div><div class="x" id="sColor">-</div></div>
+          <div class="stat"><div class="k">O2 partial</div><div class="x" id="sPO2">-</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="seg" id="presets" aria-label="Presets">
+          <button type="button" data-p="earth">Earth lab</button>
+          <button type="button" data-p="iss">ISS cabin</button>
+          <button type="button" data-p="moon">Moon surface</button>
+          <button type="button" data-p="rich">O2-rich</button>
+          <button type="button" data-p="still">Still air</button>
+          <button type="button" data-p="lowp">Low-pressure cabin</button>
+        </div>
+        <div class="ctl"><label for="fuel">Fuel</label><output id="fuelO"></output><select id="fuel"></select></div>
+        <div class="ctl"><label for="g">Gravity</label><output id="gO"></output><input id="g" type="range" min="0" max="1" step="0.01" value="0"></div>
+        <div class="ctl"><label for="o2">Oxygen in air</label><output id="o2O"></output><input id="o2" type="range" min="15" max="45" step="0.5" value="21"></div>
+        <div class="ctl"><label for="p">Cabin pressure</label><output id="pO"></output><input id="p" type="range" min="20" max="320" step="0.5" value="101.3"></div>
+        <div class="ctl"><label for="fl">Airflow (FLEX-2 range)</label><output id="flO"></output><input id="fl" type="range" min="0.1" max="5" step="0.1" value="3"></div>
+        <div class="verdict v-calm" id="cover" style="font-size:13px"></div>
+        <div class="verdict v-warn" id="verdict"></div>
+      </div>
+    </div>
+    <div class="lab2">
+      <div class="box"><h3>Extinction chance with uncertainty</h3><div id="unc"></div></div>
+      <div class="box"><h3>Variable importance</h3><div id="imp"></div></div>
+    </div>
+    <p class="small muted" style="max-width:100ch">Gravity is given in g. Moon surface is about 0.17 g. ISS is about 0.00001 g. Pressure is in kPa; sea-level air is 101.3 kPa. Airflow is limited to 0.1 to 5 cm/s, the range tested in FLEX-2. The fuel list and tested ranges come from the FLEX-2 experimental table (PSI-68, DOI 10.60555/byp8-h018). Fuel offsets, the extinction chance, the uncertainty band and the importance bars all come from placeholder rules, not NASA measurements; replace them with a model fitted to the PSI results before presenting anything.</p>
+  </section>
+</div>
+
+<!-- DATA -->
+<div id="p-data" role="tabpanel" aria-labelledby="tab-data" hidden class="stack">
+  <div class="split">
+    <section class="col">
+      <h2>Size of each source</h2>
+      <div class="seg" id="scale" aria-label="Bar scale">
+        <button type="button" data-s="lin" aria-pressed="false">Linear</button>
+        <button type="button" data-s="log" aria-pressed="true">Log</button>
+      </div>
+      <div class="bars" id="bars" role="img" aria-label="Bar chart of dataset sizes in megabytes"></div>
+      <p class="small muted">Sizes are as downloaded by the community mirror. The full PSI collection is about 13.5 TB, mostly video and raw images.</p>
+    </section>
+    <section class="col">
+      <h2>Known data problems</h2>
+      <ul class="plain small">
+        <li>About 2,600 legacy PSI files return 404 on NASA's server. About 1,600 have no backup, mostly from FLEX-2.</li>
+        <li>About 23,000 SLICE image-matrix files (about 7 GB) were skipped by that download.</li>
+        <li>MAPTIS, the materials flammability database, has restricted access.</li>
+        <li>Official statement and datasets were released 28 Oct 2026.</li>
+      </ul>
+      <p class="note">Plan around these gaps and say so in your pitch. Honest limits score better than a model that hides them.</p>
+    </section>
+  </div>
+  <section class="col">
+    <h2>Source explorer</h2>
+    <input type="search" id="q" placeholder="Filter by name, content or use" aria-label="Filter sources">
+    <div class="tw"><table>
+      <thead><tr><th>Source</th><th>What it holds</th><th>Count</th><th>Size</th><th>Use it for</th></tr></thead>
+      <tbody id="srcBody"></tbody>
+    </table></div>
+    <p class="small muted" id="srcCount"></p>
+  </section>
+</div>
+
+<!-- APPROACHES -->
+<div id="p-ideas" role="tabpanel" aria-labelledby="tab-ideas" hidden class="stack" style="gap:24px">
+  <section class="col">
+    <h2>What other teams are building</h2>
+    <p class="muted" style="max-width:62ch">Public repositories for this challenge. Use them to find a gap, not to copy.</p>
+    <div class="seg" id="filters" aria-label="Filter approaches"></div>
+  </section>
+  <div class="ideas" id="cards"></div>
+  <p class="note">Common pitfall: placeholder rows presented as results. Use only real PSI data, label any ground-based model separately and avoid train and test leakage.</p>
+</div>
+</main>
+
+<footer id="links">
+  <h2>Links</h2>
+  <ul class="links">
+    <li><a href="https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/" target="_blank" rel="noopener">Official challenge page</a></li>
+    <li><a href="https://www.spaceappschallenge.org/resources/space-app-connect-guide/" target="_blank" rel="noopener">Space Apps Connect guide</a> (use the Flame in Freefall label)</li>
+    <li><a href="https://www.spaceappschallenge.org/resources/project-submission-guide/" target="_blank" rel="noopener">Project submission guide</a></li>
+    <li><a href="https://github.com/Krypton-N/NASA-SPACE-APPS" target="_blank" rel="noopener">Community data mirror and manifests</a></li>
+  </ul>
+  <p>Compiled 14 Nov 2026 from the Space Apps site and public team repositories. Not an official NASA document. Flame lab settings are stored in this browser only.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var store = {
+    get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},
+    set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id){return document.getElementById(id)}
+  function lerp(a,b,t){return a+(b-a)*t}
+  function mix(c1,c2,t){return 'rgba('+Math.round(lerp(c1[0],c2[0],t))+','+Math.round(lerp(c1[1],c2[1],t))+','+Math.round(lerp(c1[2],c2[2],t))+','+lerp(c1[3],c2[3],t).toFixed(2)+')'}
+
+  /* ---------- Tabs ---------- */
+  var tabBtns = Array.prototype.slice.call(document.querySelectorAll('#tabs [role=tab]'));
+  var panels = {overview:$('p-overview'),lab:$('p-lab'),data:$('p-data'),ideas:$('p-ideas')};
+  function showTab(name){
+    if(!panels[name]) name='overview';
+    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k!==name); });
+    tabBtns.forEach(function(b){ b.setAttribute('aria-selected', String(b.dataset.tab===name)); });
+    if(name==='lab') { sizeCanvas(); drawFrame(performance.now()); }
+    if(location.hash.replace('#','')!==name){ try{ history.replaceState(null,'','#'+name); }catch(e){} }
+  }
+  tabBtns.forEach(function(b,i){
+    b.addEventListener('click',function(){showTab(b.dataset.tab)});
+    b.addEventListener('keydown',function(e){
+      var n = e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:null;
+      if(n===null) return; n=(n+tabBtns.length)%tabBtns.length; tabBtns[n].focus(); showTab(tabBtns[n].dataset.tab);
+    });
+  });
+  window.addEventListener('hashchange',function(){showTab(location.hash.replace('#',''))});
+  $('goLab').addEventListener('click',function(){
+    showTab('lab');
+    $('tabs').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  });
+
+  /* ---------- Day chip ---------- */
+  var now = new Date(), chip = $('dayChip');
+  if(now.getFullYear()===2026 && now.getMonth()===10){
+    if(now.getDate()===14) chip.textContent='Hackathon day 1 of 2, 14–15 Nov 2026';
+    else if(now.getDate()===15) chip.textContent='Hackathon day 2 of 2, 14–15 Nov 2026';
+    else if(now.getDate()>15) chip.textContent='Hackathon ended, 14–15 Nov 2026';
+  }
+
+  /* ---------- Shared flame painter ---------- */
+  // g = 0 gives a sphere centred on the droplet, g = 1 gives a teardrop sitting on it.
+  function paintFlame(c,cx,by,R,g,sway,flick){
+    var u0 = lerp(0.5,0.08,g), H = lerp(2*R,3.5*R,g)*flick, bottom = by+u0*H, N = 56, i, u, y, w, x;
+    function prof(u){ return lerp(2*R*Math.sqrt(u*(1-u)), 1.1*R*Math.sin(Math.PI*Math.pow(u,0.6))*Math.pow(1-u,0.3), g); }
+    c.beginPath();
+    for(i=0;i<=N;i++){ u=i/N; y=bottom-u*H; x=cx+sway*u*u+prof(u); if(i===0) c.moveTo(x,y); else c.lineTo(x,y); }
+    for(i=N;i>=0;i--){ u=i/N; y=bottom-u*H; x=cx+sway*u*u-prof(u); c.lineTo(x,y); }
+    c.closePath();
+    var cy = bottom-H/2;
+    // cheap glow: a soft radial halo behind the flame instead of a blur shadow
+    var halo = c.createRadialGradient(cx,cy,R*0.4,cx,cy,R*2.4);
+    halo.addColorStop(0,mix([70,140,255,0.28],[255,150,40,0.26],g)); halo.addColorStop(1,mix([70,140,255,0],[255,150,40,0],g));
+    c.save(); c.fillStyle = halo; c.fillRect(cx-R*2.6,cy-Math.max(H,2*R)*0.5-R*1.4,R*5.2,Math.max(H,2*R)+R*2.8); c.restore();
+    c.fillStyle = mix([40,100,230,0.35],[255,110,30,0.4],g); c.fill();
+    c.save(); c.clip();
+    c.translate(cx+sway*0.4,cy); c.scale(1,H/(2*R));
+    var gr = c.createRadialGradient(0,R*0.25*g,R*0.05,0,0,R*1.15);
+    gr.addColorStop(0,mix([150,200,255,1],[255,246,190,1],g));
+    gr.addColorStop(0.55,mix([60,130,235,0.8],[255,175,50,0.85],g));
+    gr.addColorStop(1,mix([30,80,210,0],[255,90,20,0],g));
+    c.fillStyle = gr; c.fillRect(-3*R,-3*R,6*R,6*R);
+    c.restore();
+  }
+  function paintBead(c,bx,by,bottom){
+    c.strokeStyle='rgba(255,255,255,0.28)'; c.lineWidth=1.5; c.beginPath(); c.moveTo(bx,by); c.lineTo(bx,bottom); c.stroke();
+    c.fillStyle='#8a93a6'; c.beginPath(); c.arc(bx,by,6,0,Math.PI*2); c.fill();
+    c.fillStyle='#c4cbd8'; c.beginPath(); c.arc(bx-2,by-2,2,0,Math.PI*2); c.fill();
+  }
+
+  /* ---------- Hero: the drop ---------- */
+  var hcv = $('hero-cv'), hctx = hcv.getContext('2d'), HW=0, HH=0, dropT0 = performance.now();
+  function sizeHero(){
+    var d = window.devicePixelRatio||1; HW = hcv.clientWidth; HH = hcv.clientHeight;
+    hcv.width = Math.round(HW*d); hcv.height = Math.round(HH*d); hctx.setTransform(d,0,0,d,0,0);
+  }
+  function ease(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+  function heroG(ts){ if(reduce) return 0; return 1-ease(Math.min(1,Math.max(0,(ts-dropT0-700)/2400))); }
+  function drawHero(ts){
+    if(!HW) return;
+    var c = hctx; c.clearRect(0,0,HW,HH);
+    var by = HH*0.62, gs = [1,heroG(ts)], xs = [HW*0.27,HW*0.73], i;
+    for(i=0;i<2;i++){
+      var g = gs[i], R = lerp(0.17,0.115,g)*HH;
+      var flick = reduce ? 1 : 1+(Math.sin(ts*0.012+i)*0.035+Math.sin(ts*0.031+i)*0.015)*g;
+      var sway = reduce ? 0 : Math.sin(ts*0.004+i*2)*R*0.12*g;
+      paintBead(c,xs[i],by,HH);
+      paintFlame(c,xs[i],by,R,g,sway,flick);
+      c.fillStyle='#8a93a6'; c.beginPath(); c.arc(xs[i],by,6,0,Math.PI*2); c.fill();
+      c.fillStyle='#c4cbd8'; c.beginPath(); c.arc(xs[i]-2,by-2,2,0,Math.PI*2); c.fill();
+      c.fillStyle='rgba(233,238,251,0.85)'; c.font='600 '+Math.round(Math.max(14,HW*0.036))+'px "Bricolage Grotesque",system-ui,sans-serif'; c.textAlign='center';
+      c.fillText(g<0.005?'about 0 g':g.toFixed(2)+' g', xs[i], HH*0.1);
+    }
+    c.textAlign='start';
+  }
+  $('replay').addEventListener('click',function(){ dropT0 = performance.now(); });
+  if(reduce) $('replay').hidden = true;
+
+  /* ---------- Flame lab ---------- */
+  var cv = $('cv'), ctx = cv.getContext('2d'), W=0, H=0;
+  var S = {g:0,o2:21,fl:3,p:101.3,fuel:'heptane'};
+
+  // MODEL-START
+  // Ranges tested in FLEX-2 (PSI-68, experimental table): O2 mole fraction 0.17-0.30, 0.5-3.0 atm, flow 0.1-5 cm/s, ISS microgravity.
+  var TESTED = {o2:[17,30], p:[50.7,303.9], fl:[0.1,5]};
+  // Fuel list comes from the FLEX-2 table. The 'off' values are PLACEHOLDERS (extra effective oxygen the fuel needs); replace with fitted values.
+  var FUELS = {
+    heptane:{n:'Heptane (pure)',cls:'n-alkane',off:0},
+    noctane:{n:'n-Octane (pure)',cls:'n-alkane',off:0},
+    decane:{n:'Decane (pure)',cls:'n-alkane',off:0},
+    isooctane:{n:'Isooctane (pure)',cls:'alkane',off:0},
+    hepiso:{n:'Heptane 50 % / isooctane 50 %',cls:'alkane mix',off:0},
+    ethanol:{n:'Ethanol (pure)',cls:'alcohol',off:1.5},
+    prop95:{n:'Propanol 95 % / glycerol 5 %',cls:'alcohol mix',off:2},
+    prop80:{n:'Propanol 80 % / glycerol 20 %',cls:'alcohol mix',off:3.5}
+  };
+  function effO2(s){ return s.o2*s.p/101.3 - FUELS[s.fuel].off; }
+  function coverage(s){
+    var out=[];
+    if(s.o2<TESTED.o2[0]||s.o2>TESTED.o2[1]) out.push('oxygen');
+    if(s.p<TESTED.p[0]||s.p>TESTED.p[1]) out.push('pressure');
+    if(s.g>0.01) out.push('gravity');
+    return out;
+  }
+  // Placeholder rules. Replace with a model fitted to PSI results.
+  function regime(s){
+    var e=effO2(s), micro=s.g<0.2, f=FUELS[s.fuel], res;
+    if(e<17) res={k:'bad',t:'No sustained flame',d:'Effective oxygen is too low for this teaching model. Real limits depend on fuel and pressure.',f:0};
+    else if(micro&&s.fl<2&&e<25) res={k:'warn',t:'Radiative quench risk',d:'Little airflow and no buoyancy: the flame can lose more heat by radiation than it makes and fade out.',f:0.55};
+    else if(micro&&e>=21&&e<=24&&s.fl>=2) res={k:'warn',t:'Hidden-risk zone',d:'A small, dim round flame that a standard 1 g test may under-rate. Check this region against PSI rows.',f:1};
+    else if(e>=35) res={k:'bad',t:'Vigorous burning',d:'Oxygen-enriched atmospheres burn fast in any gravity. Treat as a high-hazard condition.',f:1.25};
+    else res={k:'ok',t:'Burns steadily',d:micro?'Steady, round, blue-tinged flame fed by diffusion and ventilation.':'Tall buoyant flame, the familiar Earth shape.',f:1};
+    if(f.cls==='n-alkane'&&micro&&s.p>=151&&res.f>0) res.x='Cool-flame behaviour has been reported for n-alkane droplets at elevated pressure in microgravity.';
+    return res;
+  }
+  // Toy extinction chance: sigmoid in effective oxygen, reduced when little air moves past the flame.
+  function extinct(s,c,w,noise){
+    var e=s.o2*s.p/101.3 - FUELS[s.fuel].off - (noise||0);
+    var b=1/(1+Math.exp(-(e-c)/w));
+    var fe=s.fl+5*s.g;
+    b*=0.55+0.45*Math.min(1,fe/2);
+    return 1-b;
+  }
+  function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  function randn(r){var u=1-r(),v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  // Placeholder uncertainty: perturb the threshold, steepness and fuel offset, widen when outside the tested range.
+  function band(s){
+    var r=rng(12345), N=400, out=[], mult=1+coverage(s).length, i;
+    for(i=0;i<N;i++){
+      var c=17+randn(r)*1.5*mult, w=Math.max(0.8,2+randn(r)*0.4), nz=randn(r)*1.0;
+      out.push(extinct(s,c,w,nz));
+    }
+    out.sort(function(a,b){return a-b});
+    return {lo:out[Math.floor(0.05*N)],mid:out[Math.floor(0.5*N)],hi:out[Math.floor(0.95*N)]};
+  }
+  // One-at-a-time swing in extinction chance across each variable's range, others held at the current values.
+  function importance(s){
+    function ex(o){return extinct(Object.assign({},s,o),17,2,0);}
+    var fv=Object.keys(FUELS).map(function(k){return ex({fuel:k});});
+    return [
+      {n:'Oxygen',v:Math.abs(ex({o2:TESTED.o2[1]})-ex({o2:TESTED.o2[0]}))},
+      {n:'Pressure',v:Math.abs(ex({p:TESTED.p[1]})-ex({p:TESTED.p[0]}))},
+      {n:'Airflow',v:Math.abs(ex({fl:TESTED.fl[1]})-ex({fl:TESTED.fl[0]}))},
+      {n:'Gravity',v:Math.abs(ex({g:1})-ex({g:0}))},
+      {n:'Fuel',v:Math.max.apply(null,fv)-Math.min.apply(null,fv)}
+    ].sort(function(a,b){return b.v-a.v;});
+  }
+  // MODEL-END
+
+  var fuelSel = $('fuel');
+  Object.keys(FUELS).forEach(function(k){var o=document.createElement('option'); o.value=k; o.textContent=FUELS[k].n; fuelSel.appendChild(o);});
+  fuelSel.value = S.fuel;
+
+  function sizeCanvas(){
+    var w = cv.clientWidth || 600, h = 360, d = window.devicePixelRatio||1;
+    cv.width = Math.round(w*d); cv.height = Math.round(h*d);
+    ctx.setTransform(d,0,0,d,0,0); W=w; H=h;
+  }
+  var streak = 0;
+  function drawFrame(ts){
+    if(panels.lab.hidden || !W) return;
+    var r = regime(S), g = S.g;
+    ctx.clearRect(0,0,W,H);
+    var bx = W/2, by = H*0.66;
+    streak = (streak + S.fl*1.4) % 60;
+    ctx.strokeStyle='rgba(140,190,235,0.3)'; ctx.lineWidth=1.5;
+    for(var i=0;i<7;i++){
+      var y = H*0.2 + i*H*0.1, len = 6+S.fl*5;
+      for(var x=-60+streak; x<W; x+=60){
+        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+len,y); ctx.stroke();
+      }
+    }
+    var lean = Math.min(S.fl*6,40);
+    paintBead(ctx,bx+lean,by,H);
+    if(r.f>0){
+      var eo = Math.min(50,Math.max(15,effO2(S)));
+      var scale = H*0.11*(0.55+(eo-15)/30*1.3)*Math.min(1.3,r.f);
+      var R = Math.min(scale*1.6,60);
+      var flick = reduce ? 1 : 1+Math.sin(ts*0.012)*0.035*g+Math.sin(ts*0.031)*0.015*g;
+      var sway = (reduce?0:Math.sin(ts*0.004)*R*0.1*g);
+      paintFlame(ctx,bx+lean,by,R,g,sway,flick);
+    }
+    ctx.fillStyle='#8a93a6'; ctx.beginPath(); ctx.arc(bx+lean,by,6,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#c4cbd8'; ctx.beginPath(); ctx.arc(bx+lean-2,by-2,2,0,Math.PI*2); ctx.fill();
+    if(g>0.05){
+      ctx.strokeStyle='rgba(255,190,100,'+(0.25+0.5*g)+')'; ctx.lineWidth=2;
+      for(var k=-1;k<=1;k+=2){
+        var ax = bx+k*H*0.24, ay = by+20;
+        ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(ax,ay-30*g-8); ctx.lineTo(ax-4,ay-30*g); ctx.moveTo(ax,ay-30*g-8); ctx.lineTo(ax+4,ay-30*g); ctx.stroke();
+      }
+    }
+    ctx.fillStyle='rgba(255,255,255,0.7)'; ctx.font='13px "Instrument Sans",sans-serif';
+    ctx.fillText('air flow →', 12, 22);
+    if(g>0.05) ctx.fillText('buoyancy ↑', W-100, 22);
+  }
+  function loop(ts){
+    if(hcv.getBoundingClientRect().bottom>0) drawHero(ts);
+    drawFrame(ts);
+    requestAnimationFrame(loop);
+  }
+
+  function pct(x){return Math.round(x*100)+' %';}
+  function renderUnc(){
+    var b = band(S), pt = extinct(S,17,2,0), box = $('unc'); box.innerHTML='';
+    var big = document.createElement('div'); big.className='bigpct'; big.textContent = pct(pt);
+    var sub = document.createElement('div'); sub.className='small muted'; sub.textContent = '90 % band: '+pct(b.lo)+' to '+pct(b.hi)+' (chance the flame goes out)';
+    var gauge = document.createElement('div'); gauge.className='gauge';
+    var bd = document.createElement('div'); bd.className='gband'; bd.style.left=(b.lo*100)+'%'; bd.style.width=Math.max(1,(b.hi-b.lo)*100)+'%';
+    var dot = document.createElement('div'); dot.className='gpt'; dot.style.left='calc('+(pt*100)+'% - 1px)';
+    gauge.appendChild(bd); gauge.appendChild(dot);
+    var scl = document.createElement('div'); scl.className='small muted'; scl.style.cssText='display:flex;justify-content:space-between'; scl.innerHTML='<span>0 %</span><span>100 %</span>';
+    var wide = coverage(S).length;
+    var nt = document.createElement('div'); nt.className='small muted';
+    nt.textContent = wide ? 'The band is '+(1+wide)+' times wider because the conditions are outside the tested range.' : 'Inside the tested range, so the band uses its base width.';
+    box.appendChild(big); box.appendChild(sub); box.appendChild(gauge); box.appendChild(scl); box.appendChild(nt);
+  }
+  function renderImp(){
+    var items = importance(S), box = $('imp'); box.innerHTML='';
+    var mx = Math.max(0.0001, items[0].v);
+    items.forEach(function(it){
+      var row = document.createElement('div'); row.className='irow';
+      var l = document.createElement('span'); l.textContent = it.n;
+      var t = document.createElement('div'); t.className='itrack';
+      var f = document.createElement('div'); f.className='ifill'; f.style.width=(it.v/mx*100)+'%'; t.appendChild(f);
+      var v = document.createElement('span'); v.className='num'; v.style.textAlign='right'; v.textContent = Math.round(it.v*100)+' pp';
+      row.appendChild(l); row.appendChild(t); row.appendChild(v); box.appendChild(row);
+    });
+    var n = document.createElement('div'); n.className='small muted'; n.textContent='Swing in extinction chance (percentage points) across each variable’s tested range, others held at the sliders.';
+    box.appendChild(n);
+    var gv = items.filter(function(i){return i.n==='Gravity'})[0];
+    if(gv && gv.v<0.005){ var gn = document.createElement('div'); gn.className='small muted'; gn.textContent='Gravity shows 0 pp because this toy model lets gravity act only through airflow, and the airflow is already above 2 cm/s.'; box.appendChild(gn); }
+  }
+  function updateLab(){
+    S.g = +$('g').value; S.o2 = +$('o2').value; S.fl = +$('fl').value; S.p = +$('p').value; S.fuel = fuelSel.value;
+    $('gO').textContent = S.g<0.001 ? '0 g' : S.g<0.01 ? S.g.toFixed(3)+' g' : S.g.toFixed(2)+' g';
+    $('o2O').textContent = S.o2.toFixed(1)+' %';
+    $('flO').textContent = S.fl.toFixed(1)+' cm/s';
+    $('pO').textContent = S.p.toFixed(1)+' kPa';
+    $('fuelO').textContent = FUELS[S.fuel].cls;
+    $('sPO2').textContent = (S.o2*S.p/100).toFixed(1)+' kPa';
+    var r = regime(S), v = $('verdict');
+    v.className = 'verdict v-'+(r.k==='ok'?'calm':r.k);
+    v.innerHTML = '';
+    var b = document.createElement('b'); b.textContent = r.t; v.appendChild(b);
+    var p = document.createElement('span'); p.textContent = r.d; v.appendChild(p);
+    if(r.x){ var x = document.createElement('span'); x.className='small muted'; x.textContent = r.x; v.appendChild(x); }
+    $('sShape').textContent = r.f===0 ? 'none' : S.g<0.2 ? 'round' : S.g<0.6 ? 'oval' : 'tall';
+    $('sAspect').textContent = r.f===0 ? '-' : ((1.1+2.6*S.g)/(1.15-0.3*S.g)).toFixed(1)+':1';
+    $('sColor').textContent = r.f===0 ? '-' : S.g<0.3 ? 'blue' : S.g<0.7 ? 'mixed' : 'yellow';
+    var out = coverage(S), cvr = $('cover');
+    cvr.className = 'verdict '+(out.length?'v-warn':'v-calm');
+    cvr.textContent = out.length
+      ? 'Outside the FLEX-2 tested range: '+out.join(', ')+'. Treat the verdict as a guess; the uncertainty band is widened.'
+      : 'Inside the FLEX-2 tested range: oxygen 17–30 %, pressure 0.5–3 atm, flow 0.1–5 cm/s, microgravity.';
+    renderUnc(); renderImp();
+    store.set('ff-lab',JSON.stringify(S));
+    if(reduce) drawFrame(performance.now());
+  }
+  var presets = {
+    earth:{g:1,o2:21,fl:2,p:101.3},
+    iss:{g:0,o2:21,fl:3,p:101.3},
+    moon:{g:0.17,o2:21,fl:2,p:101.3},
+    rich:{g:0,o2:35,fl:3,p:101.3},
+    still:{g:0,o2:21,fl:0.1,p:101.3},
+    lowp:{g:0,o2:34,fl:2,p:56.5}
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('#presets button'),function(b){
+    b.addEventListener('click',function(){var q=presets[b.dataset.p]; $('g').value=q.g; $('o2').value=q.o2; $('fl').value=q.fl; $('p').value=q.p; updateLab();});
+  });
+  ['g','o2','fl','p','fuel'].forEach(function(id){$(id).addEventListener('input',updateLab)});
+  try{ var saved = JSON.parse(store.get('ff-lab')||'null'); if(saved){ $('g').value=saved.g; $('o2').value=saved.o2; $('fl').value=saved.fl; if(saved.p) $('p').value=saved.p; if(saved.fuel&&FUELS[saved.fuel]) fuelSel.value=saved.fuel; } }catch(e){}
+  window.addEventListener('resize',function(){
+    sizeHero(); if(reduce) drawHero(performance.now());
+    if(!panels.lab.hidden){ sizeCanvas(); drawFrame(performance.now()); }
+  });
+  updateLab();
+
+  /* ---------- Data tab ---------- */
+  var sources = [
+    {n:'PSI',w:'Experimental tables, metadata, images, raw data from 24 Combustion Science investigations',c:'24 investigations, about 21,900 files',mb:4200,u:'Training and testing models'},
+    {n:'NTRS',w:'NASA technical reports, PDF and full text',c:'277 documents',mb:818,u:'Summaries, ranking, evidence for claims'},
+    {n:'Task Book',w:'Records of Combustion Science projects',c:'138 projects',mb:4,u:'Context on what was studied and why'},
+    {n:'Standards and mechanisms',w:'3 PDFs and 2 Cantera chemistry mechanisms',c:'5 files',mb:4,u:'Safety rules, chemistry modelling'}
+  ];
+  var scaleMode = 'log';
+  function fmtMB(v){return v>=1000?(v/1000).toFixed(1)+' GB':v+' MB'}
+  function drawBars(){
+    var box = $('bars'); box.innerHTML='';
+    var max = Math.max.apply(null,sources.map(function(s){return s.mb}));
+    sources.forEach(function(s){
+      var pct = scaleMode==='log' ? Math.log10(s.mb+1)/Math.log10(max+1)*100 : s.mb/max*100;
+      var row = document.createElement('div'); row.className='bar-row';
+      var l = document.createElement('span'); l.textContent = s.n==='Standards and mechanisms'?'Standards':s.n;
+      var t = document.createElement('div'); t.className='bar-track';
+      var f = document.createElement('div'); f.className='bar-fill'; f.style.width = pct+'%'; t.appendChild(f);
+      var v = document.createElement('span'); v.className='v'; v.textContent = fmtMB(s.mb);
+      row.appendChild(l); row.appendChild(t); row.appendChild(v); box.appendChild(row);
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('#scale button'),function(b){
+    b.addEventListener('click',function(){
+      scaleMode=b.dataset.s;
+      Array.prototype.forEach.call(document.querySelectorAll('#scale button'),function(x){x.setAttribute('aria-pressed',String(x===b))});
+      drawBars();
+    });
+  });
+  function drawTable(){
+    var q = $('q').value.trim().toLowerCase(), body = $('srcBody'); body.innerHTML='';
+    var shown = sources.filter(function(s){return !q || (s.n+' '+s.w+' '+s.c+' '+s.u).toLowerCase().indexOf(q)>-1});
+    shown.forEach(function(s){
+      var tr = document.createElement('tr');
+      [s.n,s.w,s.c,fmtMB(s.mb),s.u].forEach(function(txt){
+        var td = document.createElement('td'); td.textContent=txt; tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
+    $('srcCount').textContent = shown.length+' of '+sources.length+' sources shown';
+  }
+  $('q').addEventListener('input',drawTable);
+  drawBars(); drawTable();
+
+  /* ---------- Approaches ---------- */
+  var ideas = [
+    {t:'Prediction model',tags:['Model'],d:'Estimates extinction probability and burning-rate constant from fuel, O2, CO2, N2, pressure and droplet size on FLEX data. Streamlit front end.',u:'https://github.com/shaharia179/flame-in-freefall'},
+    {t:'Fire envelope screening',tags:['Model','Visual'],d:'Maps oxygen, pressure, gravity and ventilation to flag where a material passes the 1 g test yet burns in microgravity. Includes a live NASA research feed.',u:'https://github.com/samuelakosaonyejekwe/flame-in-freefall'},
+    {t:'Evidence explorer',tags:['Explorer'],d:'Question-led interface that ties each answer to matching NASA tests and shows evidence gaps. Its repository states its rows are illustrative demo data.',u:'https://github.com/meherabmehu/Flame_On'},
+    {t:'3D fire lab',tags:['Visual'],d:'Rack glovebox inside an ISS interior scan, with a flame driven by O2, pressure and flow sliders and a verdict computed from PSI rows.',u:'https://github.com/eres0045/spica-firelab'},
+    {t:'Education route',tags:['Education','Explorer'],d:'Adventure for ages 8 to 13 with page-cited BASS-II tests, a 3D experiment game and an evidence-gap map.',u:'https://github.com/A-K-M-Asifuzzaman/MicroFire-Atlas'},
+    {t:'Physics-informed platform',tags:['Model','Visual'],d:'Streamlit dashboard mixing verified flight records with a separately labelled ground-based model and leakage-free validation.',u:'https://github.com/ngu-ming-henn/Nasa-Space-Apps-Sarawak'}
+  ];
+  var allTags = ['All','Model','Visual','Explorer','Education'], active = 'All';
+  function drawIdeas(){
+    var f = $('filters'); f.innerHTML='';
+    allTags.forEach(function(t){
+      var b = document.createElement('button'); b.type='button'; b.textContent=t; b.setAttribute('aria-pressed',String(t===active));
+      b.addEventListener('click',function(){active=t;drawIdeas()}); f.appendChild(b);
+    });
+    var c = $('cards'); c.innerHTML='';
+    ideas.filter(function(i){return active==='All'||i.tags.indexOf(active)>-1}).forEach(function(i){
+      var row = document.createElement('article'); row.className='idea';
+      var head = document.createElement('div'); head.className='head';
+      var h = document.createElement('h3'); h.textContent=i.t;
+      var tg = document.createElement('div'); tg.className='tags';
+      i.tags.forEach(function(x){var s=document.createElement('span'); s.className='tag'; s.textContent=x; tg.appendChild(s)});
+      head.appendChild(h); head.appendChild(tg);
+      var p = document.createElement('p'); p.className='muted'; p.textContent=i.d;
+      var a = document.createElement('a'); a.href=i.u; a.target='_blank'; a.rel='noopener'; a.textContent='Open repository';
+      row.appendChild(head); row.appendChild(p); row.appendChild(a); c.appendChild(row);
+    });
+  }
+  drawIdeas();
+
+  /* ---------- Start ---------- */
+  showTab(location.hash.replace('#',''));
+  sizeHero(); sizeCanvas();
+  if(reduce){ drawHero(performance.now()); drawFrame(performance.now()); }
+  else requestAnimationFrame(loop);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if(reduce) drawHero(performance.now()); });
+})();
+</script>
+</body>
+</html>
