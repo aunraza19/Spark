@@ -7,6 +7,7 @@ import {
   fetchReportConditions,
   fetchScenarioSnapshot,
   type About,
+  type CardRequest,
   type Habitat,
   type MapSnapshot,
   type Point,
@@ -23,6 +24,7 @@ import { HabitatSelector } from "./HabitatSelector";
 import { Hero } from "./Hero";
 import { KnowDontKnow } from "./KnowDontKnow";
 import { MapSummary } from "./MapSummary";
+import { PointCard } from "./PointCard";
 import { PRESSURE_VIEWS } from "./scale";
 import { ScenarioPanel } from "./ScenarioPanel";
 import { ThreeLines } from "./ThreeLines";
@@ -49,6 +51,7 @@ export default function App() {
   const [selection, setSelection] = useState<Selection>({ habitatId: "lunar" });
   const [snapshot, setSnapshot] = useState<MapSnapshot | null>(null);
   const [summary, setSummary] = useState<Summary | null>(null);
+  const [chosen, setChosen] = useState<CardRequest | null>(null);
   const [showAll, setShowAll] = useState(false);
   const [scenario, setScenario] = useState<ScenarioSnapshot | null>(null);
   const [scenarioFailed, setScenarioFailed] = useState(false);
@@ -129,8 +132,15 @@ export default function App() {
                 </label>
                 <span data-testid="view-note" className="view-note">{note}</span>
               </div>
-              <AtmosphereMap points={loaded.points} reportConditions={loaded.reports} habitat={target} view={view} />
+              <AtmosphereMap
+                points={loaded.points}
+                reportConditions={loaded.reports}
+                habitat={target}
+                view={view}
+                onSelect={setChosen}
+              />
             </section>
+            {chosen && <PointCard key={JSON.stringify(chosen)} request={chosen} onClose={() => setChosen(null)} />}
             <DataSaysCard summary={summary}>
               <MapSummary snapshot={snapshot} viewNote={note} />
               {selection.habitatId === "custom" && selection.custom && (

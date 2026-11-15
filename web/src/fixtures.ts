@@ -1,4 +1,4 @@
-import type { About, Habitat, MapSnapshot, Point, ReportCondition, ScenarioSnapshot, Summary } from "./api";
+import type { About, Habitat, MapSnapshot, Point, PointCard, ReportCondition, ScenarioSnapshot, Summary } from "./api";
 
 export const gas: Point = {
   experiment_id: "PSI-159", test_id: "21088A1", o2_pct_min: 39.39, o2_pct_max: 39.39,
@@ -150,4 +150,35 @@ export const customSummary: Summary = {
     "The closest was PSI-98: 6.3 points less oxygen and 5.47 psi more pressure than your target.",
     "16 of 24 experiments have no per-test conditions, so they are not on the map.",
   ],
+};
+
+export const gasCard: PointCard = {
+  title: "ACME CFI-G (PSI-159)",
+  burned: "a gas flame on a burner, ethane",
+  conditions: "39.39 % oxygen at 13.7 psi",
+  result: "The flame went out by itself.",
+  evidence: {
+    experiment_id: "PSI-159", test_id: "21088A1", source_file: gas.source_file, source_row: 2,
+    page: null, figure: null, pressure_note: null,
+  },
+};
+export const solidCard: PointCard = {
+  title: "BASS-II (PSI-25)",
+  burned: "a burning solid sample, 100 micron PMMA film   2 cm wide",
+  conditions: "22.2 % oxygen at 14.7 psi",
+  result: "The tables do not record how this test ended.",
+  evidence: {
+    experiment_id: "PSI-25", test_id: "B1", source_file: solid.source_file, source_row: 2,
+    page: null, figure: null, pressure_note: "The pressure comes from the experiment record, not the test table.",
+  },
+};
+export const reportCard: PointCard = {
+  title: "ACME/BRE (PSI-20)",
+  burned: "ethylene/N2 on a porous burner",
+  conditions: "34 % oxygen at 8.2 psi",
+  result: "The flame burned steadily.",
+  evidence: {
+    experiment_id: "PSI-20", test_id: "19070D1", source_file: "BRE_final_report_20220201.pdf", source_row: null,
+    page: 26, figure: "Figure 9", pressure_note: null,
+  },
 };

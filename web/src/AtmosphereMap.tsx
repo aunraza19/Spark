@@ -1,9 +1,28 @@
-import type { Habitat, Point, ReportCondition } from "./api";
+import { useRef, useState, type KeyboardEvent, type SVGProps } from "react";
+import type { CardRequest, Habitat, Point, ReportCondition } from "./api";
 import { formatNumber, formatRange } from "./format";
 import { MAP, mapScales, PRESSURE_VIEWS, type PressureView } from "./scale";
 import { isVisible } from "./view";
 
-type Props = { points: Point[]; reportConditions: ReportCondition[]; habitat: Habitat | null; view?: PressureView };
+type MarkProps = SVGProps<SVGGElement> & { "data-key"?: string };
+type Target = { key: string; pressure: number; o2: number; request: CardRequest };
+
+const STEP: Record<string, (index: number, count: number) => number> = {
+  ArrowRight: (i) => i + 1,
+  ArrowDown: (i) => i + 1,
+  ArrowLeft: (i) => i - 1,
+  ArrowUp: (i) => i - 1,
+  Home: () => 0,
+  End: (_i, count) => count - 1,
+};
+
+type Props = {
+  points: Point[];
+  reportConditions: ReportCondition[];
+  habitat: Habitat | null;
+  view?: PressureView;
+  onSelect?: (request: CardRequest) => void;
+};
 
 const ticks = (domain: [number, number], step: number) => {
   const found: number[] = [];
@@ -11,7 +30,7 @@ const ticks = (domain: [number, number], step: number) => {
   return found;
 };
 
-function PointMark({ point, view }: { point: Point; view: PressureView }) {
+function PointMark({ point, view, mark }: { point: Point; view: PressureView; mark?: MarkProps }) {
   const { x, y } = mapScales(view);
   const r = MAP.markRadius;
   const ranged = point.o2_pct_min !== point.o2_pct_max || point.pressure_psi_min !== point.pressure_psi_max;
@@ -45,14 +64,14 @@ function PointMark({ point, view }: { point: Point; view: PressureView }) {
     shape = <circle cx={cx} cy={cy} r={r} />;
   }
   return (
-    <g data-testid="point" data-fuel-state={fuel} className={`mark mark-${fuel}`}>
+    <g data-testid="point" data-fuel-state={fuel} className={`mark mark-${fuel}`} {...mark} aria-label={mark && title}>
       <title>{title}</title>
       {shape}
     </g>
   );
 }
 
-function ReportMark({ condition, view }: { condition: ReportCondition; view: PressureView }) {
+function ReportMark({ condition, view, mark }: { condition: ReportCondition; view: PressureView; mark?: MarkProps }) {
   const { x, y } = mapScales(view);
   const cx = x(condition.pressure_psi_min);
   const cy = y(condition.o2_pct_min);
@@ -64,7 +83,7 @@ function ReportMark({ condition, view }: { condition: ReportCondition; view: Pre
     `${formatRange(condition.pressure_psi_min, condition.pressure_psi_max)} psi, ${condition.outcome}. ` +
     `Source: ${file}, page ${page}, ${figure}.`;
   return (
-    <g data-testid="report-condition" className="mark-report">
+    <g data-testid="report-condition" className="mark-report" {...mark} aria-label={mark && title}>
       <title>{title}</title>
       <polygon points={`${cx},${cy - r} ${cx + r},${cy} ${cx},${cy + r} ${cx - r},${cy}`} />
     </g>
@@ -100,14 +119,62 @@ function Legend({ zone }: { zone: boolean }) {
   );
 }
 
-export function AtmosphereMap({ points, reportConditions, habitat, view = "full" }: Props) {
+export function AtmosphereMap({ points, reportConditions, habitat, view = "full", onSelect }: Props) {
+  const svg = useRef<SVGSVGElement>(null);
+  const [activeKey, setActiveKey] = useState<string | null>(null);
   const { x, y } = mapScales(view);
+  const shownPoints = points.filter((p) => isVisible(p.pressure_psi_max, view));
+  const shownReports = reportConditions.filter((c) => isVisible(c.pressure_psi_max, view));
+  const targets: Target[] = [
+    ...shownPoints.map((p) => ({
+      key: `point:${p.source_file}:${p.source_row}`,
+      pressure: p.pressure_psi_min,
+      o2: p.o2_pct_min,
+      request: { source_file: p.source_file, source_row: p.source_row },
+    })),
+    ...shownReports.map((c) => ({
+      key: `report:${c.experiment_id}:${c.test_id}`,
+      pressure: c.pressure_psi_min,
+      o2: c.o2_pct_min,
+      request: { experiment_id: c.experiment_id, test_id: c.test_id },
+    })),
+  ].sort((a, b) => a.pressure - b.pressure || a.o2 - b.o2 || a.key.localeCompare(b.key));
+  const tabStop = targets.some((t) => t.key === activeKey) ? activeKey : targets[0]?.key;
+
+  const focusMark = (key: string) => {
+    setActiveKey(key);
+    [...(svg.current?.querySelectorAll<SVGGElement>("[data-key]") ?? [])].find((el) => el.getAttribute("data-key") === key)?.focus();
+  };
+
+  const interactive = (target: Target): MarkProps | undefined => {
+    if (!onSelect) return undefined;
+    return {
+      role: "button",
+      tabIndex: target.key === tabStop ? 0 : -1,
+      "data-key": target.key,
+      onClick: () => onSelect(target.request),
+      onFocus: () => setActiveKey(target.key),
+      onKeyDown: (event: KeyboardEvent<SVGGElement>) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onSelect(target.request);
+        } else if (STEP[event.key]) {
+          event.preventDefault();
+          const next = STEP[event.key](targets.indexOf(target), targets.length);
+          focusMark(targets[Math.max(0, Math.min(targets.length - 1, next))].key);
+        }
+      },
+    };
+  };
+  const byKey = new Map(targets.map((t) => [t.key, t]));
+  const targetOf = (key: string) => byKey.get(key) as Target;
   const pressureDomain = PRESSURE_VIEWS[view];
   const { width, height, margin, oxygenDomain } = MAP;
   const zone = habitat?.kind === "zone" ? habitat : null;
   return (
     <figure className="map">
       <svg
+        ref={svg}
         viewBox={`0 0 ${width} ${height}`}
         role="img"
         aria-label="Oxygen against pressure: one mark for each ambient test point"
@@ -140,18 +207,17 @@ export function AtmosphereMap({ points, reportConditions, habitat, view = "full"
             <title>{`${zone.label}: oxygen at least ${formatNumber(zone.o2_pct_min ?? 0)} % and pressure at most ${formatNumber(zone.pressure_psi_max ?? 0)} psi. Source: ${zone.source}`}</title>
           </rect>
         )}
-        {points
-          .filter((p) => isVisible(p.pressure_psi_max, view))
-          .map((p) => (
-            <PointMark key={`${p.source_file}:${p.source_row}`} point={p} view={view} />
-          ))}
-        {reportConditions
-          .filter((c) => isVisible(c.pressure_psi_max, view))
-          .map((c) => (
-            <ReportMark key={`${c.experiment_id}:${c.test_id}`} condition={c} view={view} />
-          ))}
+        {shownPoints.map((p) => {
+          const key = `point:${p.source_file}:${p.source_row}`;
+          return <PointMark key={key} point={p} view={view} mark={interactive(targetOf(key))} />;
+        })}
+        {shownReports.map((c) => {
+          const key = `report:${c.experiment_id}:${c.test_id}`;
+          return <ReportMark key={key} condition={c} view={view} mark={interactive(targetOf(key))} />;
+        })}
         {habitat && habitat.kind === "point" && <HabitatMark habitat={habitat} view={view} />}
       </svg>
+      {onSelect && <p className="map-hint">Click a mark, or press Tab and use the arrow keys, then Enter.</p>}
       <Legend zone={zone !== null} />
     </figure>
   );

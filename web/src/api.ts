@@ -98,6 +98,31 @@ export const fetchHabitats = () => getJson<Habitat[]>("/api/habitats");
 export const fetchPoints = () => getJson<Point[]>("/api/points");
 export const fetchReportConditions = () => getJson<ReportCondition[]>("/api/report-conditions");
 
+export type CardRequest = { source_file: string; source_row: number } | { experiment_id: string; test_id: string };
+
+export type PointCard = {
+  title: string;
+  burned: string;
+  conditions: string;
+  result: string;
+  evidence: {
+    experiment_id: string;
+    test_id: string | null;
+    source_file: string;
+    source_row: number | null;
+    page: number | null;
+    figure: string | null;
+    pressure_note: string | null;
+  };
+};
+
+export function fetchPointCard(request: CardRequest) {
+  const query = new URLSearchParams(
+    Object.entries(request).map(([key, value]) => [key, String(value)]),
+  );
+  return getJson<PointCard>(`/api/point-card?${query}`);
+}
+
 export function fetchMapSnapshot(selection: Selection, shownPsiMax: number) {
   const query =
     selection.habitatId === "custom" && selection.custom
