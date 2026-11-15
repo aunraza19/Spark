@@ -81,6 +81,17 @@ describe("the zone is named inside the chart", () => {
     expect(Number(label.getAttribute("y"))).toBeLessThan(zy + Number(zone.getAttribute("height")));
   });
 
+  it("wraps the limits into short lines on a phone, so the label fits the narrow zone", () => {
+    const resize = stubResizeObserver();
+    render(<AtmosphereMap points={points} reportConditions={[]} habitat={lunar} view="zoomed" />);
+    resize(358);
+    const label = screen.getByTestId("zone-label");
+    for (const line of ["30 % oxygen", "or more", "10.2 psi", "or less"]) {
+      expect(within(label).getByText(line)).toBeInTheDocument();
+    }
+    expect(within(label).queryByText("30 % oxygen or more")).toBeNull();
+  });
+
   it("is absent when the target is a point", () => {
     render(<AtmosphereMap points={points} reportConditions={[]} habitat={iss} />);
     expect(screen.queryByTestId("zone-label")).toBeNull();
@@ -119,6 +130,40 @@ describe("targets and presets are labelled on the chart", () => {
     render(<AtmosphereMap points={points} reportConditions={[]} habitat={iss} references={[lunar, iss, spacesuit]} />);
     expect(screen.queryAllByTestId("reference-marker")).toHaveLength(0);
     expect(screen.getAllByTestId("habitat-marker")).toHaveLength(1);
+  });
+});
+
+describe("what is drawn on top", () => {
+  it("draws the solid marks last, so they are never hidden under gas or liquid marks", () => {
+    render(<AtmosphereMap points={[solid, liquid, gas]} reportConditions={[]} habitat={lunar} />);
+    const fuels = screen.getAllByTestId("point").map((p) => p.getAttribute("data-fuel-state"));
+    expect(fuels.at(-1)).toBe("solid");
+    expect(fuels.indexOf("solid")).toBe(fuels.length - 1);
+  });
+
+  it("draws a solid triangle larger than a gas circle", () => {
+    render(<AtmosphereMap points={[solid, gas]} reportConditions={[]} habitat={lunar} />);
+    const marks = screen.getAllByTestId("point");
+    const triangle = marks.find((m) => m.getAttribute("data-fuel-state") === "solid")!.querySelector("polygon")!;
+    const circle = marks.find((m) => m.getAttribute("data-fuel-state") === "gas")!.querySelector("circle")!;
+    const xs = triangle.getAttribute("points")!.split(" ").map((p) => Number(p.split(",")[0]));
+    expect(Math.max(...xs) - Math.min(...xs)).toBeGreaterThanOrEqual(3 * Number(circle.getAttribute("r")));
+  });
+
+  it("draws the target and the reference labels after the test marks, so no mark hides a label", () => {
+    render(<AtmosphereMap points={[solid]} reportConditions={[report]} habitat={iss} references={[lunar, iss, custom]} />);
+    const last = screen.getByTestId("point");
+    for (const id of ["habitat-marker"]) {
+      expect(Boolean(last.compareDocumentPosition(screen.getByTestId(id)) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
+    }
+    expect(Boolean(screen.getByTestId("report-condition").compareDocumentPosition(screen.getByTestId("habitat-marker")) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
+  });
+
+  it("names a custom target that sits on a preset once, with the preset's name", () => {
+    render(<AtmosphereMap points={points} reportConditions={[report]} habitat={{ ...custom, o2_pct: 34, pressure_psi: 8.2 }} />);
+    const chart = screen.getByRole("group", { name: /oxygen against pressure/i });
+    expect(within(chart).getAllByText("NASA test atmosphere")).toHaveLength(1);
+    expect(within(chart).queryByText("Your target")).toBeNull();
   });
 });
 

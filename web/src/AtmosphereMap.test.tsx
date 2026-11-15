@@ -77,7 +77,9 @@ describe("AtmosphereMap", () => {
 
   it("says when the pressure came from the experiment record", () => {
     render(<AtmosphereMap points={[solid, liquid]} reportConditions={[]} habitat={lunar} />);
-    const [fromRecord, fromTable] = screen.getAllByTestId("point");
+    const marks = screen.getAllByTestId("point");
+    const fromRecord = marks.find((m) => m.getAttribute("data-fuel-state") === "solid")!;
+    const fromTable = marks.find((m) => m.getAttribute("data-fuel-state") === "liquid")!;
     expect(titleOf(fromRecord)).toContain("pressure from the experiment record");
     expect(titleOf(fromTable)).not.toContain("pressure from the experiment record");
   });
