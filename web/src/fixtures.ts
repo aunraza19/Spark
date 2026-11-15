@@ -74,3 +74,14 @@ export const customSnapshot: MapSnapshot = {
     experiments_without_conditions: ["PSI-21"],
   },
 };
+
+export const far: Point = {
+  experiment_id: "PSI-39", test_id: "1356", o2_pct_min: 21, o2_pct_max: 21,
+  pressure_psi_min: 73.479, pressure_psi_max: 73.479, fuel_state: "liquid", pressure_basis: "table",
+  source_file: "PSI-39_Experimental table_CFI.csv", source_row: 64,
+};
+export const reportFar: ReportCondition = {
+  experiment_id: "PSI-20", test_id: "19999X1", o2_pct_min: 30, o2_pct_max: 30,
+  pressure_psi_min: 30, pressure_psi_max: 30, fuel: "ethylene/N2 on a porous burner", outcome: "steady",
+  source: { file: "BRE_final_report_20220201.pdf", page: 1, figure: "Figure 1" },
+};

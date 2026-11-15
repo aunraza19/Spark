@@ -164,3 +164,16 @@ polygon.mark-report {
 .summary {
   margin-top: var(--space-3);
 }
+
+.view-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.view-note {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}

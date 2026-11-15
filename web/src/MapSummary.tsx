@@ -30,13 +30,14 @@ function Entry({ entry, gaps }: { entry: SnapshotEntry; gaps: string }) {
   );
 }
 
-export function MapSummary({ snapshot }: { snapshot: MapSnapshot | null }) {
+export function MapSummary({ snapshot, viewNote }: { snapshot: MapSnapshot | null; viewNote?: string }) {
   if (!snapshot) return <p>Loading...</p>;
   const { view, habitat } = snapshot;
   const inside = view.inside_zone;
   const target = habitat.id === "custom" ? "your target" : "the reference point";
   return (
     <div className="summary">
+      {viewNote && <p data-testid="summary-view-note">{viewNote}</p>}
       {inside && (
         <p data-testid="inside-zone">
           Inside the zone: {plural(inside.test_points, "test point")}

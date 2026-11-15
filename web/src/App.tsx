@@ -13,6 +13,7 @@ import {
 import { AtmosphereMap } from "./AtmosphereMap";
 import { HabitatSelector } from "./HabitatSelector";
 import { MapSummary } from "./MapSummary";
+import { hiddenCounts, needsFullRange, viewNote } from "./view";
 
 type Loaded = { habitats: Habitat[]; points: Point[]; reports: ReportCondition[] };
 
@@ -21,6 +22,7 @@ export default function App() {
   const [failed, setFailed] = useState(false);
   const [selection, setSelection] = useState<Selection>({ habitatId: "lunar" });
   const [snapshot, setSnapshot] = useState<MapSnapshot | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     Promise.all([fetchHabitats(), fetchPoints(), fetchReportConditions()])
@@ -44,6 +46,10 @@ export default function App() {
       ? { id: "custom", label: "Custom", kind: "point", o2_pct: selection.custom.o2, pressure_psi: selection.custom.psi, source: "Your input" }
       : (loaded?.habitats.find((h) => h.id === selection.habitatId) ?? null);
 
+  const forced = needsFullRange(target);
+  const view = showAll || forced ? "full" : "zoomed";
+  const note = loaded ? viewNote(hiddenCounts(loaded.points, loaded.reports, view), view, forced) : "";
+
   return (
     <main className="page">
       <h1>Flame in Freefall</h1>
@@ -53,8 +59,20 @@ export default function App() {
           <HabitatSelector habitats={loaded.habitats} selection={selection} onChange={setSelection} />
           <section aria-labelledby="map-heading">
             <h2 id="map-heading">Atmosphere map</h2>
-            <AtmosphereMap points={loaded.points} reportConditions={loaded.reports} habitat={target} />
-            <MapSummary snapshot={snapshot} />
+            <div className="view-control">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={view === "full"}
+                  disabled={forced}
+                  onChange={(e) => setShowAll(e.target.checked)}
+                />
+                Show all
+              </label>
+              <span data-testid="view-note" className="view-note">{note}</span>
+            </div>
+            <AtmosphereMap points={loaded.points} reportConditions={loaded.reports} habitat={target} view={view} />
+            <MapSummary snapshot={snapshot} viewNote={note} />
             <p data-testid="sources" className="sources">
               Sources: {loaded.points.length} test points from the PSI test tables (data/clean/test_points.json).{" "}
               {loaded.reports.length} report condition{loaded.reports.length === 1 ? "" : "s"} from{" "}

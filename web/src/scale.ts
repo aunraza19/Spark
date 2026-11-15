@@ -4,19 +4,25 @@ export function linearScale(domain: [number, number], range: [number, number]): 
   return (value) => r0 + ((value - d0) * (r1 - r0)) / (d1 - d0);
 }
 
+export const PRESSURE_VIEWS = {
+  zoomed: [0, 20] as [number, number],
+  full: [0, 80] as [number, number],
+};
+
+export type PressureView = keyof typeof PRESSURE_VIEWS;
+
 export const MAP = {
   width: 640,
   height: 420,
   margin: { top: 16, right: 16, bottom: 52, left: 60 },
-  pressureDomain: [0, 80] as [number, number],
   oxygenDomain: [0, 45] as [number, number],
   markRadius: 4,
 };
 
-export function mapScales() {
-  const { width, height, margin, pressureDomain, oxygenDomain } = MAP;
+export function mapScales(view: PressureView = "full") {
+  const { width, height, margin, oxygenDomain } = MAP;
   return {
-    x: linearScale(pressureDomain, [margin.left, width - margin.right]),
+    x: linearScale(PRESSURE_VIEWS[view], [margin.left, width - margin.right]),
     y: linearScale(oxygenDomain, [height - margin.bottom, margin.top]),
   };
 }

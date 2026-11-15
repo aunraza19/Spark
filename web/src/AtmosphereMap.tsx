@@ -1,8 +1,9 @@
 import type { Habitat, Point, ReportCondition } from "./api";
 import { formatNumber, formatRange } from "./format";
-import { MAP, mapScales } from "./scale";
+import { MAP, mapScales, PRESSURE_VIEWS, type PressureView } from "./scale";
+import { isVisible } from "./view";
 
-type Props = { points: Point[]; reportConditions: ReportCondition[]; habitat: Habitat | null };
+type Props = { points: Point[]; reportConditions: ReportCondition[]; habitat: Habitat | null; view?: PressureView };
 
 const ticks = (domain: [number, number], step: number) => {
   const found: number[] = [];
@@ -10,8 +11,8 @@ const ticks = (domain: [number, number], step: number) => {
   return found;
 };
 
-function PointMark({ point }: { point: Point }) {
-  const { x, y } = mapScales();
+function PointMark({ point, view }: { point: Point; view: PressureView }) {
+  const { x, y } = mapScales(view);
   const r = MAP.markRadius;
   const ranged = point.o2_pct_min !== point.o2_pct_max || point.pressure_psi_min !== point.pressure_psi_max;
   const fuel = point.fuel_state ?? "unknown";
@@ -51,8 +52,8 @@ function PointMark({ point }: { point: Point }) {
   );
 }
 
-function ReportMark({ condition }: { condition: ReportCondition }) {
-  const { x, y } = mapScales();
+function ReportMark({ condition, view }: { condition: ReportCondition; view: PressureView }) {
+  const { x, y } = mapScales(view);
   const cx = x(condition.pressure_psi_min);
   const cy = y(condition.o2_pct_min);
   const r = MAP.markRadius + 3;
@@ -70,8 +71,8 @@ function ReportMark({ condition }: { condition: ReportCondition }) {
   );
 }
 
-function HabitatMark({ habitat }: { habitat: Habitat }) {
-  const { x, y } = mapScales();
+function HabitatMark({ habitat, view }: { habitat: Habitat; view: PressureView }) {
+  const { x, y } = mapScales(view);
   const cx = x(habitat.pressure_psi ?? 0);
   const cy = y(habitat.o2_pct ?? 0);
   const arm = 9;
@@ -99,9 +100,10 @@ function Legend({ zone }: { zone: boolean }) {
   );
 }
 
-export function AtmosphereMap({ points, reportConditions, habitat }: Props) {
-  const { x, y } = mapScales();
-  const { width, height, margin, pressureDomain, oxygenDomain } = MAP;
+export function AtmosphereMap({ points, reportConditions, habitat, view = "full" }: Props) {
+  const { x, y } = mapScales(view);
+  const pressureDomain = PRESSURE_VIEWS[view];
+  const { width, height, margin, oxygenDomain } = MAP;
   const zone = habitat?.kind === "zone" ? habitat : null;
   return (
     <figure className="map">
@@ -110,7 +112,7 @@ export function AtmosphereMap({ points, reportConditions, habitat }: Props) {
         role="img"
         aria-label="Oxygen against pressure: one mark for each ambient test point"
       >
-        {ticks(pressureDomain, 10).map((v) => (
+        {ticks(pressureDomain, view === "zoomed" ? 5 : 10).map((v) => (
           <g key={`x${v}`} className="tick">
             <line x1={x(v)} y1={margin.top} x2={x(v)} y2={height - margin.bottom} />
             <text x={x(v)} y={height - margin.bottom + 16} textAnchor="middle">{v}</text>
@@ -138,13 +140,17 @@ export function AtmosphereMap({ points, reportConditions, habitat }: Props) {
             <title>{`${zone.label}: oxygen at least ${formatNumber(zone.o2_pct_min ?? 0)} % and pressure at most ${formatNumber(zone.pressure_psi_max ?? 0)} psi. Source: ${zone.source}`}</title>
           </rect>
         )}
-        {points.map((p) => (
-          <PointMark key={`${p.source_file}:${p.source_row}`} point={p} />
-        ))}
-        {reportConditions.map((c) => (
-          <ReportMark key={`${c.experiment_id}:${c.test_id}`} condition={c} />
-        ))}
-        {habitat && habitat.kind === "point" && <HabitatMark habitat={habitat} />}
+        {points
+          .filter((p) => isVisible(p.pressure_psi_max, view))
+          .map((p) => (
+            <PointMark key={`${p.source_file}:${p.source_row}`} point={p} view={view} />
+          ))}
+        {reportConditions
+          .filter((c) => isVisible(c.pressure_psi_max, view))
+          .map((c) => (
+            <ReportMark key={`${c.experiment_id}:${c.test_id}`} condition={c} view={view} />
+          ))}
+        {habitat && habitat.kind === "point" && <HabitatMark habitat={habitat} view={view} />}
       </svg>
       <Legend zone={zone !== null} />
     </figure>
