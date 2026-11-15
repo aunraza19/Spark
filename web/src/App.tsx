@@ -137,6 +137,7 @@ export default function App() {
                 reportConditions={loaded.reports}
                 habitat={target}
                 view={view}
+                references={loaded.habitats}
                 onSelect={setChosen}
               />
             </section>

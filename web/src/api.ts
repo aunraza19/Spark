@@ -1,6 +1,7 @@
 export type Habitat = {
   id: string;
   label: string;
+  short_name?: string;
   kind: "zone" | "point" | "note";
   source: string;
   o2_pct_min?: number;

@@ -1,10 +1,20 @@
-import { useRef, useState, type KeyboardEvent, type SVGProps } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type SVGProps } from "react";
 import type { CardRequest, Habitat, Point, ReportCondition } from "./api";
 import { formatNumber, formatRange } from "./format";
-import { MAP, mapScales, PRESSURE_VIEWS, type PressureView } from "./scale";
+import { MAP, mapScales, mapSize, PRESSURE_VIEWS, type PressureView } from "./scale";
 import { isVisible } from "./view";
 
+type Props = {
+  points: Point[];
+  reportConditions: ReportCondition[];
+  habitat: Habitat | null;
+  view?: PressureView;
+  onSelect?: (request: CardRequest) => void;
+  references?: Habitat[];
+};
+
 type MarkProps = SVGProps<SVGGElement> & { "data-key"?: string };
+type Scales = ReturnType<typeof mapScales>;
 type Target = { key: string; pressure: number; o2: number; request: CardRequest };
 
 const STEP: Record<string, (index: number, count: number) => number> = {
@@ -16,13 +26,7 @@ const STEP: Record<string, (index: number, count: number) => number> = {
   End: (_i, count) => count - 1,
 };
 
-type Props = {
-  points: Point[];
-  reportConditions: ReportCondition[];
-  habitat: Habitat | null;
-  view?: PressureView;
-  onSelect?: (request: CardRequest) => void;
-};
+const LINE = 18;
 
 const ticks = (domain: [number, number], step: number) => {
   const found: number[] = [];
@@ -30,8 +34,19 @@ const ticks = (domain: [number, number], step: number) => {
   return found;
 };
 
-function PointMark({ point, view, mark }: { point: Point; view: PressureView; mark?: MarkProps }) {
-  const { x, y } = mapScales(view);
+const capital = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+
+function Label({ cx, cy, offset, width, text }: { cx: number; cy: number; offset: number; width: number; text: string }) {
+  const right = cx > width * 0.7;
+  return (
+    <text className="chart-label" x={right ? cx - offset : cx + offset} y={cy} dy="0.32em" textAnchor={right ? "end" : "start"}>
+      {text}
+    </text>
+  );
+}
+
+function PointMark({ point, scales, mark }: { point: Point; scales: Scales; mark?: MarkProps }) {
+  const { x, y } = scales;
   const r = MAP.markRadius;
   const ranged = point.o2_pct_min !== point.o2_pct_max || point.pressure_psi_min !== point.pressure_psi_max;
   const fuel = point.fuel_state ?? "unknown";
@@ -71,11 +86,21 @@ function PointMark({ point, view, mark }: { point: Point; view: PressureView; ma
   );
 }
 
-function ReportMark({ condition, view, mark }: { condition: ReportCondition; view: PressureView; mark?: MarkProps }) {
-  const { x, y } = mapScales(view);
+function ReportMark({
+  condition,
+  scales,
+  width,
+  mark,
+}: {
+  condition: ReportCondition;
+  scales: Scales;
+  width: number;
+  mark?: MarkProps;
+}) {
+  const { x, y } = scales;
   const cx = x(condition.pressure_psi_min);
   const cy = y(condition.o2_pct_min);
-  const r = MAP.markRadius + 3;
+  const r = MAP.markRadius + 2;
   const { file, page, figure } = condition.source;
   const title =
     `${condition.experiment_id} test ${condition.test_id} (from report): ` +
@@ -86,12 +111,13 @@ function ReportMark({ condition, view, mark }: { condition: ReportCondition; vie
     <g data-testid="report-condition" className="mark-report" {...mark} aria-label={mark && title}>
       <title>{title}</title>
       <polygon points={`${cx},${cy - r} ${cx + r},${cy} ${cx},${cy + r} ${cx - r},${cy}`} />
+      {condition.preset_label && <Label cx={cx} cy={cy} offset={r + 6} width={width} text={condition.preset_label} />}
     </g>
   );
 }
 
-function HabitatMark({ habitat, view }: { habitat: Habitat; view: PressureView }) {
-  const { x, y } = mapScales(view);
+function HabitatMark({ habitat, scales, width }: { habitat: Habitat; scales: Scales; width: number }) {
+  const { x, y } = scales;
   const cx = x(habitat.pressure_psi ?? 0);
   const cy = y(habitat.o2_pct ?? 0);
   const arm = 9;
@@ -103,6 +129,24 @@ function HabitatMark({ habitat, view }: { habitat: Habitat; view: PressureView }
       <line x1={cx - arm} y1={cy} x2={cx + arm} y2={cy} />
       <line x1={cx} y1={cy - arm} x2={cx} y2={cy + arm} />
       <circle cx={cx} cy={cy} r={arm - 3} fill="none" />
+      <Label cx={cx} cy={cy} offset={arm + 6} width={width} text={habitat.id === "custom" ? "Your target" : habitat.label} />
+    </g>
+  );
+}
+
+function ReferenceMark({ habitat, scales, width }: { habitat: Habitat; scales: Scales; width: number }) {
+  const { x, y } = scales;
+  const cx = x(habitat.pressure_psi ?? 0);
+  const cy = y(habitat.o2_pct ?? 0);
+  const arm = 6;
+  return (
+    <g data-testid="reference-marker" className="reference-marker">
+      <title>
+        {`${habitat.label}: ${formatNumber(habitat.o2_pct ?? 0)} % oxygen at ${formatNumber(habitat.pressure_psi ?? 0)} psi. Source: ${habitat.source}`}
+      </title>
+      <line x1={cx - arm} y1={cy} x2={cx + arm} y2={cy} />
+      <line x1={cx} y1={cy - arm} x2={cx} y2={cy + arm} />
+      <Label cx={cx} cy={cy} offset={arm + 6} width={width} text={habitat.label} />
     </g>
   );
 }
@@ -110,19 +154,32 @@ function HabitatMark({ habitat, view }: { habitat: Habitat; view: PressureView }
 function Legend({ zone }: { zone: boolean }) {
   return (
     <ul aria-label="Legend" className="legend">
-      <li><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" className="mark-gas legend-mark" /></svg> Gas</li>
-      <li><svg width="14" height="14" aria-hidden="true"><rect x="2" y="2" width="10" height="10" className="mark-liquid legend-mark" /></svg> Liquid</li>
-      <li><svg width="14" height="14" aria-hidden="true"><polygon points="7,1 1,12 13,12" className="mark-solid legend-mark" /></svg> Solid</li>
-      <li><svg width="14" height="14" aria-hidden="true"><polygon points="7,1 13,7 7,13 1,7" className="mark-report legend-report" /></svg> Report condition (from a PSI report, not a test table)</li>
+      <li><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" className="mark-gas legend-mark" /></svg> Gas (circle)</li>
+      <li><svg width="14" height="14" aria-hidden="true"><rect x="2" y="2" width="10" height="10" className="mark-liquid legend-mark" /></svg> Liquid (square)</li>
+      <li><svg width="14" height="14" aria-hidden="true"><polygon points="7,1 1,12 13,12" className="mark-solid legend-mark" /></svg> Solid (black triangle)</li>
+      <li><svg width="14" height="14" aria-hidden="true"><polygon points="7,1 13,7 7,13 1,7" className="mark-report legend-report" /></svg> Report condition (diamond): from a PSI report, not a test table</li>
       {zone ? <li><span className="legend-zone" aria-hidden="true" /> Target zone</li> : <li>+ Target point</li>}
     </ul>
   );
 }
 
-export function AtmosphereMap({ points, reportConditions, habitat, view = "full", onSelect }: Props) {
+export function AtmosphereMap({ points, reportConditions, habitat, view = "full", onSelect, references = [] }: Props) {
   const svg = useRef<SVGSVGElement>(null);
+  const figure = useRef<HTMLElement>(null);
   const [activeKey, setActiveKey] = useState<string | null>(null);
-  const { x, y } = mapScales(view);
+  const [measured, setMeasured] = useState(0);
+
+  useEffect(() => {
+    const element = figure.current;
+    if (!element || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver((entries) => setMeasured(entries[0].contentRect.width));
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  const size = mapSize(measured);
+  const scales = mapScales(view, size);
+  const { x, y } = scales;
   const shownPoints = points.filter((p) => isVisible(p.pressure_psi_max, view));
   const shownReports = reportConditions.filter((c) => isVisible(c.pressure_psi_max, view));
   const targets: Target[] = [
@@ -168,11 +225,23 @@ export function AtmosphereMap({ points, reportConditions, habitat, view = "full"
   };
   const byKey = new Map(targets.map((t) => [t.key, t]));
   const targetOf = (key: string) => byKey.get(key) as Target;
+
   const pressureDomain = PRESSURE_VIEWS[view];
-  const { width, height, margin, oxygenDomain } = MAP;
+  const { width, height } = size;
+  const { margin, oxygenDomain } = MAP;
   const zone = habitat?.kind === "zone" ? habitat : null;
+  const zoneLines = zone
+    ? [
+        capital(zone.short_name ?? zone.label),
+        `${formatNumber(zone.o2_pct_min ?? 0)} % oxygen or more`,
+        `${formatNumber(zone.pressure_psi_max ?? 0)} psi or less`,
+      ]
+    : [];
+  const zoneBottom = y(zone?.o2_pct_min ?? 0);
+  const otherPoints = references.filter((h) => h.kind === "point" && h.id !== habitat?.id);
+
   return (
-    <figure className="map">
+    <figure className="map" ref={figure}>
       <svg
         ref={svg}
         viewBox={`0 0 ${width} ${height}`}
@@ -182,40 +251,52 @@ export function AtmosphereMap({ points, reportConditions, habitat, view = "full"
         {ticks(pressureDomain, view === "zoomed" ? 5 : 10).map((v) => (
           <g key={`x${v}`} className="tick">
             <line x1={x(v)} y1={margin.top} x2={x(v)} y2={height - margin.bottom} />
-            <text x={x(v)} y={height - margin.bottom + 16} textAnchor="middle">{v}</text>
+            <text x={x(v)} y={height - margin.bottom + 20} textAnchor="middle">{v}</text>
           </g>
         ))}
         {ticks(oxygenDomain, 10).map((v) => (
           <g key={`y${v}`} className="tick">
             <line x1={margin.left} y1={y(v)} x2={width - margin.right} y2={y(v)} />
-            <text x={margin.left - 8} y={y(v) + 4} textAnchor="end">{v}</text>
+            <text x={margin.left - 8} y={y(v) + 5} textAnchor="end">{v}</text>
           </g>
         ))}
         <text x={(margin.left + width - margin.right) / 2} y={height - 8} textAnchor="middle" className="axis-title">Pressure (psi)</text>
         <text transform={`translate(14 ${(margin.top + height - margin.bottom) / 2}) rotate(-90)`} textAnchor="middle" className="axis-title">Oxygen (% by volume)</text>
         {zone && (
-          <rect
-            data-testid="zone"
-            data-o2-min={zone.o2_pct_min}
-            data-psi-max={zone.pressure_psi_max}
-            className="zone"
-            x={x(0)}
-            y={y(oxygenDomain[1])}
-            width={x(zone.pressure_psi_max ?? 0) - x(0)}
-            height={y(zone.o2_pct_min ?? 0) - y(oxygenDomain[1])}
-          >
-            <title>{`${zone.label}: oxygen at least ${formatNumber(zone.o2_pct_min ?? 0)} % and pressure at most ${formatNumber(zone.pressure_psi_max ?? 0)} psi. Source: ${zone.source}`}</title>
-          </rect>
+          <>
+            <rect
+              data-testid="zone"
+              data-o2-min={zone.o2_pct_min}
+              data-psi-max={zone.pressure_psi_max}
+              className="zone"
+              x={x(0)}
+              y={y(oxygenDomain[1])}
+              width={x(zone.pressure_psi_max ?? 0) - x(0)}
+              height={zoneBottom - y(oxygenDomain[1])}
+            >
+              <title>{`${zone.label}: oxygen at least ${formatNumber(zone.o2_pct_min ?? 0)} % and pressure at most ${formatNumber(zone.pressure_psi_max ?? 0)} psi. Source: ${zone.source}`}</title>
+            </rect>
+            <text data-testid="zone-label" className="zone-label" x={x(0) + 8} y={zoneBottom - 8 - LINE * (zoneLines.length - 1)}>
+              {zoneLines.map((line, i) => (
+                <tspan key={line} x={x(0) + 8} dy={i === 0 ? 0 : LINE} className={i === 0 ? "zone-name" : undefined}>
+                  {line}
+                </tspan>
+              ))}
+            </text>
+          </>
         )}
         {shownPoints.map((p) => {
           const key = `point:${p.source_file}:${p.source_row}`;
-          return <PointMark key={key} point={p} view={view} mark={interactive(targetOf(key))} />;
+          return <PointMark key={key} point={p} scales={scales} mark={interactive(targetOf(key))} />;
         })}
         {shownReports.map((c) => {
           const key = `report:${c.experiment_id}:${c.test_id}`;
-          return <ReportMark key={key} condition={c} view={view} mark={interactive(targetOf(key))} />;
+          return <ReportMark key={key} condition={c} scales={scales} width={width} mark={interactive(targetOf(key))} />;
         })}
-        {habitat && habitat.kind === "point" && <HabitatMark habitat={habitat} view={view} />}
+        {otherPoints.map((h) => (
+          <ReferenceMark key={h.id} habitat={h} scales={scales} width={width} />
+        ))}
+        {habitat && habitat.kind === "point" && <HabitatMark habitat={habitat} scales={scales} width={width} />}
       </svg>
       {onSelect && <p className="map-hint">Click a mark, or press Tab and use the arrow keys, then Enter.</p>}
       <Legend zone={zone !== null} />

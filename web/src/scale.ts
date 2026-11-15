@@ -19,8 +19,17 @@ export const MAP = {
   markRadius: 4,
 };
 
-export function mapScales(view: PressureView = "full") {
-  const { width, height, margin, oxygenDomain } = MAP;
+export type MapSize = { width: number; height: number };
+
+export function mapSize(measuredWidth: number): MapSize {
+  if (measuredWidth <= 0) return { width: MAP.width, height: MAP.height };
+  const width = Math.round(measuredWidth);
+  return { width, height: Math.round(width * (width < 560 ? 1.25 : 0.5)) };
+}
+
+export function mapScales(view: PressureView = "full", size: MapSize = { width: MAP.width, height: MAP.height }) {
+  const { width, height } = size;
+  const { margin, oxygenDomain } = MAP;
   return {
     x: linearScale(PRESSURE_VIEWS[view], [margin.left, width - margin.right]),
     y: linearScale(oxygenDomain, [height - margin.bottom, margin.top]),
